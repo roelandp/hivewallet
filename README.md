@@ -14,6 +14,13 @@
   - Optional use of Touch ID / Face ID for retrieving your passphrase
   - Forced creation of a difficult passphrase including cracktime hints, should you want to use the AES 256 encrypted storage.
 
+# Build instructions
+  - Download & install Appcelerator CLI (you need nodejs for that): https://wiki.appcelerator.org/display/guides2/Appcelerator+CLI+Getting+Started
+  - Have the sdk's for Android and/or IOS on your device
+  - Git clone this repo
+  - `appc run -p (ios|android)`
+
+
 # This app uses the following libraries / software
   - Build on [Axway Titanium Appcelerator](https://github.com/appcelerator/titanium_mobile) for crossplatform native compiled apps
   - Dsteem for steem key related functions: https://github.com/steemit/dsteem
