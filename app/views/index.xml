@@ -1,17 +1,16 @@
 <Alloy>
 	<Window class="container">
 		<Label class="backgroundsteem">s</Label>
-		<AlertDialog id="alertdialog" onClick="alertDialogCb" title="alerttitle"
-					 message="alertmsg" cancel="1">
+		<AlertDialog id="alertdialog" onClick="alertDialogCb" title="alerttitle" message="alertmsg" cancel="1">
 
-					 <!-- The ButtonNames tag sets the buttonNames property. -->
-				 <ButtonNames>
-						 <ButtonName>Confirm</ButtonName>
-						 <ButtonName>Cancel</ButtonName>
-				 </ButtonNames>
-		 </AlertDialog>
+			<!-- The ButtonNames tag sets the buttonNames property. -->
+			<ButtonNames>
+				<ButtonName>Confirm</ButtonName>
+				<ButtonName>Cancel</ButtonName>
+			</ButtonNames>
+		</AlertDialog>
 
-		 <!-- welcome view -->
+		<!-- welcome view -->
 		<View id="container_welcome">
 			<View id="container_welcome_inner" class="layout_vertical height_UISIZE container_pad">
 				<Label id="welcome_description" textid="intro_text"></Label>
@@ -38,8 +37,8 @@
 				<Label id="account_amount_sbd_fiat" class="fontRegular fontSize15 textAlignLeft width_UIFILL">$ 0.00</Label>
 
 			</View>
-			<View class="height15" />
-			<View class="divider container_pad inputholder_divider" />
+			<View class="height15"/>
+			<View class="divider container_pad inputholder_divider"/>
 			<View id="container_transactions_list" class="height_UIFILL">
 				<ListView id="listview_transactions" class="height_UIFILL listview" onItemclick="getTx">
 					<Templates>
@@ -48,9 +47,9 @@
 
 								<Label bindId="txli_label_inout" class="txli_label_inout_transact_green"/>
 								<Label bindId="txli_label_counterparty" class="txli_label_counterparty"/>
-								<Label bindId="txli_label_date" class="txli_label_date" />
+								<Label bindId="txli_label_date" class="txli_label_date"/>
 								<Label bindId="txli_label_amount" class="txli_label_amount"/>
-								<Label bindId="txli_label_currency" class="txli_label_currency" />
+								<Label bindId="txli_label_currency" class="txli_label_currency"/>
 
 								<!-- <View class="divider bottom0 inputholder_divider"/> -->
 							</View>
@@ -62,9 +61,9 @@
 
 								<Label bindId="txli_label_inout" class="txli_label_inout_transact_red"/>
 								<Label bindId="txli_label_counterparty" class="txli_label_counterparty"/>
-								<Label bindId="txli_label_date" class="txli_label_date" />
+								<Label bindId="txli_label_date" class="txli_label_date"/>
 								<Label bindId="txli_label_amount" class="txli_label_amount"/>
-								<Label bindId="txli_label_currency" class="txli_label_currency" />
+								<Label bindId="txli_label_currency" class="txli_label_currency"/>
 
 								<!-- <View class="divider bottom0 inputholder_divider"/> -->
 							</View>
@@ -73,16 +72,15 @@
 
 						<ItemTemplate name="txlinocontent" selectedBackgroundColor="transparent" backgroundColor="transparent">
 							<View class="txli_nocontentview">
-									<View class="layout_vertical height_UISIZE padhorizontal_20 opacity20">
-										<Label class="txli_nocontent_icon fonticomoon fontSize50 padvertical_20 textAlignCenter">ℹ</Label>
-										<Label bindId="txli_nocontent_label" class="txli_nocontent_label padhorizontal_20 textAlignCenter"></Label>
+								<View class="layout_vertical height_UISIZE padhorizontal_20 opacity20">
+									<Label class="txli_nocontent_icon fonticomoon fontSize50 padvertical_20 textAlignCenter">ℹ</Label>
+									<Label bindId="txli_nocontent_label" class="txli_nocontent_label padhorizontal_20 textAlignCenter"></Label>
 								</View>
 							</View>
 						</ItemTemplate>
 					</Templates>
-					<RefreshControl id="refreshList" onRefreshstart="refreshTransactions" />
-				<ListSection>
-				</ListSection>
+					<RefreshControl id="refreshList" onRefreshstart="refreshTransactions"/>
+					<ListSection></ListSection>
 				</ListView>
 
 				<View id="container_transactions_sendreceive" class="layout_vertical bottom0 height_UISIZE">
@@ -97,14 +95,8 @@
 			</View>
 		</View>
 
-		<!-- <View id="testparts" class="layout_vertical height_UISIZE container_pad">
-			<Label id="label" onClick="doClick">Hello, World</Label>
-			<Label id="label2" onClick="doClick2">Hello, account</Label>
-			<Label id="label3" onClick="doClick3">Hello, encrypt</Label>
-			<View id="qrcode">
-
-			</View>
-		</View> -->
+		<!-- <View id="testparts" class="layout_vertical height_UISIZE container_pad"> <Label id="label" onClick="doClick">Hello, World</Label> <Label id="label2" onClick="doClick2">Hello, account</Label> <Label id="label3" onClick="doClick3">Hello,
+		encrypt</Label> <View id="qrcode"> </View> </View> -->
 		<!-- End main transaction window -->
 
 		<ImageView module="av.imageview" id="avatar"/>
@@ -115,8 +107,7 @@
 			</View>
 		</View>
 
-		<View id="background_overlay">
-		</View>
+		<View id="background_overlay"></View>
 
 		<!-- branding -->
 		<View id="container_top_brand" class="layout_vertical height_UISIZE">
@@ -152,9 +143,7 @@
 						enableReturnKey="true"
 						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
 						onReturn="handleAddAccount"
-						id="textfield_addaccount"
-						>
-					</TextField>
+						id="textfield_addaccount"></TextField>
 				</View>
 				<View class="divider inputholder_divider"/>
 			</ScrollView>
@@ -189,17 +178,15 @@
 							<Button id="delbut" bindId="delbut" class="button overlay_delbut fonticomoon" onClick="delAccount">🗑</Button>
 						</ItemTemplate>
 					</Templates>
-				<ListSection>
-				</ListSection>
+					<ListSection></ListSection>
 				</ListView>
-
 
 			</View>
 
 		</View>
 		<!-- end pick accounts -->
 
-		<!-- receive  -->
+		<!-- receive -->
 		<View id="overlay_receive" class="overlay_container">
 			<View class="overlay_header">
 				<View class="divider top0"></View>
@@ -217,11 +204,10 @@
 				</View>
 			</ScrollView>
 
-
 		</View>
-		<!-- end receive  -->
+		<!-- end receive -->
 
-		<!-- send  -->
+		<!-- send -->
 		<View id="overlay_send" class="overlay_container">
 			<View class="overlay_header">
 				<View class="divider top0"></View>
@@ -244,9 +230,7 @@
 						onReturn="returnSendInputfield"
 						onBlur="onBlurSendInputField"
 						passwordMask="false"
-						id="textfield_send_to"
-						>
-					</TextField>
+						id="textfield_send_to"></TextField>
 					<Button class="button fonticomoon fontSize20" id="scandestination" onClick="scanAccountQR">📷</Button>
 				</View>
 				<View class="divider inputholder_divider"/>
@@ -263,9 +247,7 @@
 						onBlur="onBlurSendInputField"
 						passwordMask="false"
 						id="textfield_send_amount"
-						keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD"
-						>
-					</TextField>
+						keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD"></TextField>
 					<Button class="button fontSize15" id="token_steem_or_sbd" onClick="toggleSteemSBD">steem</Button>
 				</View>
 				<View class="divider inputholder_divider"/>
@@ -280,18 +262,16 @@
 						onReturn="returnSendInputfield"
 						onBlur="onBlurSendInputField"
 						passwordMask="false"
-						id="textfield_send_memo"
-						>
-					</TextField>
+						id="textfield_send_memo"></TextField>
 				</View>
 				<View class="divider inputholder_divider"/>
 			</ScrollView>
 			<Button class="button inputholder_bottombut" titleid="send" onClick="sendConfirm" id="button_send"></Button>
 
 		</View>
-		<!-- end send  -->
+		<!-- end send -->
 
-		<!-- import private-key  -->
+		<!-- import private-key -->
 		<View id="overlay_importkey" class="overlay_container">
 			<View class="overlay_header">
 				<View class="divider top0"></View>
@@ -314,9 +294,7 @@
 						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
 						onReturn="returnPrivatekey"
 						passwordMask="true"
-						id="textfield_importprivatekey"
-						>
-					</TextField>
+						id="textfield_importprivatekey"></TextField>
 					<Button class="button fonticomoon fontSize20" id="scanprivatekey" onClick="scanPrivateKey">📷</Button>
 				</View>
 				<View class="divider inputholder_divider"/>
@@ -324,9 +302,9 @@
 			<Button class="button inputholder_bottombut" titleid="add_key" onClick="returnPrivatekey"></Button>
 
 		</View>
-		<!-- private-key  -->
+		<!-- private-key -->
 
-		<!-- import create-wallet  -->
+		<!-- import create-wallet -->
 		<View id="overlay_createwallet" class="overlay_container">
 			<View class="overlay_header">
 				<View class="divider top0"></View>
@@ -350,31 +328,24 @@
 						onReturn="returnPassword"
 						passwordMask="true"
 						id="textfield_addwalletpassword"
-						onChange="calcPassphraseStrength"
-						>
-
-					</TextField>
+						onChange="calcPassphraseStrength"></TextField>
 					<Button class="button fonticomoon fontSize20" id="togglepasswordmask" onClick="togglePasswordMask">🤪</Button>
 					<Label id="password_strength_result"></Label>
 				</View>
 				<View id="enable_identity_holder">
-					<View class="divider inputholder_divider" top="0" />
+					<View class="divider inputholder_divider" top="0"/>
 					<Label class="inputholder_label" id="enable_identity_label"></Label>
-					<Switch id="enable_identity_switch" />
+					<Switch id="enable_identity_switch"/>
 				</View>
 				<View class="divider inputholder_divider"/>
+				<View id="view_spacer_bottom"/>
 			</ScrollView>
-			<Button class="button inputholder_bottombut" titleid="create" id="create_wallet_button" onClick="createWallet" enabled="false"></Button>
+			<View id="create_wallte_container" class="layout_vertical bottom0 height_UISIZE">
+				<Button class="button inputholder_bottombut" titleid="create" id="create_wallet_button" onClick="createWallet" enabled="false"></Button>
+			</View>
 
 		</View>
 		<!-- end create-wallet -->
-
-
-
-
-
-
-
 
 	</Window>
 </Alloy>
