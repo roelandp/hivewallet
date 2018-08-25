@@ -1,0 +1,14 @@
+.DS_Store
+/Resources
+/platform
+/i18n
+/dist
+build.log
+build
+npm-debug.log
+tmp
+.map
+.project
+.settings
+Thumbs.db
+plugins/ti.alloy

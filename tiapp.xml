@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ti:app xmlns:ti="http://ti.appcelerator.org">
+    <id>app.steemwallet.roelandp</id>
+    <name>SteemWallet</name>
+    <version>1.0.0.2</version>
+    <publisher>roelandp</publisher>
+    <url>https://steemwallet.app</url>
+    <description>undefined</description>
+    <copyright>2018 by roelandp</copyright>
+    <icon>appicon.png</icon>
+    <fullscreen>true</fullscreen>
+    <navbar-hidden>false</navbar-hidden>
+    <analytics>false</analytics>
+    <guid>da494d9d-d2a8-4f59-9aaa-f32b6372553f</guid>
+    <property name="ti.ui.defaultunit" type="string">dp</property>
+    <property name="run-on-main-thread" type="bool">true</property>
+    <ios>
+        <enable-launch-screen-storyboard>true</enable-launch-screen-storyboard>
+        <use-app-thinning>true</use-app-thinning>
+        <plist>
+            <dict>
+                <key>UISupportedInterfaceOrientations~iphone</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                </array>
+                <key>UISupportedInterfaceOrientations~ipad</key>
+                <array>
+                    <string>UIInterfaceOrientationPortrait</string>
+                    <string>UIInterfaceOrientationPortraitUpsideDown</string>
+                </array>
+                <key>UIRequiresPersistentWiFi</key>
+                <false/>
+                <key>UIPrerenderedIcon</key>
+                <false/>
+                <key>UIStatusBarHidden</key>
+                <false/>
+                <key>UIStatusBarStyle</key>
+                <string>UIStatusBarStyleDefault</string>
+                <key>NSFaceIDUsageDescription</key>
+                <string>Unlock your wallet</string>
+                <key>NSCameraUsageDescription</key>
+                <string>Scan QR codes</string>
+                <key>NSPhotoLibraryUsageDescription</key>
+                <string>Read QR codes</string>
+                <key>CFBundleURLSchemes</key>
+                <array>
+                <string>steemwallet</string>
+                <string>steem</string>
+                </array>
+            </dict>
+        </plist>
+    </ios>
+    <android xmlns:android="http://schemas.android.com/apk/res/android">
+      <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="app.steemwallet.roelandp" android:versionCode="1001" android:versionName="1.0.0.1">
+      	<uses-sdk android:minSdkVersion="18" android:targetSdkVersion="26"/>
+      	<application android:icon="@drawable/appicon" android:label="SteemWallet" android:name="SteemwalletApplication" android:debuggable="false" android:theme="@style/Theme.MyTheme" android:resizeableActivity="true">
+      		<activity android:name=".SteemwalletActivity" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density"
+            android:screenOrientation="portrait">
+      			<intent-filter>
+      				<action android:name="android.intent.action.MAIN"/>
+      				<category android:name="android.intent.category.LAUNCHER"/>
+      			</intent-filter>
+      		</activity>
+      		<activity android:name="org.appcelerator.titanium.TiActivity" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:screenOrientation="portrait"/>
+      		<activity android:name="org.appcelerator.titanium.TiTranslucentActivity" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:theme="@style/Theme.Titanium.Translucent" android:screenOrientation="portrait" />
+      		<activity android:name="ti.modules.titanium.ui.android.TiPreferencesActivity" android:configChanges="screenSize|density" android:screenOrientation="portrait" />
+      		<provider android:name="org.appcelerator.titanium.io.TiFileProvider" android:authorities="app.steemwallet.roelandp.tifileprovider" android:exported="false" android:grantUriPermissions="true"/>
+      	</application>
+      </manifest>
+    </android>
+    <modules>
+      <module platform="iphone">ti.identity</module>
+      <module platform="android">ti.identity</module>
+      <module platform="iphone">av.imageview</module>
+      <module platform="android">av.imageview</module>
+      <module platform="iphone">ti.barcode</module>
+      <module platform="android">ti.barcode</module>
+      <!-- hyperloop only needed for android resume/pause function -->
+      <module platform="android">hyperloop</module>
+    </modules>
+    <deployment-targets>
+        <target device="android">true</target>
+        <target device="ipad">true</target>
+        <target device="iphone">true</target>
+    </deployment-targets>
+    <sdk-version>7.2.0.GA</sdk-version>
+    <plugins>
+        <plugin version="1.0">ti.alloy</plugin>
+    </plugins>
+    <property name="appc-app-id" type="string">5b645230a27f9503eeb9b6d7</property>
+</ti:app>
