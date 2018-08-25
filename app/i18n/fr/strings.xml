@@ -1,0 +1,99 @@
+<resources>
+    <string name="intro_text">steemwallet est un portefeuille mobile sécurisé pour l'envoi et la réception de Steem et SBD</string>
+    <string name="add_account">ajouter un compte</string>
+    <string name="hi_there">salut!</string>
+    <string name="overlay_title_addaccount">ajouter un compte</string>
+    <string name="overlay_body_addaccount_description">Ajoutez un compte à surveiller. \n\nSeulement une fois que vous essayez d'envoyer à partir de ce compte, vous avez besoin de la clé.</string>
+    <string name="overlay_body_input_account">compte</string>
+    <string name="overlay_body_input_placeholder_addhere">écrivez ici</string>
+
+    <string name="overlay_title_pickaccounts">sélectionner un compte</string>
+
+    <string name="overlay_title_receive">recevoir steem/sbd</string>
+
+    <string name="overlay_title_send">envoyer steem/sbd</string>
+    <string name="send">envoyer</string>
+    <string name="receive">recevoir</string>
+
+    <string name="overlay_title_importprivatekey">importer la clé privée</string>
+    <string name="add_key">ajouter une clé</string>
+
+    <string name="overlay_title_createwallet">créer un portefeuille</string>
+    <string name="create">créer</string>
+
+    <string name="remove_s">Retirer?</string>
+    <string name="remove_account_s">Voulez-vous vraiment supprimer le compte "%1$s"?</string>
+    <string name="yes">oui</string>
+    <string name="OK">D'accord</string>
+    <string name="cancel">annuler</string>
+    <string name="alert_account_not_found">Impossible de trouver "%1$s". S'il vous plaît vérifier les fautes de frappe.</string>
+    <string name="alert_account_already_added">"%1$s" a déjà été ajouté. Maintenant défini par défaut.</string>
+    <string name="alert_add_account_name">Vous devez d'abord ajouter un nom de compte réel</string>
+    <string name="removed_s">Supprimé "%1$s".\n\nSi vous avez également des clés privées liées au compte stockées, vous devez les supprimer manuellement dans le menu portefeuille sécurisé.</string>
+
+    <string name="no_recent_transactions_found">Impossible de trouver des transactions récentes dans l'historique du compte de @%1$s</string>
+
+    <string name="explain_no_tx_in_listview">L'API account_history est un noeud final agrégé qui retourne toutes les actions pour le compte donné. Malheureusement, aucune transaction n'a été enregistrée récemment. Cela signifie que le compte est très actif avec d'autres activités sur la plate-forme.</string>
+    <string name="loading_s">Chargement des transactions récentes de %1$s</string>
+    <string name="qrexplain">scannez ce code qr ou demandez à transférer du steem ou sbd à:</string>
+
+    <string name="create_wallet_explain">Vos clés sont stockées dans un portefeuille chiffré. Utilisez une phrase secrète unique pour le cryptage!</string>
+    <string name="optionally_store_in_device_keychain">Vous pouvez éventuellement stocker la phrase secrète dans le trousseau crypté de votre appareil afin de pouvoir déverrouiller votre portefeuille et diffuser/signer en utilisant %1$s.</string>
+    <string name="label_addwalletpassword">mot de passe</string>
+    <string name="pick_secure_password">taper le mot de passe fort ici</string>
+    <string name="enable_identity_label">utiliser %1$s</string>
+    <string name="password_strength_result">%1$s: il faudrait des professionnels %2$s pour craquer</string>
+    <string name="pw_strength_0">Très mauvais</string>
+    <string name="pw_strength_1">Toujours mauvais</string>
+    <string name="pw_strength_2">Presque là</string>
+    <string name="pw_strength_3">Acceptable</string>
+    <string name="pw_strength_4">Excellent</string>
+
+    <string name="unlock_wallet">Déverrouiller le portefeuille</string>
+    <string name="insert_your_passphrase">tapez votre phrase secrète</string>
+    <string name="unlock">déverrouiller</string>
+    <string name="wallet_file_not_exist">fichier de portefeuille n'existe pas. Créons-en un.</string>
+
+    <string name="overlay_body_importprivatekey_description">Ajoutez une clé active (!) Dans votre portefeuille chiffré, de sorte que vous puissiez l'utiliser pour envoyer du steem/sbd.\n\nVous n'avez pas de clé active? Renseignez-vous sur les clés! Essayez plutôt d’insérer le mot de passe de %1$s.</string>
+    <string name="insert_private_key_or_password">insérer la clé ici</string>
+
+    <string name="please_type_paste_or_scan_a_privkey">clé privée</string>
+    <string name="no_account_found_for_given_key">Aucun compte correspondant trouvé</string>
+    <string name="send_s">envoyer %1$s</string>
+    <string name="overlay_title_send_steem">envoyer steem</string>
+    <string name="overlay_body_send_to">à</string>
+    <string name="steem_username">usagé steem</string>
+    <string name="overlay_body_send_amount">montant</string>
+    <string name="overlay_body_send_memo">mémo</string>
+    <string name="optionally_type_a_memo">laisser une note (facultatif)</string>
+
+    <string name="account_s_on_bad_actors_list_cant_send">%1$s est sur la liste des mauvais acteurs, vous ne pouvez donc pas l'envoyer</string>
+    <string name="seems_like_you_are_sending_a_private_key">Il semble que vous envoyez une clé privée dans le champ Mémo.\n\nLe champ a été réinitialisé.</string>
+    <string name="s_field_cant_be_empty">Le champ "%1$s" ne peut pas être vide</string>
+    <string name="confirm_transaction">%1$s :: confirmer la transaction</string>
+    <string name="confirm_transation_details_to_s">Voulez-vous envoyer\nto %1$s?\n- - - - - - -\n%2$s %3$s\n\n%4$s</string>
+
+    <string name="no_keys_found_for_s">Aucune clé trouvée pour %1$s dans le portefeuille</string>
+    <string name="transaction_included_in_block_s">Succès!\n\nTransaction incluse dans le bloc %1$s</string>
+    <string name="wrong_passphrase">Peut-être c'est la mauvaise phrase secrète?\n\n%1$s</string>
+    <string name="authenticate_with_fingerprint">Authentifier avec empreinte digitale</string>
+    <string name="authenticate_to_retrieve_passphrase_from_keychain">Veuillez vous authentifier pour récupérer votre phrase secrète</string>
+
+    <string name="year">an</string>
+    <string name="month">mois</string>
+    <string name="week">semaine</string>
+    <string name="isoWeek">isoWeek</string>
+    <string name="day">journée</string>
+    <string name="weekday">jour de la semaine</string>
+    <string name="isoWeekday">isoWeekday</string>
+    <string name="hour">heure</string>
+    <string name="weekYear">weekYear</string>
+    <string name="isoWeekYear">isoWeekYear</string>
+    <string name="quarter">trimestre</string>
+    <string name="date">date</string>
+    <string name="dayOfYear">dayOfYear</string>
+    <string name="minute">minute</string>
+    <string name="second">seconde</string>
+    <string name="millisecond">milliseconde</string>
+
+</resources>
