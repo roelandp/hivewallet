@@ -1,17 +1,17 @@
 <resources>
-    <string name="intro_text">steemwallet is a secure mobile wallet for sending and receiving Steem and SBD</string>
+    <string name="intro_text">steemwallet is your mobile wallet for STEEM and Steem Dollars (SBD) transactions</string>
     <string name="add_account">add account</string>
-    <string name="hi_there">hi there!</string>
+    <string name="hi_there">Hi there!</string>
     <string name="overlay_title_addaccount">add account</string>
-    <string name="overlay_body_addaccount_description">Add any account to monitor.\n\nOnly once you try to send from that account you need it's key.</string>
+    <string name="overlay_body_addaccount_description">Add any account to display.\n\nYou will be asked for the account key only when you try to send funds from it.</string>
     <string name="overlay_body_input_account">account</string>
-    <string name="overlay_body_input_placeholder_addhere">type here</string>
+    <string name="overlay_body_input_placeholder_addhere">@accountname</string>
 
     <string name="overlay_title_pickaccounts">select account</string>
 
-    <string name="overlay_title_receive">receive steem/sbd</string>
+    <string name="overlay_title_receive">receive STEEM/sbd</string>
 
-    <string name="overlay_title_send">send steem/sbd</string>
+    <string name="overlay_title_send">send STEEM/Steem Dollars</string>
     <string name="send">send</string>
     <string name="receive">receive</string>
 
@@ -21,63 +21,63 @@
     <string name="overlay_title_createwallet">create wallet</string>
     <string name="create">create</string>
 
-    <string name="remove_s">Remove?</string>
-    <string name="remove_account_s">Do you really want to remove the account "%1$s"?</string>
+    <string name="remove_s">remove?</string>
+    <string name="remove_account_s">Are you sure you want to remove the account  %1$s?</string>
     <string name="yes">yes</string>
-    <string name="OK">OK</string>
+    <string name="OK">ok</string>
     <string name="cancel">cancel</string>
-    <string name="alert_account_not_found">Could not find "%1$s". Please check for typos.</string>
-    <string name="alert_account_already_added">"%1$s" was already added. Now set as default.</string>
-    <string name="alert_add_account_name">You need to add an actual accountname first</string>
-    <string name="removed_s">Removed "%1$s".\n\nIf you also have any account related private-keys stored, then you should remove those manually in the secure wallet menu.</string>
+    <string name="alert_account_not_found">Could not find "%1$s". Please check the spelling and try again.</string>
+    <string name="alert_account_already_added">"%1$s" was already added and is now set as default.</string>
+    <string name="alert_add_account_name">You need to add a valid account name first.</string>
+    <string name="removed_s">Removed "%1$s".\n\nIf you also have any account private keys stored locally, you can remove them manually in the secure wallet menu.</string>
 
-    <string name="no_recent_transactions_found">Couldn't find any recent transactions in the account history of @%1$s</string>
+    <string name="no_recent_transactions_found">No recent transactions can be found in the account history of %1$s.</string>
 
-    <string name="explain_no_tx_in_listview">The account_history api is an aggregate endpoint, returning all actions for the given account. Unfortunately no transactions have been recently recorded. This means the account is very active with other activity on the platform.</string>
-    <string name="loading_s">Loading %1$s's recent transactions</string>
+    <string name="explain_no_tx_in_listview">No fund transfers can be found in the account history.</string>
+    <string name="loading_s">Loading recent transaction for %1$s...</string>
     <string name="qrexplain">scan this qr code or ask to transfer steem or sbd to:</string>
 
-    <string name="create_wallet_explain">Your key(s) are stored in an encrypted wallet. Use a unique strong passphrase for encryption!</string>
-    <string name="optionally_store_in_device_keychain">Optionally you can store the passphrase in your device's encrypted keychain so you can unlock your wallet and broadcast/sign by using %1$s.</string>
+    <string name="create_wallet_explain">Your key(s) are stored in an encrypted wallet. Use a unique and strong passphrase for encryption!</string>
+    <string name="optionally_store_in_device_keychain">You can store the passphrase in your device's encrypted keychain (option) so you can unlock your wallet and broadcast/sign by using %1$s.</string>
     <string name="label_addwalletpassword">passphrase</string>
-    <string name="pick_secure_password">type strong passphrase here</string>
-    <string name="enable_identity_label">use %1$s</string>
-    <string name="password_strength_result">%1$s: it would take professionals %2$s to crack</string>
+    <string name="pick_secure_password">enter a strong passphrase here</string>
+    <string name="enable_identity_label">use %1$s.</string>
+    <string name="password_strength_result">%1$s: it would take hackers %2$s to crack this password.</string>
     <string name="pw_strength_0">Very bad</string>
     <string name="pw_strength_1">Still bad</string>
     <string name="pw_strength_2">Almost there</string>
     <string name="pw_strength_3">Acceptable</string>
     <string name="pw_strength_4">Excellent</string>
 
-    <string name="unlock_wallet">Unlock wallet</string>
-    <string name="insert_your_passphrase">type your passphrase</string>
+    <string name="unlock_wallet">unlock wallet</string>
+    <string name="insert_your_passphrase">enter your passphrase</string>
     <string name="unlock">unlock</string>
-    <string name="wallet_file_not_exist">wallet file doesn't exist. Let's create one.</string>
+    <string name="wallet_file_not_exist">Wallet file doesn't exist. Let's create one!</string>
 
-    <string name="overlay_body_importprivatekey_description">Add any active (!) key into your encrypted wallet, so you can use it to send steem/sbd.\n\nDon't have an active key? Educate yourself about keys! Try inserting %1$s's password instead.</string>
-    <string name="insert_private_key_or_password">insert key here</string>
+    <string name="overlay_body_importprivatekey_description">Add any ACTIVE key to your encrypted wallet to be used to send STEEM/Steem Dollars.\n\nAlternatively, you can use the passphrase for %1$s.</string>
+    <string name="insert_private_key_or_password">enter key here</string>
 
     <string name="please_type_paste_or_scan_a_privkey">private key</string>
     <string name="no_account_found_for_given_key">No matching account found</string>
     <string name="send_s">send %1$s</string>
-    <string name="overlay_title_send_steem">send steem</string>
+    <string name="overlay_title_send_steem">send STEEM</string>
     <string name="overlay_body_send_to">to</string>
-    <string name="steem_username">steem user</string>
+    <string name="steem_username">steem user account name</string>
     <string name="overlay_body_send_amount">amount</string>
     <string name="overlay_body_send_memo">memo</string>
     <string name="optionally_type_a_memo">leave a note (optional)</string>
 
-    <string name="account_s_on_bad_actors_list_cant_send">%1$s is on the bad actors list, so you can't send to it</string>
-    <string name="seems_like_you_are_sending_a_private_key">It seems like you are sending a private key in the memo field.\n\nThe field has been resetted.</string>
-    <string name="s_field_cant_be_empty">The "%1$s" field can't be empty</string>
+    <string name="account_s_on_bad_actors_list_cant_send">%1$s is on the bad actors list, so you can't send funds to this account.</string>
+    <string name="seems_like_you_are_sending_a_private_key">It seems like you are sending a private key in the memo field.\n\nThe field has been reset.</string>
+    <string name="s_field_cant_be_empty">The "%1$s" field can't be empty.</string>
     <string name="confirm_transaction">%1$s :: confirm transaction</string>
-    <string name="confirm_transation_details_to_s">Do you want to send\nto %1$s?\n- - - - - - -\n%2$s %3$s\n\n%4$s</string>
+    <string name="confirm_transation_details_to_s">Do you want to send\nto %1$s?\n- - - - - - -\n%2$s %3$s\n\n%4$s?</string>
 
-    <string name="no_keys_found_for_s">No key found for %1$s in wallet</string>
-    <string name="transaction_included_in_block_s">Success!\n\nTransaction included in block %1$s</string>
-    <string name="wrong_passphrase">Maybe the wrong passphrase?\n\n%1$s</string>
+    <string name="no_keys_found_for_s">No key found for %1$s in wallet.</string>
+    <string name="transaction_included_in_block_s">Success!\n\nTransaction included in block %1$s.</string>
+    <string name="wrong_passphrase">Check your passphrase.\n\n%1$s</string>
     <string name="authenticate_with_fingerprint">Authenticate with fingerprint</string>
-    <string name="authenticate_to_retrieve_passphrase_from_keychain">Please authenticate yourself to retrieve your passphrase</string>
+    <string name="authenticate_to_retrieve_passphrase_from_keychain">Please authenticate to retrieve your passphrase.</string>
 
     <string name="year">year</string>
     <string name="month">month</string>
