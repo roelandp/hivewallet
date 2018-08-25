@@ -1,0 +1,12 @@
+node_modules/
+modules/
+app/widgets/
+app/lib/SlowAES/
+app/lib/appPauseResume.js
+app/lib/badactors.js
+app/lib/buffer.js
+app/lib/dsteem.js
+app/lib/measurement.js
+app/lib/moment.js
+app/lib/qrcode.js
+app/lib/zxcvbn.js
