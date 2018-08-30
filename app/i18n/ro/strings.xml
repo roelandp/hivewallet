@@ -1,0 +1,99 @@
+<resources>
+    <string name="intro_text">steemwallet este un portofel sigur pentru mobil care permite trimiterea și primirea de STEEM și SBD</string>
+    <string name="add_account">adaugă cont</string>
+    <string name="hi_there">salut!</string>
+    <string name="overlay_title_addaccount">adaugă cont</string>
+    <string name="overlay_body_addaccount_description">Adaugă orice cont pentru monitorizare.\n\nDoar în momentul în care vei încerca să trimiți de pe acel cont ți se va cere cheia privată.</string>
+    <string name="overlay_body_input_account">cont</string>
+    <string name="overlay_body_input_placeholder_addhere">scrie aici</string>
+
+    <string name="overlay_title_pickaccounts">selectează contul</string>
+
+    <string name="overlay_title_receive">primește steem/sbd</string>
+
+    <string name="overlay_title_send">trimite steem/sbd</string>
+    <string name="send">trimite</string>
+    <string name="receive">primește</string>
+
+    <string name="overlay_title_importprivatekey">importă cheia privată</string>
+    <string name="add_key">adaugă o cheie</string>
+
+    <string name="overlay_title_createwallet">crează portofel</string>
+    <string name="create">crează</string>
+
+    <string name="remove_s">Elimină?</string>
+    <string name="remove_account_s">Ești sigur/ă că vrei să elimini contul "%1$s"?</string>
+    <string name="yes">da</string>
+    <string name="OK">OK</string>
+    <string name="cancel">anulează</string>
+    <string name="alert_account_not_found">Nu am găsit contul "%1$s". Verifică pentru greșeli.</string>
+    <string name="alert_account_already_added">"%1$s" era deja adăugat. Acum este setat ca implicit.</string>
+    <string name="alert_add_account_name">Trebuie sa adaugi un nume de cont corect mai întai</string>
+    <string name="removed_s">"%1$s" a fost șters.\n\nDacă ai vreo cheie privată stocată ar trebui să o elimini manual din meniul portofelului.</string>
+
+    <string name="no_recent_transactions_found">Nu s-a găsit nicio tranzacție recentă în istoricul contului @%1$s</string>
+
+    <string name="explain_no_tx_in_listview">API-ul account_history este un obiectiv final agregat, returnând toate acțiunile pentru contul dat. Din păcate nu s-au înregistrat tranzacții recente. Asta înseamnă că acest cont este foarte activ cu o altă activitate pe platformă</string>
+    <string name="loading_s">Se încarcă tranzacțiile recente ale %1$s</string>
+    <string name="qrexplain">scanează acest cod QR sau cere transferul de steem/sbd la: </string>
+
+    <string name="create_wallet_explain">Cheile tale sunt stocate într-un portofel criptat. Folosește o parolă unică și puternică pentru criptare!</string>
+	<string name="optionally_store_in_device_keychain">Opțional, poți stoca parola în sistemul de stocare criptată al dispozitivului tău ca să-ți poți debloca portofelul și răspândi/semna folosind %1$s.</string>
+    <string name="label_addwalletpassword">parolă</string>
+    <string name="pick_secure_password">scrie o parolă puternică</string>
+    <string name="enable_identity_label">folosește %1$s</string>
+    <string name="password_strength_result">%1$s: profesioniștilor le-ar lua %2$s să o spargă</string>
+    <string name="pw_strength_0">Foarte proastă</string>
+    <string name="pw_strength_1">Încă proastă</string>
+    <string name="pw_strength_2">Pe-aproape</string>
+    <string name="pw_strength_3">Acceptabilă</string>
+    <string name="pw_strength_4">Excelentă</string>
+
+    <string name="unlock_wallet">Deblochează portofelul</string>
+    <string name="insert_your_passphrase">scrie parola</string>
+    <string name="unlock">deblochează</string>
+    <string name="wallet_file_not_exist">Portofelul nu există. Creează unul.</string>
+
+    <string name="overlay_body_importprivatekey_description">Adaugă orice cheie activă (!) în portofelul tău criptat, pentru a putea trimite steem/sbd.\n\nNu ai o cheie activă? Învață despre ele! Încearcă să introduci parola contului %1$s în schimb.</string>
+    <string name="insert_private_key_or_password">introdu cheia aici</string>
+
+    <string name="please_type_paste_or_scan_a_privkey">cheie privată</string>
+    <string name="no_account_found_for_given_key">Nu s-a găsit niciun cont aferent acestei chei</string>
+    <string name="send_s">trimite %1$s</string>
+    <string name="overlay_title_send_steem">trimite steem</string>
+    <string name="overlay_body_send_to">către</string>
+    <string name="steem_username">utilizator steem</string>
+    <string name="overlay_body_send_amount">sumă</string>
+    <string name="overlay_body_send_memo">memo</string>
+    <string name="optionally_type_a_memo">lasă o notă (opțional)</string>
+
+    <string name="account_s_on_bad_actors_list_cant_send">%1$s este pe lista neagră, așa că nu îi poți trimite</string>
+    <string name="seems_like_you_are_sending_a_private_key">Se pare că trimiți o cheie privată in câmpul memo.\n\nCâmpul a fost resetat.</string>
+    <string name="s_field_cant_be_empty">Câmpul "%1$s" nu poate fi gol</string>
+    <string name="confirm_transaction">%1$s :: confirmă tranzacția</string>
+    <string name="confirm_transation_details_to_s">Vrei să trimiți\ncătre %1$s?\n- - - - - - -\n%2$s %3$s\n\n%4$s</string>
+
+    <string name="no_keys_found_for_s">Nu s-a găsit nicio cheie pentr %1$s în portofel</string>
+    <string name="transaction_included_in_block_s">Success!\n\nTranzacție inclusă in block-ul %1$s</string>
+    <string name="wrong_passphrase">Poate e greșită parola?\n\n%1$s</string>
+    <string name="authenticate_with_fingerprint">Autentifică-te cu amprenta</string>
+    <string name="authenticate_to_retrieve_passphrase_from_keychain">Autentifică-te pentru a-ți recupera parola</string>
+
+    <string name="year">an</string>
+    <string name="month">lună</string>
+    <string name="week">săptămână</string>
+    <string name="isoWeek">isoSăptămână</string>
+    <string name="day">zi</string>
+    <string name="weekday">zi din săptămână</string>
+    <string name="isoWeekday">isoZiDinSăptămână</string>
+    <string name="hour">oră</string>
+    <string name="weekYear">săptămânăAn</string>
+    <string name="isoWeekYear">isoSăptămânăAn</string>
+    <string name="quarter">trimestru</string>
+    <string name="date">dată</string>
+    <string name="dayOfYear">ziDinAn</string>
+    <string name="minute">minute</string>
+    <string name="second">secundă</string>
+    <string name="millisecond">milisecunde</string>
+
+</resources>
