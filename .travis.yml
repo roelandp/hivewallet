@@ -12,7 +12,7 @@ before_install:
     - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 install:
-    - npm install -g titanium alloy tishadow gulp ticalabash
+    - npm install -g titanium alloy tishadow gulp gulp-cli ticalabash
     - npm install
 
     - titanium login travisci@appcelerator.com travisci
