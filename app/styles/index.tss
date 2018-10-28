@@ -153,6 +153,7 @@
 		fontWeight: "bold",
 		fontSize: 25
 	},
+	minimumFontSize: 15,
 	color: Alloy.Globals.colors.themeblue,
 	selectedColor: Alloy.Globals.colors.steemlightblue,
 	backgroundColor: 'transparent',
