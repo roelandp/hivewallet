@@ -136,7 +136,8 @@ function functions() {
 					if (fn_error) {
 						fn_error(this.responseText);
 					} else {
-						alert(e);
+						//alert(e);
+						Alloy.Globals.loading.show(e, true);
 					}
 				};
 
@@ -159,10 +160,11 @@ function functions() {
 				}
 			} else {
 				file_obj.error = 'no internet';
-				alert('No connectivity.. ');
+				//alert('No connectivity.. ');
+				Alloy.Globals.loading.show('No connection', true);
 			}
 		} catch (err) {
-			alert(err);
+			Alloy.Globals.loading.show(err, true);
 		}
 	};
 }

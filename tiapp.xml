@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>app.steemwallet.roelandp</id>
     <name>SteemWallet</name>
-    <version>1.0.1.0</version>
+    <version>1.0.1.1</version>
     <publisher>roelandp</publisher>
     <url>https://steemwallet.app</url>
     <description>undefined</description>
