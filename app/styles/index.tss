@@ -1,14 +1,12 @@
-".container": {
-	backgroundColor:"white",
+".container" : {
+	backgroundColor: "white"
 }
-
-"Label": {
+"Label" : {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
 	color: "#494841"
 }
-
-"TextField": {
+"TextField" : {
 	color: Alloy.Globals.colors.steemdarkblue,
 	backgroundColor: 'transparent',
 	borderWidth: 0,
@@ -19,370 +17,314 @@
 		left: 0,
 		right: 0,
 		top: 0,
-		bottom: 0,
+		bottom: 0
 	}
-
 }
-
-"TextArea": {
+"TextArea" : {
 	color: Alloy.Globals.colors.steemdarkblue,
-	backgroundColor: 'transparent',
+	backgroundColor: 'transparent'
 }
-
-".backgroundsteem":{
+".backgroundsteem" : {
 	font: {
 		fontFamily: "icomoon",
-		fontSize: 1200,
+		fontSize: 1200
 	},
 	color: Alloy.Globals.colors.steemlightblue,
 	opacity: 0.05,
-	left: -100,
-
+	left: -100
 }
-
-"#label": {
+"#label" : {
 	font: {
 		fontSize: 12
 	},
 	height: 20,
-	top: 50,
+	top: 50
 }
-
-".layout_horizontal":{
+".layout_horizontal" : {
 	layout: 'horizontal'
 }
-
-".layout_vertical":{
+".layout_vertical" : {
 	layout: 'vertical'
 }
-
-".height_UISIZE": {
-	height: Ti.UI.SIZE,
+".height_UISIZE" : {
+	height: Ti.UI.SIZE
 }
-
-".height_UIFILL": {
-	height: Ti.UI.FILL,
+".height_UIFILL" : {
+	height: Ti.UI.FILL
 }
-
-".height_AUTO": {
-	height: 'auto',
+".height_AUTO" : {
+	height: 'auto'
 }
-
-".height15": {
-	height: 15,
+".height15" : {
+	height: 15
 }
-
-
-".width_UISIZE": {
-	width: Ti.UI.SIZE,
+".width_UISIZE" : {
+	width: Ti.UI.SIZE
 }
-
-".width_UIFILL": {
-	width: Ti.UI.FILL,
+".width_UIFILL" : {
+	width: Ti.UI.FILL
 }
-
-".container_pad": {
+".container_pad" : {
 	left: 20,
-	right: 20,
+	right: 20
 }
-
-".padhorizontal_20": {
+".padhorizontal_20" : {
 	left: 20,
-	right: 20,
+	right: 20
 }
-
-".padvertical_20": {
+".padvertical_20" : {
 	top: 20,
-	bottom:20,
+	bottom: 20
 }
-
-".fontRegular": {
+".fontRegular" : {
 	font: {
 		fontWeight: "normal"
 	}
 }
-
-".fontBold": {
+".fontBold" : {
 	font: {
 		fontWeight: "bold"
 	}
 }
-
-".fontSemibold": {
+".fontSemibold" : {
 	font: {
 		fontWeight: "semibold"
 	}
 }
-
-".fontThin": {
+".fontThin" : {
 	font: {
-		fontWeight: "thin",
-
+		fontWeight: "thin"
 	}
 }
-
-".fontLight": {
+".fontLight" : {
 	font: {
 		fontWeight: "light"
 	}
 }
-
-".fontUltralight": {
+".fontUltralight" : {
 	font: {
 		fontWeight: "ultralight"
 	}
 }
-
 ".fontSize20" : {
 	font: {
-		fontSize: 20,
+		fontSize: 20
 	}
 }
-
 ".fontSize25" : {
 	font: {
-		fontSize: 25,
+		fontSize: 25
 	},
-	minimumFontSize: 10,
+	minimumFontSize: 10
 }
-
 ".fontSize50" : {
 	font: {
-		fontSize: 50,
+		fontSize: 50
 	},
-	minimumFontSize: 10,
+	minimumFontSize: 10
 }
-
-".opacity20": {
+".opacity20" : {
 	opacity: 0.2
 }
-
-".fontSize15": {
+".fontSize15" : {
 	font: {
-		fontSize: 15,
+		fontSize: 15
 	}
 }
-
-".textAlignCenter": {
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+".textAlignCenter" : {
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }
-
-".textAlignLeft": {
-	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+".textAlignLeft" : {
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
 }
-
-
-".width50pct" :{
+".width50pct" : {
 	width: '49.99%'
 }
-
-".transparentbg": {
-	backgroundColor: 'transparent',
+".transparentbg" : {
+	backgroundColor: 'transparent'
 }
-
-".fonticomoon": {
+".fonticomoon" : {
 	font: {
 		fontFamily: "icomoon"
 	}
 }
-
-
-".button":  {
+".button" : {
 	font: {
 		fontWeight: "bold",
-		fontSize: 25,
+		fontSize: 25
 	},
 	color: Alloy.Globals.colors.themeblue,
 	selectedColor: Alloy.Globals.colors.steemlightblue,
 	backgroundColor: 'transparent',
 	selectedBackgroundColor: 'transparent',
 	backgroundSelectedColor: 'transparent',
-	borderWidth: 0,
-
+	borderWidth: 0
 }
-
-"#avatar": {
+"#avatar" : {
 	top: Alloy.Globals.dimensions.avatar_top_right,
 	right: Alloy.Globals.dimensions.avatar_top_right,
-	width:Alloy.Globals.dimensions.avatar_width_height,
+	width: Alloy.Globals.dimensions.avatar_width_height,
 	height: Alloy.Globals.dimensions.avatar_width_height,
 	opacity: 0.25,
 	contentMode: Alloy.Globals.CONTENT_MODE_FILL,
-
 	borderRadius: 150,
-	image: "",
+	image: ""
 }
-
-"#container_top_brand": {
-	top: Alloy.Globals.dimensions.container_branding_top,
+"#container_top_brand" : {
+	top: Alloy.Globals.dimensions.container_branding_top
 }
-
-"#container_top_username": {
-	top: Alloy.Globals.dimensions.container_username_top,
+"#container_top_username" : {
+	top: Alloy.Globals.dimensions.container_username_top
 }
-
-"#container_branding": {
-
-}
-
-"#branding_icon": {
+"#container_branding" : {}
+"#branding_icon" : {
 	font: {
 		fontFamily: "icomoon",
-		fontSize: 25,
+		fontSize: 25
 	},
 	right: 5,
 	top: 3,
-	color: Alloy.Globals.colors.themeblue,
+	color: Alloy.Globals.colors.themeblue
 }
-
-"#branding_title": {
+"#branding_title" : {
 	font: {
 		fontWeight: "semibold",
-		fontSize: 25,
+		fontSize: 25
 	}
 }
-
-"#username_title": {
+"#username_title" : {
 	font: {
 		fontWeight: "bold",
-		fontSize: 40,
+		fontSize: 40
 	},
 	minimumFontSize: 10,
 	right: 20,
-	left: 0,
+	left: 0
 }
-
-"#container_welcome": {
+"#container_welcome" : {
 	//top: Alloy.Globals.dimensions.overlay_container_top,
 	top: Alloy.Globals.dimensions.DP_platformHeight,
 	backgroundColor: 'transparent',
-	height: Alloy.Globals.dimensions.overlay_container_height,
+	height: Alloy.Globals.dimensions.overlay_container_height
 }
-
-"#container_transactions": {
+"#container_transactions" : {
 	//top: Alloy.Globals.dimensions.overlay_container_top,
 	top: Alloy.Globals.dimensions.DP_platformHeight,
 	backgroundColor: 'transparent',
-	height: Alloy.Globals.dimensions.overlay_container_height,
+	height: Alloy.Globals.dimensions.overlay_container_height
 }
-
-"#container_transactions_sendreceive": {
-	backgroundGradient:{
-		type:"linear",
-		startPoint:{x:0,y:0},
-		endPoint:{x:0, y:"100%"},
-		colors:[
-			{color: "#00FFFFFF", offset: 0.0},
-			{color: "#B3FFFFFF", offset: 0.2},
-			{color: "#FFFFFFFF", offset: 1}
+"#container_transactions_sendreceive" : {
+	backgroundGradient: {
+		type: "linear",
+		startPoint: {
+			x: 0,
+			y: 0
+		},
+		endPoint: {
+			x: 0,
+			y: "100%"
+		},
+		colors: [
+			{
+				color: "#00FFFFFF",
+				offset: 0.0
+			}, {
+				color: "#B3FFFFFF",
+				offset: 0.2
+			}, {
+				color: "#FFFFFFFF",
+				offset: 1
+			}
 		]
 	}
 }
-
-"#container_transactions_list": {
+"#container_transactions_list" : {
 	backgroundColor: 'transparent'
 }
-
-"#listview_transactions": {
+"#listview_transactions" : {
 	backgroundColor: 'transparent'
 }
-
-"#container_transactions_listview_container": {
+"#container_transactions_listview_container" : {
 	backgroundColor: 'transparent'
 }
-
-"#container_transactions_buttonholder": {
+"#container_transactions_buttonholder" : {
 	//height: 70,
 	backgroundColor: 'transparent'
 }
-
-"#container_transactions_sendreceive_bottom_spacer": {
-	height: 20,
+"#container_transactions_sendreceive_bottom_spacer" : {
+	height: 20
 }
-
-"#container_transactions_sendreceive_top_spacer": {
-	height: 20,
+"#container_transactions_sendreceive_top_spacer" : {
+	height: 20
 }
-
-
-"#container_transactions_sendreceive_bottom_spacer[if=Alloy.Globals.isiPhoneX]":{
-	height: 50,
+"#container_transactions_sendreceive_bottom_spacer[if=Alloy.Globals.isiPhoneX]" : {
+	height: 50
 }
-"#welcome_description": {
+"#welcome_description" : {
 	font: {
 		fontWeight: "regular",
-		fontSize: 20,
+		fontSize: 20
 	},
 	left: 20,
 	right: 20,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-	bottom: 20,
+	bottom: 20
 }
-
-"#container_author": {
-	bottom: 20,
+"#container_author" : {
+	bottom: 20
 }
-
-"#author_description": {
+"#author_description" : {
 	font: {
 		fontWeight: "light",
-		fontSize: 12,
+		fontSize: 12
 	},
-	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }
-
-"#background_overlay": {
-		backgroundImage: "/images/background.png",
-		backgroundRepeat: true,
-		height: Alloy.Globals.dimensions.DP_platformHeight,
-		width: Alloy.Globals.dimensions.DP_platformWidth,
-		top: Alloy.Globals.dimensions.DP_platformHeight,
-		opacity: 0,
+"#background_overlay" : {
+	backgroundImage: "/images/background.png",
+	backgroundRepeat: true,
+	height: Alloy.Globals.dimensions.DP_platformHeight,
+	width: Alloy.Globals.dimensions.DP_platformWidth,
+	top: Alloy.Globals.dimensions.DP_platformHeight,
+	opacity: 0
 }
-
-".overlay_container": {
+".overlay_container" : {
 	top: Alloy.Globals.dimensions.DP_platformHeight,
 	height: Alloy.Globals.dimensions.overlay_container_height,
-	backgroundColor: 'white',
+	backgroundColor: 'white'
 }
-
 ".overlay_header" : {
 	height: 60,
-	top: 0,
+	top: 0
 }
-
-".overlay_header_title": {
+".overlay_header_title" : {
 	font: {
 		fontWeight: "bold",
-		fontSize: 25,
-	},
+		fontSize: 25
+	}
 }
-
-".overlay_body" :{
+".overlay_body" : {
 	top: 60,
 	showVerticalScrollIndicator: false,
 	showHorizontalScrollIndicator: false,
 	layout: 'vertical',
 	contentWidth: Alloy.Globals.dimensions.DP_platformWidth,
 	width: Alloy.Globals.dimensions.DP_platformWidth,
-	height:Ti.UI.FILL,
+	height: Ti.UI.FILL
 }
-
-".closeBut": {
+".closeBut" : {
 	right: 0,
 	top: 0,
 	height: 60,
-	width: 60,
+	width: 60
 }
-
-".leftBut": {
+".leftBut" : {
 	left: 0,
 	top: 0,
 	height: 60,
-	width: 60,
+	width: 60
 }
-
-".closeBut_text": {
+".closeBut_text" : {
 	width: 60,
 	height: 60,
 	font: {
@@ -390,42 +332,32 @@
 		fontSize: 26
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
-	top: 0,
+	top: 0
 }
-
 ".divider" : {
 	backgroundColor: Alloy.Globals.colors.steemdarkblue,
-	height: 2,
+	height: 2
 }
-
 ".top0" : {
-	top: 0,
+	top: 0
 }
-
 ".bottom0" : {
-	bottom: 0,
+	bottom: 0
 }
-
 "#overlay_header_topdivider" : {
-	top: 0,
+	top: 0
 }
-
-"#overlay_header_bottomdivider": {
-	bottom: 0,
+"#overlay_header_bottomdivider" : {
+	bottom: 0
 }
-
-
-
-".inputholder_divider": {
+".inputholder_divider" : {
 	opacity: 0.2
 }
-
-".inputholder": {
+".inputholder" : {
 	height: 70,
-	layout: 'horizontal',
+	layout: 'horizontal'
 }
-
-".inputholder_label": {
+".inputholder_label" : {
 	font: {
 		fontSize: 20,
 		fontWeight: 'semibold'
@@ -436,12 +368,9 @@
 	height: 40,
 	top: 15,
 	bottom: 15,
-
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
 }
-
-".inputholder_textfield": {
-
+".inputholder_textfield" : {
 	font: {
 		fontSize: 20,
 		fontWeight: 'normal'
@@ -452,39 +381,31 @@
 	height: 60,
 	top: 5,
 	bottom: 5,
-
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
 }
-
-".inputholder_textfield_send": {
-	left:100,
+".inputholder_textfield_send" : {
+	left: 100
 }
-
 ".inputholder_bottombut" : {
-	bottom: 20,
+	bottom: 20
 }
-
-".inputholder_bottombut[if=Alloy.Globals.isiPhoneX]": {
-	bottom: 50,
+".inputholder_bottombut[if=Alloy.Globals.isiPhoneX]" : {
+	bottom: 50
 }
-
-".listview": {
+".listview" : {
 	height: Ti.UI.FILL,
 	separatorColor: 'transparent',
 	separatorHeight: 0,
 	separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_NONE,
 	backgroundColor: 'transparent',
 	showVerticalScrollIndicator: false,
-	showHorizontalScrollIndicator: false,
-
+	showHorizontalScrollIndicator: false
 }
-
-".overlay_pickaccount_listitem": {
+".overlay_pickaccount_listitem" : {
 	height: 70,
 	selectedBackgroundColor: '#f2f2f2'
 }
-
-".overlay_pickaccount_listview_username": {
+".overlay_pickaccount_listview_username" : {
 	font: {
 		fontSize: 20,
 		fontWeight: 'semibold'
@@ -494,12 +415,9 @@
 	right: 60,
 	height: 26,
 	top: 15,
-
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
-
 }
-
-".overlay_pickaccount_listview_balance": {
+".overlay_pickaccount_listview_balance" : {
 	font: {
 		fontSize: 12,
 		fontWeight: 'normal'
@@ -508,72 +426,61 @@
 	left: 20,
 	right: 60,
 	height: 16,
-	top: 39,
+	top: 39
 }
-
-".overlay_delbut": {
+".overlay_delbut" : {
 	right: 0,
 	height: 70,
 	top: 0,
 	width: 60,
 	font: {
-		fontSize: 15,
+		fontSize: 15
 	}
 }
-
-".txli_listitem": {
+".txli_listitem" : {
 	height: 60,
 	backgroundColor: "transparent"
 }
-
-".txli": {
-	selectedBackgroundColor: "transparent",
+".txli" : {
+	selectedBackgroundColor: "transparent"
 }
-
-".txli_nocontentview": {
+".txli_nocontentview" : {
 	backgroundColor: "transparent",
 	selectedBackgroundColor: "transparent"
 }
-
-".txli_label_inout_transact_red": {
+".txli_label_inout_transact_red" : {
 	font: {
 		fontFamily: "icomoon",
-		fontSize: 16,
+		fontSize: 16
 	},
 	left: 20,
 	width: 20,
 	height: 60,
 	top: 0,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-	color: "#f75535",
-
+	color: "#f75535"
 }
-
-".txli_label_inout_transact_green": {
+".txli_label_inout_transact_green" : {
 	font: {
 		fontFamily: "icomoon",
-		fontSize: 16,
+		fontSize: 16
 	},
 	left: 20,
 	width: 20,
 	height: 60,
 	top: 0,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-	color: "#00a45b",
-
+	color: "#00a45b"
 }
-
 ".transact_red" : {
 	color: "#f75535",
-	backgroundColor: "#f75535",
+	backgroundColor: "#f75535"
 }
-
 ".transact_green" : {
 	color: "#00a45b",
-	backgroundColor: "#00a45b",
+	backgroundColor: "#00a45b"
 }
-
-".txli_label_counterparty": {
+".txli_label_counterparty" : {
 	font: {
 		fontSize: 20,
 		fontWeight: 'semibold'
@@ -583,12 +490,9 @@
 	right: 120,
 	height: 26,
 	top: 11,
-
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
-
 }
-
-".txli_label_amount": {
+".txli_label_amount" : {
 	font: {
 		fontSize: 20,
 		fontWeight: 'regular'
@@ -597,12 +501,9 @@
 	right: 20,
 	height: 24,
 	top: 11,
-
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
-
 }
-
-".txli_label_currency": {
+".txli_label_currency" : {
 	font: {
 		fontSize: 12,
 		fontWeight: 'regular'
@@ -613,8 +514,7 @@
 	top: 35,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
 }
-
-".txli_label_date": {
+".txli_label_date" : {
 	font: {
 		fontSize: 12,
 		fontWeight: 'regular'
@@ -625,21 +525,18 @@
 	top: 35,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
 }
-
-"#qrview": {
+"#qrview" : {
 	width: Alloy.Globals.dimensions.qrsize,
 	height: Alloy.Globals.dimensions.qrsize,
 	left: 60,
 	right: 60,
 	top: 60,
-	bottom: 20,
+	bottom: 20
 }
-
-"#qrviewlabelholder": {
-	height: Ti.UI.SIZE,
+"#qrviewlabelholder" : {
+	height: Ti.UI.SIZE
 }
-
-"#qrexplain": {
+"#qrexplain" : {
 	height: Ti.UI.SIZE,
 	font: {
 		fontSize: 20,
@@ -648,8 +545,7 @@
 	bottom: 20,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }
-
-"#qrcurrentaccount": {
+"#qrcurrentaccount" : {
 	height: Ti.UI.SIZE,
 	font: {
 		fontSize: 20,
@@ -657,29 +553,25 @@
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }
-
-"#togglepasswordmask": {
+"#togglepasswordmask" : {
 	right: 20,
 	width: 35,
 	backgroundColor: 'transparent',
-	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
 }
-
-"#enable_identity_holder": {
-	height: 0,
+"#enable_identity_holder" : {
+	height: 0
 }
-"#textfield_addwalletpassword": {
+"#textfield_addwalletpassword" : {
 	left: 20,
-	right: 50,
+	right: 50
 }
-
-"#enable_identity_switch": {
+"#enable_identity_switch" : {
 	right: 20,
-	value: false,
+	value: false
 }
-
-"#password_strength_result": {
-	top: 42,
+"#password_strength_result" : {
+	top: 46,
 	left: 20,
 	right: 20,
 	minimumFontSize: 8,
@@ -689,41 +581,66 @@
 		fontWeight: 'thin'
 	}
 }
-
-"#textfield_importprivatekey": {
+"#textfield_importprivatekey" : {
 	left: 20,
-	right: 50,
+	right: 50
 }
-
-"#textfield_send_to": {
-	right:50,
+"#textfield_send_to" : {
+	right: 50
 }
-
-"#textfield_send_amount": {
-	right:100,
+"#textfield_send_amount" : {
+	right: 100
 }
-
-"#scanprivatekey": {
+"#scanprivatekey" : {
 	right: 20,
 	width: 35,
 	backgroundColor: 'transparent',
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
 }
-
-"#scandestination": {
+"#scandestination" : {
 	right: 20,
 	width: 35,
 	backgroundColor: 'transparent',
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
 }
-
-"#token_steem_or_sbd": {
+"#token_steem_or_sbd" : {
 	font: {
 		fontSize: 15
 	},
-	right:12,
+	right: 12,
 	width: 75,
 	height: 40,
 	backgroundColor: 'transparent',
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
+}
+
+"#view_spacer_bottom": {
+	height: 70,
+	width: Ti.UI.FILL
+}
+
+"#create_wallte_container": {
+	backgroundGradient: {
+		type: "linear",
+		startPoint: {
+			x: 0,
+			y: 0
+		},
+		endPoint: {
+			x: 0,
+			y: "100%"
+		},
+		colors: [
+			{
+				color: "#00FFFFFF",
+				offset: 0.0
+			}, {
+				color: "#B3FFFFFF",
+				offset: 0.2
+			}, {
+				color: "#FFFFFFFF",
+				offset: 1
+			}
+		]
+	}
 }
