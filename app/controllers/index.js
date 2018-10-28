@@ -1349,6 +1349,7 @@ function sendConfirm() {
 	}
 
 	alertdialogcancelcallback = function() {
+		$.button_send.setEnabled(true);
 		return false;
 	}
 
@@ -1465,6 +1466,8 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 
 	}, function(err) {
 		//error.
+		$.button_send.setEnabled(true);
+		Alloy.Globals.loading.hide();
 		alert(err);
 	});
 }
