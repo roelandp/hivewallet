@@ -1499,6 +1499,26 @@ function toggleSteemSBD() {
 	}
 }
 
+function scanMemoQR(e) {
+
+	Barcode.addEventListener('success', function _sucfunc(e) {
+		Barcode.removeEventListener('success', _sucfunc);
+		//Ti.API.info('Success called with barcode: ' + e.result);
+		$.textfield_send_memo.setValue(e.result);
+		$.textfield_send_memo.blur();
+	});
+
+	cameraPermission(function(re) {
+		Barcode.capture({
+			animate: true,
+			overlay: barcodeoverlay,
+			showCancel: false,
+			showRectangle: false,
+			keepOpen: false
+		});
+	});
+}
+
 function checkPrices() {
 
 	if (Date.now() - Ti.App.Properties.getInt('lastPricesCheck') > (30 * 60 * 1 * 1000)) {

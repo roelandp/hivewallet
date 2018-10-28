@@ -263,6 +263,7 @@
 						onBlur="onBlurSendInputField"
 						passwordMask="false"
 						id="textfield_send_memo"></TextField>
+						<Button class="button fonticomoon fontSize20" id="scanmemo" onClick="scanMemoQR">📷</Button>
 				</View>
 				<View class="divider inputholder_divider"/>
 			</ScrollView>
