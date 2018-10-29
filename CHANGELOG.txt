@@ -1,5 +1,6 @@
 v 1.0.1
 - translations added: de, es, fr, ro
+- added QR code scanner for memo field
 
 v 1.0.0
 - initial version
