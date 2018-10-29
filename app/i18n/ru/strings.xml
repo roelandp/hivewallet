@@ -1,0 +1,99 @@
+<resources>
+    <string name="intro_text">steemwallet безопасный мобильный кошелёк для отправки и получения Steem и SBD</string>
+    <string name="add_account">добавить аккаунт</string>
+    <string name="hi_there">Привет!</string>
+    <string name="overlay_title_addaccount">добавить аккаунт</string>
+    <string name="overlay_body_addaccount_description">Добавляет любой аккаунт для просмотра.\n\nВам потребуется ключ, как только вы попытаетесь отправить что-то с этого аккаунта.</string>
+    <string name="overlay_body_input_account">аккаунт</string>
+    <string name="overlay_body_input_placeholder_addhere">пишите здесь</string>
+
+    <string name="overlay_title_pickaccounts">выберите аккаунт</string>
+
+    <string name="overlay_title_receive">получить steem/sbd</string>
+
+    <string name="overlay_title_send">отправить steem/sbd</string>
+    <string name="send">отправить</string>
+    <string name="receive">получить</string>
+
+    <string name="overlay_title_importprivatekey">импорт приватного ключа</string>
+    <string name="add_key">добавить ключ</string>
+
+    <string name="overlay_title_createwallet">создать кошелёк</string>
+    <string name="create">создать</string>
+
+    <string name="remove_s">Удалить?</string>
+    <string name="remove_account_s">Вы действительно хотите удалить аккаунт "%1$s"?</string>
+    <string name="yes">да</string>
+    <string name="OK">ОК</string>
+    <string name="cancel">отмена</string>
+    <string name="alert_account_not_found">Невозможно найти "%1$s". Возможно опечатка.</string>
+    <string name="alert_account_already_added">"%1$s" уже добавлен. Является главным сейчас.</string>
+    <string name="alert_add_account_name">Сначала нужно добавить имя аккаунта</string>
+    <string name="removed_s">Удалён "%1$s".\n\nЕсли вы вводили ключи от этого аккаунта, убрать их можно вручную через меню безопасности.</string>
+
+    <string name="no_recent_transactions_found">В истории аккаунта @%1$s недавних транзакций не найдено.</string>
+
+    <string name="explain_no_tx_in_listview">API-интерфейс account_history представляет собой совокупность конечных точек, возвращающий все действия для данной учетной записи. К сожалению, в последнее время никаких операций не было зарегистрировано. Это означает, что учетная запись очень занятиа другой деятельностью на платформе.</string>
+    <string name="loading_s">Загрузка недавних транзакций %1$s</string>
+    <string name="qrexplain">отсканируйте этот QR-код или попросите перевести steem или sbd сюда:</string>
+
+    <string name="create_wallet_explain">Ваши ключи хранятся в зашифрованном кошельке. Используйте уникальный надежный пароль для шифрования!</string>
+    <string name="optionally_store_in_device_keychain">При необходимости пароль можно сохранить в зашифрованной связке ключей устройства, тогда вы сможете разблокировать кошелек и отправлять/подписывать операции аккаунтом %1$s.</string>
+    <string name="label_addwalletpassword">пароль</string>
+    <string name="pick_secure_password">введите сильную парольную фразу здесь</string>
+    <string name="enable_identity_label">испрользовать %1$s</string>
+    <string name="password_strength_result">%1$s: у профессионала подбор этого пароля займёт %2$s</string>
+    <string name="pw_strength_0">Очень плохо</string>
+    <string name="pw_strength_1">Всё ещё плохо</string>
+    <string name="pw_strength_2">Почти ок</string>
+    <string name="pw_strength_3">Приемлемо</string>
+    <string name="pw_strength_4">Превосходно</string>
+
+    <string name="unlock_wallet">Разблокировать кошелёк</string>
+    <string name="insert_your_passphrase">Введите пароль</string>
+    <string name="unlock">разблокировать</string>
+    <string name="wallet_file_not_exist">Файла кошелька пока не существует. Давайте создадим его.</string>
+
+    <string name="overlay_body_importprivatekey_description">Добавьте любой активный (!) ключ в свой зашифрованный кошелек, чтобы можно было использовать его для отправки steеm/sbd.\n\пНет активного ключа? Почитайте про ключи, он есть! Попробуйте вместо этого ввести паролную фразу от %1$s.</string>
+    <string name="insert_private_key_or_password">вставьте сюда ключ</string>
+
+    <string name="please_type_paste_or_scan_a_privkey">приватный ключ</string>
+    <string name="no_account_found_for_given_key">Не найдено аккаунтов для этого ключа</string>
+    <string name="send_s">отправить %1$s</string>
+    <string name="overlay_title_send_steem">отправить steem</string>
+    <string name="overlay_body_send_to">кому</string>
+    <string name="steem_username">пользователь steem</string>
+    <string name="overlay_body_send_amount">количество</string>
+    <string name="overlay_body_send_memo">мемо</string>
+    <string name="optionally_type_a_memo">если хотите, оставьте записку</string>
+
+    <string name="account_s_on_bad_actors_list_cant_send">%1$s в списке плохишей, поэтому ему нельзя отправлять</string>
+    <string name="seems_like_you_are_sending_a_private_key">Похоже вы пытаетесь отправить ваш приватный ключ в записке.\n\nПоле мемо было очищено.</string>
+    <string name="s_field_cant_be_empty">Поле "%1$s" не может быть пустым</string>
+    <string name="confirm_transaction">%1$s :: подтвердите транзакцию</string>
+    <string name="confirm_transation_details_to_s">Вы правда хотите отправить\nпользователю %1$s?\n- - - - - - -\n%2$s %3$s\n\n%4$s</string>
+
+    <string name="no_keys_found_for_s">Для аккаунта %1$s не найдено ключей в кошельке</string>
+    <string name="transaction_included_in_block_s">Успех!\n\nТранзакция включена в блок %1$s</string>
+    <string name="wrong_passphrase">Может быть не верная парольная фраза?\n\n%1$s</string>
+    <string name="authenticate_with_fingerprint">Аутентификация по отпечатку пальца</string>
+    <string name="authenticate_to_retrieve_passphrase_from_keychain">Пожалуйста, пройдите аутентификацию для получения пароля</string>
+
+    <string name="year">лет</string>
+    <string name="month">месяцев</string>
+    <string name="week">недель</string>
+    <string name="isoWeek">isoWeek</string>
+    <string name="day">дней</string>
+    <string name="weekday">будний день</string>
+    <string name="isoWeekday">isoWeekday</string>
+    <string name="hour">час</string>
+    <string name="weekYear">недель года</string>
+    <string name="isoWeekYear">isoWeekYear</string>
+    <string name="quarter">квартал</string>
+    <string name="date">дата</string>
+    <string name="dayOfYear">день года</string>
+    <string name="minute">минут</string>
+    <string name="second">секунд</string>
+    <string name="millisecond">миллисекунд</string>
+
+</resources>
