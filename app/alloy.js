@@ -1,5 +1,5 @@
 Alloy.Globals.measurement = require('/measurement');
-
+Alloy.Globals.currencies = require('/currencies');
 Alloy.Globals.isiPhoneX = (Ti.Platform.osname === 'iphone' && Ti.Platform.displayCaps.platformWidth === 375 && Ti.Platform.displayCaps.platformHeight === 812 && Ti.Platform.displayCaps.logicalDensityFactor === 3);
 
 // loading popover
@@ -72,4 +72,5 @@ Alloy.Globals.config = {
   cmc_sbd: "https://api.coinmarketcap.com/v2/ticker/1312/?convert=BTC",
   teamid: "M2FNGBQ5GU",
   walletfilename: "wallet.json",
+  defaultcurrency: "usd",
 }

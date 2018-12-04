@@ -226,7 +226,10 @@ if (!Titanium.App.Properties.hasProperty('accounts')) {
 	Ti.App.Properties.setBool('walletSetup', false);
 	Ti.App.Properties.setString('uuid', platformGUID);
 	Ti.App.Properties.setInt('lastPricesCheck', 0);
+}
 
+if(!Titanium.App.Properties.hasProperty('currency')) {
+	Ti.App.Properties.setString('currency',Alloy.Globals.config.defaultcurrency);
 }
 
 var slowaesopts = {
@@ -1179,18 +1182,26 @@ function togglePasswordMask() {
 	}
 }
 
-function updateFiat(coin) {
+function updateFiat() {
+
+	var currency = Ti.App.Properties.getString('currency').toLowerCase();
+	var currency_symbol = currency;
+
+	if(Alloy.Globals.currencies[currency]) {
+		currency_symbol = Alloy.Globals.currencies[currency];
+	}
 	if (Ti.App.Properties.getString('currentaccount') != '') {
-		switch (coin) {
-			case 'sbd':
+		currentaccount = Ti.App.Properties.getString('currentaccount');
+		var currentaccountdata = helpers.getUserObject(currentaccount);
+		if(currentaccountdata) {
+			if(currentaccountdata.hasOwnProperty('balance')) {
+				console.log(currentaccountdata);
+				$.account_amount_sbd_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)).setWidth( Ti.UI.FILL);
+				$.account_amount_steem_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2)).setWidth( Ti.UI.FILL);
 
-				$.account_amount_sbd_fiat.setText('$ ' + helpers.formatToLocale((parseFloat($.account_amount_sbd.getText()) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2));
-				break;
-
-			case 'steem':
-
-				$.account_amount_steem_fiat.setText('$ ' + helpers.formatToLocale((parseFloat($.account_amount_steem.getText()) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2));
-				break;
+				console.log((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))));
+				console.log((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))));
+			}
 		}
 	}
 }
@@ -1525,26 +1536,20 @@ function scanMemoQR(e) {
 function checkPrices() {
 
 	if (Date.now() - Ti.App.Properties.getInt('lastPricesCheck') > (30 * 60 * 1 * 1000)) {
+		console.log('now checking prices');
+		var currency = Ti.App.Properties.getString('currency').toLowerCase();
 		helpers.xhrcall(
-			Alloy.Globals.config.cmc_steem,
+			"https://api.coingecko.com/api/v3/simple/price?ids=steem,steem-dollars&vs_currencies="+currency,
 			"GET",
 			false,
 			function(resje) {
 				var res = JSON.parse(resje);
-				Ti.App.Properties.setString('price_steem_usd', res.data.quotes.USD.price);
-				updateFiat('steem');
-				Ti.App.Properties.setInt('lastPricesCheck', Date.now());
-			},
-			false);
+				console.log(res);
+				Ti.App.Properties.setString('price_steem_usd', res['STEEM'][currency.toUpperCase()]);
+				Ti.App.Properties.setString('price_sbd_usd', res['STEEM-DOLLARS'][currency.toUpperCase()]);
 
-		helpers.xhrcall(
-			Alloy.Globals.config.cmc_sbd,
-			"GET",
-			false,
-			function(resje) {
-				var res = JSON.parse(resje);
-				Ti.App.Properties.setString('price_sbd_usd', res.data.quotes.USD.price);
-				updateFiat('sbd');
+				updateFiat();
+
 				Ti.App.Properties.setInt('lastPricesCheck', Date.now());
 			},
 			false);
@@ -2024,10 +2029,11 @@ function setCurrentAccount() {
 
 		$.account_amount_steem.setText(helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' STEEM');
 		$.account_amount_sbd.setText(helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' SBD');
+		updateFiat();
 
-		$.account_amount_sbd_fiat.setText('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['sbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
-
-		$.account_amount_steem_fiat.setText('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['balance']) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2)));
+		// $.account_amount_sbd_fiat.setText('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['sbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
+		//
+		// $.account_amount_steem_fiat.setText('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['balance']) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2)));
 
 		//account_amount_steem
 	}
@@ -2041,6 +2047,9 @@ if (currentaccount != '') {
 }
 
 // checkCMCprices
+// Ti.App.Properties.setString('currency', 'eth');
+// Ti.App.Properties.setInt('lastPricesCheck', 0);
+
 checkPrices();
 
 // run appPauseResume and add resume and pause callbacks
