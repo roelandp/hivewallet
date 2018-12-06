@@ -1,6 +1,7 @@
 module.exports = exports = {
 	  "usd":"$",
     "eur":"€",
+    "cny":"元",		
     "btc":"₿",
     "eth":"Ξ",
     "ltc":"Ł",
@@ -9,9 +10,8 @@ module.exports = exports = {
     "bmd":"$",
     "brl":"R$",
     "cad":"$",
-    "chf":"CHF",
+    "chf":"Fr",
     "clp":"$",
-    "cny":"元",
     "czk":"Kč",
     "dkk":"kr",
     "gbp":"£",

@@ -1,8 +1,19 @@
 // starting off with some includers and initialization
 
 // dsteem - https://github.com/steemit/dsteem
+
+if (!Titanium.App.Properties.hasProperty('apiurl')) {
+	Titanium.App.Properties.setString('apiurl',Alloy.Globals.config.apiurl);
+} else {
+	Alloy.Globals.config.apiurl = Titanium.App.Properties.getString('apiurl');
+}
+
+
 var dsteem = require('/dsteem');
-var dsteemclient = new dsteem.Client();
+var dsteemclient = new dsteem.Client(Alloy.Globals.config.apiurl);
+
+// making the dsteemclient global.
+Alloy.Globals.dsteemclient = dsteemclient;
 
 // Node buffer implementation, used for head-block prefix calcs. https://github.com/feross/buffer
 var buffer = require('/buffer');
@@ -1504,11 +1515,11 @@ function scanAccountQR(e) {
 }
 
 function toggleSteemSBD() {
-	if ($.token_steem_or_sbd.getTitle() == 'steem') {
-		$.token_steem_or_sbd.setTitle('sbd');
+	if ($.token_steem_or_sbd.getText() == 'steem') {
+		$.token_steem_or_sbd.setText('sbd');
 		$.overlay_send_header_title.setText(String.format(L('send_s'), 'sbd'));
 	} else {
-		$.token_steem_or_sbd.setTitle('steem');
+		$.token_steem_or_sbd.setText('steem');
 		$.overlay_send_header_title.setText(String.format(L('send_s'), 'steem'));
 	}
 }
@@ -1543,10 +1554,10 @@ function checkPrices() {
 			"GET",
 			false,
 			function(resje) {
-				var res = JSON.parse(resje);
+				var res = JSON.parse(resje.toLowerCase());
 				console.log(res);
-				Ti.App.Properties.setString('price_steem_usd', res['STEEM'][currency.toUpperCase()]);
-				Ti.App.Properties.setString('price_sbd_usd', res['STEEM-DOLLARS'][currency.toUpperCase()]);
+				Ti.App.Properties.setString('price_steem_usd', res['steem'][currency.toLowerCase()]);
+				Ti.App.Properties.setString('price_sbd_usd', res['steem-dollars'][currency.toLowerCase()]);
 
 				updateFiat();
 
@@ -2039,6 +2050,13 @@ function setCurrentAccount() {
 	}
 }
 
+function settingsWindow() {
+	//alert('should launch settings');
+	var win_index_settings = Alloy.createController('index_settings').getView();
+	win_index_settings.open();
+
+}
+
 // loads initial user prior to opening wallet.
 setCurrentAccount();
 var currentaccount = Ti.App.Properties.getString('currentaccount');
@@ -2048,9 +2066,10 @@ if (currentaccount != '') {
 
 // checkCMCprices
 // Ti.App.Properties.setString('currency', 'eth');
-// Ti.App.Properties.setInt('lastPricesCheck', 0);
 
 checkPrices();
+
+Alloy.Globals.indexJScheckPrices = checkPrices;
 
 // run appPauseResume and add resume and pause callbacks
 appPauseResume({
@@ -2070,3 +2089,4 @@ appPauseResume({
 
 // launch the app.
 $.index.open();
+settingsWindow();

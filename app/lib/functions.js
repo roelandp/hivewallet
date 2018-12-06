@@ -85,7 +85,7 @@ function functions() {
 			false,
 			function(e){
 				// simple validation here.
-
+				console.log('callback steemapi call - '+ Alloy.Globals.config.apiurl);
 				try {
 					// try parse the response...
 					//console.log(e);

@@ -1,0 +1,17 @@
+<Alloy>
+    <Window onPostlayout="animateOpen">
+      <View class="layout_vertical">
+        <View class="notch_spacer">
+        </View>
+        <View class="overlay_header">
+  				<Label textid="settings_theme" class="overlay_header_title"></Label>
+  				<View class="closeBut">
+  					<Button class="button closeBut_text" onClick="closeWin">✕</Button>
+  				</View>
+  				<View class="divider bottom0"></View>
+  			</View>
+        <TableView class="listview">
+        </TableView>
+      </View>
+    </Window>
+</Alloy>

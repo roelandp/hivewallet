@@ -112,7 +112,7 @@
 		<!-- branding -->
 		<View id="container_top_brand" class="layout_vertical height_UISIZE">
 			<View id="container_branding" class="layout_horizontal height_UISIZE container_pad">
-				<Label id="branding_icon">s</Label>
+				<Label id="branding_icon" onClick="settingsWindow">s</Label>
 				<Label id="branding_title">steemwallet</Label>
 			</View>
 		</View>
@@ -231,7 +231,7 @@
 						onBlur="onBlurSendInputField"
 						passwordMask="false"
 						id="textfield_send_to"></TextField>
-					<Button class="button fonticomoon fontSize20" id="scandestination" onClick="scanAccountQR">📷</Button>
+					<Label class="button fonticomoon fontSize20" id="scandestination" onClick="scanAccountQR">📷</Label>
 				</View>
 				<View class="divider inputholder_divider"/>
 				<View height="70">
@@ -248,7 +248,7 @@
 						passwordMask="false"
 						id="textfield_send_amount"
 						keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD"></TextField>
-					<Button class="button fontSize15" id="token_steem_or_sbd" onClick="toggleSteemSBD">steem</Button>
+					<Label class="button fontSize15" id="token_steem_or_sbd" onClick="toggleSteemSBD">steem</Label>
 				</View>
 				<View class="divider inputholder_divider"/>
 				<View height="70">
@@ -263,7 +263,7 @@
 						onBlur="onBlurSendInputField"
 						passwordMask="false"
 						id="textfield_send_memo"></TextField>
-						<Button class="button fonticomoon fontSize20" id="scanmemo" onClick="scanMemoQR">📷</Button>
+						<Label class="button fonticomoon fontSize20" id="scanmemo" onClick="scanMemoQR">📷</Label>
 				</View>
 				<View class="divider inputholder_divider"/>
 			</ScrollView>
