@@ -5,7 +5,7 @@
         </View>
         <View class="overlay_header">
           <View class="leftBut">
-            <Button class="button closeBut_text" onClick="addNode">+</Button>
+            <Button class="text_blue closeBut_text_noicomoon" onClick="toggleAddNodeView">＋</Button>
           </View>
   				<Label textid="settings_apinode" class="overlay_header_title"></Label>
   				<View class="closeBut">
@@ -13,8 +13,64 @@
   				</View>
   				<View class="divider bottom0"></View>
   			</View>
-        <TableView class="listview">
-        </TableView>
+        <View class="add_new_node" height="162" class="layout_vertical" id="addnodecontainer">
+          <View height="50">
+  					<Label class="inputholder_label" textid="addnewnode_name"></Label>
+  					<TextField
+  						class="inputholder_textfield inputholder_textfield_send"
+  						hinttextid="addnewnode_maintainer_name"
+  						autocapitalization="false"
+  						autocorrect="false"
+  						enableReturnKey="true"
+  						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+  						onReturn="returnAddnewnodefield"
+  						passwordMask="false"
+  						id="textfield_addnewnode_name"></TextField>
+  				</View>
+  				<View height="50">
+  					<Label class="inputholder_label" textid="addnewnode_url"></Label>
+  					<TextField
+  						class="inputholder_textfield inputholder_textfield_send"
+  						hintText=""
+              value="https://"
+  						autocapitalization="false"
+  						autocorrect="false"
+  						enableReturnKey="true"
+  						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+  						onReturn="returnAddnewnodefield"
+  						passwordMask="false"
+  						id="textfield_addnewnode_url"
+  						></TextField>
+  					</View>
+          <View height="60">
+            <Button titleid="add_node" class="button width50pct transparentbg" onClick="addNode"></Button>
+          </View>
+          <View class="divider inputholder_divider"/>
+        </View>
+        <ListView class="listview" id="node_picker" onItemclick="selectNode">
+          <Templates>
+						<ItemTemplate name="nodeli">
+              <View class="height_70">
+  							<View class="container_pad height_UISIZE layout_vertical">
+                  <Label class="left_0 maintainer" bindId="labelmaintainer"/>
+                  <Label bindId="labeltitle" class="left_0"/>
+  							</View>
+                <Button id="delbut" bindId="delbut" class="button overlay_delbut fonticomoon opacity20" onClick="delNode">🗑</Button>
+              </View>
+						</ItemTemplate>
+            <ItemTemplate name="nodeliselected">
+              <View class="height_70">
+                <View class="container_pad height_UISIZE layout_vertical">
+                  <Label class="left_0 fontBold maintainer" bindId="labelmaintainer"/>
+                  <Label bindId="labeltitle" class="fontBold left_0"/>
+                </View>
+                <Label class="text_blue fontSize20 fontBold fonticomoon right_20">🔌</Label>
+
+              </View>
+            </ItemTemplate>
+					</Templates>
+					<ListSection></ListSection>
+        </ListView>
       </View>
     </Window>
 </Alloy>

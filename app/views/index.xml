@@ -175,7 +175,7 @@
 
 								<!-- <View class="divider bottom0 inputholder_divider"/> -->
 							</View>
-							<Button id="delbut" bindId="delbut" class="button overlay_delbut fonticomoon" onClick="delAccount">🗑</Button>
+							<Button id="delbut" bindId="delbut" class="button overlay_delbut fonticomoon opacity20" onClick="delAccount">🗑</Button>
 						</ItemTemplate>
 					</Templates>
 					<ListSection></ListSection>

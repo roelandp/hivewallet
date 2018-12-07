@@ -104,6 +104,10 @@
 	height: 50,
 }
 
+".height_70" : {
+	height: 70,
+}
+
 ".left_0": {
 	left: 0
 }
@@ -111,6 +115,11 @@
 ".right_0": {
 	right: 0
 }
+
+".right_20": {
+	right: 20
+}
+
 ".text_blue": {
 	color: Alloy.Globals.colors.themeblue,
 }
@@ -378,6 +387,16 @@
 	font: {
 		fontFamily: 'icomoon',
 		fontSize: 26
+	},
+	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
+	top: 0
+}
+
+".closeBut_text_noicomoon" : {
+	width: 60,
+	height: 60,
+	font: {
+		fontSize: 40
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	top: 0
@@ -733,6 +752,17 @@
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
 	color: Alloy.Globals.colors.themeblue,
 	selectedColor: Alloy.Globals.colors.steemlightblue,
+}
+
+".maintainer" : {
+	left: 0,
+	width: Ti.UI.SIZE,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
+	color: Alloy.Globals.colors.themeblue,
+	selectedColor: Alloy.Globals.colors.steemlightblue,
+	font: {
+		fontSize: 12
+	}
 }
 
 ".backgroundblue": {

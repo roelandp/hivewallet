@@ -1326,7 +1326,7 @@ function sendConfirm() {
 	var tosend = $.textfield_send_to.getValue().trim();
 	var amount = $.textfield_send_amount.getValue().trim();
 	var memo = $.textfield_send_memo.getValue().trim();
-	var sbdorsteem = $.token_steem_or_sbd.getTitle();
+	var sbdorsteem = $.token_steem_or_sbd.getText();
 
 	if (tosend.length > 0) {
 		var regex = /[^0-9a-zA-Z.-]/g;
@@ -1385,7 +1385,7 @@ function resetSendWindow() {
 	$.textfield_send_to.setValue("");
 	$.textfield_send_amount.setValue("");
 	$.textfield_send_memo.setValue("");
-	$.token_steem_or_sbd.setTitle('steem');
+	$.token_steem_or_sbd.setText('steem');
 	$.button_send.setEnabled(true);
 }
 
@@ -1426,7 +1426,7 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 
 				var dsteemkey = dsteem.PrivateKey.fromString(key['key']);
 				//console.log(key);
-				var stx = dsteemclient.broadcast.sign(op, dsteemkey);
+				var stx = Alloy.Globals.dsteemclient.broadcast.sign(op, dsteemkey);
 
 				key, dsteemkey, op = null;
 

@@ -20,10 +20,6 @@ module.exports = exports = [
     url: 'https://rpc.steemviz.com'
   },
   {
-    maintainer: '@netuoso',
-    url: 'https://rpc.steemliberator.com'
-  },
-  {
     maintainer: '@minnowsupport',
     url: 'https://steemd.minnowsupportproject.org'
   }

@@ -43,6 +43,7 @@ function functions() {
 				break;
 			}
 		}
+		return false;
 	};
 
 	this.formatUserBalanceObject = function(uo) {
@@ -78,14 +79,56 @@ function functions() {
 		//console.log('accounts object',Ti.App.Properties.getObject('accounts'));
 	};
 
-	this.steemAPIcall = function(method,params,cbres,cberr) {
+	this.getNodeObject = function(nodeurl) {
+		var apinodes = Ti.App.Properties.getObject('apinodes');
+
+		if(apinodes.length == 0) {
+			return false;
+		}
+
+		for(var i =0; i < apinodes.length; i++) {
+			// loop through currentaccounts, break if found.
+			if(apinodes[i]['url'] == nodeurl) {
+				//found account to delete, remove it now.
+
+				return i;
+
+				break;
+			}
+		}
+		return false;
+	};
+
+	this.removeNode = function(i,cb) {
+
+		// get current nodes
+		var currentnodes = Ti.App.Properties.getObject('apinodes');
+
+		// remove node from list
+		currentnodes.splice(i, 1);
+
+		// store modified list
+		Ti.App.Properties.setObject('apinodes', currentnodes);
+
+		// callback if set
+		if(cb){
+			cb();
+		}
+	};
+
+	this.steemAPIcall = function(method,params,cbres,cberr, node) {
+		var apiurl = Alloy.Globals.config.apiurl;
+		console.log('loggin steemapicall ', node);
+		if(node){
+			apiurl = node;
+		}
 		this.xhrcall(
-			Alloy.Globals.config.apiurl,
+			apiurl,
 			'POST',
 			false,
 			function(e){
 				// simple validation here.
-				console.log('callback steemapi call - '+ Alloy.Globals.config.apiurl);
+				console.log('callback steemapi call - '+ apiurl);
 				try {
 					// try parse the response...
 					//console.log(e);
