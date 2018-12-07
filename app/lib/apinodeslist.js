@@ -22,5 +22,9 @@ module.exports = exports = [
   {
     maintainer: '@minnowsupport',
     url: 'https://steemd.minnowsupportproject.org'
+  },
+  {
+  maintainer: '@netuoso',
+  url: 'https://rpc.steemliberator.com'
   }
 ];
