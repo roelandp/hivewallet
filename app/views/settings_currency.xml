@@ -12,7 +12,7 @@
   			</View>
         <ListView class="listview" id="currency_picker" onItemclick="selectCurrency">
           <Templates>
-						<ItemTemplate name="currencyli">
+						<ItemTemplate name="currencyli" class="itemli">
               <View class="height_50">
   							<View class="container_pad height_UISIZE">
                   <Label bindId="labeltitle" class="left_0 fontSize20"/>
@@ -21,8 +21,8 @@
 
               </View>
 						</ItemTemplate>
-            <ItemTemplate name="currencyliselected">
-              <View class="height_50">
+            <ItemTemplate name="currencyliselected" class="itemli">
+              <View class="height_50 itemli">
                 <View class="container_pad height_UISIZE">
                   <Label bindId="labeltitle" class="fontBold left_0 fontSize20"/>
                   <Label class="text_blue fontBold settings_currencysymbol fontSize25" bindId="currencysymbol"/>

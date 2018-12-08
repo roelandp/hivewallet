@@ -32,7 +32,7 @@ Alloy.Globals.updateSettingsPreviewText = function(obj,newtext){
 
 Alloy.Globals.updateSettingsPreviewText("settings_preview_currency", Ti.App.Properties.getString('currency'));
 Alloy.Globals.updateSettingsPreviewText("settings_preview_node", Ti.App.Properties.getString('apiurl').split("://")[1].split(":")[0]);
-
+Alloy.Globals.updateSettingsPreviewText("settings_preview_theme", Ti.App.Properties.getString('app:theme'));
 
 function doSetting(e){
   console.log(e.rowData.item);

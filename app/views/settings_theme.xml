@@ -10,8 +10,28 @@
   				</View>
   				<View class="divider bottom0"></View>
   			</View>
-        <TableView class="listview">
-        </TableView>
+        <ListView class="listview" id="theme_picker" onItemclick="selectTheme">
+          <Templates>
+            <ItemTemplate name="themeli" class="itemli">
+              <View class="height_50">
+                <View class="container_pad height_UISIZE">
+                  <Label bindId="labeltitle" class="left_0 fontSize20"/>
+
+                </View>
+
+              </View>
+            </ItemTemplate>
+            <ItemTemplate name="themeliselected" class="itemli">
+              <View class="height_50 itemli">
+                <View class="container_pad height_UISIZE">
+                  <Label bindId="labeltitle" class="fontBold left_0 fontSize20"/>
+                </View>
+                <Label class="text_blue fontSize20 fontBold fonticomoon right_20">🎨</Label>
+              </View>
+            </ItemTemplate>
+          </Templates>
+          <ListSection></ListSection>
+        </ListView>
       </View>
     </Window>
 </Alloy>

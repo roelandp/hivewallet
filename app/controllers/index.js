@@ -8,7 +8,6 @@ if (!Titanium.App.Properties.hasProperty('apiurl')) {
 	Alloy.Globals.config.apiurl = Titanium.App.Properties.getString('apiurl');
 }
 
-
 var dsteem = require('/dsteem');
 var dsteemclient = new dsteem.Client(Alloy.Globals.config.apiurl);
 
@@ -354,7 +353,7 @@ function alertDialogCb(e) {
 
 
 function showOverlayBG(cb) {
-	if ($.background_overlay.getOpacity() == 1) {
+	if ($.background_overlay.getOpacity() == 0.5) {
 		// background_overlay is already showing, don't bother showing it.
 		if (cb) {
 			cb();
@@ -364,11 +363,11 @@ function showOverlayBG(cb) {
 
 		$.background_overlay.setTop(0);
 		backgroundOverlayAnimation = {
-			opacity: 1,
+			opacity: 0.5,
 			duration: 150,
 		};
 		$.background_overlay.animate(backgroundOverlayAnimation, function() {
-			$.background_overlay.setOpacity(1);
+			$.background_overlay.setOpacity(0.5);
 			$.background_overlay.setTop(0);
 			if (cb) {
 				cb();
@@ -488,11 +487,11 @@ function showOverlayReceive() {
 
 		for (var r = 0; r < code.length; r++) {
 			var top = r * R;
-			var darkarr = ['black', Alloy.Globals.colors.steemdarkblue, Alloy.Globals.colors.steemlightblue];
+			var darkarr = ['black', Alloy.Globals.theme.steemdarkblue, Alloy.Globals.theme.steemlightblue];
 			for (var c = 0; c < code[r].length; c += 1) {
 
 				var left = c * R;
-				var classname = 'white';
+				var classname = Alloy.Globals.theme.backgroundColor;
 
 				if (code[r][c] === 1) {
 					/*1% more size to cover the border of rect. */
@@ -855,7 +854,7 @@ function unlockWallet(cb, skipidentity) {
 					fontSize: 20,
 					fontWeight: 'normal'
 				},
-				color: Alloy.Globals.colors.steemdarkblue,
+				color: Alloy.Globals.theme.steemdarkblue,
 				backgroundColor: 'transparent',
 				passwordMask: true,
 				padding: {
@@ -2089,4 +2088,3 @@ appPauseResume({
 
 // launch the app.
 $.index.open();
-settingsWindow();

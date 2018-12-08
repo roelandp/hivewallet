@@ -49,7 +49,7 @@
         </View>
         <ListView class="listview" id="node_picker" onItemclick="selectNode">
           <Templates>
-						<ItemTemplate name="nodeli">
+						<ItemTemplate name="nodeli" class="itemli">
               <View class="height_70">
   							<View class="container_pad height_UISIZE layout_vertical">
                   <Label class="left_0 maintainer" bindId="labelmaintainer"/>
@@ -58,7 +58,7 @@
                 <Button id="delbut" bindId="delbut" class="button overlay_delbut fonticomoon opacity20" onClick="delNode">🗑</Button>
               </View>
 						</ItemTemplate>
-            <ItemTemplate name="nodeliselected">
+            <ItemTemplate name="nodeliselected" class="itemli">
               <View class="height_70">
                 <View class="container_pad height_UISIZE layout_vertical">
                   <Label class="left_0 fontBold maintainer" bindId="labelmaintainer"/>

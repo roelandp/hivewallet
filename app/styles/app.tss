@@ -1,36 +1,36 @@
 "#loadingIndicator" : {
-	indicatorColor: Alloy.Globals.colors.steemdarkblue
+	indicatorColor: Alloy.Globals.theme.steemdarkblue
 }
 "#loadingMask" : {
-	backgroundColor: "transparent",
-	backgroundImage: "/images/background.png",
+	backgroundColor: Alloy.Globals.theme.themeblue,
+	//backgroundImage: "/images/background.png",
 	backgroundRepeat: true,
-	opacity: 1
+	opacity: 0.7
 }
 "#loadingOuter" : {
-	backgroundColor: "#E6FFFFFF"
+	backgroundColor: Alloy.Globals.theme.backgroundColor_alpha90
 }
 "#loadingMessage" : {
-	color: "#494841"
+	color: Alloy.Globals.theme.textColor
 }
 
 "Window" : {
-	backgroundColor: "#FFFFFF"
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
 }
 
 "TableViewRow" : {
-	selectedBackgroundColor: "#F2F2F2",
-	selectedColor: Alloy.Globals.colors.steemdarkblue,
+	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor,
+	selectedColor: Alloy.Globals.theme.steemdarkblue,
 	height: 70,
 }
 
 "Label" : {
 	width: Ti.UI.SIZE,
 	height: Ti.UI.SIZE,
-	color: "#494841"
+	color: Alloy.Globals.theme.textColor,
 }
 "TextField" : {
-	color: Alloy.Globals.colors.steemdarkblue,
+	color: Alloy.Globals.theme.steemdarkblue,
 	backgroundColor: 'transparent',
 	borderWidth: 0,
 	borderRadius: 0,
@@ -44,7 +44,7 @@
 	}
 }
 "TextArea" : {
-	color: Alloy.Globals.colors.steemdarkblue,
+	color: Alloy.Globals.theme.steemdarkblue,
 	backgroundColor: 'transparent'
 }
 ".backgroundsteem" : {
@@ -52,7 +52,7 @@
 		fontFamily: "icomoon",
 		fontSize: 1200
 	},
-	color: Alloy.Globals.colors.steemlightblue,
+	color: Alloy.Globals.theme.steemlightblue,
 	opacity: 0.05,
 	left: -100
 }
@@ -121,7 +121,7 @@
 }
 
 ".text_blue": {
-	color: Alloy.Globals.colors.themeblue,
+	color: Alloy.Globals.theme.themeblue,
 }
 
 ".fontRegular" : {
@@ -202,8 +202,8 @@
 		fontSize: 25
 	},
 	minimumFontSize: 15,
-	color: Alloy.Globals.colors.themeblue,
-	selectedColor: Alloy.Globals.colors.steemlightblue,
+	color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
 	backgroundColor: 'transparent',
 	selectedBackgroundColor: 'transparent',
 	backgroundSelectedColor: 'transparent',
@@ -233,7 +233,7 @@
 	},
 	right: 5,
 	top: 3,
-	color: Alloy.Globals.colors.themeblue
+	color: Alloy.Globals.theme.themeblue
 }
 "#branding_title" : {
 	font: {
@@ -275,13 +275,13 @@
 		},
 		colors: [
 			{
-				color: "#00FFFFFF",
+				color: Alloy.Globals.theme.backgroundColor_alpha0,
 				offset: 0.0
 			}, {
-				color: "#B3FFFFFF",
+				color: Alloy.Globals.theme.backgroundColor_alpha70,
 				offset: 0.2
 			}, {
-				color: "#FFFFFFFF",
+				color: Alloy.Globals.theme.backgroundColor_alpha100,
 				offset: 1
 			}
 		]
@@ -338,8 +338,9 @@
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }
 "#background_overlay" : {
-	backgroundImage: "/images/background.png",
-	backgroundRepeat: true,
+	//backgroundImage: "/images/background.png",
+	//backgroundRepeat: true,
+	backgroundColor: Alloy.Globals.theme.themeblue,
 	height: Alloy.Globals.dimensions.DP_platformHeight,
 	width: Alloy.Globals.dimensions.DP_platformWidth,
 	top: Alloy.Globals.dimensions.DP_platformHeight,
@@ -348,7 +349,7 @@
 ".overlay_container" : {
 	top: Alloy.Globals.dimensions.DP_platformHeight,
 	height: Alloy.Globals.dimensions.overlay_container_height,
-	backgroundColor: 'white'
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
 }
 ".overlay_header" : {
 	height: 60,
@@ -402,7 +403,7 @@
 	top: 0
 }
 ".divider" : {
-	backgroundColor: Alloy.Globals.colors.steemdarkblue,
+	backgroundColor: Alloy.Globals.theme.steemdarkblue,
 	height: 2
 }
 ".top0" : {
@@ -464,13 +465,20 @@
 	separatorColor: 'transparent',
 	separatorHeight: 0,
 	separatorStyle: Titanium.UI.TABLE_VIEW_SEPARATOR_STYLE_NONE,
-	backgroundColor: 'transparent',
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
 	showVerticalScrollIndicator: false,
-	showHorizontalScrollIndicator: false
+	showHorizontalScrollIndicator: false,
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
+	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor
 }
 ".overlay_pickaccount_listitem" : {
 	height: 70,
-	selectedBackgroundColor: '#f2f2f2'
+	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor
+}
+
+".itemli": {
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
+	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor
 }
 
 ".overlay_pickaccount_listview_username" : {
@@ -526,7 +534,7 @@
 	height: 60,
 	top: 0,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-	color: "#f75535"
+	color: Alloy.Globals.theme.transaction_red
 }
 ".txli_label_inout_transact_green" : {
 	font: {
@@ -538,15 +546,15 @@
 	height: 60,
 	top: 0,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-	color: "#00a45b"
+	color: Alloy.Globals.theme.transaction_green
 }
 ".transact_red" : {
-	color: "#f75535",
-	backgroundColor: "#f75535"
+	color: Alloy.Globals.theme.transaction_red,
+	backgroundColor: Alloy.Globals.theme.transaction_red
 }
 ".transact_green" : {
-	color: "#00a45b",
-	backgroundColor: "#00a45b"
+	color: Alloy.Globals.theme.transaction_green,
+	backgroundColor: Alloy.Globals.theme.transaction_green
 }
 ".txli_label_counterparty" : {
 	font: {
@@ -711,13 +719,13 @@
 		},
 		colors: [
 			{
-				color: "#00FFFFFF",
+				color: Alloy.Globals.theme.backgroundColor_alpha0,
 				offset: 0.0
 			}, {
-				color: "#B3FFFFFF",
+				color: Alloy.Globals.theme.backgroundColor_alpha70,
 				offset: 0.2
 			}, {
-				color: "#FFFFFFFF",
+				color: Alloy.Globals.theme.backgroundColor_alpha100,
 				offset: 1
 			}
 		]
@@ -730,8 +738,8 @@
 	font: {
 		fontFamily: "icomoon"
 	},
-	color: Alloy.Globals.colors.themeblue,
-	selectedColor: Alloy.Globals.colors.steemlightblue,
+	color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
 }
 
 ".rightmenu": {
@@ -742,24 +750,24 @@
 		fontWeight: "bold",
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
-	color: Alloy.Globals.colors.themeblue,
-	selectedColor: Alloy.Globals.colors.steemlightblue,
+	color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
 }
 
 ".settings_currencysymbol": {
 	right: 0,
 	width: Ti.UI.SIZE,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT,
-	color: Alloy.Globals.colors.themeblue,
-	selectedColor: Alloy.Globals.colors.steemlightblue,
+	color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
 }
 
 ".maintainer" : {
 	left: 0,
 	width: Ti.UI.SIZE,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT,
-	color: Alloy.Globals.colors.themeblue,
-	selectedColor: Alloy.Globals.colors.steemlightblue,
+	color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
 	font: {
 		fontSize: 12
 	}

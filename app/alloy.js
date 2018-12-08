@@ -59,11 +59,114 @@ Alloy.Globals.dimensions = {
 };
 
 
-Alloy.Globals.colors = {
-  steemlightblue: "#4BA2F2",
-  steemdarkblue: "#1A5099",
-  themeblue: "#9013FE"
+Alloy.Globals.themes = {
+
+    light: {
+
+      name: "light",
+      steemlightblue: "#4BA2F2",
+      steemdarkblue: "#1A5099",
+      themeblue: "#9013FE",
+
+      backgroundColor: "#FFFFFF",
+      selectedBackgroundColor: "#F2F2F2",
+      backgroundColor_alpha100: "#FFFFFFFF",
+      backgroundColor_alpha90: "#E6FFFFFF",
+      backgroundColor_alpha70: "#B3FFFFFF",
+      backgroundColor_alpha0: "#00FFFFFF",
+
+      textColor: "#494841",
+
+      transaction_red: "#f75535",
+      transaction_green: "#00a45b",
+    },
+
+    dark: {
+
+      name: "dark",
+      steemlightblue: "#CCCCCC",
+      steemdarkblue: "#DDDDDD",
+      themeblue: "#FFFFFF",
+
+      backgroundColor: "#494841",
+      selectedBackgroundColor: "#333333",
+      backgroundColor_alpha100: "#FF494841",
+      backgroundColor_alpha90: "#E6494841",
+      backgroundColor_alpha70: "#B3494841",
+      backgroundColor_alpha0: "#00494841",
+
+      textColor: "#BBBBBB",
+
+      transaction_red: "#f75535",
+      transaction_green: "#00a45b",
+    },
+
+    navyred: {
+
+      name: "navyred",
+      steemlightblue: "#FF6551",
+      steemdarkblue: "#7F1002",
+      themeblue: "#FF2105",
+
+      backgroundColor: "#E4E5E6",
+      selectedBackgroundColor: "#99CCCC",
+      backgroundColor_alpha100: "#FFE4E5E6",
+      backgroundColor_alpha90: "#E6E4E5E6",
+      backgroundColor_alpha70: "#B3E4E5E6",
+      backgroundColor_alpha0: "#00E4E5E6",
+
+      textColor: "#004466",
+
+      transaction_red: "#f75535",
+      transaction_green: "#00a45b",
+    },
+
+    yungpink: {
+      //
+      name: "yungpink",
+      steemlightblue: "#fecefc",
+      steemdarkblue: "#fd64bb",
+      themeblue: "#fd64bb",
+
+      backgroundColor: "#ffff96",
+      selectedBackgroundColor: "#f0b61e",
+      backgroundColor_alpha100: "#FFffff96",
+      backgroundColor_alpha90: "#E6ffff96",
+      backgroundColor_alpha70: "#B3ffff96",
+      backgroundColor_alpha0: "#00ffff96",
+
+      textColor: "#7F3251",
+
+      transaction_red: "#f75535",
+      transaction_green: "#00a45b",
+    }
+
+
+
+}
+
+// getter/setter helper methods
+Alloy.Globals.getTheme = function() {
+  if(Alloy.Globals.theme !== null) {
+    return Alloy.Globals.theme.name;
+  }
+  return Ti.App.Properties.getString("app:theme", "");
 };
+
+Alloy.Globals.setTheme = function(name) {
+  console.log('setting theme '+name);
+  if(Alloy.Globals.themes.hasOwnProperty(name)) {
+      Alloy.Globals.theme = Alloy.Globals.themes[name];
+      Ti.App.Properties.setString("app:theme", name);
+  }
+};
+
+// theme selector
+if(!Titanium.App.Properties.hasProperty('app:theme')) {
+	 Alloy.Globals.setTheme("light");
+} else {
+	 Alloy.Globals.setTheme(Titanium.App.Properties.getString('app:theme'));
+}
 
 Alloy.Globals.config = {
   apiurl : 'https://api.steemit.com',

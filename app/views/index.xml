@@ -168,7 +168,7 @@
 			<View class="overlay_body">
 				<ListView id="overlay_pickaccount_listview" defaultItemTemplate="accountli" class="listview" onItemclick="handlePickAccountClick">
 					<Templates>
-						<ItemTemplate name="accountli" selectedBackgroundColor="#f2f2f2">
+						<ItemTemplate name="accountli" class="itemli">
 							<View class="overlay_pickaccount_listitem">
 								<Label bindId="labeltitle" class="overlay_pickaccount_listview_username"/>
 								<Label bindId="labelbalance" class="overlay_pickaccount_listview_balance"/>
