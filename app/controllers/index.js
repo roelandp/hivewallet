@@ -1756,6 +1756,8 @@ function getImgFromJsonMetaData(json_metadata) {
 
 function updateAccount(e) {
 	// get latest account balance
+
+
 	if ($.listview_transactions.sections[0].getItems().length == 1) {
 		if ($.listview_transactions.sections[0].getItemAt(0).template == "txlinocontent") {
 			$.listview_transactions.sections[0].setItems([{
@@ -1766,41 +1768,54 @@ function updateAccount(e) {
 			}]);
 		}
 	}
+
+	var currentaccounts = Ti.App.Properties.getObject('accounts');
+	var accountslist = [];
+	if (currentaccounts.length > 0) {
+		for (var i = 0; i < currentaccounts.length; i++) {
+			// loop through currentaccounts, break if found.
+			accountslist.push(currentaccounts[i]['name']);
+		}
+	}
 	helpers.steemAPIcall(
 		"get_accounts", [
-			[e]
+			accountslist
 		],
 		function(success) {
 			//console.log(success);
 
+			if(success.result.length > 0) {
+				for(var j = 0; j < success.result.length; j++) {
 
-			var foundname = success.result[0].name.toLowerCase();
+					var foundname = success.result[j].name.toLowerCase();
 
-			var accounthasprivatekeyinwallet = false;
+					var accounthasprivatekeyinwallet = false;
 
-			var currentaccounts = Ti.App.Properties.getObject('accounts');
+					var currentaccounts = Ti.App.Properties.getObject('accounts');
 
-			if (currentaccounts.length > 0) {
-				// we already have accounts, lets see if the account we are trying to add is already here
-				for (var i = 0; i < currentaccounts.length; i++) {
-					// loop through currentaccounts, break if found.
-					if (currentaccounts[i]['name'] == foundname) {
-						//already found account. pop it (we re-add / update it below)
-						accounthasprivatekeyinwallet = currentaccounts[i]['privatekey'];
-						currentaccounts.splice(i, 1);
+					if (currentaccounts.length > 0) {
+						// we already have accounts, lets see if the account we are trying to add is already here
+						for (var i = 0; i < currentaccounts.length; i++) {
+							// loop through currentaccounts, break if found.
+							if (currentaccounts[i]['name'] == foundname) {
+								//already found account. pop it (we re-add / update it below)
+								accounthasprivatekeyinwallet = currentaccounts[i]['privatekey'];
+								currentaccounts.splice(i, 1);
 
-						alreadyhadaccount = true;
-						break;
+								alreadyhadaccount = true;
+								break;
+							}
+						}
 					}
+
+					success.result[j]['privatekey'] = accounthasprivatekeyinwallet;
+					success.result[j]['image'] = getImgFromJsonMetaData(success.result[j]['json_metadata']);
+
+					currentaccounts.push(helpers.formatUserBalanceObject(success.result[j]));
+
+					Ti.App.Properties.setObject('accounts', currentaccounts);
 				}
 			}
-
-			success.result[0]['privatekey'] = accounthasprivatekeyinwallet;
-			success.result[0]['image'] = getImgFromJsonMetaData(success.result[0]['json_metadata']);
-
-			currentaccounts.push(helpers.formatUserBalanceObject(success.result[0]));
-
-			Ti.App.Properties.setObject('accounts', currentaccounts);
 
 			setCurrentAccount();
 
