@@ -46,7 +46,7 @@ please explore the app thoroughly and check the [app/i18n/en/strings.xml](app/i1
 | language 	| github user 	| steem user                                    	|
 |----------	|-------------	|-----------------------------------------------	|
 | DE       	| @pharesim   	| [pharesim](https://steemit.com/@pharesim)     	|
-| ES       	| @tashidelek 	| [tashidelek](https://steemit.com/@tashidelek) 	|
+| ES       	| @tashidelek,@hedacbits 	| [tashidelek](https://steemit.com/@tashidelek),[hedac](https://steemit.com/@hedac) 	|
 | FR       	| @helo			    | [helo](https://steemit.com/@helo)             	|
 | RO       	| @grasozauru	  | [grasozauru](https://steemit.com/@grasozauru)		|
 | RU       	| @fildunsky	  | [dunsky](https://steemit.com/@dunsky)		        |
