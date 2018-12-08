@@ -2069,6 +2069,7 @@ function settingsWindow() {
 	var win_index_settings = Alloy.createController('index_settings').getView();
 	win_index_settings.open();
 
+
 }
 
 // loads initial user prior to opening wallet.

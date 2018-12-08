@@ -55,9 +55,39 @@ function doSetting(e){
     break;
 
     case "reset":
+      var dialog = Ti.UI.createAlertDialog({
+        cancel: 1,
+        destroy: 0,
+        buttonNames: [L('OK'), L('cancel')],
+        message: L('wipes_app_needs_restart'),
+        title: L('are_you_sure')
+      });
 
+      dialog.addEventListener('click', function(e) {
+        if (e.index === 1) {
+
+        } else {
+          // unset any settings / accounts
+          Ti.App.Properties.removeAllProperties();
+
+          // check if wallet.json exists and wipe
+
+          var f = Ti.Filesystem.getFile(Ti.Filesystem.applicationDataDirectory, Alloy.Globals.config.walletfilename);
+
+        	if (f.exists()) {
+            f.deleteFile();
+            f = null;
+          } else {
+            f = null;
+          }
+
+          alert('app_resetted_please_restart');
+          closeWin();
+        }
+
+      });
+      dialog.show();
     break;
-
 
   }
 }
