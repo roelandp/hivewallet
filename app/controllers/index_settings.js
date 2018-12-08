@@ -57,7 +57,7 @@ function doSetting(e){
     case "reset":
       var dialog = Ti.UI.createAlertDialog({
         cancel: 1,
-        destroy: 0,
+        destructive: 0,
         buttonNames: [L('OK'), L('cancel')],
         message: L('wipes_app_needs_restart'),
         title: L('are_you_sure')

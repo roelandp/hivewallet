@@ -80,4 +80,26 @@
     <string name="minute">minuto</string>
     <string name="second">segundo</string>
     <string name="millisecond">milésimas de segundo</string>
+
+<!--- NEW FOR V1.2 -->
+<string name="wipes_app_needs_restart">This will remove your wallet (keys) and all app settings.\n\nManually restart the app after the wipe.</string>
+<string name="are_you_sure">Are you sure?</string>
+<string name="error_empty_node_name">Node name can't be empty</string>
+<string name="error_empty_node_url">Node url can't be empty</string>
+<string name="error_node_url_should_start_https">Node url should start with https:// unless localhost or 127.0.0.1</string>
+<string name="error_node_url_already_added">Node is already in the list</string>
+<string name="node_unexpected_response_cant_add">Unexpected response from node.</string>
+<string name="removed_node_with_url_s">Removed node %1$s</string>
+<string name="restart_app_for_theme_changes">Restart the app to apply theme changes.</string>
+<string name="change_theme">Change theme?</string>
+<string name="overlay_title_settings">settings</string>
+<string name="settings_apinode">node</string>
+<string name="settings_currency">currency</string>
+<string name="settings_theme">theme</string>
+<string name="settings_reset">factory reset</string>
+<string name="addnewnode_name">name</string>
+<string name="addnewnode_maintainer_name">e.g. node-maintainer</string>
+<string name="addnewnode_url">url</string>
+<string name="add_node">add node</string>
+<string name="loadingMessage">loading...</string>
 </resources>
