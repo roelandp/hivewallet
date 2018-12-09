@@ -97,24 +97,24 @@
     <string name="millisecond">milisecunde</string>
 
     <!--- NEW FOR V1.2 -->
-    <string name="wipes_app_needs_restart">This will remove your wallet (keys) and all app settings.\n\nManually restart the app after the wipe.</string>
-    <string name="are_you_sure">Are you sure?</string>
-    <string name="error_empty_node_name">Node name can't be empty</string>
-    <string name="error_empty_node_url">Node url can't be empty</string>
-    <string name="error_node_url_should_start_https">Node url should start with https:// unless localhost or 127.0.0.1</string>
-    <string name="error_node_url_already_added">Node is already in the list</string>
-    <string name="node_unexpected_response_cant_add">Unexpected response from node.</string>
-    <string name="removed_node_with_url_s">Removed node %1$s</string>
-    <string name="restart_app_for_theme_changes">Restart the app to apply theme changes.</string>
-    <string name="change_theme">Change theme?</string>
-    <string name="overlay_title_settings">settings</string>
-    <string name="settings_apinode">node</string>
-    <string name="settings_currency">currency</string>
-    <string name="settings_theme">theme</string>
-    <string name="settings_reset">factory reset</string>
-    <string name="addnewnode_name">name</string>
-    <string name="addnewnode_maintainer_name">e.g. node-maintainer</string>
+    <string name="wipes_app_needs_restart">Această acțiune va strege portofelul (cheile) și toate setările aplicației.\n\nRepornește manual aplicația după ștergere.</string>
+    <string name="are_you_sure">Ești sigur/ă?</string>
+    <string name="error_empty_node_name">Numele nodului nu poate fi gol</string>
+    <string name="error_empty_node_url">url-ul nodului nu poate fi gol</string>
+    <string name="error_node_url_should_start_https">url-ul nodului trebuie sa înceapă cu https:// în cazul în care nu este localhost sau 127.0.0.1</string>
+    <string name="error_node_url_already_added">Nodul se află deja pe listă</string>
+    <string name="node_unexpected_response_cant_add">Răspuns neașteptat de la nod.</string>
+    <string name="removed_node_with_url_s">Nodul %1$s a fost înlăturat</string>
+    <string name="restart_app_for_theme_changes">Repornește aplicația pentru a aplica tema.</string>
+    <string name="change_theme">Schimbă tema?</string>
+    <string name="overlay_title_settings">setări</string>
+    <string name="settings_apinode">nod</string>
+    <string name="settings_currency">monedă</string>
+    <string name="settings_theme">temă</string>
+    <string name="settings_reset">resetare setări</string>
+    <string name="addnewnode_name">nume</string>
+    <string name="addnewnode_maintainer_name">ex: întreținătorul nodului</string>
     <string name="addnewnode_url">url</string>
-    <string name="add_node">add node</string>
-    <string name="loadingMessage">loading...</string>
+    <string name="add_node">adaugă nod</string>
+    <string name="loadingMessage">se încarcă...</string>
 </resources>
