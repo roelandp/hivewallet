@@ -1,0 +1,39 @@
+<h1>Ti.InAppBilling.Purchase</h1>
+
+<h2>Description</h2>
+
+<p>Represents an in-app billing purchase.</p>
+
+<h2>Properties</h2>
+
+<h3>type <a href="read-only">string</a></h3>
+
+<p>A string representing the type of purchase (ITEM<em>TYPE</em>INAPP or ITEM<em>TYPE</em>SUBSCRIPTION);</p>
+
+<h3>orderId <a href="read-only">string</a></h3>
+
+<p>A unique order identifier for the transaction. This corresponds to the Google Wallet Order ID.</p>
+
+<h3>packageName <a href="read-only">string</a></h3>
+
+<p>The application package from which the purchase originated.</p>
+
+<h3>productId <a href="read-only">string</a></h3>
+
+<p>The item&#39;s product identifier. Every item has a product ID, which you must specify in the application&#39;s product list on the Google Play Developer Console.</p>
+
+<h3>purchaseTime <a href="read-only">number</a></h3>
+
+<p>The time the product was purchased, in milliseconds since the epoch (Jan 1, 1970).</p>
+
+<h3>purchaseState <a href="read-only">number</a></h3>
+
+<p>The state of the purchase (PURCHASE<em>STATE</em>PURCHASED, PURCHASE<em>STATE</em>CANCELED, or PURCHASE<em>STATE</em>REFUNDED).</p>
+
+<h3>developerPayload <a href="read-only">string</a></h3>
+
+<p>A developer-specified string that contains supplemental information about an order. You can specify a value for this field when you make a <code>purchase</code> request.</p>
+
+<h3>token <a href="read-only">string</a></h3>
+
+<p>A token that uniquely identifies a purchase for a given item and user pair.</p>

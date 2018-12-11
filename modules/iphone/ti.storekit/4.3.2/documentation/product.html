@@ -1,0 +1,65 @@
+<h1>Ti.Storekit.Product</h1>
+
+<h2>Description</h2>
+
+<p>A <em>Ti.Storekit</em> module object which represents a product from the in-app store.</p>
+
+<h2>Properties</h2>
+
+<h3>Ti.Storekit.Product.title<a href="read-only">string</a></h3>
+
+<p>The title of the product.</p>
+
+<h3>Ti.Storekit.Product.description<a href="read-only">string</a></h3>
+
+<p>The description of the product.</p>
+
+<h3>Ti.Storekit.Product.price<a href="read-only">double</a></h3>
+
+<p>The price of the product.</p>
+
+<h3>Ti.Storekit.Product.formattedPrice<a href="read-only">string</a></h3>
+
+<p>The price of the product, formatted for the store&#39;s locale.</p>
+
+<h3>Ti.Storekit.Product.introductoryPrice<a href="read-only">Discount</a></h3>
+
+<p>The introductory price of the product, served as a <code>Discount</code> proxy.
+Includes the following properties:
+  <em> price (Number)
+  </em> priceLocale (String)
+  <em> subscriptionPeriod (Dictionary) { numberOfUnits (Number), unit (number) }
+  </em> numberOfPeriods (Number)
+  * paymentMode (Number, <code>DISCOUNT_PAYMENT_MODE_*</code>)</p>
+
+<h3>Ti.Storekit.Product.subscriptionPeriod<a href="read-only">Dictionary</a></h3>
+
+<p>The subscription period of the product, served as a dictionary with the following properties.
+  <em> numberOfUnits (Number)
+  </em> unit (Number, <code>PERIOD_UNIT_*</code>)</p>
+
+<h3>Ti.Storekit.Product.locale<a href="read-only">string</a></h3>
+
+<p>The locale of the product.</p>
+
+<h3>Ti.Storekit.Product.identifier<a href="read-only">string</a></h3>
+
+<p>The product&#39;s identifier in the in-app store.</p>
+
+<h3>Ti.Storekit.Product.downloadable<a href="read-only">boolean</a></h3>
+
+<p>A boolean value that indicates whether the App Store has downloadable content for this product.</p>
+
+<p>You can associate a set of data files with the iTunes Connect record you created for a product. The value of this property is true if at least one file has been associated with the product.</p>
+
+<h3>Ti.Storekit.Product.downloadContentLengths<a href="read-only">array&lt;number&gt;</a></h3>
+
+<p>The lengths of the downloadable files available for this product.</p>
+
+<p>The array holds number objects, each of which holds value that is the size of one of the downloadable files (in bytes).</p>
+
+<h3>Ti.Storekit.Product.downloadContentVersion<a href="read-only">string</a></h3>
+
+<p>A string that identifies which version of the content is available for download.</p>
+
+<p>The version string is formatted as a series of integers separated by periods.</p>

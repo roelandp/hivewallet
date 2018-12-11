@@ -1,0 +1,67 @@
+<h1>Ti.Storekit.Transaction</h1>
+
+<h2>Description</h2>
+
+<p>A <em>Ti.Storekit</em> module object which represents a Transaction.</p>
+
+<p>Read more about transactions in Apple&#39;s <a href="https://developer.apple.com/library/ios/documentation/StoreKit/Reference/SKPaymentTransaction_Class/Reference/Reference.html">SKPaymentTransaction Reference</a></p>
+
+<h2>Functions</h2>
+
+<h3>finish()</h3>
+
+<p>Completes a pending transaction.</p>
+
+<p>Your application should call this method from a <code>transactionState</code> or <code>updatedDownloads</code> event listener. Calling finish on a transaction removes it from the queue. Your application should call finish only after it has successfully processed the transaction and unlocked the functionality purchased by the user.</p>
+
+<h2>Properties</h2>
+
+<h3>downloads<a href="read-only">array&lt;<a href="download.html">Ti.Storekit.Download</a>&gt;</a></h3>
+
+<p>An array of download objects representing the downloadable content associated with the transaction.</p>
+
+<p>The contents of this property are undefined except when <code>transactionState</code> is set to <code>Ti.Storekit.TRANSACTION_STATE_PURCHASED</code>. The <a href="download.html">Ti.Storekit.Download</a> objects stored in this property must be used to download the transaction&#39;s content before the transaction is finished. After the transaction is finished, the download objects are no longer queueable.</p>
+
+<h3>originalTransaction<a href="read-only"><a href="transaction.html">Ti.Storekit.Transaction</a></a></h3>
+
+<p>The transaction that was restored by the App Store.</p>
+
+<p>The contents of this property are undefined except when <code>transactionState</code> is set to <code>Ti.Storekit.TRANSACTION_STATE_RESTORED</code>. When a transaction is restored, the current transaction holds a new transaction identifier, receipt, and so on. Your application will read this property to retrieve the restored transaction.</p>
+
+<h3>date<a href="read-only">date</a></h3>
+
+<p>The date the transaction was added to the App Store&#39;s payment queue.</p>
+
+<p>The contents of this property are undefined except when <code>transactionState</code> is set to <code>Ti.Storekit.TRANSACTION_STATE_PURCHASED</code> or <code>Ti.Storekit.TRANSACTION_STATE_RESTORED</code>.</p>
+
+<h3>identifier<a href="read-only">string</a></h3>
+
+<p>A string that uniquely identifies a successful payment transaction.</p>
+
+<p>The contents of this property are undefined except when transactionState is set to <code>Ti.Storekit.TRANSACTION_STATE_PURCHASED</code> or <code>Ti.Storekit.TRANSACTION_STATE_RESTORED</code>. The transactionIdentifier is a string that uniquely identifies the processed payment. Your application may wish to record this string as part of an audit trail for App Store purchases. See <a href="https://developer.apple.com/library/ios/documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction.html#//apple_ref/doc/uid/TP40008267">In-App Purchase Programming Guide</a> for more information.</p>
+
+<h3>state<a href="read-only">int</a></h3>
+
+<p>The current state of the transaction.</p>
+
+<p>See the <code>Ti.Storekit.TRANSACTION_STATE</code> constants for available states.<a href="index.html">Ti.Storekit</a>.</p>
+
+<h3>quantity<a href="read-only">int</a></h3>
+
+<p>The number of items the user wants to purchase.</p>
+
+<p>The default value is 1, the minimum value is 1, and the maximum value is 10.</p>
+
+<h3>productIdentifier<a href="read-only">string</a></h3>
+
+<p>A string used to identify a product that can be purchased from within your application.</p>
+
+<p>The product identifier is a string previously agreed on between your application and the Apple App Store.</p>
+
+<h3>applicationUsername<a href="read-only">string</a></h3>
+
+<p>An opaque identifier for the user&#39;s account on your system.</p>
+
+<p>This is used to help detect irregular activity. For example, in a game, it would be unusual for as dozens of different iTunes Store accounts making purchases on behalf of the same in-game character.</p>
+
+<p>The recommended implementation is to use a one-way hash of the user&#39;s account name to calculate the value for this property.</p>
