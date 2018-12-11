@@ -76,6 +76,8 @@
       <module platform="android">av.imageview</module>
       <module platform="iphone">ti.barcode</module>
       <module platform="android">ti.barcode</module>
+      <module platform="iphone">ti.storekit</module>
+      <module platform="android">ti.inappbilling</module>
       <!-- hyperloop only needed for android resume/pause function -->
       <module platform="android">hyperloop</module>
     </modules>
