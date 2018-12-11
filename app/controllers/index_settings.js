@@ -54,6 +54,11 @@ function doSetting(e){
       win.open();
     break;
 
+    case "createaccount":
+      var win = Alloy.createController('create_account').getView();
+      win.open();
+    break;
+
     case "reset":
       var dialog = Ti.UI.createAlertDialog({
         cancel: 1,
