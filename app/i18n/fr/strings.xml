@@ -89,7 +89,7 @@
     <string name="error_node_url_should_start_https">L'URL du noeud doit commencer par https:// sauf si c'est localhost ou 127.0.0.1</string>
     <string name="error_node_url_already_added">Le noeud est déjà dans la liste</string>
     <string name="node_unexpected_response_cant_add">Réponse inattendue du noeud.</string>
-    <string name="no_noeud_supplé avec_url_s">Noeud supprimé %1$s</string>
+    <string name="removed_node_with_url_s">Noeud supprimé %1$s</string>
     <string name="restart_app_for_theme_changes">Redémarrez l'application pour appliquer les modifications de thème.</string>
     <string name="change_theme">Changer de thème?</string>
     <string name="overlay_title_settings">paramètres</string>
