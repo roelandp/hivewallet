@@ -50,7 +50,7 @@ Translations are a community effort and thanks to opensource support from [Crowd
 | FR       	| [helo](https://steemit.com/@helo)             	|
 | IT       	| Tiwi90             	                            |
 | NL       	| [guchte](https://steemit.com/@guchte)		        |
-| RO       	| [dunsky](https://steemit.com/@dunsky)		        |
+| RO       	| [rasozauru](https://steemit.com/@rasozauru)		  |
 | RU       	| [dunsky](https://steemit.com/@dunsky)		        |
 
 Cheers, [@roelandp](https://steemit.com/@roelandp)
