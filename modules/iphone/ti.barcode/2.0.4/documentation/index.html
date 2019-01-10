@@ -1,0 +1,197 @@
+<h1>Ti.Barcode Module</h1>
+
+<h2>Description</h2>
+
+<p>Lets you process 1D/2D barcodes.</p>
+
+<h2>System Requirements</h2>
+
+<ul><li>[x] Titanium SDK 5.5.1+</li><li>[x] Camera Permissions set in your tiapp.xml:
+<code>xml
+&lt;ios&gt;
+    &lt;plist&gt;
+        &lt;dict&gt;
+            &lt;key&gt;NSCameraUsageDescription&lt;/key&gt;
+            &lt;string&gt;We need permission to access your device camera.&lt;/string&gt;
+        &lt;/dict&gt;
+    &lt;/plist&gt;
+&lt;/ios&gt;
+</code></li></ul>
+
+<h2>Getting Started</h2>
+
+<p>View the <a href="http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules">Using Titanium Modules</a> document for instructions on getting
+started with using this module in your application.</p>
+
+<h2>Accessing the Ti.Barcode Module</h2>
+
+<p>To access this module from JavaScript, you would do the following:</p>
+
+<p>&lt;pre&gt;var Barcode = require(&#39;ti.barcode&#39;);&lt;/pre&gt;</p>
+
+<h2>Functions</h2>
+
+<h3>capture([args])</h3>
+
+<p>Brings up the camera and begins the capture sequence for processing a barcode. Takes one optional argument, a dictionary
+containing any of the following properties:</p>
+
+<ul><li>animate[boolean]: Indicates if the device should animate between the current activity and the camera activity when the current activity is in a different orientation than the camera. Default is true.</li><li>showCancel[boolean]: Whether or not to include the default cancel button. Defaults to true.</li><li>showRectangle[boolean]: Whether or not to include the default rectangle around the scanning area. Defaults to true.</li><li>overlay[view]: The view to lay on top of the camera activity.</li><li>keepOpen[boolean]: Whether or not to keep the barcode scanner open after a barcode is recognized. Defaults to false. When set to true, &quot;success&quot; will fire once every time a barcode is recognized, up to two times per second. As such, it can fire multiple times for a single barcode!</li><li>acceptedFormats[int[]]: An optional array of int constants detailing which barcode formats are accepted. Defaults to all formats. Check out the &quot;Barcode Format Constants&quot; section below to see the available int constants. </li></ul>
+
+<h3>parse([args])</h3>
+
+<p>Parses a blob image for barcodes. Takes one required argument, a dictionary containing any of the following properties:</p>
+
+<ul><li>image[blob]: The image blob to parse for a barcode.</li><li>acceptedFormats[int[]]: An optional array of int constants detailing which barcode formats are accepted. Defaults to all formats. Check out the &quot;Barcode Format Constants&quot; section below to see the available int constants. </li></ul>
+
+<h3>cancel()</h3>
+
+<p>Cancels and closes the currently open capture window.</p>
+
+<h3>freezeCapture()</h3>
+
+<p>Freeze capture keeping the last frame on camera view. This is supported in iOS only.</p>
+
+<h3>unfreezeCapture()</h3>
+
+<p>Unfreeze a frozen capture. This is supported in iOS only.</p>
+
+<h2>Events</h2>
+
+<p>Use Ti.Barcode.addEventListener() to process the following events that are sent from the module:</p>
+
+<h3>success</h3>
+
+<p>Sent upon a successful barcode scan. The event object contains the following fields:</p>
+
+<ul><li>format[string, Android only] : The format of the barcode </li><li>result[string] : The raw contents of the barcode </li><li>code[string, Android only] : The activity result code from the scanning activity. Use the result constants defined in the [Ti.Android][] namespace </li><li>contentType[int] : The type of barcode content. Use the constants defined in this module to determine which.</li><li>data[object]: The parsed fields associated with the contentType.</li></ul>
+
+<h3>error</h3>
+
+<p>Sent when an error occurs. The event object contains the following fields:</p>
+
+<ul><li>message[string] : The error message </li><li>code[string, Android only] : The activity result code from the scanning activity. Use the result constants defined in the [Ti.Android][] namespace </li></ul>
+
+<h3>cancel</h3>
+
+<p>Sent when the scanning process is canceled. The event object contains the following fields:</p>
+
+<ul><li>message[string] : The error message </li><li>code[string] : The activity result code from the scanning activity. Use the result constants defined in the [Ti.Android][] namespace </li></ul>
+
+<h2>Properties</h2>
+
+<h3>allowRotation[boolean, defaults to false, iOS only]</h3>
+
+<p>Value that indicates if the barcode capture should analyze captured images in either portrait or landscape device
+orientation. (Warning: Analyzing both the captured image and the rotated version(s) of the image will increase the
+processing time of the capture.)</p>
+
+<ul><li>true: Captured images will be analyzed in both portrait and landscape orientation.</li><li>false [default]: Captured images will be analyzed using only the current device orientation.</li></ul>
+
+<h3>displayedMessage[string]</h3>
+
+<p>Controls the message that is displayed to the end user when they are capturing a barcode.</p>
+
+<h3>useFrontCamera[boolean, defaults to false]</h3>
+
+<p>Controls whether or not the front camera on the device will be used to capture barcodes. On Android, this requires API
+level 9 (Android OS 2.3) or higher. If no front camera is available, this will gracefully fall back to utilize whatever
+camera is available.</p>
+
+<h3>useLED[boolean, defaults to false]</h3>
+
+<p>Whether or not to use the LED when scanning barcodes (also known as the flashlight, torch, or some derivation thereof).</p>
+
+<h2>Barcode Result Type Constants</h2>
+
+<h3>URL[int]</h3>
+
+<p>Value representing URL content</p>
+
+<h3>SMS[int]</h3>
+
+<p>Value representing SMS content</p>
+
+<h3>TELEPHONE[int]</h3>
+
+<p>Value representing telephone number content</p>
+
+<h3>TEXT[int]</h3>
+
+<p>Value representing text content</p>
+
+<h3>CALENDAR[int]</h3>
+
+<p>Value representing date content</p>
+
+<h3>GEOLOCATION[int]</h3>
+
+<p>Value representing geolocation content</p>
+
+<h3>EMAIL[int]</h3>
+
+<p>Value representing an email address</p>
+
+<h3>CONTACT[int]</h3>
+
+<p>Value representing contact information (vcard or mecard)</p>
+
+<h3>BOOKMARK[int]</h3>
+
+<p>Value representing bookmark content</p>
+
+<h3>WIFI[int]</h3>
+
+<p>Value representing wifi connection settings</p>
+
+<h2>Barcode Format Constants</h2>
+
+<h3>FORMAT_NONE[int]</h3>
+
+<h3>FORMAT<em>QR</em>CODE[int]</h3>
+
+<h3>FORMAT<em>DATA</em>MATRIX[int]</h3>
+
+<h3>FORMAT<em>UPC</em>E[int]</h3>
+
+<h3>FORMAT<em>UPC</em>A[int]</h3>
+
+<h3>FORMAT<em>EAN</em>8[int]</h3>
+
+<h3>FORMAT<em>EAN</em>13[int]</h3>
+
+<h3>FORMAT<em>CODE</em>128[int]</h3>
+
+<h3>FORMAT<em>CODE</em>39[int]</h3>
+
+<h3>FORMAT_ITF[int]</h3>
+
+<h3>FORMAT<em>CODE</em>93[int, iOS only]</h3>
+
+<h3>FORMAT<em>CODE</em>39<em>MOD</em>43[int, iOS only ]</h3>
+
+<h3>FORMAT<em>PDF</em>417[int, iOS only ]</h3>
+
+<h3>FORMAT_AZTEC[int, iOS only ]</h3>
+
+<h3>FORMAT<em>INTERLEAVED</em>2<em>OF</em>5[int, iOS only ]</h3>
+
+<h2>Usage</h2>
+
+<p>See <code>example/app.js</code> for details!</p>
+
+<h2>Author</h2>
+
+<p>Jeff Haynie &amp; Jeff English &amp; Vijay Singh</p>
+
+<h2>Module History</h2>
+
+<p>View the <a href="changelog.html">change log</a> for this module.</p>
+
+<h2>Feedback and Support</h2>
+
+<p>Please direct all questions, feedback, and concerns to <a href="mailto:info@appcelerator.com?subject=iOS%20Barcode%20Module">info@appcelerator.com</a>.</p>
+
+<h2>License</h2>
+
+<p>Copyright(c) 2010-2018 by Appcelerator, Inc. All Rights Reserved. Please see the LICENSE file included in the distribution for further details.</p>
