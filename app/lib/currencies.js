@@ -1,8 +1,8 @@
 module.exports = exports = {
 	  "usd":"$",
     "eur":"€",
-    "cny":"元",		
-    "btc":"₿",
+    "cny":"元",
+    "btc":"฿",
     "eth":"Ξ",
     "ltc":"Ł",
     "ars":"$",
