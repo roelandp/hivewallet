@@ -1192,6 +1192,17 @@ function togglePasswordMask() {
 	}
 }
 
+function blinkSettings() {
+	$.container_top_settings.animate({opacity: 0.8, duration: 150}, function() {
+			$.username_edit_blink.opacity = 0.8;
+			var internaltimeout = setTimeout(function(){
+				$.container_top_settings.animate({opacity: 0.001, duration: 500});
+				$.username_edit_blink.animate({opacity: 0.001, duration: 500});
+				internaltimeout = null;
+			}, 1250);
+	});
+}
+
 function updateFiat() {
 
 	var currency = Ti.App.Properties.getString('currency').toLowerCase();
@@ -1206,8 +1217,11 @@ function updateFiat() {
 		if(currentaccountdata) {
 			if(currentaccountdata.hasOwnProperty('balance')) {
 				console.log(currentaccountdata);
-				$.account_amount_sbd_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)).setWidth( Ti.UI.FILL);
-				$.account_amount_steem_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2)).setWidth( Ti.UI.FILL);
+				$.account_amount_sbd_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2));
+				$.account_amount_steem_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2));
+
+				$.account_amount_sbd_fiat.setWidth( Ti.UI.FILL);
+				$.account_amount_steem_fiat.setWidth( Ti.UI.FILL);
 
 				console.log((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))));
 				console.log((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))));
@@ -1394,7 +1408,7 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 	scanWalletForKey(from, function(key) {
 		//key['key'] has the wif.
 
-		Alloy.Globals.loading.show('broadcasting', false);
+		Alloy.Globals.loading.show(L('broadcasting'), false);
 
 		helpers.steemAPIcall(
 			"get_dynamic_global_properties", [],
@@ -1838,7 +1852,6 @@ function updateAccount(e) {
 
 	function getAccountHistory(startoffset, currentloop, limit, maxresults, maxloops) {
 
-
 		helpers.steemAPIcall(
 			"get_account_history", [e, startoffset, limit],
 			function(result) {
@@ -2102,5 +2115,14 @@ appPauseResume({
 	setIntervalTime: 10000, // used for android monitoring.
 });
 
+function createAccount(){
+	Alloy.createController('create_account').getView().open();
+}
+
+$.author_description.addEventListener('link', function(e){
+		Ti.Platform.openURL(e.url);
+});
+
 // launch the app.
 $.index.open();
+blinkSettings();

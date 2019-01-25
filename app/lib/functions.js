@@ -23,7 +23,14 @@ function functions() {
 	};
 
 	this.formatToLocale = function(number, digits) {
-		return parseFloat(number).toLocaleString(Titanium.Locale.getCurrentLocale(), { minimumFractionDigits: digits, maximumFractionDigits: digits });
+
+		var result = number;
+		if(OS_IOS) {
+			result = parseFloat(number).toLocaleString(Titanium.Locale.getCurrentLocale(), { minimumFractionDigits: digits, maximumFractionDigits: digits });
+		} else {
+			result = parseFloat(number).toFixed(digits);
+		}
+		return result;
 	};
 
 	this.validate_account_name = function(value) {
@@ -111,7 +118,7 @@ function functions() {
 			}
 
 		Ti.App.Properties.setObject('accounts', accountstosave);
-		//console.log('accounts object',Ti.App.Properties.getObject('accounts'));
+
 	};
 
 	this.getNodeObject = function(nodeurl) {
@@ -153,7 +160,7 @@ function functions() {
 
 	this.steemAPIcall = function(method,params,cbres,cberr, node) {
 		var apiurl = Alloy.Globals.config.apiurl;
-		console.log('loggin steemapicall ', node);
+
 		if(node){
 			apiurl = node;
 		}
@@ -163,7 +170,7 @@ function functions() {
 			false,
 			function(e){
 				// simple validation here.
-				console.log('callback steemapi call - '+ apiurl);
+
 				try {
 					// try parse the response...
 					//console.log(e);
@@ -183,15 +190,8 @@ function functions() {
 			);
 	};
 
-	this.xhrcall = function (urli, transport, fn_progress, fn_complete, fn_error, vars) {
+	this.xhrcall = function (urli, transport, fn_progress, fn_complete, fn_error, vars, timeout) {
 		var file_obj;
-
-		//Ti.API.info('####### XHR CALL REQUESTED TO ::::: ' + urli);
-
-		if (vars) {
-
-			//Ti.API.info(vars);
-		}
 
 		try {
 			if (Titanium.Network.online == true) {
@@ -215,7 +215,7 @@ function functions() {
 						fn_error(this.responseText);
 					} else {
 						//alert(e);
-						Alloy.Globals.loading.show(e, true);
+						Alloy.Globals.loading.show(JSON.stringify(e), true);
 					}
 				};
 
@@ -225,7 +225,15 @@ function functions() {
 					}
 				};
 
-				c.setTimeout(45000);
+
+				var defaulttimeout = 45000;
+
+
+				if(timeout) {
+					defaulttimeout = timeout;
+				}
+
+				c.setTimeout(defaulttimeout);
 
 				c.open(transport, urli);
 
@@ -242,7 +250,8 @@ function functions() {
 				Alloy.Globals.loading.show('No connection', true);
 			}
 		} catch (err) {
-			Alloy.Globals.loading.show(err, true);
+
+			Alloy.Globals.loading.show(JSON.stringify(err), true);
 		}
 	};
 }

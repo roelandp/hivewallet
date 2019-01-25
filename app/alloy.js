@@ -17,6 +17,7 @@ if(OS_IOS) {
   fileDir.remoteBackup = false;
   fileDir = null;
   }
+  //Ti.App.forceSplashAsSnapshot = true;
 }
 
 
@@ -176,4 +177,6 @@ Alloy.Globals.config = {
   teamid: "M2FNGBQ5GU",
   walletfilename: "wallet.json",
   defaultcurrency: "usd",
+  iapaccountcreationcredit: "app.steemwallet.acc",
+  registeraccounturl: "https://iap.steemwallet.app"
 }

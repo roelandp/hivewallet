@@ -10,7 +10,101 @@
   				</View>
   				<View class="divider bottom0"></View>
   			</View>
-        <ScrollView>
+        <ScrollView class="overlay_body2">
+          <ScrollableView id="create_account_scrollableview">
+          <View id="createview_accountname" class="height_UISIZE layout_vertical">
+            <Label textid="createview_accountname" id="overlay_body_createwallet_description" class="padhorizontal_20 padvertical_20 textAlignLeft fontSize20 fontRegular">
+            </Label>
+            <View class="divider inputholder_divider"/>
+    				<View height="70">
+    					<TextField
+    						class="inputholder_textfield"
+    						hinttextid="desired_username"
+    						autocapitalization="false"
+    						autocorrect="false"
+    						enableReturnKey="true"
+    						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+    						onReturn="returnUsername"
+    						passwordMask="false"
+                maxLength="16"
+    						id="textfield_createaccount_username"
+    						onChange="validateUsername"></TextField>
+    					<Label id="username_result"></Label>
+    				</View>
+            <View class="divider inputholder_divider"/>
+            <View height="60">
+              <Button titleid="next" class="button width50pct transparentbg disabled opacity20" onClick="step2" id="create_account_next1"></Button>
+            </View>
+          </View>
+          <View id="createview_password" class="height_UISIZE layout_vertical">
+            <Label textid="createview_password" id="overlay_body_addwallet_description" class="padhorizontal_20 padvertical_20 textAlignLeft fontSize20 fontRegular">
+            </Label>
+    				<View class="divider inputholder_divider"/>
+    				<View height="70">
+    					<TextField
+    						class="inputholder_textfield"
+    						hinttextid="pick_secure_password"
+    						autocapitalization="false"
+    						autocorrect="false"
+    						enableReturnKey="true"
+    						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+    						onReturn="returnPassword"
+    						passwordMask="true"
+    						id="textfield_createaccount_password"
+    						onChange="calcPassphraseStrength"></TextField>
+    					<Button class="button fonticomoon fontSize20" id="togglepasswordmask" onClick="togglePasswordMask">🤪</Button>
+    					<Label id="password_strength_result"></Label>
+    				</View>
+            <View class="divider inputholder_divider"/>
+            <View height="60">
+              <Button titleid="next" class="button width50pct transparentbg disabled opacity20" onClick="step3" id="create_account_next2"></Button>
+            </View>
+          </View>
+          <View id="createview_confirmpassword" class="height_UISIZE layout_vertical">
+            <Label textid="createview_confirmpassword" id="overlay_body_addwallet_description" class="padhorizontal_20 padvertical_20 textAlignLeft fontSize20 fontRegular">
+            </Label>
+            <View class="divider inputholder_divider"/>
+            <View height="70">
+              <TextField
+                class="inputholder_textfield"
+                hinttextid="confirm_passphrase"
+                autocapitalization="false"
+                autocorrect="false"
+                enableReturnKey="true"
+                returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+                onReturn="returnPasswordConfirm"
+                passwordMask="true"
+                id="textfield_createaccount_password2"
+                onChange="confirmPassphrase"></TextField>
+              <Button class="button fonticomoon fontSize20" id="togglepasswordmask2" onClick="togglePasswordMask2">🤪</Button>
+              <Label id="password_strength_result2"></Label>
+            </View>
+            <View class="divider inputholder_divider"/>
+            <View height="60">
+              <Button titleid="complete_order" class="button width50pct transparentbg disabled opacity20" onClick="step4" id="create_account_next3"></Button>
+            </View>
+          </View>
+          </ScrollableView>
+
+          <View id="purchaseresults" class="layout_vertical height_UISIZE">
+            <Label id="purchasesuccess" class="padhorizontal_20 textAlignLeft fontSize20 fontRegular height_UISIZE"></Label>
+            <View id="purchasekeysholder" class="layout_vertical">
+              <View class="divider inputholder_divider"/>
+              <View height="270">
+                <TextArea
+                  id="purchasekeysarea"
+                  autoLink="false"
+                  autocapitalization="false"
+                  autocorrect="false"
+                  ></TextArea>
+              </View>
+              <View class="divider inputholder_divider"/>
+            </View>
+            <View height="60">
+              <Button titleid="close_window" class="button width50pct transparentbg" onClick="closeWin" id="create_account_close"></Button>
+            </View>
+          </View>
+
         </ScrollView>
       </View>
     </Window>

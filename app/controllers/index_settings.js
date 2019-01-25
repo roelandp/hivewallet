@@ -86,7 +86,7 @@ function doSetting(e){
             f = null;
           }
 
-          alert('app_resetted_please_restart');
+          alert('App resetted, please restart SteemWallet!');
           closeWin();
         }
 

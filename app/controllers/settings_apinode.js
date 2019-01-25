@@ -82,6 +82,9 @@ function selectNode(e) {
 
 function closeWin(){
   $.settings_apinode.animate(b);
+  helpers = null;
+  fns = null;
+  apinodes = null;
 }
 
 

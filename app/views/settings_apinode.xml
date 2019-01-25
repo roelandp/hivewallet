@@ -5,7 +5,7 @@
         </View>
         <View class="overlay_header">
           <View class="leftBut">
-            <Button class="text_blue closeBut_text_noicomoon" onClick="toggleAddNodeView">＋</Button>
+            <Button class="button closeBut_text" onClick="toggleAddNodeView">✏</Button>
           </View>
   				<Label textid="settings_apinode" class="overlay_header_title"></Label>
   				<View class="closeBut">
