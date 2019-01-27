@@ -2,7 +2,7 @@
 <ti:app xmlns:ti="http://ti.appcelerator.org">
     <id>app.steemwallet.roelandp</id>
     <name>SteemWallet</name>
-    <version>1.1.0.5</version>
+    <version>1.1.1.0</version>
     <publisher>roelandp</publisher>
     <url>https://steemwallet.app</url>
     <description>fast, secure and open source wallet for the Steem blockchain</description>
@@ -43,11 +43,18 @@
                 <string>Scan QR codes</string>
                 <key>NSPhotoLibraryUsageDescription</key>
                 <string>Read QR codes</string>
-                <key>CFBundleURLSchemes</key>
-                <array>
-                <string>steemwallet</string>
-                <string>steem</string>
-                </array>
+                <key>CFBundleURLTypes</key>
+               <array>
+                   <dict>
+                       <key>CFBundleURLName</key>
+                       <string>app.steemwallet.roelandp</string>
+                       <key>CFBundleURLSchemes</key>
+                       <array>
+                       <string>steemwallet</string>
+                       <string>steem</string>
+                       </array>
+                   </dict>
+               </array>
             </dict>
         </plist>
     </ios>
@@ -65,7 +72,17 @@
       		<activity android:name="org.appcelerator.titanium.TiActivity" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:screenOrientation="portrait"/>
       		<activity android:name="org.appcelerator.titanium.TiTranslucentActivity" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:theme="@style/Theme.Titanium.Translucent" android:screenOrientation="portrait" />
       		<activity android:name="ti.modules.titanium.ui.android.TiPreferencesActivity" android:configChanges="screenSize|density" android:screenOrientation="portrait" />
+          <activity android:name="ti.deeply.DeepLinkHandlerActivity" android:noHistory="true" android:excludeFromRecents="true" android:theme="@android:style/Theme.NoDisplay" launchMode="singleTask">
+          	<intent-filter>
+          		<action android:name="android.intent.action.VIEW"/>
+          		<category android:name="android.intent.category.DEFAULT"/>
+          		<category android:name="android.intent.category.BROWSABLE"/>
+          		<data android:scheme="steem"/>
+              <data android:scheme="steemwallet"/>
+          	</intent-filter>
+          </activity>
       		<provider android:name="org.appcelerator.titanium.io.TiFileProvider" android:authorities="app.steemwallet.roelandp.tifileprovider" android:exported="false" android:grantUriPermissions="true"/>
+
       	</application>
       </manifest>
     </android>

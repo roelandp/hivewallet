@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 1.0.0
+apiversion: 4
+architectures: arm64-v8a armeabi-v7a x86
+description: Ti.Deeply
+author: Andrea Jonus
+license: Specify your license
+copyright: Copyright (c) 2018 by Your Company
+
+# these should not be edited
+name: Ti.Deeply
+moduleid: ti.deeply
+guid: 7b8608cb-4877-4490-9c93-b6273a76059d
+platform: android
+minsdk: 7.1.0

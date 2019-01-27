@@ -33,6 +33,7 @@
   - Steem's Bad Actors List from: https://github.com/steemit/condenser/blob/master/src/app/utils/BadActorList.js
   - Detecting crossplatform resume / pause of app: https://github.com/dieskim/Appcelerator.Hyperloop.appPauseResume
   - QR code scanner from: https://github.com/appcelerator-modules/ti.barcode
+  - Ti.Deeply URI-scheme support for android from: https://github.com/caffeinalab/ti.deeply
 
 ### Feature requests, pull-requests
 
