@@ -1,3 +1,11 @@
+v 1.1.0
+- themes! find them in the new settings menu
+- create a new Steem account in the app.
+- settings: change api-nodes used for blockchain connections and add your own
+- settings: change the default counter-value currency to your local or other preferred currency
+- new translations: ru, it, nl
+- minor bugfixes
+
 v 1.0.1
 - translations added: de, es, fr, ro
 - added QR code scanner for memo field
