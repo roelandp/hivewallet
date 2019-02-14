@@ -1,3 +1,10 @@
+v 1.1.1
+- bugfixes - get_key_reference removed when adding private keys to validate. Is unstable
+- added base58 randomseed master password generator in 'create account' with entropy
+- updates in setters / getters to be futureproof for titanium
+- updated default node list
+- added some clarifications in key / password explainers
+
 v 1.1.0
 - themes! find them in the new settings menu
 - create a new Steem account in the app.

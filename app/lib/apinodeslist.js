@@ -19,4 +19,12 @@ module.exports = exports = [
     maintainer: '@privex',
     url: 'https://steemd.privex.io'
   },
+  {
+    maintainer: '@themarkymark',
+    url: 'https://rpc.usesteem.com'
+  },
+  {
+    maintainer: '@anyx',
+    url: 'https://hive.anyx.io'
+  }
 ];
