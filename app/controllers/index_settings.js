@@ -27,7 +27,7 @@ function animateOpen() {
 }
 
 Alloy.Globals.updateSettingsPreviewText = function(obj,newtext){
-  $.getView(obj).setText(newtext);
+  $.getView(obj).text = (newtext);
 }
 
 Alloy.Globals.updateSettingsPreviewText("settings_preview_currency", Ti.App.Properties.getString('currency'));

@@ -46,7 +46,7 @@ for (var node in apinodes) {
   }
 
 }
-  $.node_picker.sections[0].setItems(listdata);
+  $.node_picker.sections[0].items = (listdata);
 }
 
 function selectNode(e) {
@@ -105,8 +105,8 @@ b.addEventListener('complete', function() {
 });
 
 function animateOpen() {
-    $.addnodecontainer.setHeight(0.001);
-    $.addnodecontainer.setOpacity(0.001);
+    $.addnodecontainer.height = (0.001);
+    $.addnodecontainer.opacity = (0.001);
     $.settings_apinode.animate(a);
 
 }
@@ -116,18 +116,18 @@ function animateOpen() {
 function addNode() {
 
   // validate form fields...
-  if($.textfield_addnewnode_name.getValue() == "") {
+  if($.textfield_addnewnode_name.value == "") {
     alert(L('error_empty_node_name'));
     return false;
   }
 
-  if($.textfield_addnewnode_url.getValue() == "") {
+  if($.textfield_addnewnode_url.value == "") {
     alert(L('error_empty_node_url'));
     return false;
   }
 
-  if(!$.textfield_addnewnode_url.getValue().startsWith('https://')) {
-    if($.textfield_addnewnode_url.getValue().startsWith('http://localhost') || $.textfield_addnewnode_url.getValue().startsWith('http://127.0.0.1')) {
+  if(!$.textfield_addnewnode_url.value.startsWith('https://')) {
+    if($.textfield_addnewnode_url.value.startsWith('http://localhost') || $.textfield_addnewnode_url.value.startsWith('http://127.0.0.1')) {
     } else {
       alert(L('error_node_url_should_start_https'));
       return false;
@@ -135,7 +135,8 @@ function addNode() {
   }
 
   // check if not in current api node list
-  if(helpers.getNodeObject($.textfield_addnewnode_url.getValue().trim().toLowerCase())) {
+  console.log('nodeobj res', helpers.getNodeObject($.textfield_addnewnode_url.value.trim().toLowerCase()));
+  if(helpers.getNodeObject($.textfield_addnewnode_url.value.trim().toLowerCase())) {
     alert(L('error_node_url_already_added'));
     return false;
   }
@@ -151,8 +152,8 @@ function addNode() {
           if(response['result'].hasOwnProperty('head_block_id')) {
             var apinodes = Ti.App.Properties.getObject('apinodes');
             apinodes.push({
-              maintainer: $.textfield_addnewnode_name.getValue().trim(),
-              url: $.textfield_addnewnode_url.getValue().trim().toLowerCase()
+              maintainer: $.textfield_addnewnode_name.value.trim(),
+              url: $.textfield_addnewnode_url.value.trim().toLowerCase()
             });
 
             Ti.App.Properties.setObject('apinodes', apinodes);
@@ -171,15 +172,15 @@ function addNode() {
         alert(err);
         return false;
       }
-      // Ti.App.Properties.setString('apiurl', $.textfield_addnewnode_url.getValue().trim().toLowerCase());
-      // Alloy.Globals.updateSettingsPreviewText("settings_preview_node", $.textfield_addnewnode_url.getValue().trim().toLowerCase().split("://")[1].split(":")[0]);
-      // Alloy.Globals.config.apiurl = $.textfield_addnewnode_url.getValue().trim().toLowerCase();
+      // Ti.App.Properties.setString('apiurl', $.textfield_addnewnode_url.value.trim().toLowerCase());
+      // Alloy.Globals.updateSettingsPreviewText("settings_preview_node", $.textfield_addnewnode_url.value.trim().toLowerCase().split("://")[1].split(":")[0]);
+      // Alloy.Globals.config.apiurl = $.textfield_addnewnode_url.value.trim().toLowerCase();
       //closeWin();
     },
     function(error) {
       console.log(error);
     },
-    $.textfield_addnewnode_url.getValue().trim().toLowerCase()
+    $.textfield_addnewnode_url.value.trim().toLowerCase()
   );
   // all good? add new node.
 
@@ -188,15 +189,15 @@ function addNode() {
 }
 
 function toggleAddNodeView(){
-  console.log($.addnodecontainer.getHeight() );
-  if($.addnodecontainer.getHeight() <= 0.01) {
+  console.log($.addnodecontainer.height );
+  if($.addnodecontainer.height <= 0.01) {
     //$.addnodecontainer.animate(animate_openaddnodecontainer);
-    $.addnodecontainer.setHeight(162);
-    $.addnodecontainer.setOpacity(1);
+    $.addnodecontainer.height = (162);
+    $.addnodecontainer.opacity = (1);
   } else {
     //$.addnodecontainer.animate(animate_closeaddnodecontainer);
-    $.addnodecontainer.setHeight(0.001);
-    $.addnodecontainer.setOpacity(0.001);
+    $.addnodecontainer.height = (0.001);
+    $.addnodecontainer.opacity = (0.001);
   }
 }
 

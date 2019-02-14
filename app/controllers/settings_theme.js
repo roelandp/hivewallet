@@ -19,7 +19,7 @@ for (var theme in Alloy.Globals.themes) {
 
 }
 
-$.theme_picker.sections[0].setItems(listdata);
+$.theme_picker.sections[0].items = (listdata);
 
 function selectTheme(e){
   var newtheme = $.theme_picker.sections[0].getItemAt(e.itemIndex).theme;

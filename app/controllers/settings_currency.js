@@ -35,7 +35,7 @@ for (var currency in Alloy.Globals.currencies) {
   }
 }
 
-$.currency_picker.sections[0].setItems(listdata);
+$.currency_picker.sections[0].items = (listdata);
 
 function selectCurrency(e){
   var newcurrency = $.currency_picker.sections[0].getItemAt(e.itemIndex).currency;

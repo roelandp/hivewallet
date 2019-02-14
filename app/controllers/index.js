@@ -194,9 +194,9 @@ barcodeLed.addEventListener('click', function() {
 	Barcode.useLED = !Barcode.useLED;
 
 	if (Barcode.useLED) {
-		barcodeLed.setOpacity(1);
+		barcodeLed.opacity = (1);
 	} else {
-		barcodeLed.setOpacity(0.3);
+		barcodeLed.opacity = (0.3);
 	}
 });
 
@@ -353,7 +353,7 @@ function alertDialogCb(e) {
 
 
 function showOverlayBG(cb) {
-	if ($.background_overlay.getOpacity() == 0.5) {
+	if ($.background_overlay.opacity == 0.5) {
 		// background_overlay is already showing, don't bother showing it.
 		if (cb) {
 			cb();
@@ -361,14 +361,14 @@ function showOverlayBG(cb) {
 
 	} else {
 
-		$.background_overlay.setTop(0);
+		$.background_overlay.top = (0);
 		backgroundOverlayAnimation = {
 			opacity: 0.5,
 			duration: 150,
 		};
 		$.background_overlay.animate(backgroundOverlayAnimation, function() {
-			$.background_overlay.setOpacity(0.5);
-			$.background_overlay.setTop(0);
+			$.background_overlay.opacity = (0.5);
+			$.background_overlay.top = (0);
 			if (cb) {
 				cb();
 			}
@@ -379,7 +379,7 @@ function showOverlayBG(cb) {
 
 function hideOverlayBG(cb) {
 	//console.log()
-	if ($.background_overlay.getOpacity() == 0) {
+	if ($.background_overlay.opacity == 0) {
 		// background_overlay is already hiding, don't bother hiding it.
 		if (cb) {
 			cb();
@@ -393,8 +393,8 @@ function hideOverlayBG(cb) {
 		};
 
 		$.background_overlay.animate(backgroundOverlayAnimation, function() {
-			$.background_overlay.setTop(Alloy.Globals.dimensions.DP_platformHeight);
-			$.background_overlay.setOpacity(0);
+			$.background_overlay.top = (Alloy.Globals.dimensions.DP_platformHeight);
+			$.background_overlay.opacity = (0);
 			if (cb) {
 				cb();
 			}
@@ -410,7 +410,7 @@ function showOverlay(overlay) {
 	// console.log('getTop', overlay.getTop());
 	// console.log('alloy globals getheight', Alloy.Globals.dimensions.DP_platformHeight);
 
-	if (overlay.getTop() == Alloy.Globals.dimensions.DP_platformHeight) {
+	if (overlay.top == Alloy.Globals.dimensions.DP_platformHeight) {
 		// overlay is currently out of viewport, lets show it.
 		overlayAnimation = {
 			top: Alloy.Globals.dimensions.overlay_container_top,
@@ -431,7 +431,7 @@ function showOverlay(overlay) {
 }
 
 function hideOverlay(overlay) {
-	if (overlay.getTop() == Alloy.Globals.dimensions.overlay_container_top) {
+	if (overlay.top == Alloy.Globals.dimensions.overlay_container_top) {
 		// overlay is currently in viewport, lets hide it.
 		overlayAnimation = {
 			top: Alloy.Globals.dimensions.DP_platformHeight,
@@ -510,7 +510,7 @@ function showOverlayReceive() {
 				}));
 
 
-				$.qrcurrentaccount.setText(currentaccount);
+				$.qrcurrentaccount.text = (currentaccount);
 
 			}
 		}
@@ -554,7 +554,7 @@ function showOverlaySend() {
 }
 
 function showOverlayImportPrivatekey() {
-	$.overlay_body_importprivatekey_description.setText(String.format(L('overlay_body_importprivatekey_description'), Ti.App.Properties.getString('currentaccount')));
+	$.overlay_body_importprivatekey_description.text = (String.format(L('overlay_body_importprivatekey_description'), Ti.App.Properties.getString('currentaccount')));
 	$.overlay_body_importkey_scrollview.scrollTo(0, 0);
 	showOverlay($.overlay_importkey);
 }
@@ -584,11 +584,11 @@ function returnPrivatekey() {
 	//
 
 	$.textfield_importprivatekey.blur();
-	if ($.textfield_importprivatekey.getValue().length == 0) {
+	if ($.textfield_importprivatekey.value.length == 0) {
 		alert(L('please_type_paste_or_scan_a_privkey'));
 		return false;
 	}
-	var privkey = passwordorkey($.textfield_importprivatekey.getValue());
+	var privkey = passwordorkey($.textfield_importprivatekey.value);
 
 	//alert(key);
 	var publickey = dsteem.PrivateKey.fromString(privkey).createPublic().toString();
@@ -666,7 +666,7 @@ function returnPrivatekey() {
 										}
 									} catch (e) {
 
-										$.textfield_importprivatekey.setValue('');
+										$.textfield_importprivatekey.value = ('');
 										Ti.UI.Clipboard.clearText();
 										keys, privkey, passphrase = null;
 										alert(e.message + "\n\nincorrect passphrase?");
@@ -684,7 +684,7 @@ function returnPrivatekey() {
 									encryptWallet(parsedkeys['keys'], passphrase);
 
 									// unset vars, textfield and emptying clipboard of device.
-									$.textfield_importprivatekey.setValue('');
+									$.textfield_importprivatekey.value = ('');
 									keys, privkey, passphrase, parsedkeys, publickey = null;
 									Ti.UI.Clipboard.clearText();
 
@@ -708,7 +708,7 @@ function returnPrivatekey() {
 					// pubkeyfound === false
 					alert(L('no_account_found_for_given_key'));
 					privkey, publickey = null;
-					$.textfield_importprivatekey.setValue('');
+					$.textfield_importprivatekey.value = ('');
 					Ti.UI.Clipboard.clearText();
 
 				}
@@ -717,7 +717,7 @@ function returnPrivatekey() {
 				// account lookup result is not found.
 				alert(L('no_account_found_for_given_key'));
 				privkey, publickey = null;
-				$.textfield_importprivatekey.setValue('');
+				$.textfield_importprivatekey.value = ('');
 				Ti.UI.Clipboard.clearText();
 
 			}
@@ -732,7 +732,7 @@ function scanPrivateKey() {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		$.textfield_importprivatekey.setValue(e.result);
+		$.textfield_importprivatekey.value = (e.result);
 		$.textfield_importprivatekey.blur();
 	});
 
@@ -854,7 +854,7 @@ function unlockWallet(cb, skipidentity) {
 				if (e.index == 0) {
 					cb(e.text);
 				} else {
-					$.button_send.setEnabled(true);
+					$.button_send.enabled = (true);
 				}
 				e = null;
 
@@ -904,11 +904,11 @@ function unlockWallet(cb, skipidentity) {
 				dialog.removeEventListener('click', _lis);
 
 				if (e.index == 0) {
-					cb(dialoginputandroid.getValue());
+					cb(dialoginputandroid.value);
 				} else {
-					$.button_send.setEnabled(true);
+					$.button_send.enabled = (true);
 				}
-				dialoginputandroid.setValue('');
+				dialoginputandroid.value = ('');
 				dialoginputandroid = null;
 				e = null;
 
@@ -995,16 +995,16 @@ function calcPassphraseStrength(e) {
 	var pwdstrength = zxcvbn(e.value);
 	//console.log(pwdstrength);
 
-	$.password_strength_result.setText(String.format(L("password_strength_result"), pwdgrades[pwdstrength['score']], pwdstrength['crack_times_display']['offline_slow_hashing_1e4_per_second']));
+	$.password_strength_result.text = (String.format(L("password_strength_result"), pwdgrades[pwdstrength['score']], pwdstrength['crack_times_display']['offline_slow_hashing_1e4_per_second']));
 
 	if (pwdstrength['score'] >= 3) {
-		$.create_wallet_button.setEnabled(true);
+		$.create_wallet_button.enabled = (true);
 	} else {
-		$.create_wallet_button.setEnabled(false);
+		$.create_wallet_button.enabled = (false);
 	}
 
 	if (e.value.length == "") {
-		$.password_strength_result.setText("");
+		$.password_strength_result.text = "";
 	}
 
 	pwdstrength = null;
@@ -1016,9 +1016,9 @@ function returnPassword(e) {
 	var pwdstrength = zxcvbn(e.value);
 	$.textfield_addwalletpassword.blur();
 	if (pwdstrength['score'] >= 3) {
-		$.create_wallet_button.setEnabled(true);
+		$.create_wallet_button.enabled = (true);
 	} else {
-		$.create_wallet_button.setEnabled(false);
+		$.create_wallet_button.enabled = (false);
 		alert(String.format(L("password_strength_result"), pwdgrades[pwdstrength['score']], pwdstrength['crack_times_display']['offline_slow_hashing_1e4_per_second']));
 	}
 
@@ -1088,7 +1088,7 @@ function encryptWallet(keys, passphrase) {
 
 function createWallet() {
 
-	$.create_wallet_button.setEnabled(false);
+	$.create_wallet_button.enabled = (false);
 	var passphrase = $.textfield_addwalletpassword.getValue();
 
 	var pwdstrength = zxcvbn(passphrase);
@@ -1096,7 +1096,7 @@ function createWallet() {
 	if (pwdstrength['score'] >= 3) {
 
 		// create empty wallet
-		$.password_strength_result.setText("");
+		$.password_strength_result.text = "";
 
 		// initiate wallet with empty key array.
 		encryptWallet([], passphrase);
@@ -1180,11 +1180,11 @@ function showOverlayCreateWallet() {
 
 		explaintext += '\n\n';
 		explaintext += String.format(L('optionally_store_in_device_keychain'), authPhrase);
-		$.enable_identity_label.setText(String.format(L('enable_identity_label'), authPhrase));
-		$.enable_identity_holder.setHeight(70);
+		$.enable_identity_label.text = (String.format(L('enable_identity_label'), authPhrase));
+		$.enable_identity_holder.height = (70);
 	}
 
-	$.overlay_body_addwallet_description.setText(explaintext);
+	$.overlay_body_addwallet_description.text = (explaintext);
 
 	showOverlay($.overlay_createwallet);
 	$.overlay_body_createwallet_scrollview.scrollTo(0, 0);
@@ -1206,12 +1206,12 @@ function hideOverlaySend() {
 
 
 function togglePasswordMask() {
-	if ($.textfield_addwalletpassword.getPasswordMask()) {
-		$.textfield_addwalletpassword.setPasswordMask(false);
-		$.togglepasswordmask.setTitle('🤫');
+	if ($.textfield_addwalletpassword.passwordMask) {
+		$.textfield_addwalletpassword.passwordMask = (false);
+		$.togglepasswordmask.title = ('🤫');
 	} else {
-		$.textfield_addwalletpassword.setPasswordMask(true);
-		$.togglepasswordmask.setTitle('🤪');
+		$.textfield_addwalletpassword.passwordMask = (true);
+		$.togglepasswordmask.title = ('🤪');
 	}
 }
 
@@ -1244,11 +1244,11 @@ function updateFiat() {
 		if(currentaccountdata) {
 			if(currentaccountdata.hasOwnProperty('balance')) {
 				console.log(currentaccountdata);
-				$.account_amount_sbd_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2));
-				$.account_amount_steem_fiat.setText(currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2));
+				$.account_amount_sbd_fiat.text = (currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2));
+				$.account_amount_steem_fiat.text = (currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2));
 
-				$.account_amount_sbd_fiat.setWidth( Ti.UI.FILL);
-				$.account_amount_steem_fiat.setWidth( Ti.UI.FILL);
+				$.account_amount_sbd_fiat.width = ( Ti.UI.FILL);
+				$.account_amount_steem_fiat.width = ( Ti.UI.FILL);
 
 				console.log((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))));
 				console.log((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))));
@@ -1262,17 +1262,17 @@ function onBlurSendInputField(e) {
 	switch (e.source.id) {
 		case 'textfield_send_to':
 			// check for bad actors.
-			var tosend = $.textfield_send_to.getValue().trim();
+			var tosend = $.textfield_send_to.value.trim();
 
 			if (tosend.length > 0) {
 				var regex = /[^0-9a-zA-Z.-]/g;
 
 				tosend = tosend.replace(regex, '').toLowerCase();
-				$.textfield_send_to.setValue(tosend);
+				$.textfield_send_to.value = (tosend);
 
 				if (badactors.indexOf(tosend) > -1) {
 					alert(String.format(L("account_s_on_bad_actors_list_cant_send"), tosend));
-					$.textfield_send_to.setValue('');
+					$.textfield_send_to.value = ('');
 				}
 
 				helpers.steemAPIcall(
@@ -1299,7 +1299,7 @@ function onBlurSendInputField(e) {
 
 		case 'textfield_send_amount':
 
-			var amount = $.textfield_send_amount.getValue();
+			var amount = $.textfield_send_amount.value;
 
 			amount = amount.replace(",", ".");
 
@@ -1311,18 +1311,18 @@ function onBlurSendInputField(e) {
 
 			amount = parseFloat(amount.replace(/[^\d.-]/g, '')).toFixed(3);
 
-			$.textfield_send_amount.setValue(amount);
+			$.textfield_send_amount.value = (amount);
 
 			break;
 
 		case 'textfield_send_memo':
 
-			var memotxt = $.textfield_send_memo.getValue().trim();
+			var memotxt = $.textfield_send_memo.value.trim();
 			var memoarr = memotxt.split(" ");
 			for (var i = 0; i < memoarr.length; i++) {
 				if (memoarr[i].length == 51 && memoarr[i].startsWith("5")) {
 					alert(L('seems_like_you_are_sending_a_private_key'));
-					$.textfield_send_memo.setValue('');
+					$.textfield_send_memo.value = ('');
 				} else {
 					//console.log(memoarr[i].length);
 					//console.log(memoarr[i].startsWith("5"));
@@ -1363,10 +1363,10 @@ function returnSendInputfield(e) {
 function sendConfirm() {
 
 
-	var tosend = $.textfield_send_to.getValue().trim();
-	var amount = $.textfield_send_amount.getValue().trim();
-	var memo = $.textfield_send_memo.getValue().trim();
-	var sbdorsteem = $.token_steem_or_sbd.getText();
+	var tosend = $.textfield_send_to.value.trim();
+	var amount = $.textfield_send_amount.value.trim();
+	var memo = $.textfield_send_memo.value.trim();
+	var sbdorsteem = $.token_steem_or_sbd.text;
 
 	if (tosend.length > 0) {
 		var regex = /[^0-9a-zA-Z.-]/g;
@@ -1375,7 +1375,7 @@ function sendConfirm() {
 
 		if (badactors.indexOf(tosend) > -1) {
 			alert(String.format(L("account_s_on_bad_actors_list_cant_send"), tosend));
-			$.textfield_send_to.setValue('');
+			$.textfield_send_to.value = ('');
 			return false;
 		}
 	} else {
@@ -1406,12 +1406,12 @@ function sendConfirm() {
 	});
 
 	alertdialogcallback = function() {
-		$.button_send.setEnabled(false);
+		$.button_send.enabled = (false);
 		broadcastSend(Ti.App.Properties.getString('currentaccount'), tosend, amount, sbdorsteem, memo);
 	}
 
 	alertdialogcancelcallback = function() {
-		$.button_send.setEnabled(true);
+		$.button_send.enabled = (true);
 		return false;
 	}
 
@@ -1422,11 +1422,11 @@ function sendConfirm() {
 
 function resetSendWindow() {
 	//reset send shizzle.
-	$.textfield_send_to.setValue("");
-	$.textfield_send_amount.setValue("");
-	$.textfield_send_memo.setValue("");
-	$.token_steem_or_sbd.setText('steem');
-	$.button_send.setEnabled(true);
+	$.textfield_send_to.value = "";
+	$.textfield_send_amount.value = "";
+	$.textfield_send_memo.value = "";
+	$.token_steem_or_sbd.text = 'steem';
+	$.button_send.enabled = true;
 }
 
 
@@ -1497,7 +1497,7 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 								hideOverlaySend();
 
 							} else {
-								$.button_send.setEnabled(true);
+								$.button_send.enabled = (true);
 								// hideOverlaySend();
 							}
 
@@ -1512,13 +1512,13 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 					},
 					function(err2) {
 						Alloy.Globals.loading.hide();
-						$.button_send.setEnabled(true);
+						$.button_send.enabled = (true);
 						alert(err2.message);
 					});
 
 			},
 			function(err) {
-				$.button_send.setEnabled(true);
+				$.button_send.enabled = (true);
 				Alloy.Globals.loading.hide();
 				alert(err);
 				key = null;
@@ -1528,7 +1528,7 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 
 	}, function(err) {
 		//error.
-		$.button_send.setEnabled(true);
+		$.button_send.enabled = (true);
 		Alloy.Globals.loading.hide();
 		alert(err);
 	});
@@ -1539,7 +1539,7 @@ function scanAccountQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		$.textfield_send_to.setValue(e.result);
+		$.textfield_send_to.value = (e.result);
 		$.textfield_send_to.blur();
 	});
 
@@ -1555,12 +1555,12 @@ function scanAccountQR(e) {
 }
 
 function toggleSteemSBD() {
-	if ($.token_steem_or_sbd.getText() == 'steem') {
-		$.token_steem_or_sbd.setText('sbd');
-		$.overlay_send_header_title.setText(String.format(L('send_s'), 'sbd'));
+	if ($.token_steem_or_sbd.text == 'steem') {
+		$.token_steem_or_sbd.text = 'sbd';
+		$.overlay_send_header_title.text = String.format(L('send_s'), 'sbd');
 	} else {
-		$.token_steem_or_sbd.setText('steem');
-		$.overlay_send_header_title.setText(String.format(L('send_s'), 'steem'));
+		$.token_steem_or_sbd.text = 'steem';
+		$.overlay_send_header_title.text = String.format(L('send_s'), 'steem');
 	}
 }
 
@@ -1569,7 +1569,7 @@ function scanMemoQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		$.textfield_send_memo.setValue(e.result);
+		$.textfield_send_memo.value = (e.result);
 		$.textfield_send_memo.blur();
 	});
 
@@ -1634,7 +1634,7 @@ function fillAccountsList() {
 		});
 	}
 
-	$.overlay_pickaccount_listview.sections[0].setItems(listdata);
+	$.overlay_pickaccount_listview.sections[0].items = (listdata);
 	//$.overlay_pickaccount_listview.scrollToItem(0);
 
 }
@@ -1746,7 +1746,7 @@ function handlePickAccountClick(e) {
 		var newaccount = $.overlay_pickaccount_listview.sections[0].getItemAt(e.itemIndex).accountdata.name;
 		if (Ti.App.Properties.getString('currentaccount') != newaccount) {
 
-			$.listview_transactions.sections[0].setItems([{
+			$.listview_transactions.sections[0].items = ([{
 				template: 'txlinocontent',
 				txli_nocontent_label: {
 					text: String.format(L('loading_s'), e)
@@ -1801,7 +1801,7 @@ function updateAccount(e) {
 
 	if ($.listview_transactions.sections[0].getItems().length == 1) {
 		if ($.listview_transactions.sections[0].getItemAt(0).template == "txlinocontent") {
-			$.listview_transactions.sections[0].setItems([{
+			$.listview_transactions.sections[0].items = ([{
 				template: 'txlinocontent',
 				txli_nocontent_label: {
 					text: String.format(L('loading_s'), e)
@@ -1952,9 +1952,9 @@ function updateAccount(e) {
 						});
 						//$.listview_transactions.setCanScroll(false);
 					} else {
-						$.listview_transactions.setCanScroll(true);
+						$.listview_transactions.canScroll = (true);
 					}
-					$.listview_transactions.sections[0].setItems(listdata);
+					$.listview_transactions.sections[0].items = (listdata);
 				} else {
 					currentloop++;
 					// should change startoffset here...
@@ -1994,7 +1994,7 @@ function handleAddAccount(e) {
 				//console.log(success);
 				if (success.result.length == 0) {
 					alert(String.format(L('alert_account_not_found'), $.textfield_addaccount.value));
-					$.textfield_addaccount.setValue('');
+					$.textfield_addaccount.value = ('');
 				} else {
 					var foundname = success.result[0].name.toLowerCase();
 					//console.log('name', foundname);
@@ -2029,7 +2029,7 @@ function handleAddAccount(e) {
 
 					currentaccounts.push(helpers.formatUserBalanceObject(success.result[0]));
 
-					$.textfield_addaccount.setValue('');
+					$.textfield_addaccount.value = ('');
 
 
 
@@ -2067,16 +2067,16 @@ function setCurrentAccount() {
 		$.username_title.text = L('hi_there');
 		// show welcome message here....
 
-		$.container_welcome.setTop(Alloy.Globals.dimensions.overlay_container_top);
-		$.container_transactions.setTop(Alloy.Globals.dimensions.DP_platformHeight);
+		$.container_welcome.top = (Alloy.Globals.dimensions.overlay_container_top);
+		$.container_transactions.top = (Alloy.Globals.dimensions.DP_platformHeight);
 		$.avatar.hide();
 
 	} else {
 
-		$.container_welcome.setTop(Alloy.Globals.dimensions.DP_platformHeight);
-		$.container_transactions.setTop(Alloy.Globals.dimensions.overlay_container_top);
+		$.container_welcome.top = (Alloy.Globals.dimensions.DP_platformHeight);
+		$.container_transactions.top = (Alloy.Globals.dimensions.overlay_container_top);
 
-		if ($.username_title.getText() != currentaccount) {
+		if ($.username_title.text != currentaccount) {
 			$.username_title.text = currentaccount;
 		}
 
@@ -2092,13 +2092,13 @@ function setCurrentAccount() {
 		}
 		$.avatar.show();
 
-		$.account_amount_steem.setText(helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' STEEM');
-		$.account_amount_sbd.setText(helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' SBD');
+		$.account_amount_steem.text = (helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' STEEM');
+		$.account_amount_sbd.text = (helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' SBD');
 		updateFiat();
 
-		// $.account_amount_sbd_fiat.setText('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['sbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
+		// $.account_amount_sbd_fiat.text = ('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['sbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
 		//
-		// $.account_amount_steem_fiat.setText('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['balance']) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2)));
+		// $.account_amount_steem_fiat.text = ('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['balance']) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2)));
 
 		//account_amount_steem
 	}
