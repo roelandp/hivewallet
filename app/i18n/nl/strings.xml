@@ -129,11 +129,12 @@
     <string name="createview_accountname">Maak gebruik van een in-app betaling zodat je direct een account aanmaakt op de Steem blockchain..\n\n Welke accountnaam wil je registreren?</string>
     <string name="desired_username">gewenste accountnaam</string>
     <string name="next">volgende</string>
-    <string name="createview_password">Steem is een blockchain! Een blockchain heeft geen \"ik ben mijn wachtwoord vergeten\" optie. Je bent dus zelf verantwoordelijk om je wachtwoordzin veilig op te slaan.\n\nMaak een sterke wachtwoordzin en sla deze DIRECT veilig op!</string>
-    <string name="createview_confirmpassword">Bevestig je wachtwoordzin om door te kunnen gaan:</string>
-    <string name="confirm_passphrase">bevestig je wachtwoordzin</string>
+    <string name="createview_password">Steem is een blockchain! Een blockchain heeft geen \"ik ben mijn wachtwoord vergeten\" optie. Je bent dus zelf verantwoordelijk om je master password veilig op te slaan.\n\nMaak een sterk master password aan en sla deze DIRECT veilig op!</string>
+    <string name="createview_confirmpassword">Bevestig je master password om door te kunnen gaan:</string>
+    <string name="confirm_passphrase">bevestig je master password</string>
     <string name="complete_order">koop account</string>
     <string name="congrats_you_succesfully_purchased_s">Gefeliciteerd je hebt %1$s succesvol aangeschaft!.\n\n Sla je wachtwoordzin (en sleutels) veilig op. NU!\n\nDit is de laatste keer dat ze getoond zullen worden en je zult ze hierna niet meer kunnen achterhalen!</string>
     <string name="close_window">klaar</string>
     <string name="create_account">registreer account</string>
+    <string name="generate_password">nieuw password</string>
 </resources>

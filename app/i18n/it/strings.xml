@@ -136,4 +136,5 @@
     <string name="congrats_you_succesfully_purchased_s">Congratulazioni per aver acquistato con successo %1$s.\n\nMemorizza la frase d\'accesso (e le chiavi) in modo sicuro. ADESSO!\n\n Questi vengono mostrati per l\'ultima volta e non sarai in grado di recuperarli in seguito!</string>
     <string name="close_window">fatto</string>
     <string name="create_account">crea account</string>
+    <string name="generate_password">crea password</string>
 </resources>

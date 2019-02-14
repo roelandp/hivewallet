@@ -33,7 +33,7 @@
     				</View>
             <View class="divider inputholder_divider"/>
             <View height="60">
-              <Button titleid="next" class="button width50pct transparentbg disabled opacity20" onClick="step2" id="create_account_next1"></Button>
+              <Button titleid="next" class="button transparentbg disabled opacity20" onClick="step2" id="create_account_next1"></Button>
             </View>
           </View>
           <View id="createview_password" class="height_UISIZE layout_vertical">
@@ -60,7 +60,7 @@
     				</View>
             <View class="divider inputholder_divider"/>
             <View height="60">
-              <Button titleid="next" class="button width50pct transparentbg disabled opacity20" onClick="step3" id="create_account_next2"></Button>
+              <Button titleid="next" class="button transparentbg disabled opacity20" onClick="step3" id="create_account_next2"></Button>
             </View>
           </View>
           <View id="createview_confirmpassword" class="height_UISIZE layout_vertical">
@@ -84,7 +84,7 @@
             </View>
             <View class="divider inputholder_divider"/>
             <View height="60">
-              <Button titleid="complete_order" class="button width50pct transparentbg disabled opacity20" onClick="step4" id="create_account_next3"></Button>
+              <Button titleid="complete_order" class="button transparentbg disabled opacity20" onClick="step4" id="create_account_next3"></Button>
             </View>
           </View>
           </ScrollableView>
@@ -104,7 +104,7 @@
               <View class="divider inputholder_divider"/>
             </View>
             <View height="60">
-              <Button titleid="close_window" class="button width50pct transparentbg" onClick="closeWin" id="create_account_close"></Button>
+              <Button titleid="close_window" class="button transparentbg" onClick="closeWin" id="create_account_close"></Button>
             </View>
           </View>
 

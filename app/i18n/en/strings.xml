@@ -54,7 +54,7 @@
     <string name="unlock">unlock</string>
     <string name="wallet_file_not_exist">wallet file doesn't exist. Let's create one.</string>
 
-    <string name="overlay_body_importprivatekey_description">Add any active (!) key into your encrypted wallet, so you can use it to send steem/sbd.\n\nDon't have an active key? Educate yourself about keys! Try inserting %1$s's password instead.</string>
+    <string name="overlay_body_importprivatekey_description">Add your active (!) private key into your encrypted wallet, so you can use it to send steem/sbd.\n\nDon't have an active private key? Educate yourself about keys! Try inserting %1$s's password instead.</string>
     <string name="insert_private_key_or_password">insert key here</string>
 
     <string name="please_type_paste_or_scan_a_privkey">private key</string>
@@ -147,12 +147,13 @@
     <string name="createview_accountname">Use an in-app payment to instantly register a new account on the Steem chain.\n\nWhich username would you like to register?</string>
     <string name="desired_username">desired username</string>
     <string name="next">next</string>
-    <string name="createview_password">Steem is a blockchain. A blockchain has no "password forgot" option. You are responsible for securely storing your passphrase.\n\nWe have generated a strong password for you, but feel free to generate another one!</string>
-    <string name="createview_confirmpassword">Confirm your passphrase to continue:</string>
-    <string name="confirm_passphrase">confirm passphrase</string>
+    <string name="createview_password">Steem is a blockchain. A blockchain has no "password forgot" option. You are responsible for securely storing your master password.\n\nWe have generated a strong master password for you, but feel free to generate another one!</string>
+    <string name="createview_confirmpassword">Confirm your master password to continue:</string>
+    <string name="confirm_passphrase">confirm master password</string>
     <string name="complete_order">purchase</string>
-    <string name="congrats_you_succesfully_purchased_s">Congrats you have succesfully purchased %1$s.\n\nStore your passphrase (and keys) safely. NOW!\n\nThese are shown for the last time and you won't be able to retrieve them afterwards!</string>
+    <string name="congrats_you_succesfully_purchased_s">Congrats you have succesfully purchased %1$s.\n\nStore your master password (and keys) safely. NOW!\n\nThese are shown for the last time and you won't be able to retrieve them afterwards!</string>
     <string name="close_window">done</string>
     <string name="create_account">create account</string>
+    <string name="generate_password">generate password</string>
 
 </resources>

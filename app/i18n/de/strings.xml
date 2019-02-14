@@ -129,11 +129,12 @@
     <string name="createview_accountname">Verwende In-app-Bezahlung um sofort einen neuen Account auf der Steem-Blockchain anzulegen.\n\n Welchen Benutzernamen möchtest Du anlegen?</string>
     <string name="desired_username">Gewünschter Benutzername</string>
     <string name="next">Weiter</string>
-    <string name="createview_password">Steem ist eine Blockchain. Eine Blockchain hat keine \"Passwort vergessen\"-Option. Du bist für die sichere Speicherung Deines Passwortes verantwortlich.\n\n Erstelle ein starkes Passwort und bewahre es sicher auf!</string>
-    <string name="createview_confirmpassword">Bestätige Dein Passwort um fortzufahren</string>
-    <string name="confirm_passphrase">Bestätige Dein Passwort</string>
+    <string name="createview_password">Steem ist eine Blockchain. Eine Blockchain hat keine \"Passwort vergessen\"-Option. Du bist für die sichere Speicherung Deines Master Passwortes verantwortlich.\n\n Erstelle ein starkes Master Passwort und bewahre es sicher auf!</string>
+    <string name="createview_confirmpassword">Bestätige Dein Master Passwort um fortzufahren</string>
+    <string name="confirm_passphrase">Bestätige Dein Master Passwort</string>
     <string name="complete_order">Kaufe</string>
-    <string name="congrats_you_succesfully_purchased_s">Herzlichen Glückwunsch, Du hast erfolgreich %1$s. gekauft. \n\n Speichere Dein Passwort (und die Schlüssel) an einem sicheren Ort. JETZT! \n\n Diese werden zum letzten Mal angezeigt und Du wirst sie später nie mehr abrufen können!</string>
+    <string name="congrats_you_succesfully_purchased_s">Herzlichen Glückwunsch, Du hast erfolgreich %1$s. gekauft. \n\n Speichere Dein Master Passwort (und die Private Keys) an einem sicheren Ort. JETZT! \n\n Diese werden zum letzten Mal angezeigt und Du wirst sie später nie mehr abrufen können!</string>
     <string name="close_window">Fertig</string>
     <string name="create_account">Benutzerkonto erstellen</string>
+    <string name="generate_password">Neues Passwort</string>
 </resources>
