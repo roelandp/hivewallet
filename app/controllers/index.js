@@ -593,105 +593,128 @@ function returnPrivatekey() {
 	//alert(key);
 	var publickey = dsteem.PrivateKey.fromString(privkey).createPublic().toString();
 
-	//console.log('dsteem', publickey.toString());
+	console.log('pubkey to lookup', publickey);
 
+	// pickup this account to compare public key to given public key for account --- Ti.App.Properties.getString('currentaccount')
 
+	// "get_accounts", [
+	// 	[$.textfield_addaccount.value]
+	// ]
 	helpers.steemAPIcall(
-		"get_key_references", [
-			[publickey]
+		"get_accounts", [
+			[Ti.App.Properties.getString('currentaccount')]
 		],
 		function(result) {
-			//console.log('public key lookup results');
-			//console.log(result);
 
-			if (result.result[0].length > 0) {
+			if (result.result.length > 0) {
 
-				// @TODO should unlock wallet here. with the callback thingie.
+				var pubkeyfound = false;
 
-				unlockWallet(function(passphrase) {
+				// loop through active (!) key auths
+				for(var i = 0; i < result.result[0]['active']['key_auths'].length; i++) {
+					var key_auth = result.result[0]['active']['key_auths'][i][0];
 
+					if(key_auth == publickey){
+						pubkeyfound = true;
+						break;
+					}
+				}
 
-					for (var i = 0; i < result.result[0].length; i++) {
-						//alert(result.result[0][i] +' hier geindegid vannacht');
+				if(pubkeyfound) {
 
-						var currentaccounts = Ti.App.Properties.getObject('accounts');
-
-						// consider updating current accounts when picking.
-
-						// populate list table.
-						for (var j = 0; j < currentaccounts.length; j++) {
-
-							if (currentaccounts[j].name == result.result[0][i]) {
-								// if matches.... add privkey to wallet in following format:
+					unlockWallet(function(passphrase) {
 
 
-								// {
-								// 	account: currentaccounts[j].name,
-								// 	key: privkey
-								// }
-								var keys = decryptWallet(passphrase);
+						//for (var i = 0; i < result.result[0].length; i++) {
+							//alert(result.result[0][i] +' hier geindegid vannacht');
 
-								//console.log('keys in wallet', keys);
-								// loop through keys and see if we already had a key by that account
+							var currentaccounts = Ti.App.Properties.getObject('accounts');
 
-								try {
-									var parsedkeys = JSON.parse(keys);
-									//console.log(parsedkeys);
-									if ('keys' in parsedkeys) {
-										for (var k = 0; k < parsedkeys['keys'].length; k++) {
-											if (parsedkeys['keys'][k]['account'] == result.result[0][i]) {
+							// consider updating current accounts when picking.
 
-												// console.log('found key for '+parsedkeys['keys'][k]['account']);
-												// console.log('now removing via splice');
+							// populate list table.
+							for (var j = 0; j < currentaccounts.length; j++) {
 
-												parsedkeys['keys'].splice(k, 1);
+								if (currentaccounts[j].name == Ti.App.Properties.getString('currentaccount')) {
+									// if matches.... add privkey to wallet in following format:
 
 
+									// {
+									// 	account: currentaccounts[j].name,
+									// 	key: privkey
+									// }
+									var keys = decryptWallet(passphrase);
+
+									//console.log('keys in wallet', keys);
+									// loop through keys and see if we already had a key by that account
+
+									try {
+										var parsedkeys = JSON.parse(keys);
+										//console.log(parsedkeys);
+										if ('keys' in parsedkeys) {
+											for (var k = 0; k < parsedkeys['keys'].length; k++) {
+												if (parsedkeys['keys'][k]['account'] == Ti.App.Properties.getString('currentaccount')) {
+
+													// console.log('found key for '+parsedkeys['keys'][k]['account']);
+													// console.log('now removing via splice');
+
+													parsedkeys['keys'].splice(k, 1);
+
+
+												}
 											}
 										}
+									} catch (e) {
+
+										$.textfield_importprivatekey.setValue('');
+										Ti.UI.Clipboard.clearText();
+										keys, privkey, passphrase = null;
+										alert(e.message + "\n\nincorrect passphrase?");
+										return false;
+
 									}
-								} catch (e) {
 
+									parsedkeys['keys'].push({
+										account: Ti.App.Properties.getString('currentaccount'),
+										key: privkey
+									});
+
+
+									// encryptwallet again with new key added.
+									encryptWallet(parsedkeys['keys'], passphrase);
+
+									// unset vars, textfield and emptying clipboard of device.
 									$.textfield_importprivatekey.setValue('');
+									keys, privkey, passphrase, parsedkeys, publickey = null;
 									Ti.UI.Clipboard.clearText();
-									keys, privkey, passphrase = null;
-									alert(e.message + "\n\nincorrect passphrase?");
-									return false;
 
+									// also update user object to reflect that
+									helpers.updateUserObject(currentaccounts[j].name, 'privatekey', true);
+
+									setTimeout(showOverlaySend, 400);
 								}
 
-								parsedkeys['keys'].push({
-									account: result.result[0][i],
-									key: privkey
-								});
+								// close import.... start showing send overlay.
+								hideOverlayImportPrivatekey();
 
-
-								// encryptwallet again with new key added.
-								encryptWallet(parsedkeys['keys'], passphrase);
-
-								// unset vars, textfield and emptying clipboard of device.
-								$.textfield_importprivatekey.setValue('');
-								keys, privkey, passphrase, parsedkeys, publickey = null;
-								Ti.UI.Clipboard.clearText();
-
-								// also update user object to reflect that
-								helpers.updateUserObject(currentaccounts[j].name, 'privatekey', true);
-
-								setTimeout(showOverlaySend, 400);
 							}
+						//}
 
-							// close import.... start showing send overlay.
-							hideOverlayImportPrivatekey();
+						// unset passphrase
+						passphrase = null;
+					});
 
-						}
-					}
+				} else {
+					// pubkeyfound === false
+					alert(L('no_account_found_for_given_key'));
+					privkey, publickey = null;
+					$.textfield_importprivatekey.setValue('');
+					Ti.UI.Clipboard.clearText();
 
-					// unset passphrase
-					passphrase = null;
-				});
-
+				}
 
 			} else {
+				// account lookup result is not found.
 				alert(L('no_account_found_for_given_key'));
 				privkey, publickey = null;
 				$.textfield_importprivatekey.setValue('');
@@ -1192,7 +1215,11 @@ function togglePasswordMask() {
 	}
 }
 
+
 function blinkSettings() {
+	// adding entropy:
+	//console.log(helpers.generateBase58Password(55));
+
 	$.container_top_settings.animate({opacity: 0.8, duration: 150}, function() {
 			$.username_edit_blink.opacity = 0.8;
 			var internaltimeout = setTimeout(function(){

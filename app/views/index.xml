@@ -147,6 +147,7 @@
 						enableReturnKey="true"
 						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
 						onReturn="handleAddAccount"
+						maxLength="16"
 						id="textfield_addaccount"></TextField>
 				</View>
 				<View class="divider inputholder_divider"/>
@@ -230,6 +231,7 @@
 						autocapitalization="false"
 						autocorrect="false"
 						enableReturnKey="true"
+						maxLength="16"
 						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
 						onReturn="returnSendInputfield"
 						onBlur="onBlurSendInputField"
