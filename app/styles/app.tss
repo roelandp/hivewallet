@@ -225,7 +225,14 @@
 	font: {
 		fontWeight: "bold",
 		fontSize: 15
-	}
+	},
+	minimumFontSize: 10,
+	color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
+	backgroundColor: 'transparent',
+	selectedBackgroundColor: 'transparent',
+	backgroundSelectedColor: 'transparent',
+	borderWidth: 0
 }
 
 "#avatar" : {

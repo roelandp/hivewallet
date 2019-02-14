@@ -627,9 +627,19 @@ function togglePasswordMask2() {
 function slideToView(view){
   $.create_account_scrollableview.scrollToView(view);
 }
+
+function makePwd(){
+
+  textfield = $.textfield_createaccount_password;
+
+  textfield.value = (helpers.generateBase58Password(40));
+  calcPassphraseStrength({value: textfield.value});
+}
+
 function step2() {
   $.textfield_createaccount_username.blur();
   slideToView(1);
+  setTimeout(function() {makePwd($.textfield_createaccount_password);},1000);
 }
 
 function step3() {

@@ -39,6 +39,9 @@
           <View id="createview_password" class="height_UISIZE layout_vertical">
             <Label textid="createview_password" id="overlay_body_addwallet_description" class="padhorizontal_20 padvertical_20 textAlignLeft fontSize20 fontRegular">
             </Label>
+            <View height="50">
+              <Button class="buttonsmall transparentbg fontSize15" onClick="makePwd" id="generate_password" titleid="generate_password"></Button>
+            </View>
     				<View class="divider inputholder_divider"/>
     				<View height="70">
     					<TextField
@@ -49,10 +52,10 @@
     						enableReturnKey="true"
     						returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
     						onReturn="returnPassword"
-    						passwordMask="true"
+    						passwordMask="false"
     						id="textfield_createaccount_password"
     						onChange="calcPassphraseStrength"></TextField>
-    					<Button class="button fonticomoon fontSize20" id="togglepasswordmask" onClick="togglePasswordMask">🤪</Button>
+    					<Button class="button fonticomoon fontSize20" id="togglepasswordmask" onClick="togglePasswordMask">🤫</Button>
     					<Label id="password_strength_result"></Label>
     				</View>
             <View class="divider inputholder_divider"/>

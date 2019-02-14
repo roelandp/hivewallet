@@ -1,5 +1,7 @@
 function functions() {
 
+	var SeedRandom = require('/seedrandom');
+	
 	this.alerter = function (str) {
 		alert(str);
 	};
@@ -20,6 +22,47 @@ function functions() {
 		}
 
 		return baseobj;
+	};
+
+	this.randomInt = function(n) {
+		// pseudo random number using SeedRandom https://github.com/davidbau/seedrandom and some entropy like uptime, sessionid, availablememory etc.
+		var x = Math.floor(Math.random() * n);
+		if (x < 0 || x >= n) {
+			throw "Arithmetic exception";
+		}
+
+		var rng = SeedRandom(Ti.App.installId);
+		//console.log("rng", rng);
+		var resrngint32;
+		do {
+			var entropy = Ti.App.installId + "" + Ti.App.sessionId + "" + Ti.Platform.uptime + ""+ Ti.Platform.netmask + ""+ Ti.Platform.availableMemory;
+			//console.log("entropy", entropy);
+			rng = SeedRandom(entropy, { entropy: true });
+			//console.log("rng_after_entropy", rng);
+
+			resrngint32 = rng.int32();
+			//console.log("resrngint32", resrngint32);
+		}
+		while (resrngint32 - resrngint32 % n > 4294967296 - n);
+
+		var randseednum = resrngint32 % n;
+		//console.log("randseednum", randseednum);
+
+		x = Math.abs((x + randseednum) % n);
+		//console.log("x", x);
+
+		return x;
+	};
+
+	this.generateBase58Password = function(pwdlength){
+		//base58 charset
+		var charset = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+
+		var result = "SW";
+	    for (var i = 0; i < pwdlength-2; i++) {
+	    	result += charset[this.randomInt(charset.length)];
+	    }
+		return(result);
 	};
 
 	this.formatToLocale = function(number, digits) {
