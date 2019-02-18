@@ -59,6 +59,10 @@ function doSetting(e){
       win.open();
     break;
 
+    case "buysteem":
+      Ti.Platform.openURL("https://blocktrades.us/?output_coin_type=steem&receive_address="+Ti.App.Properties.getString('currentaccount')+"&memo=&affiliate_id=81ddfd62-03df-4efa-b6a7-65f84802248e");
+    break;
+
     case "reset":
       var dialog = Ti.UI.createAlertDialog({
         cancel: 1,

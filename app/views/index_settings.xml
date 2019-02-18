@@ -38,12 +38,19 @@
               <Label class="fontSize20 padhorizontal_20" textid="create_account"></Label>
             </View>
           </TableViewRow>
+          <TableViewRow item="buysteem">
+            <View class="layout_horizontal height_UISIZE">
+              <Label class="menuicon fontSize20">s</Label>
+              <Label class="fontSize20 padhorizontal_20">buy steem</Label>
+            </View>
+          </TableViewRow>
           <TableViewRow item="reset">
             <View class="layout_horizontal height_UISIZE">
               <Label class="menuicon fontSize20">🆘</Label>
               <Label class="fontSize20 padhorizontal_20" textid="settings_reset"></Label>
             </View>
           </TableViewRow>
+
         </TableView>
       </View>
     </Window>
