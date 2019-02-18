@@ -38,6 +38,8 @@ var badactors = require('/badactors');
 // detecting crossplatform resume / pause of app https://github.com/dieskim/Appcelerator.Hyperloop.appPauseResume
 var appPauseResume = require('/appPauseResume');
 
+var XCallbackURL = require('/xcallbackurl');
+
 var fns = require('/functions');
 var helpers = new fns();
 
@@ -2108,9 +2110,24 @@ function settingsWindow() {
 	//alert('should launch settings');
 	var win_index_settings = Alloy.createController('index_settings').getView();
 	win_index_settings.open();
-
-
 }
+
+var win_transaction = false;
+function transactionWindow(url) {
+	//alert('should launch settings');
+	if(win_transaction) {
+			win_transaction.close();
+			win_transaction = false;
+	}
+
+	win_transaction = Alloy.createController('transactionsigner', {url: url}).getView();
+	win_transaction.open();
+}
+function transactionWindowClose(url) {
+	win_transaction.close();
+	win_transaction = false;
+}
+Alloy.Globals.indexJStransactionWindowClose = transactionWindowClose;
 
 // loads initial user prior to opening wallet.
 setCurrentAccount();
@@ -2149,6 +2166,105 @@ function createAccount(){
 $.author_description.addEventListener('link', function(e){
 		Ti.Platform.openURL(e.url);
 });
+
+// opener handler for steem:// uris
+
+function handleURL(url) {
+	if(url) {
+			console.log('HandleURL called', url);
+
+			// app also accepts steemwallet:// so needs to modify to steem:// here.
+			if(url.startsWith('steemwallet://')) {
+				url.replace('steemwallet://','steem://');
+			}
+
+			// check if app starts with transfer alias. Then we can prepopulate with transferwindow.
+
+			var urlx = XCallbackURL.parse(url)['parsedURI'];
+      //console.log(url);
+
+      if (urlx.protocol !== 'steem') {
+          throw new Error("Invalid protocol, expected 'steem:' got '" + url.protocol + "'");
+      }
+
+			if(url.length > ('steem://').length) {
+
+				if ((urlx.host == 'sign' && urlx.path.split('/').slice(1)[0] == 'transfer') || urlx.host == 'transfer') {
+
+						resetSendWindow();
+
+						var transfer_to, transfer_amount, transfer_memo = null;
+						var transfer_currency = 'steem';
+
+						console.log(urlx.host);
+						console.log(urlx.path.split('/'));
+
+						var txarr;
+
+						if(urlx.host == 'transfer') {
+							txarr = urlx.path.split('/').slice(1);
+						} else {
+							txarr = urlx.path.split('/').slice(2);
+						}
+
+						console.log('txarr', txarr);
+
+						if(txarr[0]) {
+							$.textfield_send_to.value = txarr[0];
+						}
+
+						if(txarr[1]) {
+							var amount = decodeURIComponent(txarr[1]).split(" ");
+							if(amount[0]){
+								$.textfield_send_amount.value = amount[0];
+							}
+
+							if(amount[1]) {
+									var allowed = ['steem','sbd'];
+									if(allowed.includes(amount[1].toLowerCase())) {
+										$.token_steem_or_sbd.text = amount[1].toLowerCase();
+										$.overlay_send_header_title.text = String.format(L('send_s'), amount[1].toLowerCase());
+
+									}
+							}
+						}
+
+						if(txarr[2]) {
+							$.textfield_send_memo.value = decodeURIComponent(txarr[2]);
+						}
+
+						showOverlaySend();
+
+	      } else {
+						transactionWindow(url);
+				}
+
+
+			}
+	}
+
+
+}
+
+$.index.addEventListener('open', function (e) {
+
+    if (OS_IOS) {
+
+        // Handle the URL in case it opened the app
+        handleURL(Ti.App.getArguments().url);
+
+        // Handle the URL in case it resumed the app
+        Ti.App.addEventListener('resumed', function () {
+            handleURL(Ti.App.getArguments().url);
+        });
+
+    } else if (OS_ANDROID) {
+
+        // On Android, somehow the app always opens as new
+        handleURL(Alloy.globals.url);
+    }
+});
+
 
 // launch the app.
 $.index.open();

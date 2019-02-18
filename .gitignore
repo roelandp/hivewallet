@@ -3,6 +3,7 @@
 /platform
 /i18n
 /dist
+/tests
 build.log
 build
 npm-debug.log

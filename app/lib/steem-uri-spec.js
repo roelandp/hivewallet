@@ -7,6 +7,7 @@
  */
 
 var buffer = require('/buffer');
+var XCallbackURL = require('/xcallbackurl');
 
 function btoa(str) { return new buffer.Buffer(str, 'binary').toString('base64'); };
 function atob(str) { return new buffer.Buffer(str, 'base64').toString('binary'); };
@@ -51,52 +52,87 @@ function functions() {
    * @returns The resolved transaction and parameters.
    */
   this.decode = function(steemUrl) {
-      var url = new URL(steemUrl);
-      if (url.protocol !== 'steem:') {
+      //console.log('decoding url');
+      var url = XCallbackURL.parse(steemUrl)['parsedURI'];
+      //console.log(url);
+
+      if (url.protocol !== 'steem') {
           throw new Error("Invalid protocol, expected 'steem:' got '" + url.protocol + "'");
       }
       if (url.host !== 'sign') {
           throw new Error("Invalid action, expected 'sign' got '" + url.host + "'");
       }
-      var _a = url.pathname.split('/').slice(1), type = _a[0], rawPayload = _a[1];
+      var _a = url.path.split('/').slice(1), type = _a[0], rawPayload = _a[1];
       var payload;
-      try {
-          payload = JSON.parse(b64uDec(rawPayload));
-      }
-      catch (error) {
-          error.message = "Invalid payload: " + error.message;
-          throw error;
-      }
-      var tx;
-      switch (type) {
-          case 'tx':
-              tx = payload;
-              break;
-          case 'op':
-          case 'ops':
-              var operations = type === 'ops' ? payload : [payload];
-              tx = {
-                  ref_block_num: '__ref_block_num',
-                  ref_block_prefix: '__ref_block_prefix',
-                  expiration: '__expiration',
-                  extensions: [],
-                  operations: operations,
-              };
-              break;
-          // case 'transfer':
-          // case 'follow':
-          default:
-              throw new Error("Invalid signing action '" + type + "'");
+
+
+
+      var b64Utypes = ['tx','op','ops'];
+      var specialactionstypes = ['transfer','follow']; // lets propose some more here like 'vote', 'delegate-vesting-shares' etc see https://app.steemconnect.com/sign
+      // first check if the type is one of tx, op, ops, ... if not, then it might be a "specialized action" which don't need b64uDec
+      if( b64Utypes.includes(type)) {
+
+        try {
+            payload = JSON.parse(b64uDec(rawPayload));
+        }
+        catch (error) {
+            error.message = "Invalid payload: " + error.message;
+            throw error;
+        }
+        var tx;
+        switch (type) {
+            case 'tx':
+                tx = payload;
+                break;
+            case 'op':
+            case 'ops':
+                var operations = type === 'ops' ? payload : [payload];
+                tx = {
+                    ref_block_num: '__ref_block_num',
+                    ref_block_prefix: '__ref_block_prefix',
+                    expiration: '__expiration',
+                    extensions: [],
+                    operations: operations,
+                };
+                break;
+            // case 'transfer':
+            // case 'follow':
+            default:
+                throw new Error("Invalid signing action '" + type + "'");
+        }
+      } else if(specialactionstypes.includes(type)){
+        // check if list of specialized actions
+          // prep those operations.
+        // do something for each special action ...
+
+        /*
+        Hey Roeland this is really cool! Ok i've open sourced SC3 code so i can show you how i implemented the parser, its here https://github.com/steemscript/steemsign/blob/master/src/helpers/utils.js#L46-L70 , its using this json mapping of the operations: https://github.com/steemscript/steemsign/blob/master/src/helpers/operations.json some op are missing but the base is there (edited)
+        I use the dash instead of the underscore cuz it's more conventionnel for a page name but underscore or snakeCase method name working too
+        And yes the params and op name on SC are exactly same as steemd
+        Here i parse the url with steem-uri with fallback to SC2 style urls https://github.com/steemscript/steemsign/blob/e22c1f834c552ea4e24bd8b4cd9e0faec7da58a8/src/views/Sign.vue#L143-L151 (edited)
+
+        roelandp [4:04 PM]
+        ok great thank you!
+        oh so you are going to start with steem-uri's then or did you already support those? was not aware of that
+        (the base64u ones)
+
+        fabien [4:10 PM]
+        on SC2 we have a base64 url but it's not using steem-uri syntax, on SC3 we support steem-uri
+        but it's not released yet
+        It will look like this https://beta.steemconnect.com/sign/ops/W1sidm90ZSIseyJ2b3RlciI6ImZvbyIsImF1dGhvciI6ImJhciIsInBlcm1saW5rIjoiYmF6Iiwid2VpZ2h0IjoxMDAwMH1dLFsidHJhbnNmZXIiLHsiZnJvbSI6ImZvbyIsInRvIjoiYmFyIiwiYW1vdW50IjoiMTAuMDAwIFNURUVNIiwibWVtbyI6ImJheiJ9XV0.?cb=aHR0cHM6Ly9leGFtcGxlLmNvbS93YWxsZXQ_dHg9e3tpZH19
+
+        */
+
       }
       var params = {};
-      if (url.searchParams.has('cb')) {
-          params.callback = b64uDec(url.searchParams.get('cb'));
+      if (url.queryKey.hasOwnProperty('cb')) {
+          params.callback = b64uDec(url.queryKey['cb']);
       }
-      if (url.searchParams.has('nb')) {
+      if (url.queryKey.hasOwnProperty('nb')) {
           params.no_broadcast = true;
       }
-      if (url.searchParams.has('s')) {
-          params.signer = url.searchParams.get('s');
+      if (url.queryKey.hasOwnProperty('s')) {
+          params.signer = url.queryKey['s'];
       }
       return { tx: tx, params: params };
   };
