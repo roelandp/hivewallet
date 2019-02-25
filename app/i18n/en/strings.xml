@@ -156,4 +156,8 @@
     <string name="create_account">create account</string>
     <string name="generate_password">generate password</string>
 
+  <string name="signing">signing</string>
+  <string name="sign">sign</string>
+  <string name="sign_transaction">sign transaction</string>
+  <string name="sign_and_broadcast">sign &amp; broadcast</string>
 </resources>

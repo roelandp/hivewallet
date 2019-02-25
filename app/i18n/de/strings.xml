@@ -137,4 +137,8 @@
     <string name="close_window">Fertig</string>
     <string name="create_account">Benutzerkonto erstellen</string>
     <string name="generate_password">Neues Passwort</string>
+  <string name="signing">signieren</string>
+  <string name="sign">signier</string>
+  <string name="sign_transaction">signier</string>
+  <string name="sign_and_broadcast">signier &amp; versend</string>
 </resources>
