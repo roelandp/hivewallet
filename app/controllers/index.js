@@ -42,6 +42,7 @@ var XCallbackURL = require('/xcallbackurl');
 
 var fns = require('/functions');
 var helpers = new fns();
+Alloy.Globals.helpers = helpers;
 
 // qr code scanner from: https://github.com/appcelerator-modules/ti.barcode
 var Barcode = require('ti.barcode');
@@ -984,6 +985,8 @@ function scanWalletForKey(accounttofind, cbok, cberr) {
 
 }
 
+Alloy.Globals.scanWalletForKey = scanWalletForKey;
+
 var pwdgrades = [
 	L("pw_strength_0"),
 	L("pw_strength_1"),
@@ -1245,15 +1248,15 @@ function updateFiat() {
 		var currentaccountdata = helpers.getUserObject(currentaccount);
 		if(currentaccountdata) {
 			if(currentaccountdata.hasOwnProperty('balance')) {
-				console.log(currentaccountdata);
+				//console.log(currentaccountdata);
 				$.account_amount_sbd_fiat.text = (currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2));
 				$.account_amount_steem_fiat.text = (currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2));
 
 				$.account_amount_sbd_fiat.width = ( Ti.UI.FILL);
 				$.account_amount_steem_fiat.width = ( Ti.UI.FILL);
 
-				console.log((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))));
-				console.log((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))));
+				//console.log((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))));
+				//console.log((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))));
 			}
 		}
 	}
@@ -1494,6 +1497,8 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 
 							if ('block_num' in answerfromchain) {
 
+								console.log(answerfromchain);
+
 								alert(String.format(L('transaction_included_in_block_s'), answerfromchain['block_num'] + ""));
 								resetSendWindow();
 								hideOverlaySend();
@@ -1541,8 +1546,12 @@ function scanAccountQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		$.textfield_send_to.value = (e.result);
-		$.textfield_send_to.blur();
+		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") ) {
+			handleURL(e.result);
+		} else {
+			$.textfield_send_to.value = (e.result);
+			$.textfield_send_to.blur();
+		}
 	});
 
 	cameraPermission(function(re) {
@@ -1571,8 +1580,12 @@ function scanMemoQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		$.textfield_send_memo.value = (e.result);
-		$.textfield_send_memo.blur();
+		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") ) {
+			handleURL(e.result);
+		} else {
+			$.textfield_send_memo.value = (e.result);
+			$.textfield_send_memo.blur();
+		}
 	});
 
 	cameraPermission(function(re) {
@@ -1589,7 +1602,7 @@ function scanMemoQR(e) {
 function checkPrices() {
 
 	if (Date.now() - Ti.App.Properties.getInt('lastPricesCheck') > (30 * 60 * 1 * 1000)) {
-		console.log('now checking prices');
+		//console.log('now checking prices');
 		var currency = Ti.App.Properties.getString('currency').toLowerCase();
 		helpers.xhrcall(
 			"https://api.coingecko.com/api/v3/simple/price?ids=steem,steem-dollars&vs_currencies="+currency,
@@ -1597,7 +1610,7 @@ function checkPrices() {
 			false,
 			function(resje) {
 				var res = JSON.parse(resje.toLowerCase());
-				console.log(res);
+				//console.log(res);
 				Ti.App.Properties.setString('price_steem_usd', res['steem'][currency.toLowerCase()]);
 				Ti.App.Properties.setString('price_sbd_usd', res['steem-dollars'][currency.toLowerCase()]);
 
@@ -2246,26 +2259,25 @@ function handleURL(url) {
 
 }
 
-$.index.addEventListener('open', function (e) {
+if (OS_IOS) {
+	$.index.addEventListener('open', function (e) {
 
-    if (OS_IOS) {
+	        // Handle the URL in case it opened the app
+	        handleURL(Ti.App.getArguments().url);
 
-        // Handle the URL in case it opened the app
-        handleURL(Ti.App.getArguments().url);
+	        // Handle the URL in case it resumed the app
+	        Ti.App.addEventListener('resumed', function () {
+	            handleURL(Ti.App.getArguments().url);
+	        });
 
-        // Handle the URL in case it resumed the app
-        Ti.App.addEventListener('resumed', function () {
-            handleURL(Ti.App.getArguments().url);
-        });
+	});
+} else if(OS_ANDROID) {
+	var Deeply = require('ti.deeply');
 
-    } else if (OS_ANDROID) {
-
-        // On Android, somehow the app always opens as new
-        handleURL(Alloy.globals.url);
-    }
-});
-
-
+	Deeply.setCallback(function(e) {
+		handleURL(e.data);
+	});
+}
 // launch the app.
 $.index.open();
 blinkSettings();

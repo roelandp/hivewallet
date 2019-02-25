@@ -1,3 +1,7 @@
+v 1.1.2
+- added steem-uri spec! Now you can open this app with steem:// urls following the steem-uri spec: https://github.com/steemit/steem-uri-spec
+- added 'buy steem' link to external blocktrades powered site in settings.
+
 v 1.1.1
 - bugfixes - get_key_reference removed when adding private keys to validate. Is unstable
 - added base58 randomseed master password generator in 'create account' with entropy

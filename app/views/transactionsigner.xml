@@ -1,0 +1,25 @@
+<Alloy>
+    <Window onPostlayout="animateOpen">
+      <View class="layout_vertical">
+        <View class="notch_spacer">
+        </View>
+        <View class="overlay_header">
+          <!-- <View class="leftBut">
+            <Button class="button closeBut_text">✏</Button>
+          </View> -->
+  				<Label textid="sign_transaction" class="overlay_header_title"></Label>
+  				<View class="closeBut">
+  					<Button class="button closeBut_text" onClick="closeWin">✕</Button>
+  				</View>
+  				<View class="divider bottom0"></View>
+  			</View>
+        <ScrollView class="listview scrollview layout_vertical" id="opsView">
+          <View id="operationsContainer" class="width_UIFILL height_UISIZE layout_vertical">
+          </View>
+        </ScrollView>
+      </View>
+      <View id="create_wallte_container" class="layout_vertical bottom0 height_UISIZE">
+        <Button class="button inputholder_bottombut" titleid="sign_and_broadcast" id="button_sign" onClick="signConfirm"></Button>
+      </View>
+    </Window>
+</Alloy>

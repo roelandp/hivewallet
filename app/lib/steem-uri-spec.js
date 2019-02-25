@@ -21,18 +21,32 @@ var RESOLVE_PATTERN = /(__(ref_block_(num|prefix)|expiration|signer))/g;
 var CALLBACK_RESOLVE_PATTERN = /({{(sig|id|block|txn)}})/g;
 
 /*** Internal helper to encode Parameters to a querystring. */
+
+
+
 function encodeParameters(params) {
-    var out = new URLSearchParams();
+    var obj = {};
     if (params.no_broadcast === true) {
-        out.set('nb', '');
+        obj['nb'] = '';
     }
     if (params.signer) {
-        out.set('s', params.signer);
+        obj['s'] = params.signer;
     }
     if (params.callback) {
-        out.set('cb', b64uEnc(params.callback));
+        obj['cb'] = b64uEnc(params.callback);
     }
-    var qs = out.toString();
+
+    var qs = "";
+    var str = "";
+    for (var key in obj) {
+        if (str != "") {
+            str += "&";
+        }
+        str += key + "=" + (obj[key]);
+    }
+
+    qs = str;
+
     if (qs.length > 0) {
         qs = '?' + qs;
     }
@@ -45,6 +59,10 @@ function encodeJson(data) {
 
 // functions to be exposed in module.exports
 function functions() {
+
+  this.btoa = function(str){
+    return btoa(str);
+  }
   /**
    * Parse a steem:// protocol link.
    * @param steemUrl The `steem:` url to parse.

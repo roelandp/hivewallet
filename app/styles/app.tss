@@ -532,6 +532,12 @@
 	backgroundColor: Alloy.Globals.theme.backgroundColor,
 	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor
 }
+".scrollview": {
+	contentWidth: Alloy.Globals.dimensions.DP_platformWidth,
+	contentWidth: Alloy.Globals.dimensions.DP_platformWidth,
+	width: Alloy.Globals.dimensions.DP_platformWidth,
+}
+
 ".overlay_pickaccount_listitem" : {
 	height: 70,
 	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor
