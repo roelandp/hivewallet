@@ -1546,7 +1546,7 @@ function scanAccountQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") ) {
+		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") || (e.result).startsWith("https://steemwallet.app://") ) {
 			handleURL(e.result);
 		} else {
 			$.textfield_send_to.value = (e.result);
@@ -1580,7 +1580,7 @@ function scanMemoQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") ) {
+		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") || (e.result).startsWith("https://steemwallet.app://") ) {
 			handleURL(e.result);
 		} else {
 			$.textfield_send_memo.value = (e.result);
@@ -2184,17 +2184,25 @@ $.author_description.addEventListener('link', function(e){
 
 function handleURL(url) {
 	if(url) {
-			console.log('HandleURL called', url);
+			//console.log('HandleURL called', url);
 
 			// app also accepts steemwallet:// so needs to modify to steem:// here.
 			if(url.startsWith('steemwallet://')) {
-				url.replace('steemwallet://','steem://');
+				url = url.replace('steemwallet://','steem://');
+			}
+
+			if(url.startsWith('https://steemwallet.app')) {
+				url = url.replace('https://steemwallet.app','steem://');
+			}
+
+			if(url.startsWith('steem:///')) {
+				url = url.replace('steem:///','steem://');
 			}
 
 			// check if app starts with transfer alias. Then we can prepopulate with transferwindow.
 
 			var urlx = XCallbackURL.parse(url)['parsedURI'];
-      //console.log(url);
+			//console.log(urlx);
 
       if (urlx.protocol !== 'steem') {
           throw new Error("Invalid protocol, expected 'steem:' got '" + url.protocol + "'");
