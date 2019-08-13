@@ -1,8 +1,7 @@
 <Alloy>
     <Window onPostlayout="animateOpen">
       <View class="layout_vertical">
-        <View class="notch_spacer">
-        </View>
+        <View id="topspacer"/>
         <View class="overlay_header">
           <!-- <View class="leftBut">
             <Button class="button closeBut_text">✏</Button>

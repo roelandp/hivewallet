@@ -1,0 +1,9 @@
+"#topspacer": {
+  height: Alloy.Globals.topspacer
+}
+
+"Window[platform=android]": {
+  theme: "Theme.MyNoActionBar",
+  navBarHidden: true,
+  title: "",
+}

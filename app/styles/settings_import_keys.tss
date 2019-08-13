@@ -1,0 +1,38 @@
+"#topspacer": {
+  height: Alloy.Globals.topspacer
+}
+
+"Window[platform=android]": {
+  theme: "Theme.MyNoActionBar",
+  navBarHidden: true,
+  title: "",
+}
+
+".bigicon": {
+
+}
+"#scrollview": {
+    scrollingEnabled: false,
+}
+
+
+".contentcenter": {
+  height: Ti.UI.SIZE,
+}
+
+".contentholder": {
+  layout: "vertical",
+  height: Ti.UI.SIZE,
+  left: 0,
+  right: 0,
+  top: 0,
+}
+
+".bigicon": {
+  font: {
+    fontFamily: "icomoon",
+    fontSize: 100,
+  },
+  color: Alloy.Globals.theme.themeblue,
+
+}

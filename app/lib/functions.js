@@ -1,17 +1,19 @@
-function functions() {
 
-	var SeedRandom = require('/seedrandom');
-	
-	this.alerter = function (str) {
+var SeedRandom = require('/seedrandom');
+var apicounter = 1;
+var functions = {
+
+
+
+	alerter: function (str) {
 		alert(str);
-	};
+	},
 
-	this.randomString = function (length) {
+	randomString: function (length) {
 		return Math.round(Math.pow(36, length + 1) - Math.random() * Math.pow(36, length)).toString(36).slice(1);
-	};
+	},
 
-	var apicounter = 1;
-	this.prepareAPIbody = function (method, params) {
+	prepareAPIbody: function (method, params) {
 		//function to fill the api body
 		apicounter++;
 
@@ -22,9 +24,25 @@ function functions() {
 		}
 
 		return baseobj;
-	};
+	},
 
-	this.randomInt = function(n) {
+	getImgFromJsonMetaData: function(json_metadata) {
+		try {
+			var metadata = JSON.parse(json_metadata);
+			if ('profile' in metadata) {
+				if ('profile_image' in metadata['profile']) {
+					if (metadata['profile']['profile_image'] != "" && metadata['profile']['profile_image'].toLowerCase().startsWith("http")) {
+						return metadata['profile']['profile_image'];
+					}
+				}
+			}
+		} catch (e) {
+			return "";
+		}
+		return "";
+	},
+
+	randomInt : function(n) {
 		// pseudo random number using SeedRandom https://github.com/davidbau/seedrandom and some entropy like uptime, sessionid, availablememory etc.
 		var x = Math.floor(Math.random() * n);
 		if (x < 0 || x >= n) {
@@ -52,20 +70,20 @@ function functions() {
 		//console.log("x", x);
 
 		return x;
-	};
+	},
 
-	this.generateBase58Password = function(pwdlength){
+	generateBase58Password: function(pwdlength){
 		//base58 charset
 		var charset = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
 
 		var result = "SW";
 	    for (var i = 0; i < pwdlength-2; i++) {
-	    	result += charset[this.randomInt(charset.length)];
+	    	result += charset[module.exports.randomInt(charset.length)];
 	    }
 		return(result);
-	};
+	},
 
-	this.formatToLocale = function(number, digits) {
+	formatToLocale : function(number, digits) {
 
 		var result = number;
 		if(OS_IOS) {
@@ -74,9 +92,9 @@ function functions() {
 			result = parseFloat(number).toFixed(digits);
 		}
 		return result;
-	};
+	},
 
-	this.validate_account_name = function(value) {
+	validate_account_name : function(value) {
     var i, label, len, length, ref;
 
     if (!value) {
@@ -109,9 +127,9 @@ function functions() {
         }
     }
     return null;
-	};
+	},
 
-	this.getUserObject = function(username) {
+	getUserObject : function(username) {
 		var currentaccounts = Ti.App.Properties.getObject('accounts');
 
 		if(currentaccounts.length == 0) {
@@ -129,9 +147,9 @@ function functions() {
 			}
 		}
 		return false;
-	};
+	},
 
-	this.formatUserBalanceObject = function(uo) {
+	formatUserBalanceObject : function(uo) {
 		return {
 			'balance': uo.balance,
 			'sbd_balance': uo.sbd_balance,
@@ -140,11 +158,14 @@ function functions() {
 			'name': uo.name,
 			'last_updated': Date.now(),
 			'privatekey': uo.privatekey,
+			'privatekey_posting': uo.privatekey_posting,
+			'privatekey_active': uo.privatekey_active,
+			'privatekey_memo': uo.privatekey_memo,
 			'image': uo.image,
 		};
-	};
+	},
 
-	this.updateUserObject = function(account,key,value) {
+	updateUserObject : function(account,key,value) {
 
 		var currentaccounts = Ti.App.Properties.getObject('accounts');
 
@@ -155,16 +176,18 @@ function functions() {
 				if(currentaccounts[j].name == account) {
 					// account found update value where key = key.
 					currentaccounts[j][key] = value;
-				}
 
+				}
+				console.log("updating user object");
+				console.log(currentaccounts[j]);
 				accountstosave.push(currentaccounts[j]);
 			}
 
 		Ti.App.Properties.setObject('accounts', accountstosave);
 
-	};
+	},
 
-	this.getNodeObject = function(nodeurl) {
+	getNodeObject : function(nodeurl) {
 		var apinodes = Ti.App.Properties.getObject('apinodes');
 
 		if(apinodes.length == 0) {
@@ -182,9 +205,9 @@ function functions() {
 			}
 		}
 		return false;
-	};
+	},
 
-	this.removeNode = function(i,cb) {
+	removeNode : function(i,cb) {
 
 		// get current nodes
 		var currentnodes = Ti.App.Properties.getObject('apinodes');
@@ -199,15 +222,15 @@ function functions() {
 		if(cb){
 			cb();
 		}
-	};
+	},
 
-	this.steemAPIcall = function(method,params,cbres,cberr, node) {
+	steemAPIcall : function(method,params,cbres,cberr, node) {
 		var apiurl = Alloy.Globals.config.apiurl;
 
 		if(node){
 			apiurl = node;
 		}
-		this.xhrcall(
+		module.exports.xhrcall(
 			apiurl,
 			'POST',
 			false,
@@ -229,11 +252,11 @@ function functions() {
 				}
 			},
 			cberr,
-				this.prepareAPIbody(method,params)
+				module.exports.prepareAPIbody(method,params)
 			);
-	};
+	},
 
-	this.xhrcall = function (urli, transport, fn_progress, fn_complete, fn_error, vars, timeout) {
+	xhrcall : function (urli, transport, fn_progress, fn_complete, fn_error, vars, timeout) {
 		var file_obj;
 
 		try {
@@ -257,8 +280,8 @@ function functions() {
 					if (fn_error) {
 						fn_error(this.responseText);
 					} else {
-						//alert(e);
-						Alloy.Globals.loading.show(JSON.stringify(e), true);
+						alert(e);
+						//Alloy.Globals.loading.show(JSON.stringify(e), true);
 					}
 				};
 
@@ -296,7 +319,34 @@ function functions() {
 
 			Alloy.Globals.loading.show(JSON.stringify(err), true);
 		}
-	};
+	},
+	checkPrices: function(cb) {
+
+		if (Date.now() - Ti.App.Properties.getInt('lastPricesCheck') > (30 * 60 * 1 * 1000)) {
+			//console.log('now checking prices');
+			var currency = Ti.App.Properties.getString('currency').toLowerCase();
+			module.exports.xhrcall(
+				"https://api.coingecko.com/api/v3/simple/price?ids=steem,steem-dollars&vs_currencies="+currency,
+				"GET",
+				false,
+				function(resje) {
+					var res = JSON.parse(resje.toLowerCase());
+					//console.log(res);
+					Ti.App.Properties.setString('price_steem_usd', res['steem'][currency.toLowerCase()]);
+					Ti.App.Properties.setString('price_sbd_usd', res['steem-dollars'][currency.toLowerCase()]);
+
+
+
+					Ti.App.Properties.setInt('lastPricesCheck', Date.now());
+
+					if(cb) {
+						cb();
+					}
+				},
+				false);
+
+		}
+	}
 }
 
 module.exports = functions;

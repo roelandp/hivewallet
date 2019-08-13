@@ -1,0 +1,143 @@
+
+".container" : {
+    layout:"vertical",
+}
+
+"#topbar": {
+  top: 0,
+  height: 30,
+}
+
+"#topbar[platform=android]": {
+  top: 0,
+  height: 45,
+}
+"#browser_url": {
+  left: 52,
+  right: 90,
+  returnKeyType: Titanium.UI.RETURNKEY_GO,
+}
+
+"#browser_url[platform=android]": {
+  top: 0,
+  height: 45,
+}
+
+"#controller_holder": {
+  width: 90,
+  right: 10,
+}
+
+"#controller_holder[platform=android]": {
+  top: 0,
+  height: 45,
+}
+
+"#but_prev": {
+  width: 40,
+  left:0,
+  color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
+}
+
+"#but_prev[platform=android]": {
+  top: 0,
+  height: 45,
+}
+
+"#but_go": {
+  width: 40,
+  left:0,
+  color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
+}
+
+"#but_go[platform=android]": {
+  top: 0,
+  height: 45,
+}
+
+"#but_home": {
+  width: 40,
+  left: 10,
+  color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
+}
+
+"#but_home[platform=android]": {
+  top: 0,
+  height: 45,
+}
+
+
+"#dappview": {
+  top: 0,
+  backgroundColor: Alloy.Globals.theme.backgroundColor,
+  userAgent: Alloy.Globals.config.userAgent,
+  borderRadius: 0.01,
+}
+
+"#dappview[platform=android]": {
+  enableZoomControls: false,
+  blacklistedURLs: ["https://steemkeychain.steemwallet.app"], // we blacklist our "fake"-url here so the webview triggers "blacklisturl"-hit event, containing our steemkeychain request parameters.
+  borderRadius: 1,
+}
+
+"#webviewholder": {
+  top: 0,
+}
+
+"#confirmDialog": {
+  top: 0,
+  backgroundColor: Alloy.Globals.theme.backgroundColor,
+  borderWidth: 0,
+  borderColor:  Alloy.Globals.theme.steemdarkblue,
+  opacity: 0.01,
+  height: Ti.UI.FILL,
+}
+
+"#confirmDialogInnercontainer": {
+
+}
+
+"#confirm_dialog_bottom_spacer": {
+  height: 20,
+}
+
+"#seperator": {
+  height: 2,
+  backgroundColor: Alloy.Globals.theme.steemlightblue,
+}
+
+"#progressbar": {
+  height: 2,
+  left: 0,
+  width: 0,
+  backgroundColor: Alloy.Globals.theme.steemdarkblue,
+}
+
+"#topspacer" : {
+  height: 0,
+}
+
+"#textfield_account": {
+  color: Alloy.Globals.theme.steemlightblue,
+}
+
+"#do_not_prompt_holder": {
+
+}
+"#do_not_prompt_label": {
+  font: {
+    fontSize: 13,
+  },
+  top: 0,
+  bottom: 0,
+  right: 100,
+  height: Ti.UI.FILL,
+}
+
+"#do_not_prompt_switch" : {
+	right: 20,
+	value: false
+}

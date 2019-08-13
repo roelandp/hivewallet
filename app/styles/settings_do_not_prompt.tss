@@ -1,0 +1,42 @@
+
+".container" : {
+
+}
+
+"Window[platform=android]": {
+  theme: "Theme.MyNoActionBar",
+  navBarHidden: true,
+  title: "",
+}
+
+"#topspacer": {
+  height: 0,
+}
+".listitem" : {
+	height: 50,
+	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor
+}
+
+
+".listitem_label" : {
+	font: {
+		fontSize: 18,
+		fontWeight: 'regular'
+	},
+	width: Ti.UI.SIZE,
+	left: 20,
+	right: 60,
+	height: 50,
+	top: 0,
+	textAlign: Ti.UI.TEXT_ALIGNMENT_LEFT
+}
+
+".delbut" : {
+	right: 0,
+	height: 50,
+	top: 0,
+	width: 60,
+	font: {
+		fontSize: 15
+	}
+}

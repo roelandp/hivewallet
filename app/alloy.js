@@ -34,11 +34,11 @@ if(Alloy.Globals.isiPhoneX) {
 }
 
 var DP_platformWidth = (Ti.Platform.displayCaps.platformWidth);
-var DP_platformHeight = (Ti.Platform.displayCaps.platformHeight);
+var DP_platformHeight = (Ti.Platform.displayCaps.platformHeight); // - 48; // removing 50 for tab height.
 
 if(OS_ANDROID) {
   DP_platformWidth = Alloy.Globals.measurement.pxToDP(Ti.Platform.displayCaps.platformWidth);
-  DP_platformHeight = Alloy.Globals.measurement.pxToDP(Ti.Platform.displayCaps.platformHeight);
+  DP_platformHeight = Alloy.Globals.measurement.pxToDP(Ti.Platform.displayCaps.platformHeight); // - 48; // removing 48 for tabgroup height
 }
 
 var widthratio = (DP_platformWidth / 414);
@@ -51,6 +51,7 @@ Alloy.Globals.dimensions = {
   DP_platformWidth: DP_platformWidth,
   DP_platformHeight: DP_platformHeight,
   overlay_container_height: DP_platformHeight - (container_branding_top + 100),
+  overlay_container_height_tab: DP_platformHeight - (container_branding_top + 100) - 49,
   overlay_container_top: container_branding_top + 100,
   qrsize: DP_platformWidth - 120,
   avatar_top_right: -((300 / 375) * DP_platformWidth * 0.25),
@@ -58,6 +59,8 @@ Alloy.Globals.dimensions = {
   overlay_barcode_top_height: (DP_platformHeight - (DP_platformWidth - 60)) /2,
   overlay_barcode_middle_height: (DP_platformWidth - 60),
 };
+
+Alloy.Globals.homepage = "https://steemwallet.app/browser/index.html?theme="+Titanium.App.Properties.getString('app:theme');
 
 
 Alloy.Globals.themes = {
@@ -178,5 +181,59 @@ Alloy.Globals.config = {
   walletfilename: "wallet.json",
   defaultcurrency: "usd",
   iapaccountcreationcredit: "app.steemwallet.acc",
-  registeraccounturl: "https://iap.steemwallet.app"
+  registeraccounturl: "https://iap.steemwallet.app",
+  userAgent: "SteemWallet.app "+Titanium.App.version+" ("+Titanium.Platform.osname+")"
+}
+
+var helpers = require('/functions');
+
+var platformGUID = Ti.Platform.getId();
+//console.log('getId()', platformGUID);
+
+if (!platformGUID) {
+	platformGUID = Ti.Platform.getModel() + '' + Date.now() + '' + helpers.randomString(20);
+	//console.log('model+date', platformGUID);
+}
+
+if (!platformGUID) {
+	platformGUID = Date.now() + '' + helpers.randomString(20);
+	//console.log('model+date', platformGUID);
+}
+
+platformGUID = platformGUID + '' + Date.now() + '' + helpers.randomString(20);
+
+
+if (!Titanium.App.Properties.hasProperty('apiurl')) {
+	Titanium.App.Properties.setString('apiurl',Alloy.Globals.config.apiurl);
+} else {
+	Alloy.Globals.config.apiurl = Titanium.App.Properties.getString('apiurl');
+}
+
+if (!Titanium.App.Properties.hasProperty('donotpromptlist')) {
+  Titanium.App.Properties.setObject('donotpromptlist', {});
+}
+
+if (!Titanium.App.Properties.hasProperty('accounts')) {
+	//no accounts are currently saved for this user.
+	newuser = true;
+
+	Ti.App.Properties.setObject('accounts', []);
+
+	Ti.App.Properties.setString('currentaccount', '');
+	Ti.App.Properties.setString('price_steem_usd', "0");
+	Ti.App.Properties.setString('price_sbd_usd', "0");
+	Ti.App.Properties.setBool('usesIdentity', false);
+	Ti.App.Properties.setBool('walletSetup', false);
+	Ti.App.Properties.setString('uuid', platformGUID);
+	Ti.App.Properties.setInt('lastPricesCheck', 0);
+}
+
+if(!Titanium.App.Properties.hasProperty('currency')) {
+	Ti.App.Properties.setString('currency',Alloy.Globals.config.defaultcurrency);
+}
+
+Alloy.Globals.tidentity_initialized = false;
+
+if(OS_ANDROID) {
+  Alloy.Globals.topspacer = 0; // initially 0
 }

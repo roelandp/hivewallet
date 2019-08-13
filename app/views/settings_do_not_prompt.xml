@@ -1,0 +1,44 @@
+<Alloy>
+    <Window onPostlayout="animateOpen">
+      <View class="layout_vertical">
+        <View id="topspacer"/>
+        <View class="overlay_header">
+					<View class="leftBut">
+            <Button class="button closeBut_text" onClick="closeWin">←</Button>
+          </View>
+  				<Label textid="overlay_title_settings_do_not_prompt" class="overlay_header_title"></Label>
+  				<View class="divider bottom0"></View>
+  			</View>
+				<ListView id="dnpl_listview" class="listview">
+					<Templates>
+						<ItemTemplate name="promptli" class="itemli">
+							<View class="listitem">
+								<Label bindId="labeltitle" class="listitem_label"/>
+								<!-- <View class="divider bottom0 inputholder_divider"/> -->
+							</View>
+							<Button id="delbut" bindId="delbut" class="button delbut fonticomoon opacity20" onClick="delPrompt">🗑</Button>
+						</ItemTemplate>
+
+						<ItemTemplate name="txlinocontent" selectedBackgroundColor="transparent" backgroundColor="transparent">
+							<View class="txli_nocontentview">
+								<View class="layout_vertical height_UISIZE padhorizontal_20 opacity20">
+									<Label class="txli_nocontent_icon fonticomoon fontSize50 padvertical_20 textAlignCenter">ℹ</Label>
+									<Label bindId="txli_nocontent_label" class="txli_nocontent_label padhorizontal_20 textAlignCenter"></Label>
+								</View>
+							</View>
+						</ItemTemplate>
+
+						<ItemTemplate name="dnpl_top_explainer" selectedBackgroundColor="transparent" backgroundColor="transparent">
+							<View class="txli_nocontentview height_UISIZE">
+								<View class="height_UISIZE padhorizontal_20 padvertical_20">
+									<Label bindId="dnpl_top_explainer_label" class="fontSize15 textAlignCenter"></Label>
+								</View>
+							</View>
+						</ItemTemplate>
+
+					</Templates>
+					<ListSection></ListSection>
+				</ListView>
+      </View>
+    </Window>
+</Alloy>

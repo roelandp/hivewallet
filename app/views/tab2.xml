@@ -1,0 +1,97 @@
+<Alloy>
+	<Window class="container">
+		<!-- end create-wallet -->
+		<View id="topspacer"/>
+		<View id="topbar" class="width_UIFILL">
+			<Button id="but_home" class="fonticomoon buttonbrowser" onClick="goHome">🏠</Button>
+			<TextField id="browser_url" hintText="fill address - start with https" class="fontLight fontSize15" onFocus="selectFulltext" />
+			<View id="controller_holder" class="layout_horizontal width_UISIZE">
+				<Button id="but_prev" onClick="goPrev" class="fonticomoon buttonbrowser">←</Button>
+				<Button id="but_go" onClick="goNext" class="fonticomoon buttonbrowser">→</Button>
+			</View>
+		</View>
+		<View id="seperator">
+			<View id="progressbar">
+			</View>
+		</View>
+		<View id="webviewholder">
+
+			<WebView id="dappview" url="Alloy.Globals.homepage">
+			</WebView>
+
+			<View id="confirmDialog">
+				<View id="confirmDialogInnercontainer">
+					<View class="overlay_header">
+						<Label class="overlay_header_title" id="confirmDialogTitle">Create Claimed Account</Label>
+						<View class="closeBut">
+							<Button class="button closeBut_text" onClick="hideConfirmDialog">✕</Button>
+						</View>
+						<View class="divider bottom0"></View>
+					</View>
+					<ScrollView class="overlay_body" id="dialogScrollview">
+							<Label id="confirmDialogDescription" class="padhorizontal_20 padvertical_20 textAlignLeft fontSize20 fontRegular width_UIFILL">explain or empty</Label>
+							<View class="inputholder">
+								<Label class="inputholder_label" textid="account"></Label>
+								<Label class="inputholder_textfield" id="textfield_account" onClick="pickAccount"></Label>
+							</View>
+							<Label id="confirmDialogParameters" class="padhorizontal_20 padvertical_20 textAlignLeft fontSize20 fontLight width_UIFILL">
+							</Label>
+
+					</ScrollView>
+				</View>
+				<View id="container_transactions_sendreceive" class="layout_vertical bottom0 height_UISIZE">
+					<View id="container_transactions_sendreceive_top_spacer"/>
+					<View id="do_not_prompt_holder" height="40">
+						<Label class="inputholder_label" id="do_not_prompt_label" onClick="doNotPromptToggle"></Label>
+						<Switch id="do_not_prompt_switch" value="false"/>
+					</View>
+					<View id="container_transactions_buttonholder" class="height_UISIZE width_UIFILL">
+						<Button titleid="sign_broadcast" id="sign_broadcast" class="button transparentbg" onClick="unlockAndSign"></Button>
+					</View>
+					<View id="confirm_dialog_bottom_spacer"/>
+				</View>
+			</View>
+
+
+
+		<!-- pick accounts -->
+		<View id="overlay_pickaccount" class="overlay_container">
+			<View class="overlay_header">
+				<View class="divider top0"></View>
+				<View class="leftBut">
+					<Button class="button closeBut_text" onClick="addPrivateKey">👤</Button>
+				</View>
+				<Label textid="overlay_title_pickaccounts" class="overlay_header_title"></Label>
+				<View class="closeBut">
+					<Button class="button closeBut_text" onClick="hideOverlayPickAccount">✕</Button>
+				</View>
+				<View class="divider bottom0"></View>
+			</View>
+			<View class="overlay_body">
+				<ListView id="overlay_pickaccount_listview" defaultItemTemplate="accountli" class="listview" onItemclick="handlePickAccountClick">
+					<Templates>
+						<ItemTemplate name="accountli" class="itemli">
+							<View class="overlay_pickaccount_listitem">
+								<Label bindId="labeltitle" class="overlay_pickaccount_listview_username"/>
+								<Label bindId="labelbalance" class="overlay_pickaccount_listview_balance"/>
+
+								<!-- <View class="divider bottom0 inputholder_divider"/> -->
+							</View>
+						</ItemTemplate>
+					</Templates>
+					<ListSection></ListSection>
+				</ListView>
+
+			</View>
+
+		</View>
+		<!-- end pick accounts -->
+
+		</View>
+
+
+
+
+
+	</Window>
+</Alloy>
