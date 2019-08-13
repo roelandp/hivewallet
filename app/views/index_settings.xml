@@ -1,16 +1,30 @@
 <Alloy>
     <Window onPostlayout="animateOpen">
       <View class="layout_vertical">
-        <View class="notch_spacer">
-        </View>
+        <View id="topspacer"/>
         <View class="overlay_header">
   				<Label textid="overlay_title_settings" class="overlay_header_title"></Label>
-  				<View class="closeBut">
-  					<Button class="button closeBut_text" onClick="closeWin">✕</Button>
-  				</View>
   				<View class="divider bottom0"></View>
   			</View>
         <TableView class="listview" onClick="doSetting">
+          <TableViewRow item="createaccount">
+            <View class="layout_horizontal height_UISIZE">
+              <Label class="menuicon fontSize20">👤</Label>
+              <Label class="fontSize20 padhorizontal_20" textid="create_account"></Label>
+            </View>
+          </TableViewRow>
+          <TableViewRow item="importkey">
+            <View class="layout_horizontal height_UISIZE">
+              <Label class="menuicon fontSize20">🔑</Label>
+              <Label class="fontSize20 padhorizontal_20" textid="overlay_title_importprivatekey"></Label>
+            </View>
+          </TableViewRow>
+          <TableViewRow item="donotprompt">
+            <View class="layout_horizontal height_UISIZE">
+              <Label class="menuicon fontSize20">✓</Label>
+              <Label class="fontSize20 padhorizontal_20" textid="browser_do_not_prompt_list"></Label>
+            </View>
+          </TableViewRow>
           <TableViewRow item="apinode">
             <View class="layout_horizontal height_UISIZE">
               <Label class="menuicon fontSize20">🔌</Label>
@@ -31,12 +45,6 @@
               <Label class="fontSize20 padhorizontal_20" textid="settings_theme"></Label>
             </View>
             <Label class="rightmenu" id="settings_preview_theme">light</Label>
-          </TableViewRow>
-          <TableViewRow item="createaccount">
-            <View class="layout_horizontal height_UISIZE">
-              <Label class="menuicon fontSize20">👤</Label>
-              <Label class="fontSize20 padhorizontal_20" textid="create_account"></Label>
-            </View>
           </TableViewRow>
           <TableViewRow item="buysteem">
             <View class="layout_horizontal height_UISIZE">

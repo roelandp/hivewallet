@@ -1,3 +1,5 @@
+var helpers = require("/functions");
+
 var curr_currency = Ti.App.Properties.getString('currency').toLowerCase();
 
 var listdata = [];
@@ -45,36 +47,36 @@ function selectCurrency(e){
     Alloy.Globals.updateSettingsPreviewText("settings_preview_currency", newcurrency);
     // trigger notification to submenu's, force update price calculation in mainscreen.
     Ti.App.Properties.setInt('lastPricesCheck', 0);
-    Alloy.Globals.indexJScheckPrices();
+    helpers.checkPrices(false);
 
   }
 
   closeWin();
 }
 
-$.settings_currency.transform = Titanium.UI.create2DMatrix().scale(0);
-//$.settings_currency.left = Alloy.Globals.dimensions.DP_platformWidth;
-$.settings_currency.anchorPoint = {x:0.5, y:1};
+// $.settings_currency.transform = Titanium.UI.create2DMatrix().scale(0);
+// //$.settings_currency.left = Alloy.Globals.dimensions.DP_platformWidth;
+// $.settings_currency.anchorPoint = {x:0.5, y:1};
 function closeWin(){
-  $.settings_currency.animate(b);
+  $.settings_currency.close();
 }
 
-var a = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(1),
-    duration : 300,
-    anchorPoint: {x:0.5, y:1}
-});
-
-var b = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(0),
-    duration : 150,
-    anchorPoint: {x:0.5, y:1}
-});
-
-b.addEventListener('complete', function() {
-    $.settings_currency.close();
-});
+// var a = Ti.UI.createAnimation({
+//     transform : Ti.UI.create2DMatrix().scale(1),
+//     duration : 300,
+//     anchorPoint: {x:0.5, y:1}
+// });
+//
+// var b = Ti.UI.createAnimation({
+//     transform : Ti.UI.create2DMatrix().scale(0),
+//     duration : 150,
+//     anchorPoint: {x:0.5, y:1}
+// });
+//
+// b.addEventListener('complete', function() {
+//     $.settings_currency.close();
+// });
 
 function animateOpen() {
-    $.settings_currency.animate(a);
+    //$.settings_currency.animate(a);
 }

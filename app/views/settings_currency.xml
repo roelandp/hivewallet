@@ -1,13 +1,12 @@
 <Alloy>
     <Window onPostlayout="animateOpen">
       <View class="layout_vertical">
-        <View class="notch_spacer">
-        </View>
+        <View id="topspacer"/>
         <View class="overlay_header">
+          <View class="leftBut">
+            <Button class="button closeBut_text" onClick="closeWin">←</Button>
+          </View>
   				<Label textid="settings_currency" class="overlay_header_title"></Label>
-  				<View class="closeBut">
-  					<Button class="button closeBut_text" onClick="closeWin">✕</Button>
-  				</View>
   				<View class="divider bottom0"></View>
   			</View>
         <ListView class="listview" id="currency_picker" onItemclick="selectCurrency">

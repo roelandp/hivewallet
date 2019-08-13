@@ -1,0 +1,94 @@
+<Alloy>
+	<Window>
+		<AlertDialog id="alertdialog" onClick="alertDialogCb" title="alerttitle" message="alertmsg" cancel="1">
+
+			<!-- The ButtonNames tag sets the buttonNames property. -->
+			<ButtonNames>
+				<ButtonName>Confirm</ButtonName>
+				<ButtonName>Cancel</ButtonName>
+			</ButtonNames>
+		</AlertDialog>
+
+		<View class="container">
+			<View id="topspacer"/>
+			<View id="container_top_brand_tab1" class="layout_vertical height_UISIZE">
+				<View id="container_branding" class="height_UISIZE container_pad">
+					<Label id="branding_icon" left="0">s</Label>
+					<Label id="branding_title" left="28">steemwallet</Label>
+					<View id="add_user" class="width_UISIZE height_UISIZE" width="50" right="0" onClick="showOverlayAddAccount">
+						<Label class="fontSize25 menuicon" right="0" onClick="showOverlayAddAccount">👤</Label>
+					</View>
+				</View>
+			</View>
+			<ListView id="overlay_pickaccount_listview" defaultItemTemplate="accountli" class="listview" onItemclick="handlePickAccountClick">
+				<Templates>
+					<ItemTemplate name="accountli" class="itemli">
+						<View class="overlay_pickaccount_listitem">
+							<Label bindId="labeltitle" class="overlay_pickaccount_listview_username"/>
+							<Label bindId="labelbalance" class="overlay_pickaccount_listview_balance"/>
+
+							<!-- <View class="divider bottom0 inputholder_divider"/> -->
+						</View>
+						<Button id="delbut" bindId="delbut" class="button overlay_delbut fonticomoon opacity20" onClick="delAccount">🗑</Button>
+					</ItemTemplate>
+					<ItemTemplate name="welcome">
+						<View id="container_welcome">
+							<View id="container_welcome_inner" class="layout_vertical height_UISIZE container_pad">
+								<Label id="welcome_description" bindId="label_intro_text" class="textAlignCenter">steemwallet is a secure mobile wallet for sending and receiving Steem and SBD</Label>
+								<Button class="button" bindId="but_add_account" id="but_add_account" onClick="showOverlayAddAccount">add account</Button>
+								<Button class="button buttonsmall opacity50 top10" id="but_create_account" bindId="but_create_account" onClick="createAccount">create account</Button>
+							</View>
+
+							<View id="container_author" class="layout_vertical height_UISIZE">
+								<Label id="author_description">
+										open source steem wallet by @roelandp
+								</Label>
+							</View>
+						</View>
+					</ItemTemplate>
+				</Templates>
+				<ListSection></ListSection>
+			</ListView>
+			</View>
+
+
+			<!-- overlay add account -->
+			<View id="overlay_addaccount" class="overlay_container_tab">
+				<View class="overlay_header">
+					<View class="divider top0"></View>
+
+					<Label textid="overlay_title_addaccount" class="overlay_header_title"></Label>
+					<View class="closeBut">
+						<Button class="button closeBut_text" onClick="hideOverlayAddAccount">✕</Button>
+					</View>
+					<View class="divider bottom0"></View>
+				</View>
+				<ScrollView class="overlay_body" id="overlay_body_addaccount_scrollview">
+					<Label id="overlay_body_addaccount_description" textid="overlay_body_addaccount_description" class="padhorizontal_20 padvertical_20 textAlignCenter fontSize20 fontRegular"></Label>
+					<View class="divider inputholder_divider"/>
+					<View class="inputholder">
+						<Label class="inputholder_label" textid="overlay_body_input_account"></Label>
+						<TextField
+							class="inputholder_textfield"
+							hinttextid="overlay_body_input_placeholder_addhere"
+							autocapitalization="false"
+							autocorrect="false"
+							enableReturnKey="true"
+							returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+							onReturn="handleAddAccountTF"
+							maxLength="16"
+							id="textfield_addaccount"></TextField>
+					</View>
+					<View class="divider inputholder_divider"/>
+				</ScrollView>
+				<Button class="button inputholder_bottombut" titleid="add_account" onClick="handleAddAccount"></Button>
+
+			</View>
+			<!-- end add account -->
+
+	</Window>
+
+
+
+
+</Alloy>

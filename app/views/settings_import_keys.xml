@@ -1,0 +1,213 @@
+<Alloy>
+    <Window tabBarHidden="true">
+			<View class="layout_vertical">
+        <View id="topspacer"/>
+        <View class="overlay_header">
+          <View class="leftBut">
+            <Button class="button closeBut_text" onClick="closeWin">←</Button>
+          </View>
+  				<Label textid="overlay_title_importprivatekey" class="overlay_header_title"></Label>
+  				<View class="divider bottom0"></View>
+  			</View>
+				<ScrollView class="overlay_body2" id="scrollviewcontainer">
+				<ScrollableView id="scrollview">
+
+					<View id="view_which_account" class="">
+						<View class="contentcenter">
+							<View class="contentholder">
+								<Label class="bigicon">👤</Label>
+								<Label id="import_keys_which_account" textid="import_keys_which_account" class="padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular"></Label>
+								<View class="divider inputholder_divider"/>
+								<View class="inputholder">
+									<Label class="inputholder_label" textid="overlay_body_input_account"></Label>
+									<TextField
+										class="inputholder_textfield"
+										hinttextid="overlay_body_input_placeholder_addhere"
+										autocapitalization="false"
+										autocorrect="false"
+										enableReturnKey="true"
+										returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+										onReturn="selectAccount"
+										maxLength="16"
+										id="textfield_which_account"></TextField>
+								</View>
+								<View class="divider inputholder_divider"/>
+								<View height="80">
+		              <Button titleid="next" class="button transparentbg" onClick="selectAccount" id="add_key_next1"></Button>
+		            </View>
+							</View>
+						</View>
+					</View>
+
+					<View id="view_pick_add_key_method" class="">
+						<View class="contentcenter">
+							<View class="contentholder">
+								<Label class="bigicon">🔑</Label>
+								<Label id="import_keys_add_key_method" textid="import_keys_add_key_method" class="padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular width_UIFILL"></Label>
+								<View height="60">
+									<Button titleid="add_via_master_password" class="button transparentbg" onClick="step_add_mp" id="add_key_next2"></Button>
+								</View>
+								<Label textid="or" class="padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular width_UIFILL"></Label>
+								<View height="60">
+									<Button titleid="add_via_manual_key_import" class="button transparentbg" onClick="step_add_man" id="add_key_next3"></Button>
+								</View>
+							</View>
+						</View>
+					</View>
+
+					<View id="view_add_key_method_masterpassword" class="">
+						<View class="contentcenter">
+							<View class="contentholder">
+								<Label id="import_keys_add_key_method_masterpassword" textid="import_keys_add_key_method_masterpassword" class="padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular"></Label>
+
+								<View class="divider inputholder_divider"/>
+								<View  height="70">
+									<Label class="inputholder_label" textid="password"></Label>
+									<TextField
+										class="inputholder_textfield inputholder_textfield_key"
+										hinttextid="overlay_body_input_placeholder_addhere"
+										autocapitalization="false"
+										autocorrect="false"
+										enableReturnKey="true"
+										returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+										onReturn="returnMP"
+										passwordMask="false"
+										id="textfield_masterpassword">
+									</TextField>
+									<Button class="button fonticomoon fontSize20 inputrightbutton" id="togglepasswordmask1" onClick="togglePasswordMask1">🤫</Button>
+								</View>
+								<View class="divider inputholder_divider"/>
+
+								<View height="80" class="layout_horizontal">
+									<Button titleid="previous" class="button transparentbg width50pct" height="80" onClick="step_previous" id="add_key_next4"></Button>
+									<Button titleid="next" class="button transparentbg width50pct"  height="80" onClick="returnMP" id="add_key_next4"></Button>
+								</View>
+
+							</View>
+						</View>
+					</View>
+
+					<View id="view_pick_add_key_method_manual" class="">
+						<View class="contentcenter">
+							<View class="contentholder">
+								<Label id="import_keys_add_key_method_manual" textid="import_keys_add_key_method_manual" class="padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular"></Label>
+
+								<View class="divider inputholder_divider"/>
+
+								<View height="70">
+									<Label class="inputholder_label">posting</Label>
+									<TextField
+										class="inputholder_textfield inputholder_textfield_key"
+										hinttextid="overlay_body_input_placeholder_addhere"
+										autocapitalization="false"
+										autocorrect="false"
+										enableReturnKey="true"
+										returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+										onReturn="returnKey1"
+										passwordMask="true"
+										id="textfield_key_posting">
+									</TextField>
+									<Label class="button fonticomoon fontSize20 inputrightbutton" id="scanKey1" onClick="scanKey1">📷</Label>
+								</View>
+
+								<View height="70">
+									<Label class="inputholder_label">active</Label>
+									<TextField
+										class="inputholder_textfield inputholder_textfield_key"
+										hinttextid="overlay_body_input_placeholder_addhere"
+										autocapitalization="false"
+										autocorrect="false"
+										enableReturnKey="true"
+										returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+										onReturn="returnKey2"
+										passwordMask="true"
+										id="textfield_key_active">
+									</TextField>
+									<Label class="button fonticomoon fontSize20 inputrightbutton" id="scanKey2" onClick="scanKey2">📷</Label>
+								</View>
+
+								<View height="70">
+									<Label class="inputholder_label">memo</Label>
+									<TextField
+										class="inputholder_textfield inputholder_textfield_key"
+										hinttextid="overlay_body_input_placeholder_addhere"
+										autocapitalization="false"
+										autocorrect="false"
+										enableReturnKey="true"
+										returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+										onReturn="returnKey3"
+										passwordMask="true"
+										id="textfield_key_memo">
+									</TextField>
+									<Label class="button fonticomoon fontSize20 inputrightbutton" id="scanKey3" onClick="scanKey3">📷</Label>
+								</View>
+
+								<View class="divider inputholder_divider"/>
+
+								<View height="80" class="layout_horizontal">
+									<Button titleid="previous" class="button transparentbg width50pct"  height="80" onClick="step_previous" id="add_key_next4"></Button>
+									<Button titleid="next" class="button transparentbg width50pct"  height="80" onClick="returnMAN" id="add_key_next4"></Button>
+								</View>
+
+							</View>
+						</View>
+					</View>
+
+					<View id="view_create_wallet" class="">
+						<View class="contentcenter">
+							<View class="contentholder">
+								<Label class="bigicon">w</Label>
+
+								<Label id="overlay_body_addwallet_description" class="padhorizontal_20 padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular width_UIFILL"></Label>
+								<View class="divider inputholder_divider"/>
+								<View height="70">
+									<TextField
+										class="inputholder_textfield"
+										hinttextid="pick_secure_password"
+										autocapitalization="false"
+										autocorrect="false"
+										enableReturnKey="true"
+										returnKeyType="Titanium.UI.RETURNKEY_DEFAULT"
+										onReturn="returnWalletPassword"
+										passwordMask="true"
+										id="textfield_addwalletpassword"
+										onChange="calcPassphraseStrength"></TextField>
+									<Button class="button fonticomoon fontSize20" id="togglepasswordmask2" onClick="togglePasswordMask2">🤪</Button>
+									<Label id="password_strength_result"></Label>
+								</View>
+								<View id="enable_identity_holder">
+									<View class="divider inputholder_divider" top="0"/>
+									<Label class="inputholder_label" id="enable_identity_label"></Label>
+									<Switch id="enable_identity_switch"/>
+								</View>
+								<View class="divider inputholder_divider"/>
+								<View id="view_spacer_bottom"/>
+
+								<View height="80">
+		              <Button class="button inputholder_bottombut" titleid="create" id="create_wallet_button" onClick="createWallet" enabled="false"></Button>
+		            </View>
+							</View>
+						</View>
+					</View>
+
+          <View id="view_done" class="">
+						<View class="contentcenter">
+							<View class="contentholder">
+								<Label class="bigicon">✓</Label>
+								<Label id="import_keys_done" textid="import_keys_done" class="padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular width_UIFILL"></Label>
+								<View height="60">
+									<Button titleid="add_another_key" class="button transparentbg" onClick="step_0" id="add_another_key"></Button>
+								</View>
+								<Label textid="or" class="padvertical_20 padhorizontal_20 textAlignCenter fontSize20 fontRegular width_UIFILL"></Label>
+								<View height="60">
+									<Button titleid="done" class="button transparentbg" onClick="closeWin" id="add_key_done"></Button>
+								</View>
+							</View>
+						</View>
+					</View>
+
+				</ScrollableView>
+				</ScrollView>
+      </View>
+    </Window>
+</Alloy>

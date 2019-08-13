@@ -1,29 +1,8 @@
-$.index_settings.transform = Titanium.UI.create2DMatrix().scale(0);
-//$.index_settings.left = Alloy.Globals.dimensions.DP_platformWidth;
-$.index_settings.anchorPoint = {x:0.5, y:1};
-function closeWin(){
-  $.index_settings.animate(b);
-}
-
-
-var a = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(1),
-    duration : 300,
-    anchorPoint: {x:0.5, y:1}
-});
-
-var b = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(0),
-    duration : 150,
-    anchorPoint: {x:0.5, y:1}
-});
-
-b.addEventListener('complete', function() {
-    $.index_settings.close();
-});
-
 function animateOpen() {
-  $.index_settings.animate(a);
+  if(OS_IOS) {
+    $.topspacer.height = $.index_settings.safeAreaPadding.top;
+	   Alloy.Globals.topspacer = $.index_settings.safeAreaPadding.top;
+  }
 }
 
 Alloy.Globals.updateSettingsPreviewText = function(obj,newtext){
@@ -41,22 +20,32 @@ function doSetting(e){
 
     case "apinode":
       var win = Alloy.createController('settings_apinode').getView();
-      win.open();
+      Alloy.Globals.tabGroup.activeTab.open(win);
     break;
 
     case "currency":
       var win = Alloy.createController('settings_currency').getView();
-      win.open();
+      Alloy.Globals.tabGroup.activeTab.open(win);
     break;
 
     case "theme":
       var win = Alloy.createController('settings_theme').getView();
-      win.open();
+      Alloy.Globals.tabGroup.activeTab.open(win);
     break;
 
     case "createaccount":
       var win = Alloy.createController('create_account').getView();
-      win.open();
+      Alloy.Globals.tabGroup.activeTab.open(win);
+    break;
+
+    case "importkey":
+      var win = Alloy.createController('settings_import_keys').getView();
+      Alloy.Globals.tabGroup.activeTab.open(win);
+    break;
+
+    case "donotprompt":
+      var win = Alloy.createController('/settings_do_not_prompt').getView();
+      Alloy.Globals.tabGroup.activeTab.open(win);
     break;
 
     case "buysteem":
@@ -100,3 +89,5 @@ function doSetting(e){
 
   }
 }
+
+console.log("INDEX_SETTINGS HAS BEEN OPENED!");

@@ -1,7 +1,7 @@
 
 // include the helper functions here.
-var fns = require('/functions');
-var helpers = new fns();
+var helpers = require('/functions');
+
 
 // zxcvbn password strength library https://github.com/dropbox/zxcvbn
 var zxcvbn = require('/zxcvbn');
@@ -34,7 +34,7 @@ if (OS_IOS) {
 if (OS_IOS) {
   storekit = require('ti.storekit');
   verifyingReceipts = false;
-  storekit.bundleVersion = "1.1.0"; // eg. "1.0.0"
+  storekit.bundleVersion = "2.0.1"; // eg. "1.0.0"
   //storekit.receiptVerificationSandbox = Ti.App.deployType !== 'production';
   storekit.bundleIdentifier = Ti.App.id; // eg. "com.appc.storekit"
   storekit.autoFinishTransactions = true;
@@ -670,28 +670,28 @@ function step4() {
 }
 
 
-$.create_account.transform = Titanium.UI.create2DMatrix().scale(0);
-
-$.create_account.anchorPoint = {x:0.5, y:1};
-
-var a = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(1),
-    duration : 300,
-    anchorPoint: {x:0.5, y:1}
-});
-
-var b = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(0),
-    duration : 150,
-    anchorPoint: {x:0.5, y:1}
-});
-
-b.addEventListener('complete', function() {
-    $.create_account.close();
-});
+// $.create_account.transform = Titanium.UI.create2DMatrix().scale(0);
+//
+// $.create_account.anchorPoint = {x:0.5, y:1};
+//
+// var a = Ti.UI.createAnimation({
+//     transform : Ti.UI.create2DMatrix().scale(1),
+//     duration : 300,
+//     anchorPoint: {x:0.5, y:1}
+// });
+//
+// var b = Ti.UI.createAnimation({
+//     transform : Ti.UI.create2DMatrix().scale(0),
+//     duration : 150,
+//     anchorPoint: {x:0.5, y:1}
+// });
+//
+// b.addEventListener('complete', function() {
+//     $.create_account.close();
+// });
 
 function animateOpen() {
-  $.create_account.animate(a);
+  //$.create_account.animate(a);
   if(OS_IOS) {
     canmakepayments = storekit.canMakePayments;
     if(!canmakepayments) {
@@ -704,7 +704,7 @@ function animateOpen() {
 }
 
 function closeWin(){
-  $.create_account.animate(b);
+  // $.create_account.animate(b);
   helpers = null;
   fns = null;
   zxcvbn = null;
@@ -715,9 +715,14 @@ function closeWin(){
   $.purchasekeysarea.removeEventListener('focus', focusTextArea);
 
   if (OS_IOS) {
-    storekit.removeTransactionObserver();
-    storekit.removeEventListener('transactionState', transactionstateListener);
-    storekit = null;
+
+    try {
+      storekit.removeEventListener('transactionState', transactionstateListener);
+      storekit.removeTransactionObserver();
+      storekit = null;
+    } catch(err) {
+      console.log(err);
+    }
   } else {
     inappbilling.removeEventListener('setupcomplete', setupcompleteListener);
     inappbilling.removeEventListener('purchasecomplete', purchasecompleteListener);
@@ -728,6 +733,8 @@ function closeWin(){
   }
 
   topost = null;
+
+  $.create_account.close();
 
 
 }

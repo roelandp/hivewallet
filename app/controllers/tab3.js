@@ -1,0 +1,3 @@
+// Arguments passed into this controller can be accessed via the `$.args` object directly or:
+var args = $.args;
+var helpers_eventdispatcher = require('/helpers_eventdispatcher');

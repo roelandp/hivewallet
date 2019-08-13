@@ -5,4 +5,5 @@
 	navBarHidden: true,
 	modal: false, // Heavy weight on Android,
 	theme: 'Theme.AppCompat.Translucent.NoTitleBar',
+	//theme: 'Theme.AppCompat.Translucent',
 }

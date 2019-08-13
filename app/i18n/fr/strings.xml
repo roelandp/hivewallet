@@ -141,4 +141,32 @@
     <string name="sign">sign</string>
     <string name="sign_transaction">sign transaction</string>
     <string name="sign_and_broadcast">sign &amp; broadcast</string>
-</resources>
+    <string name="import_keys_which_account">For which account would you like to import keys?</string>
+    <string name="import_keys_add_key_method">How would you like to add the keys?</string>
+    <string name="add_via_master_password">use master password</string>
+    <string name="or">or</string>
+    <string name="add_via_manual_key_import">add key(s) manually</string>
+    <string name="import_keys_add_key_method_masterpassword">Please fill in the master password for "%1$s".\nThe active, memo and posting key will be derived and stored (encrypted).</string>
+    <string name="password">password</string>
+    <string name="previous">previous</string>
+    <string name="import_keys_add_key_method_manual">Please fill in any of the active, memo, posting keys for "%1$s" which you want to store (encrypted) and use.</string>
+    <string name="s_key_mismatch">%1$s key mismatch</string>
+    <string name="please_add_one_key">Please add at least one key!</string>
+    <string name="import_keys_done">Keys have been added and your wallet is encrypted.\n\nWhat do you want to do next?</string>
+    <string name="add_another_key">add another</string>
+    <string name="done">done</string>
+
+    <string name="the_requesting_website_enforced_using_account_s">%1$s enforces using account @%2$s for this operation!</string>
+    <string name="s_would_like_to_verify_that_you_have_access_to_your_s_key:">%1$s would like to verify that you have access to your %2$s key:</string>
+    <string name="s_would_like_you_to_sign_a_message_with_your_s_key:">%1$s would like you to sign a message with your %2$s key:</string>
+    <string name="s_would_you_like_to_sign_the_following_operation_with_your_s_key">%1$s would like you to sign the following operation with your %2$s key:</string>
+    <string name="no_s_key_found_for_s">no %1$s key found for %2$s.\n\nConsider adding it via Settings > import private key</string>
+    <string name="account">account</string>
+    <string name="sign_broadcast">sign &amp; broadcast</string>
+
+    <string name="do_not_prompt_again_for_s">Do not prompt again to %1$s for\n%2$s</string>
+    <string name="dnpl_top_explainer">These authorized operations (sorted by account and dapp) will no longer trigger a blocking confirmation dialog in the Dapp Browser.\n\nFeel free to revoke any operation by hitting the "trash"-icon for the given operation.</string>
+    <string name="dnpl_no_content_explainer">If you authorize any operations in the Dapp Browser to "Do not prompt again" they will be listed here, so you can review them and, if necessary, revoke them.</string>
+    <string name="browser_do_not_prompt_list">browser settings</string>
+    <string name="overlay_title_settings_do_not_prompt">do not prompt</string>
+  </resources>

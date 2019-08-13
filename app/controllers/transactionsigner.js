@@ -256,7 +256,7 @@ if(arguments[0].url) {
           height: 50,
           top: 5,
           left: 0,
-          font: {fontSize: 20, fontWeight: 'bold'},
+          font: {fontSize: 20, fontWeight: "bold"},
           color: Alloy.Globals.theme.textColor
         });
 

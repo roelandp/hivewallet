@@ -1,10 +1,10 @@
-$.settings_apinode.transform = Titanium.UI.create2DMatrix().scale(0);
-//$.settings_apinode.left = Alloy.Globals.dimensions.DP_platformWidth;
-$.settings_apinode.anchorPoint = {x:0.5, y:1};
+// $.settings_apinode.transform = Titanium.UI.create2DMatrix().scale(0);
+// //$.settings_apinode.left = Alloy.Globals.dimensions.DP_platformWidth;
+// $.settings_apinode.anchorPoint = {x:0.5, y:1};
 
 // include the helper functions here.
-var fns = require('/functions');
-var helpers = new fns();
+var helpers = require('/functions');
+//var helpers = new fns();
 
 var curr_node = Ti.App.Properties.getString('apiurl').toLowerCase();
 
@@ -81,33 +81,33 @@ function selectNode(e) {
 }
 
 function closeWin(){
-  $.settings_apinode.animate(b);
   helpers = null;
   fns = null;
   apinodes = null;
+  $.settings_apinode.close();
 }
 
 
-var a = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(1),
-    duration : 300,
-    anchorPoint: {x:0.5, y:1}
-});
-
-var b = Ti.UI.createAnimation({
-    transform : Ti.UI.create2DMatrix().scale(0),
-    duration : 150,
-    anchorPoint: {x:0.5, y:1}
-});
-
-b.addEventListener('complete', function() {
-    $.settings_apinode.close();
-});
+// var a = Ti.UI.createAnimation({
+//     transform : Ti.UI.create2DMatrix().scale(1),
+//     duration : 300,
+//     anchorPoint: {x:0.5, y:1}
+// });
+//
+// var b = Ti.UI.createAnimation({
+//     transform : Ti.UI.create2DMatrix().scale(0),
+//     duration : 150,
+//     anchorPoint: {x:0.5, y:1}
+// });
+//
+// b.addEventListener('complete', function() {
+//     $.settings_apinode.close();
+// });
 
 function animateOpen() {
     $.addnodecontainer.height = (0.001);
     $.addnodecontainer.opacity = (0.001);
-    $.settings_apinode.animate(a);
+    //$.settings_apinode.animate(a);
 
 }
 

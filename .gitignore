@@ -13,3 +13,4 @@ tmp
 .settings
 Thumbs.db
 plugins/ti.alloy
+/testfiles

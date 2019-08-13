@@ -14,9 +14,79 @@
 	color: Alloy.Globals.theme.textColor
 }
 
-"Window" : {
-	backgroundColor: Alloy.Globals.theme.backgroundColor,
+".debug": {
+	borderColor: "red",
+	borderWidth: 3,
+	backgroundColor: "yellow"
 }
+
+/* "Window" : {
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
+} */
+
+
+"Window": {
+  navBarHidden: true,
+  extendSafeArea: true,
+  backgroundColor: Alloy.Globals.theme.backgroundColor,
+  orientationModes: [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT],
+  //windowFlags:"Ti.UI.Android.FLAG_TRANSLUCENT_NAVIGATION | Ti.UI.Android.FLAG_TRANSLUCENT_STATUS,
+}
+
+
+"Window[platform=android]": {
+		windowSoftInputMode: Titanium.UI.Android.SOFT_INPUT_STATE_HIDDEN
+    //theme: "Theme.CustomActionBar",
+    /* windowFlags: Ti.UI.Android.FLAG_TRANSLUCENT_STATUS | Ti.UI.Android.FLAG_TRANSLUCENT_NAVIGATION, */
+}
+
+"Window[platform=ios]": {
+  statusBarStyle: Titanium.UI.iOS.StatusBar.GREY,
+	extendSafeArea: true,
+}
+
+"TabGroup": {
+  orientationModes: [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT],
+	tabsTintColor: Alloy.Globals.theme.steemlightblue,
+	activeTabIconTint: Alloy.Globals.theme.steemdarkblue,
+	//tintColor: Alloy.Globals.theme.steemlightblue,
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
+	tabsBackgroundColor: Alloy.Globals.theme.backgroundColor,
+}
+
+"TabGroup[platform=android]": {
+	swipeable: false,
+}
+
+"Tab" : {
+  /* iconInsets: {
+    top: 6,
+		bottom:0,
+	}, */
+  iconIsMask: true,
+  //titleColor: Alloy.Globals.theme.steemlightblue,
+  activeTitleColor: Alloy.Globals.theme.steemdarkblue,
+	tabsTintColor: Alloy.Globals.theme.steemlightblue,
+	activeTabIconTint: Alloy.Globals.theme.steemdarkblue,
+  orientationModes: [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT],
+	tintColor: Alloy.Globals.theme.steemlightblue,
+	tabsBackgroundColor: Alloy.Globals.theme.backgroundColor,
+}
+
+"Tab[platform=android]" : {
+  backgroundColor: Alloy.Globals.theme.backgroundColor,         //Alloy.Globals.settings.colors.white,
+  selectedBackgroundColor: Alloy.Globals.theme.backgroundColor,
+  touchFeedbackColor: Alloy.Globals.theme.backgroundColor,
+  touchFeedback: false,
+	activeTitleColor: Alloy.Globals.theme.themeblue,
+	titleColor: Alloy.Globals.theme.steemdarkblue,
+}
+
+"Tab[platform=ios]": {
+  statusBarStyle: Titanium.UI.iOS.StatusBar.GREY,
+}
+
+
 
 "TableViewRow" : {
 	selectedBackgroundColor: Alloy.Globals.theme.selectedBackgroundColor,
@@ -58,7 +128,8 @@
 }
 "#label" : {
 	font: {
-		fontSize: 12
+		fontSize: 12,
+		fontWeight: "regular"
 	},
 	height: 20,
 	top: 50
@@ -124,17 +195,17 @@
 	color: Alloy.Globals.theme.themeblue,
 }
 
-".fontRegular" : {
+".fontRegular" : { //#
 	font: {
-		fontWeight: "normal"
+		fontWeight: "regular"
 	}
 }
-".fontBold" : {
+".fontBold" : { //#
 	font: {
 		fontWeight: "bold"
 	}
 }
-".fontSemibold" : {
+".fontSemibold" : { //#
 	font: {
 		fontWeight: "semibold"
 	}
@@ -144,7 +215,7 @@
 		fontWeight: "thin"
 	}
 }
-".fontLight" : {
+".fontLight" : {  //#
 	font: {
 		fontWeight: "light"
 	}
@@ -235,6 +306,19 @@
 	borderWidth: 0
 }
 
+".buttonbrowser":{
+	font: {
+		fontSize: 12
+	},
+	minimumFontSize: 10,
+	color: Alloy.Globals.theme.themeblue,
+	selectedColor: Alloy.Globals.theme.steemlightblue,
+	backgroundColor: 'transparent',
+	selectedBackgroundColor: 'transparent',
+	backgroundSelectedColor: 'transparent',
+	borderWidth: 0
+}
+
 "#avatar" : {
 	top: Alloy.Globals.dimensions.avatar_top_right,
 	right: Alloy.Globals.dimensions.avatar_top_right,
@@ -247,6 +331,10 @@
 }
 "#container_top_brand" : {
 	top: Alloy.Globals.dimensions.container_branding_top
+}
+
+"#container_top_brand_tab1": {
+	top: 30,
 }
 
 "#container_top_settings" : {
@@ -286,8 +374,8 @@
 }
 "#container_welcome" : {
 	//top: Alloy.Globals.dimensions.overlay_container_top,
-	top: Alloy.Globals.dimensions.DP_platformHeight,
-	backgroundColor: 'transparent',
+	// top: Alloy.Globals.dimensions.DP_platformHeight,
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
 	height: Alloy.Globals.dimensions.overlay_container_height
 }
 "#container_transactions" : {
@@ -348,9 +436,7 @@
 	height: 0
 }
 
-".notch_spacer[if=Alloy.Globals.isiPhoneX]" : {
-	height: 30
-}
+
 "#welcome_description" : {
 	font: {
 		fontWeight: "regular",
@@ -396,6 +482,13 @@
 	height: Alloy.Globals.dimensions.overlay_container_height,
 	backgroundColor: Alloy.Globals.theme.backgroundColor,
 }
+
+".overlay_container_tab" : {
+	top: Alloy.Globals.dimensions.DP_platformHeight,
+	height: Alloy.Globals.dimensions.overlay_container_height_tab,
+	backgroundColor: Alloy.Globals.theme.backgroundColor,
+}
+
 ".overlay_header" : {
 	height: 60,
 	top: 0
@@ -453,7 +546,8 @@
 	width: 60,
 	height: 60,
 	font: {
-		fontSize: 40
+		fontSize: 40,
+		fontWeight: "regular"
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER,
 	top: 0
@@ -489,7 +583,7 @@
 ".inputholder_label" : {
 	font: {
 		fontSize: 20,
-		fontWeight: 'semibold'
+		fontWeight: "semibold"
 	},
 	width: Ti.UI.SIZE,
 	left: 20,
@@ -502,7 +596,7 @@
 ".inputholder_textfield" : {
 	font: {
 		fontSize: 20,
-		fontWeight: 'normal'
+		fontWeight: "regular"
 	},
 	width: Ti.UI.FILL,
 	left: 0,
@@ -514,6 +608,10 @@
 }
 ".inputholder_textfield_send" : {
 	left: 100
+}
+
+".inputholder_textfield_key": {
+	left: 120,
 }
 ".inputholder_bottombut" : {
 	bottom: 20
@@ -551,7 +649,7 @@
 ".overlay_pickaccount_listview_username" : {
 	font: {
 		fontSize: 20,
-		fontWeight: 'semibold'
+		fontWeight: "semibold"
 	},
 	width: Ti.UI.SIZE,
 	left: 20,
@@ -563,7 +661,7 @@
 ".overlay_pickaccount_listview_balance" : {
 	font: {
 		fontSize: 12,
-		fontWeight: 'normal'
+		fontWeight: "regular"
 	},
 	width: Ti.UI.FILL,
 	left: 20,
@@ -626,7 +724,7 @@
 ".txli_label_counterparty" : {
 	font: {
 		fontSize: 20,
-		fontWeight: 'semibold'
+		fontWeight: "semibold"
 	},
 	width: Ti.UI.SIZE,
 	left: 42,
@@ -638,7 +736,7 @@
 ".txli_label_amount" : {
 	font: {
 		fontSize: 20,
-		fontWeight: 'regular'
+		fontWeight: "regular"
 	},
 	width: Ti.UI.SIZE,
 	right: 20,
@@ -649,7 +747,7 @@
 ".txli_label_currency" : {
 	font: {
 		fontSize: 12,
-		fontWeight: 'regular'
+		fontWeight: "regular"
 	},
 	width: Ti.UI.SIZE,
 	right: 20,
@@ -660,7 +758,7 @@
 ".txli_label_date" : {
 	font: {
 		fontSize: 12,
-		fontWeight: 'regular'
+		fontWeight: "regular"
 	},
 	width: Ti.UI.SIZE,
 	left: 42,
@@ -683,7 +781,7 @@
 	height: Ti.UI.SIZE,
 	font: {
 		fontSize: 20,
-		fontWeight: 'normal'
+		fontWeight: "regular"
 	},
 	bottom: 20,
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
@@ -692,11 +790,18 @@
 	height: Ti.UI.SIZE,
 	font: {
 		fontSize: 20,
-		fontWeight: 'bold'
+		fontWeight: "bold"
 	},
 	textAlign: Ti.UI.TEXT_ALIGNMENT_CENTER
 }
 "#togglepasswordmask" : {
+	right: 20,
+	width: 35,
+	backgroundColor: 'transparent',
+	textAlign: Ti.UI.TEXT_ALIGNMENT_RIGHT
+}
+
+".inputrightbutton": {
 	right: 20,
 	width: 35,
 	backgroundColor: 'transparent',
@@ -720,6 +825,12 @@
 	right: 20,
 	value: false
 }
+
+"Switch[platform=ios]": {
+	onTintColor: Alloy.Globals.theme.steemdarkblue,
+	tintColor: Alloy.Globals.theme.themeblue,
+}
+
 "#password_strength_result" : {
 	top: 46,
 	left: 20,
@@ -927,7 +1038,9 @@
 }
 
 
-
+".right50": {
+	right: 50,
+}
 
 ".disabled": {
 	enabled: false,
