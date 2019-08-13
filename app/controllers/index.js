@@ -4,9 +4,6 @@ var helpers_eventdispatcher = require('/helpers_eventdispatcher');
 var XCallbackURL = require('/xcallbackurl');
 Alloy.Globals.tabGroup = $.index;
 
-
-
-
 // opener handler for steem:// uris
 
 function handleURL(url) {

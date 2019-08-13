@@ -115,8 +115,8 @@ var steem_keychain = {
             username: account,
             title: title,
             body: body,
-            parent_perm: parent_perm,
-            parent_username: parent_account,
+            parent_permlink: parent_perm,
+            parent_author: parent_account,
             json_metadata: json_metadata,
             permlink: permlink,
             comment_options: comment_options
@@ -220,22 +220,22 @@ var steem_keychain = {
 
         steem_keychain.current_id++;
 
-        //on android: xmlhttprequest which we can monitor in "onloadresource"-event
-        // 1. Create a new XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
-
-        // 2. Configure it: GET-request for the URL
-        var currenthost = window.location.origin;
-        if(!(currenthost.slice(-1) == "/")) { currenthost = currenthost + "/"; }
-        var swsk_url = currenthost+ "?xrf=XXXRF&params="+encodeURIComponent(JSON.stringify(sendobject));
-        //xhr.open('HEAD', 'https://steemkeychain.steemwallet.app/android/parameterforwarder.html?xrf=XXXRF&params='+encodeURIComponent(JSON.stringify(sendobject)));
-        xhr.open('HEAD', swsk_url);
-
-        // 3. Send the request over the network
-        xhr.send();
+        // //on android: xmlhttprequest which we can monitor in "onloadresource"-event
+        // // 1. Create a new XMLHttpRequest object
+        // var xhr = new XMLHttpRequest();
+        //
+        // // 2. Configure it: GET-request for the URL
+        // var currenthost = window.location.origin;
+        // if(!(currenthost.slice(-1) == "/")) { currenthost = currenthost + "/"; }
+        // var swsk_url = currenthost+ "?xrf=XXXRF&params="+encodeURIComponent(JSON.stringify(sendobject));
+        // //xhr.open('HEAD', 'https://steemkeychain.steemwallet.app/android/parameterforwarder.html?xrf=XXXRF&params='+encodeURIComponent(JSON.stringify(sendobject)));
+        // xhr.open('HEAD', swsk_url);
+        //
+        // // 3. Send the request over the network
+        // xhr.send();
 
         // on ios a simple document.location forwarder which gets cancelled because it does not exist yet it still triggers an "onbeforeload"-event:
-        //document.location = 'XXXRF://?params=' + encodeURIComponent(JSON.stringify(sendobject));
+        document.location = 'XXXRF://?params=' + encodeURIComponent(JSON.stringify(sendobject));
 
     },
     // receiver for getting messages back from the app environment into the browser window.
