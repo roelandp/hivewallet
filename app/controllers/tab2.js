@@ -216,7 +216,11 @@ function makeDialogParametersTxt(params){
 					if(key != "type" && key != "username" && key != "enforce" && key != "display_msg" && key != "display_name") {
 						switch (key) {
 							case "weight":
-								toreturn += key+":\n"+(params[key]/100).toLocaleString(undefined, { minimumFractionDigits: 2,maximumFractionDigits: 2  }) + "%\n\n";
+								if(params.type != "addAccountAuthority") {
+									toreturn += key+":\n"+(params[key]/100).toLocaleString(undefined, { minimumFractionDigits: 2,maximumFractionDigits: 2  }) + "%\n\n";
+								} else {
+									toreturn += key+":\n"+(params[key])+ "\n\n";
+								}
 							break;
 
 							case "method":
@@ -333,15 +337,171 @@ function populateOperations() {
 		break;
 
 		case 'addAccountAuthority':
-			current_query_object['operations'] = [[
-			]];
-			return false;
+
+			// get account data
+			// needs private key
+			// fill new account object - with added authority username (we only allow posting auths ok?)
+			// make operation
+			if(current_query_object['data']['role'] == "posting") {
+
+				var updated_user_object = {};
+				// show loading screen
+				Alloy.Globals.loading.show(L('loadingMessage'), false);
+
+				helpers.steemAPIcall(
+					"get_accounts", [
+						[current_query_object['data']['username']]
+					],
+					function(success) {
+						Alloy.Globals.loading.hide();
+						if (success.result.length == 0) {
+							alert(String.format(L('alert_account_not_found'), current_query_object['data']['username']));
+							//$.textfield_addaccount.value = ('');
+							current_query_object['operations'] = [[
+							]];
+							return false;
+						} else {
+							updated_user_object = success.result[0];
+
+							// check if by accident the user has already given permission to the account
+							var arrayindex = -1;
+							var checkAuth = updated_user_object['posting']['account_auths'];
+
+							for (var i = 0,len = checkAuth.length; i<len; i++) {
+								if (checkAuth[i][0] == current_query_object['data']['authorizedUsername'].toLowerCase()) {
+									 arrayindex = i;
+									 alert(current_query_object['data']['authorizedUsername'] + "already has posting permission for " +current_query_object['data']['username']);
+									 //break;
+									 current_query_object['operations'] = [[
+					 					]];
+									 return false;
+							 	}
+						 	}
+
+							// if here, create updated_user_object by adding new account auth to the array.
+							updated_user_object['posting']['account_auths'].push([
+							    current_query_object['data']['authorizedUsername'],
+							    parseInt(current_query_object['data']['weight']),
+							]);
+							// should be alphabetically sorted.
+							updated_user_object['posting']['account_auths'].sort();
+
+							// now finally make the operation ...
+
+							current_query_object['operations'] = [[
+								"account_update",
+								{
+									"account": current_query_object['data']['username'],
+							    "posting": updated_user_object.posting,
+							    "memo_key": updated_user_object.memo_key,
+							    "json_metadata": updated_user_object.json_metadata,
+								}
+							]];
+
+						}
+
+
+					},
+					function(error) {
+						Alloy.Globals.loading.hide();
+						alert(error);
+						current_query_object['operations'] = [[
+						]];
+						return false;
+					}
+				);
+			} else {
+				// we only allow adding / removing posting auths for security reasons.
+				current_query_object['operations'] = [[
+				]];
+				return false;
+			}
+
 		break;
 
 		case 'removeAccountAuthority':
-			current_query_object['operations'] = [[
-			]];
-			return false;
+
+			// get account data
+			// needs private key
+			// fill new account object - with removed authority user (we only allow removing posting auths ok?)
+			// make operation
+
+			if(current_query_object['data']['role'] == "posting") {
+
+				var updated_user_object = {};
+				// show loading screen
+				Alloy.Globals.loading.show(L('loadingMessage'), false);
+
+				helpers.steemAPIcall(
+					"get_accounts", [
+						[current_query_object['data']['username']]
+					],
+					function(success) {
+						Alloy.Globals.loading.hide();
+						if (success.result.length == 0) {
+
+							alert(String.format(L('alert_account_not_found'), current_query_object['data']['username']));
+							current_query_object['operations'] = [[
+							]];
+							//$.textfield_addaccount.value = ('');
+							return false;
+						} else {
+							updated_user_object = success.result[0];
+
+							// check if by accident the user has already given permission to the account
+							var arrayindex = -1;
+							var checkAuth = updated_user_object['posting']['account_auths'];
+
+							var accountfoundinauths = false;
+							for (var i = 0,len = checkAuth.length; i<len; i++) {
+								if (checkAuth[i][0] == current_query_object['data']['authorizedUsername'].toLowerCase()) {
+									 arrayindex = i;
+									 accountfoundinauths = true;
+									 break;
+
+								}
+							}
+
+							if(!accountfoundinauths) {
+								alert(current_query_object['data']['authorizedUsername'] + " does not have posting permission for " +current_query_object['data']['username']+ ", so can't remove anyhow :)");
+								current_query_object['operations'] = [[
+								 ]];
+								return false;
+							}
+
+							// if here, create updated_user_object by removing account auth from the array.
+							updated_user_object['posting']['account_auths'].splice(arrayindex, 1);
+
+							// now finally make the operation ...
+
+							current_query_object['operations'] = [[
+								"account_update",
+								{
+									"account": current_query_object['data']['username'],
+									"posting": updated_user_object.posting,
+									"memo_key": updated_user_object.memo_key,
+									"json_metadata": updated_user_object.json_metadata,
+								}
+							]];
+
+						}
+
+					},
+					function(error) {
+						Alloy.Globals.loading.hide();
+						alert(error);
+						current_query_object['operations'] = [[
+						]];
+						return false;
+					}
+				);
+			} else {
+				// we only allow adding / removing posting auths for security reasons.
+				current_query_object['operations'] = [[
+				]];
+				return false;
+			}
+
 		break;
 
 		case 'signedCall':
