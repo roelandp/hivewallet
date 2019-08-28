@@ -721,6 +721,7 @@ function returnWalletPassword(e) {
 	$.textfield_addwalletpassword.blur();
 	if (pwdstrength['score'] >= 3) {
 		$.create_wallet_button.enabled = (true);
+		createWallet();
 	} else {
 		$.create_wallet_button.enabled = (false);
 		alert(String.format(L("password_strength_result"), pwdgrades[pwdstrength['score']], pwdstrength['crack_times_display']['offline_slow_hashing_1e4_per_second']));
@@ -728,6 +729,7 @@ function returnWalletPassword(e) {
 
 	pwdstrength = null;
 	e = null;
+
 
 }
 
