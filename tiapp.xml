@@ -2,12 +2,12 @@
 <ti:app 
   xmlns:ti="http://ti.appcelerator.org">
   <id>app.steemwallet.roelandp</id>
-  <name>SteemWallet</name>
-  <version>2.1.0.1</version>
+  <name>HiveWallet</name>
+  <version>2.2.2.2</version>
   <publisher>roelandp</publisher>
-  <url>https://steemwallet.app</url>
-  <description>fast, secure and open source wallet for the Steem blockchain</description>
-  <copyright>2018 by roelandp</copyright>
+  <url>https://hivewallet.app</url>
+  <description>fast, secure and open source wallet for the Hive blockchain</description>
+  <copyright>2020 by roelandp</copyright>
   <icon>appicon.png</icon>
   <fullscreen>true</fullscreen>
   <navbar-hidden>false</navbar-hidden>
