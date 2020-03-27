@@ -60,31 +60,31 @@ Alloy.Globals.dimensions = {
   overlay_barcode_middle_height: (DP_platformWidth - 60),
 };
 
-Alloy.Globals.homepage = "https://steemwallet.app/browser/index.html?theme="+Titanium.App.Properties.getString('app:theme');
+Alloy.Globals.homepage = "https://hivewallet.app/browser/index.html?theme="+Titanium.App.Properties.getString('app:theme');
 
 
 Alloy.Globals.themes = {
 
-    light: {
 
-      name: "light",
-      steemlightblue: "#4BA2F2",
-      steemdarkblue: "#1A5099",
-      themeblue: "#9013FE",
+  light: {
 
-      backgroundColor: "#FFFFFF",
-      selectedBackgroundColor: "#F2F2F2",
-      backgroundColor_alpha100: "#FFFFFFFF",
-      backgroundColor_alpha90: "#E6FFFFFF",
-      backgroundColor_alpha70: "#B3FFFFFF",
-      backgroundColor_alpha0: "#00FFFFFF",
+    name: "light",
+    steemlightblue: "#ee7187",
+    steemdarkblue: "#212529",
+    themeblue: "#E31337",
 
-      textColor: "#494841",
+    backgroundColor: "#F9F9F9",
+    selectedBackgroundColor: "#F2F2F2",
+    backgroundColor_alpha100: "#FFFFFFFF",
+    backgroundColor_alpha90: "#E6FFFFFF",
+    backgroundColor_alpha70: "#B3FFFFFF",
+    backgroundColor_alpha0: "#00FFFFFF",
 
-      transaction_red: "#f75535",
-      transaction_green: "#00a45b",
-    },
+    textColor: "#494841",
 
+    transaction_red: "#f75535",
+    transaction_green: "#00a45b",
+  },
     dark: {
 
       name: "dark",
@@ -140,6 +140,25 @@ Alloy.Globals.themes = {
       backgroundColor_alpha0: "#00ffff96",
 
       textColor: "#7F3251",
+
+      transaction_red: "#f75535",
+      transaction_green: "#00a45b",
+    },
+    centralised: {
+
+      name: "centralised",
+      steemlightblue: "#4BA2F2",
+      steemdarkblue: "#1A5099",
+      themeblue: "#9013FE",
+
+      backgroundColor: "#FFFFFF",
+      selectedBackgroundColor: "#F2F2F2",
+      backgroundColor_alpha100: "#FFFFFFFF",
+      backgroundColor_alpha90: "#E6FFFFFF",
+      backgroundColor_alpha70: "#B3FFFFFF",
+      backgroundColor_alpha0: "#00FFFFFF",
+
+      textColor: "#494841",
 
       transaction_red: "#f75535",
       transaction_green: "#00a45b",
