@@ -1430,7 +1430,7 @@ function resetSendWindow() {
 	$.textfield_send_to.value = "";
 	$.textfield_send_amount.value = "";
 	$.textfield_send_memo.value = "";
-	$.token_steem_or_sbd.text = 'steem';
+	$.token_steem_or_sbd.text = 'hive';
 	$.button_send.enabled = true;
 }
 
@@ -1565,13 +1565,13 @@ function scanAccountQR(e) {
 	});
 }
 
-function toggleSteemSBD() {
-	if ($.token_steem_or_sbd.text == 'steem') {
-		$.token_steem_or_sbd.text = 'sbd';
-		$.overlay_send_header_title.text = String.format(L('send_s'), 'sbd');
+function toggleSteemHBD() {
+	if ($.token_steem_or_sbd.text == 'hive') {
+		$.token_steem_or_sbd.text = 'hbd';
+		$.overlay_send_header_title.text = String.format(L('send_s'), 'hbd');
 	} else {
-		$.token_steem_or_sbd.text = 'steem';
-		$.overlay_send_header_title.text = String.format(L('send_s'), 'steem');
+		$.token_steem_or_sbd.text = 'hive';
+		$.overlay_send_header_title.text = String.format(L('send_s'), 'hive');
 	}
 }
 
@@ -1580,7 +1580,7 @@ function scanMemoQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") || (e.result).startsWith("https://steemwallet.app://") ) {
+		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") || (e.result).startsWith("https://steemwallet.app://") || (e.result).startsWith("hive://") || (e.result).startsWith("hivewallet://") || (e.result).startsWith("https://hivewallet.app://") ) {
 			handleURL(e.result);
 		} else {
 			$.textfield_send_memo.value = (e.result);
@@ -1605,14 +1605,14 @@ function checkPrices() {
 		//console.log('now checking prices');
 		var currency = Ti.App.Properties.getString('currency').toLowerCase();
 		helpers.xhrcall(
-			"https://api.coingecko.com/api/v3/simple/price?ids=steem,steem-dollars&vs_currencies="+currency,
+			"https://api.coingecko.com/api/v3/simple/price?ids=hive,hive_dollar&vs_currencies="+currency,
 			"GET",
 			false,
 			function(resje) {
 				var res = JSON.parse(resje.toLowerCase());
 				//console.log(res);
-				Ti.App.Properties.setString('price_steem_usd', res['steem'][currency.toLowerCase()]);
-				Ti.App.Properties.setString('price_sbd_usd', res['steem-dollars'][currency.toLowerCase()]);
+				Ti.App.Properties.setString('price_steem_usd', res['hive'][currency.toLowerCase()]);
+				Ti.App.Properties.setString('price_sbd_usd', res['hive_dollar'][currency.toLowerCase()]);
 
 				updateFiat();
 
@@ -1642,7 +1642,7 @@ function fillAccountsList() {
 				accountname: currentaccounts[i].name,
 			},
 			labelbalance: {
-				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' STEEM | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' SBD'
+				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' HBD'
 				//text: currentaccounts[i].steem + ' | ' + currentaccounts[i].sbd
 			},
 			accountdata: currentaccounts[i],
@@ -2097,9 +2097,9 @@ function setCurrentAccount() {
 
 		var currentaccountdata = helpers.getUserObject(currentaccount);
 
-		var image2show = "https://steemitimages.com/u/" + currentaccount + "/avatar";
+		var image2show = "https://images.hive.blog/u/" + currentaccount + "/avatar";
 		if (currentaccountdata.image != "") {
-			image2show = "https://steemitimages.com/800x800/" + currentaccountdata.image;
+			image2show = "https://images.hive.blog/800x800/" + currentaccountdata.image;
 		}
 
 		if ($.avatar.getImage() != image2show) {
@@ -2107,8 +2107,8 @@ function setCurrentAccount() {
 		}
 		$.avatar.show();
 
-		$.account_amount_steem.text = (helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' STEEM');
-		$.account_amount_sbd.text = (helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' SBD');
+		$.account_amount_steem.text = (helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' HIVE');
+		$.account_amount_sbd.text = (helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' HBD');
 		updateFiat();
 
 		// $.account_amount_sbd_fiat.text = ('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['sbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
@@ -2204,7 +2204,7 @@ function handleURL(url) {
 			var urlx = XCallbackURL.parse(url)['parsedURI'];
 			//console.log(urlx);
 
-      if (urlx.protocol !== 'steem') {
+      if (urlx.protocol !== 'hive') {
           throw new Error("Invalid protocol, expected 'steem:' got '" + url.protocol + "'");
       }
 
@@ -2215,7 +2215,7 @@ function handleURL(url) {
 						resetSendWindow();
 
 						var transfer_to, transfer_amount, transfer_memo = null;
-						var transfer_currency = 'steem';
+						var transfer_currency = 'hive';
 
 						console.log(urlx.host);
 						console.log(urlx.path.split('/'));
@@ -2241,7 +2241,7 @@ function handleURL(url) {
 							}
 
 							if(amount[1]) {
-									var allowed = ['steem','sbd'];
+									var allowed = ['hive','hbd'];
 									if(allowed.includes(amount[1].toLowerCase())) {
 										$.token_steem_or_sbd.text = amount[1].toLowerCase();
 										$.overlay_send_header_title.text = String.format(L('send_s'), amount[1].toLowerCase());

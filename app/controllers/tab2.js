@@ -53,21 +53,21 @@ $.tab2.addEventListener('postlayout', function(e){
 function selectFulltext() {
 	$.browser_url.setSelection(0, $.browser_url.value.length);
 }
-var remotecallbackuri = "steemkey"+helpers.generateBase58Password(10).toLowerCase();
+var remotecallbackuri = "hivekey"+helpers.generateBase58Password(10).toLowerCase();
 
 // see the unminified version of this code in /lib/steemkeychainreference/steem_keychain.js
-var inlinecode_ios = 'var steem_keychain={current_id:1,requests:{},handshake_callback:null,requestHandshake:function(e){steem_keychain.handshake_callback=e,steem_keychain.dispatchCustomEvent("swHandshake","")},requestVerifyKey:function(e,t,s,n){var a={type:"decode",username:e,message:t,method:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignBuffer:function(e,t,s,n){var a={type:"signBuffer",username:e,message:t,method:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestAddAccountAuthority:function(e,t,s,n,a){var o={type:"addAccountAuthority",username:e,authorizedUsername:t,role:s,weight:n,method:"Active"};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestRemoveAccountAuthority:function(e,t,s,n){var a={type:"removeAccountAuthority",username:e,authorizedUsername:t,role:s,method:"Active"};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestBroadcast:function(e,t,s,n){var a={type:"broadcast",username:e,operations:t,method:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignedCall:function(e,t,s,n,a){var o={type:"signedCall",username:e,method:t,params:s,typeWif:n};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestPost:function(e,t,s,n,a,o,u,r,i){var c={type:"post",username:e,title:t,body:s,parent_permlink:n,parent_author:a,json_metadata:o,permlink:u,comment_options:r};steem_keychain.dispatchCustomEvent("swRequest",c,i)},requestVote:function(e,t,s,n,a){var o={type:"vote",username:e,permlink:t,author:s,weight:n};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestCustomJson:function(e,t,s,n,a,o){var u={type:"custom",username:e,id:t,method:s,json:n,display_msg:a};steem_keychain.dispatchCustomEvent("swRequest",u,o)},requestTransfer:function(e,t,s,n,a,o,u){var r={type:"transfer",username:e,to:t,amount:s,memo:n,enforce:u||!1,currency:a};steem_keychain.dispatchCustomEvent("swRequest",r,o)},requestSendToken:function(e,t,s,n,a,o){var u={type:"sendToken",username:e,to:t,amount:s,memo:n,currency:a};steem_keychain.dispatchCustomEvent("swRequest",u,o)},requestDelegation:function(e,t,s,n,a){var o={type:"delegation",username:e,delegatee:t,amount:s,unit:n};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestWitnessVote:function(e,t,s,n){var a={type:"witnessVote",username:e,witness:t,vote:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerUp:function(e,t,s,n){var a={type:"powerUp",username:e,recipient:t,steem:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerDown:function(e,t,s){var n={type:"powerDown",username:e,steem_power:t};steem_keychain.dispatchCustomEvent("swRequest",n,s)},dispatchCustomEvent:function(e,t,s){steem_keychain.requests[steem_keychain.current_id]=s;var n={name:e,data:t,detail:{request_id:steem_keychain.current_id}};steem_keychain.current_id++,document.location="'+remotecallbackuri+'://?params="+encodeURIComponent(JSON.stringify(n))},postMessage:function(e){console.log("received PostMessage"),console.log(e);var t=JSON.parse(decodeURIComponent(e));if(console.log(t),t.data.type&&"steem_keychain_response"==t.data.type){console.log("ok this is a steem_key_chain_response");var s=t.data.response;console.log("response object = "),console.log(s),s&&s.request_id&&(console.log("ok inside if (response && response.request_id) { "),console.log("now logging steem_keychain requests"),console.log(steem_keychain.requests),console.log(steem_keychain),console.log("will now try to execute steem_keychain.requests["+s.request_id+"]"),steem_keychain.requests[s.request_id]?(steem_keychain.requests[s.request_id](s),delete steem_keychain.requests[s.request_id]):console.log("no such request"))}else t.data.type&&"steem_keychain_handshake"==t.data.type&&steem_keychain.handshake_callback&&steem_keychain.handshake_callback()}};';
+var inlinecode_ios = 'var hive_keychain={current_id:1,requests:{},handshake_callback:null,requestHandshake:function(e){hive_keychain.handshake_callback=e,hive_keychain.dispatchCustomEvent("swHandshake","")},requestVerifyKey:function(e,t,s,n){var a={type:"decode",username:e,message:t,method:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignBuffer:function(e,t,s,n){var a={type:"signBuffer",username:e,message:t,method:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestAddAccountAuthority:function(e,t,s,n,a){var i={type:"addAccountAuthority",username:e,authorizedUsername:t,role:s,weight:n,method:"Active"};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestRemoveAccountAuthority:function(e,t,s,n){var a={type:"removeAccountAuthority",username:e,authorizedUsername:t,role:s,method:"Active"};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestBroadcast:function(e,t,s,n){var a={type:"broadcast",username:e,operations:t,method:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignedCall:function(e,t,s,n,a){var i={type:"signedCall",username:e,method:t,params:s,typeWif:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestPost:function(e,t,s,n,a,i,o,r,u){var c={type:"post",username:e,title:t,body:s,parent_permlink:n,parent_author:a,json_metadata:i,permlink:o,comment_options:r};hive_keychain.dispatchCustomEvent("swRequest",c,u)},requestVote:function(e,t,s,n,a){var i={type:"vote",username:e,permlink:t,author:s,weight:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestCustomJson:function(e,t,s,n,a,i){var o={type:"custom",username:e,id:t,method:s,json:n,display_msg:a};hive_keychain.dispatchCustomEvent("swRequest",o,i)},requestTransfer:function(e,t,s,n,a,i,o){var r={type:"transfer",username:e,to:t,amount:s,memo:n,enforce:o||!1,currency:a};hive_keychain.dispatchCustomEvent("swRequest",r,i)},requestSendToken:function(e,t,s,n,a,i){var o={type:"sendToken",username:e,to:t,amount:s,memo:n,currency:a};hive_keychain.dispatchCustomEvent("swRequest",o,i)},requestDelegation:function(e,t,s,n,a){var i={type:"delegation",username:e,delegatee:t,amount:s,unit:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestWitnessVote:function(e,t,s,n){var a={type:"witnessVote",username:e,witness:t,vote:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerUp:function(e,t,s,n){var a={type:"powerUp",username:e,recipient:t,hive:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerDown:function(e,t,s){var n={type:"powerDown",username:e,steem_power:t};hive_keychain.dispatchCustomEvent("swRequest",n,s)},requestCreateProposal:function(e,t,s,n,a,i,o,r,u){var c={type:"createProposal",username:e,receiver:t,subject:s,permlink:n,start:i,end:o,daily_pay:a,extensions:r};hive_keychain.dispatchCustomEvent("swRequest",c,u)},requestRemoveProposal:function(e,t,s,n){var a={type:"removeProposal",username:e,proposal_ids:t,extensions:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestUpdateProposalVote:function(e,t,s,n,a){var i={type:"updateProposalVote",username:e,proposal_ids:t,approve:s,extensions:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},dispatchCustomEvent:function(e,t,s){hive_keychain.requests[hive_keychain.current_id]=s;var n={name:e,data:t,detail:{request_id:hive_keychain.current_id}};hive_keychain.current_id++,document.location="'+remotecallbackuri+'://?params="+encodeURIComponent(JSON.stringify(n))},postMessage:function(e){console.log("received PostMessage"),console.log(e);var t=JSON.parse(decodeURIComponent(e));if(t.data.type&&"hive_keychain_response"==t.data.type){var s=t.data.response;console.log("response object = "),console.log(s),s&&s.request_id&&(console.log("will now try to execute hive_keychain.requests["+s.request_id+"]"),hive_keychain.requests[s.request_id]?(hive_keychain.requests[s.request_id](s),delete hive_keychain.requests[s.request_id]):console.log("no such request"))}else t.data.type&&"hive_keychain_handshake"==t.data.type&&hive_keychain.handshake_callback&&hive_keychain.handshake_callback()}};';
 
-var inlinecode_android = 'var steem_keychain={current_id:1,requests:{},handshake_callback:null,requestHandshake:function(e){steem_keychain.handshake_callback=e,steem_keychain.dispatchCustomEvent("swHandshake","")},requestVerifyKey:function(e,t,s,n){var a={type:"decode",username:e,message:t,method:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignBuffer:function(e,t,s,n){var a={type:"signBuffer",username:e,message:t,method:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestAddAccountAuthority:function(e,t,s,n,a){var o={type:"addAccountAuthority",username:e,authorizedUsername:t,role:s,weight:n,method:"Active"};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestRemoveAccountAuthority:function(e,t,s,n){var a={type:"removeAccountAuthority",username:e,authorizedUsername:t,role:s,method:"Active"};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestBroadcast:function(e,t,s,n){var a={type:"broadcast",username:e,operations:t,method:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignedCall:function(e,t,s,n,a){var o={type:"signedCall",username:e,method:t,params:s,typeWif:n};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestPost:function(e,t,s,n,a,o,r,i,u){var c={type:"post",username:e,title:t,body:s,parent_permlink:n,parent_author:a,json_metadata:o,permlink:r,comment_options:i};steem_keychain.dispatchCustomEvent("swRequest",c,u)},requestVote:function(e,t,s,n,a){var o={type:"vote",username:e,permlink:t,author:s,weight:n};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestCustomJson:function(e,t,s,n,a,o){var r={type:"custom",username:e,id:t,method:s,json:n,display_msg:a};steem_keychain.dispatchCustomEvent("swRequest",r,o)},requestTransfer:function(e,t,s,n,a,o,r){var i={type:"transfer",username:e,to:t,amount:s,memo:n,enforce:r||!1,currency:a};steem_keychain.dispatchCustomEvent("swRequest",i,o)},requestSendToken:function(e,t,s,n,a,o){var r={type:"sendToken",username:e,to:t,amount:s,memo:n,currency:a};steem_keychain.dispatchCustomEvent("swRequest",r,o)},requestDelegation:function(e,t,s,n,a){var o={type:"delegation",username:e,delegatee:t,amount:s,unit:n};steem_keychain.dispatchCustomEvent("swRequest",o,a)},requestWitnessVote:function(e,t,s,n){var a={type:"witnessVote",username:e,witness:t,vote:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerUp:function(e,t,s,n){var a={type:"powerUp",username:e,recipient:t,steem:s};steem_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerDown:function(e,t,s){var n={type:"powerDown",username:e,steem_power:t};steem_keychain.dispatchCustomEvent("swRequest",n,s)},dispatchCustomEvent:function(e,t,s){steem_keychain.requests[steem_keychain.current_id]=s;var n={name:e,data:t,detail:{request_id:steem_keychain.current_id}};steem_keychain.current_id++;var a=new XMLHttpRequest,o=window.location.origin;"/"!=o.slice(-1)&&(o+="/");var r=o+"?xrf='+remotecallbackuri+'&params="+encodeURIComponent(JSON.stringify(n));a.open("HEAD",r),a.send()},postMessage:function(e){console.log("received PostMessage"),console.log(e);var t=JSON.parse(decodeURIComponent(e));if(console.log(t),t.data.type&&"steem_keychain_response"==t.data.type){console.log("ok this is a steem_key_chain_response");var s=t.data.response;console.log("response object = "),console.log(s),s&&s.request_id&&(console.log("ok inside if (response && response.request_id) { "),console.log("now logging steem_keychain requests"),console.log(steem_keychain.requests),console.log(steem_keychain),console.log("will now try to execute steem_keychain.requests["+s.request_id+"]"),steem_keychain.requests[s.request_id]?(steem_keychain.requests[s.request_id](s),delete steem_keychain.requests[s.request_id]):console.log("no such request"))}else t.data.type&&"steem_keychain_handshake"==t.data.type&&steem_keychain.handshake_callback&&steem_keychain.handshake_callback()}};';
+var inlinecode_android = 'var hive_keychain={current_id:1,requests:{},handshake_callback:null,requestHandshake:function(e){hive_keychain.handshake_callback=e,hive_keychain.dispatchCustomEvent("swHandshake","")},requestVerifyKey:function(e,t,s,n){var a={type:"decode",username:e,message:t,method:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignBuffer:function(e,t,s,n){var a={type:"signBuffer",username:e,message:t,method:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestAddAccountAuthority:function(e,t,s,n,a){var i={type:"addAccountAuthority",username:e,authorizedUsername:t,role:s,weight:n,method:"Active"};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestRemoveAccountAuthority:function(e,t,s,n){var a={type:"removeAccountAuthority",username:e,authorizedUsername:t,role:s,method:"Active"};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestBroadcast:function(e,t,s,n){var a={type:"broadcast",username:e,operations:t,method:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestSignedCall:function(e,t,s,n,a){var i={type:"signedCall",username:e,method:t,params:s,typeWif:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestPost:function(e,t,s,n,a,i,o,r,u){var c={type:"post",username:e,title:t,body:s,parent_permlink:n,parent_author:a,json_metadata:i,permlink:o,comment_options:r};hive_keychain.dispatchCustomEvent("swRequest",c,u)},requestVote:function(e,t,s,n,a){var i={type:"vote",username:e,permlink:t,author:s,weight:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestCustomJson:function(e,t,s,n,a,i){var o={type:"custom",username:e,id:t,method:s,json:n,display_msg:a};hive_keychain.dispatchCustomEvent("swRequest",o,i)},requestTransfer:function(e,t,s,n,a,i,o){var r={type:"transfer",username:e,to:t,amount:s,memo:n,enforce:o||!1,currency:a};hive_keychain.dispatchCustomEvent("swRequest",r,i)},requestSendToken:function(e,t,s,n,a,i){var o={type:"sendToken",username:e,to:t,amount:s,memo:n,currency:a};hive_keychain.dispatchCustomEvent("swRequest",o,i)},requestDelegation:function(e,t,s,n,a){var i={type:"delegation",username:e,delegatee:t,amount:s,unit:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},requestWitnessVote:function(e,t,s,n){var a={type:"witnessVote",username:e,witness:t,vote:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerUp:function(e,t,s,n){var a={type:"powerUp",username:e,recipient:t,hive:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestPowerDown:function(e,t,s){var n={type:"powerDown",username:e,steem_power:t};hive_keychain.dispatchCustomEvent("swRequest",n,s)},requestCreateProposal:function(e,t,s,n,a,i,o,r,u){var c={type:"createProposal",username:e,receiver:t,subject:s,permlink:n,start:i,end:o,daily_pay:a,extensions:r};hive_keychain.dispatchCustomEvent("swRequest",c,u)},requestRemoveProposal:function(e,t,s,n){var a={type:"removeProposal",username:e,proposal_ids:t,extensions:s};hive_keychain.dispatchCustomEvent("swRequest",a,n)},requestUpdateProposalVote:function(e,t,s,n,a){var i={type:"updateProposalVote",username:e,proposal_ids:t,approve:s,extensions:n};hive_keychain.dispatchCustomEvent("swRequest",i,a)},dispatchCustomEvent:function(e,t,s){hive_keychain.requests[hive_keychain.current_id]=s;var n={name:e,data:t,detail:{request_id:hive_keychain.current_id}};hive_keychain.current_id++;var a=new XMLHttpRequest,i=window.location.origin;"/"!=i.slice(-1)&&(i+="/");var o=i+"?xrf='+remotecallbackuri+'&params="+encodeURIComponent(JSON.stringify(n));a.open("HEAD",o),a.send()},postMessage:function(e){console.log("received PostMessage"),console.log(e);var t=JSON.parse(decodeURIComponent(e));if(t.data.type&&"hive_keychain_response"==t.data.type){var s=t.data.response;console.log("response object = "),console.log(s),s&&s.request_id&&(console.log("will now try to execute hive_keychain.requests["+s.request_id+"]"),hive_keychain.requests[s.request_id]?(hive_keychain.requests[s.request_id](s),delete hive_keychain.requests[s.request_id]):console.log("no such request"))}else t.data.type&&"hive_keychain_handshake"==t.data.type&&hive_keychain.handshake_callback&&hive_keychain.handshake_callback()}};';
 
 function postSteemKeyCommand(obj) {
 	console.log('trying to post SteemKey Command');
 	console.log(obj);
 	// replying responses into the webview, we are using stringify here as everything is expected to be strings. This could be limitting if actual buffers are requested.
 	if(OS_ANDROID) {
-		$.dappview.url = 'javascript:window.steem_keychain.postMessage("'+encodeURIComponent(encodeURIComponent(JSON.stringify(obj)))+'");';
+		$.dappview.url = 'javascript:window.hive_keychain.postMessage("'+encodeURIComponent(encodeURIComponent(JSON.stringify(obj)))+'");';
 	} else {
-		$.dappview.evalJS('window.steem_keychain.postMessage(\''+encodeURIComponent(JSON.stringify(obj))+'\');');
+		$.dappview.evalJS('window.hive_keychain.postMessage(\''+encodeURIComponent(JSON.stringify(obj))+'\');');
 	}
 }
 
@@ -172,7 +172,7 @@ function fillAccountsList() {
 			// 	accountname: currentaccounts[i].name,
 			// },
 			labelbalance: {
-				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' STEEM | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' SBD'
+				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' HBD'
 				//text: currentaccounts[i].steem + ' | ' + currentaccounts[i].sbd
 			},
 			accountdata: currentaccounts[i],
@@ -321,7 +321,9 @@ function populateOperations() {
 	switch(current_query_object['data']['type']) {
 
 		case 'broadcast':
+			//
 			current_query_object['operations'] = current_query_object['data']['operations'];
+
 		break;
 
 		case 'custom':
@@ -537,12 +539,21 @@ function populateOperations() {
 		break;
 
 		case 'transfer':
+
+		// hack for remapping hive/hbd to steem/sbd (for_now)...
+		var sbdorsteemmapped = {
+			"hive": "steem",
+			"hbd": "sbd",
+		}
+
+		console.log("TRANSFER DETECTED");
+
 			current_query_object['operations'] = [[
 				"transfer",
 				{
 					from: current_query_object['data']['username'],
 					to: current_query_object['data']['to'].toLowerCase(),
-					amount: current_query_object['data']['amount'].toLocaleString(undefined, { minimumFractionDigits: 3,maximumFractionDigits: 3  }) + ' ' + current_query_object['data']['currency'].toUpperCase(),
+					amount: current_query_object['data']['amount'].toLocaleString(undefined, { minimumFractionDigits: 3,maximumFractionDigits: 3  }) + ' ' + sbdorsteemmapped[(current_query_object['data']['currency']).toLowerCase()].toUpperCase(),
 					memo: current_query_object['data']['memo'],
 				}
 			]];
@@ -551,7 +562,7 @@ function populateOperations() {
 		case 'delegation':
 
 			var vests;
-			if(current_query_object['data']['unit'] == "SP") {
+			if(current_query_object['data']['unit'] == "SP" || current_query_object['data']['unit'] == "HP") {
 				// should calc vests here from global dynamic properties.
 				// current_query_object['data']['amount'];
 				Alloy.Globals.loading.show(L('loadingMessage'), false);
@@ -637,7 +648,7 @@ function populateOperations() {
 				{
 					from: current_query_object['data']['username'],
 					to: current_query_object['data']['recipient'],
-					amount: parseFloat(current_query_object['data']['steem']),
+					amount: parseFloat(current_query_object['data']['hive']),
 				}
 			]];
 		break;
@@ -691,7 +702,7 @@ function populateOkResponse(result) {
 		{
 			data:
 			{
-					type: "steem_keychain_response",
+					type: "hive_keychain_response",
 					response: {
 						data: current_query_object['data'],
 						error: null,
@@ -711,7 +722,7 @@ function populateErrorResponse(error) {
 		{
 			data:
 			{
-					type: "steem_keychain_response",
+					type: "hive_keychain_response",
 					response: {
 						data: current_query_object['data'],
 						error: error.message,
@@ -864,6 +875,30 @@ function unlockAndSign(){
 
 	} else {
 		hideOverlay($.confirmDialog);
+
+		// overwrite "amounts"
+		// workaround: loop through each operation and check if has key "amount", if amount, find/replace HIVE/HBD for STEEM/SBD for now ___
+		var ops_holder = [];
+
+		for(var i = 0; i < current_query_object['operations'].length; i++) {
+			var replaceoperation = current_query_object['operations'][i];
+			if(replaceoperation[1].hasOwnProperty('amount')) {
+				try {
+					if(typeof replaceoperation[1]['amount'] === "string") {
+						console.log("replacing, because its a string:---> " + replaceoperation[1]['amount']);
+						replaceoperation[1]['amount'] = replaceoperation[1]['amount'].replace(" HBD"," SBD").replace(" HIVE"," STEEM").replace(" HP", " SP");
+					}
+				} catch(replacerr) {
+					console.log(replacerr);
+				}
+			}
+			ops_holder.push(replaceoperation);
+		}
+
+		current_query_object['operations'] = ops_holder;
+
+		// end workaround;
+
 		wallet_helpers.signAndBroadcastOperation(
 			current_query_object['data']['username'],
 			current_query_object['data']['method'],
@@ -1005,7 +1040,7 @@ function handleSteemKeyCommand(_url) {
 
 		if(queryobject['name'] == "swHandshake") {
 			// ok received handshake request, simply return a response shaking back!
-			postSteemKeyCommand({data: {type: "steem_keychain_handshake"}});
+			postSteemKeyCommand({data: {type: "hive_keychain_handshake"}});
 		} else if(queryobject['name'] == "swRequest") {
 			preCheckHandleSwRequest(queryobject);
 		} else {
@@ -1086,6 +1121,8 @@ $.dappview.addEventListener('load', function(e){
 
 	$.browser_url.value = e.url;
 
+
+
 	if(OS_IOS) {
 		$.browser_url.value = $.dappview.evalJS('window.location.href');
 	}
@@ -1099,7 +1136,11 @@ $.dappview.addEventListener('load', function(e){
 	$.progressbar.opacity = 0;
 
 	setTimeout(function() {
-		console.log("\n\n******* injecting steemkeychain ******** \n\n");
+		console.log("\n\n******* injecting Keychain for Hive ******** \n\n");
+		console.log("e.url  ===> "+ e.url);
+		console.log("window.location.origin  ===> "+ $.dappview.evalJS('window.location.origin'));
+		console.log("window.location.href  ===> "+ $.dappview.evalJS('window.location.href'));
+
 		if(OS_ANDROID) {
 			$.dappview.url = 'javascript:var scriptTag = document.createElement("script"); scriptTag.type = \'text/javascript\'; var inlineScript = document.createTextNode(\''+inlinecode_android+'\'); scriptTag.appendChild(inlineScript); var swcontainer =  document.getElementsByTagName(\'script\')[0]; swcontainer.parentNode.insertBefore(scriptTag, swcontainer);';
 

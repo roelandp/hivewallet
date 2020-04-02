@@ -136,7 +136,7 @@ var bcontainer_branding_title = Ti.UI.createLabel({
 	},
 	color: 'white',
 	opacity: 0.3,
-	text: 'steemwallet'
+	text: 'hivewallet'
 });
 
 bcontainer_branding.add(bcontainer_branding_icon);
@@ -1110,7 +1110,7 @@ function resetSendWindow() {
 	$.textfield_send_to.value = "";
 	$.textfield_send_amount.value = "";
 	$.textfield_send_memo.value = "";
-	$.token_steem_or_sbd.text = 'steem';
+	$.token_steem_or_sbd.text = 'hive';
 	$.button_send.enabled = true;
 	memo_encrypted_check = false;
 }
@@ -1118,6 +1118,11 @@ function resetSendWindow() {
 
 function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 
+	// hack for remapping hive/hbd to steem/sbd (for_now)...
+	var sbdorsteemmapped = {
+		"hive": "steem",
+		"hbd": "sbd",
+	}
 	wallet_helpers.scanWalletForKey(from, function(key) {
 		//key['key'] has the wif.
 
@@ -1142,7 +1147,7 @@ function broadcastSend(from, tosend, amount, sbdorsteem, memo) {
 						['transfer', {
 							from: from,
 							to: tosend,
-							amount: amount + ' ' + sbdorsteem.toUpperCase(),
+							amount: amount + ' ' + sbdorsteemmapped[(sbdorsteem).toLowerCase()].toUpperCase(),
 							memo: memo
 						}]
 					],
@@ -1253,7 +1258,7 @@ function scanAccountQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") || (e.result).startsWith("https://steemwallet.app://") ) {
+		if( (e.result).startsWith("hive://") || (e.result).startsWith("hivewallet://") || (e.result).startsWith("https://hivewallet.app://") || (e.result).startsWith("hive://") || (e.result).startsWith("hivewallet://") || (e.result).startsWith("https://hivewallet.app://") ) {
 			handleURL(e.result);
 		} else {
 			$.textfield_send_to.value = (e.result);
@@ -1272,13 +1277,13 @@ function scanAccountQR(e) {
 	});
 }
 
-function toggleSteemSBD() {
-	if ($.token_steem_or_sbd.text == 'steem') {
-		$.token_steem_or_sbd.text = 'sbd';
-		$.overlay_send_header_title.text = String.format(L('send_s'), 'sbd');
+function toggleSteemHBD() {
+	if ($.token_steem_or_sbd.text == 'hive') {
+		$.token_steem_or_sbd.text = 'hbd';
+		$.overlay_send_header_title.text = String.format(L('send_s'), 'hbd');
 	} else {
-		$.token_steem_or_sbd.text = 'steem';
-		$.overlay_send_header_title.text = String.format(L('send_s'), 'steem');
+		$.token_steem_or_sbd.text = 'hive';
+		$.overlay_send_header_title.text = String.format(L('send_s'), 'hive');
 	}
 }
 
@@ -1287,7 +1292,7 @@ function scanMemoQR(e) {
 	Barcode.addEventListener('success', function _sucfunc(e) {
 		Barcode.removeEventListener('success', _sucfunc);
 		//Ti.API.info('Success called with barcode: ' + e.result);
-		if( (e.result).startsWith("steem://") || (e.result).startsWith("steemwallet://") || (e.result).startsWith("https://steemwallet.app://") ) {
+		if( (e.result).startsWith("hive://") || (e.result).startsWith("hivewallet://") || (e.result).startsWith("https://hivewallet.app://") || (e.result).startsWith("hive://") || (e.result).startsWith("hivewallet://") || (e.result).startsWith("https://hivewallet.app://") ) {
 			handleURL(e.result);
 		} else {
 			$.textfield_send_memo.value = (e.result);
@@ -1325,7 +1330,7 @@ function fillAccountsList() {
 				accountname: currentaccounts[i].name,
 			},
 			labelbalance: {
-				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' STEEM | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' SBD'
+				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' HBD'
 				//text: currentaccounts[i].steem + ' | ' + currentaccounts[i].sbd
 			},
 			accountdata: currentaccounts[i],
@@ -1551,6 +1556,7 @@ function updateAccount(e) {
 			}
 
 			setCurrentAccount();
+			helpers_eventdispatcher.trigger('refreshaccountlist');
 
 		},
 		function(error) {
@@ -1675,7 +1681,13 @@ function updateAccount(e) {
 
 function handleAddAccount(e) {
 
-	$.textfield_addaccount.blur();
+	console.log("handleAddAccount triggered");
+
+	try {
+		$.textfield_addaccount.blur();
+	} catch(err){
+		console.log(err);
+	}
 
 	if ($.textfield_addaccount.value.length > 0) {
 		helpers.steemAPIcall(
@@ -1785,9 +1797,9 @@ function setCurrentAccount() {
 
 		var currentaccountdata = helpers.getUserObject(currentaccount);
 
-		var image2show = "https://steemitimages.com/u/" + currentaccount + "/avatar";
+		var image2show = "https://images.hive.blog/u/" + currentaccount + "/avatar";
 		if (currentaccountdata.image != "") {
-			image2show = "https://steemitimages.com/800x800/" + currentaccountdata.image;
+			image2show = "https://images.hive.blog/800x800/" + currentaccountdata.image;
 		}
 
 		if ($.avatar.getImage() != image2show) {
@@ -1795,8 +1807,8 @@ function setCurrentAccount() {
 		}
 		$.avatar.show();
 
-		$.account_amount_steem.text = (helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' STEEM');
-		$.account_amount_sbd.text = (helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' SBD');
+		$.account_amount_steem.text = (helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' HIVE');
+		$.account_amount_sbd.text = (helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' HBD');
 		updateFiat();
 
 		// $.account_amount_sbd_fiat.text = ('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['sbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
@@ -1869,17 +1881,17 @@ function handleURL(url) {
 	if(url) {
 			//console.log('HandleURL called', url);
 
-			// app also accepts steemwallet:// so needs to modify to steem:// here.
-			if(url.startsWith('steemwallet://')) {
-				url = url.replace('steemwallet://','steem://');
+			// app also accepts hivewallet:// so needs to modify to hive:// here.
+			if(url.startsWith('hivewallet://')) {
+				url = url.replace('hivewallet://','hive://');
 			}
 
-			if(url.startsWith('https://steemwallet.app')) {
-				url = url.replace('https://steemwallet.app','steem://');
+			if(url.startsWith('https://hivewallet.app')) {
+				url = url.replace('https://hivewallet.app','hive://');
 			}
 
-			if(url.startsWith('steem:///')) {
-				url = url.replace('steem:///','steem://');
+			if(url.startsWith('hive:///')) {
+				url = url.replace('hive:///','hive://');
 			}
 
 			// check if app starts with transfer alias. Then we can prepopulate with transferwindow.
@@ -1887,18 +1899,18 @@ function handleURL(url) {
 			var urlx = XCallbackURL.parse(url)['parsedURI'];
 			//console.log(urlx);
 
-      if (urlx.protocol !== 'steem') {
+      if (urlx.protocol !== 'hive') {
           throw new Error("Invalid protocol, expected 'steem:' got '" + url.protocol + "'");
       }
 
-			if(url.length > ('steem://').length) {
+			if(url.length > ('hive://').length) {
 
 				if ((urlx.host == 'sign' && urlx.path.split('/').slice(1)[0] == 'transfer') || urlx.host == 'transfer') {
 
 						resetSendWindow();
 
 						var transfer_to, transfer_amount, transfer_memo = null;
-						var transfer_currency = 'steem';
+						var transfer_currency = 'hive';
 
 						console.log(urlx.host);
 						console.log(urlx.path.split('/'));
@@ -1924,7 +1936,7 @@ function handleURL(url) {
 							}
 
 							if(amount[1]) {
-									var allowed = ['steem','sbd'];
+									var allowed = ['hive','hbd'];
 									if(allowed.includes(amount[1].toLowerCase())) {
 										$.token_steem_or_sbd.text = amount[1].toLowerCase();
 										$.overlay_send_header_title.text = String.format(L('send_s'), amount[1].toLowerCase());

@@ -328,8 +328,8 @@ scanAccountQR	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWalle
 _sucfunc	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^	Barcode.addEventListener('success', function _sucfunc(e) {$/;"	function	line:1253
 cameraPermission	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^	cameraPermission(function(re) {$/;"	function	line:1264
 showOverlayCreateWallet.scanAccountQR	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^function scanAccountQR(e) {$/;"	function	line:1251
-toggleSteemSBD	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^function toggleSteemSBD() {$/;"	function	line:1275
-showOverlayCreateWallet.toggleSteemSBD	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^function toggleSteemSBD() {$/;"	function	line:1275
+toggleSteemHBD	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^function toggleSteemHBD() {$/;"	function	line:1275
+showOverlayCreateWallet.toggleSteemHBD	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^function toggleSteemHBD() {$/;"	function	line:1275
 scanMemoQR	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^function scanMemoQR(e) {$/;"	function	line:1285
 _sucfunc	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^	Barcode.addEventListener('success', function _sucfunc(e) {$/;"	function	line:1287
 cameraPermission	/Users/roelandp/Documents/Appcelerator_Studio_Workspace/SteemWallet/app/controllers/wallet.js	/^	cameraPermission(function(re) {$/;"	function	line:1298

@@ -159,7 +159,7 @@ function addNode() {
             Ti.App.Properties.setObject('apinodes', apinodes);
             toggleAddNodeView();
             compileNodeList();
-            alert('node_added_not_yet_active');
+            alert(L('node_added_not_yet_active'));
           } else {
             alert(L('node_unexpected_response_cant_add'));
             return false;

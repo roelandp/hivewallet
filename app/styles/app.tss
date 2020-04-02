@@ -124,7 +124,7 @@
 	},
 	color: Alloy.Globals.theme.steemlightblue,
 	opacity: 0.05,
-	left: -100
+	left: -500
 }
 "#label" : {
 	font: {

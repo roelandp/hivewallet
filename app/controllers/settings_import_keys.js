@@ -116,7 +116,7 @@ var bcontainer_branding_title = Ti.UI.createLabel({
 	},
 	color: 'white',
 	opacity: 0.3,
-	text: 'steemwallet'
+	text: 'hivewallet'
 });
 
 bcontainer_branding.add(bcontainer_branding_icon);

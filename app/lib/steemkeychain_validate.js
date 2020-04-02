@@ -71,7 +71,7 @@ function isFilledWeight(obj) {
 }
 
 function isFilledCurrency(obj) {
-    return isFilled(obj) && (obj == "STEEM" || obj == "SBD");
+    return isFilled(obj) && (obj == "HIVE" || obj == "HBD");
 }
 
 function isFilledKey(obj) {

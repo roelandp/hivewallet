@@ -25,12 +25,18 @@
               <Label class="fontSize20 padhorizontal_20" textid="browser_do_not_prompt_list"></Label>
             </View>
           </TableViewRow>
+          <TableViewRow item="keepunlocked">
+            <View class="layout_horizontal height_UISIZE">
+              <Label class="menuicon fontSize20">🔓</Label>
+              <Label class="fontSize20 padhorizontal_20" textid="keep_unlocked"></Label>
+            </View>
+          </TableViewRow>
           <TableViewRow item="apinode">
             <View class="layout_horizontal height_UISIZE">
               <Label class="menuicon fontSize20">🔌</Label>
               <Label class="fontSize20 padhorizontal_20" textid="settings_apinode"></Label>
             </View>
-            <Label class="rightmenu" id="settings_preview_node">api.steemit.com</Label>
+            <Label class="rightmenu" id="settings_preview_node">api.hive.blog</Label>
           </TableViewRow>
           <TableViewRow item="currency">
             <View class="layout_horizontal height_UISIZE">
@@ -49,7 +55,7 @@
           <TableViewRow item="buysteem">
             <View class="layout_horizontal height_UISIZE">
               <Label class="menuicon fontSize20">s</Label>
-              <Label class="fontSize20 padhorizontal_20">buy steem</Label>
+              <Label class="fontSize20 padhorizontal_20">buy hive</Label>
             </View>
           </TableViewRow>
           <TableViewRow item="reset">

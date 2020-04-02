@@ -15,10 +15,10 @@
 		<View class="layout_vertical" id="container_transactions">
 			<View id="container_transactions_balance" class="layout_vertical height_UISIZE container_pad">
 
-				<Label id="account_amount_steem" class="fontRegular fontSize25 textAlignLeft width_UIFILL">0.000 STEEM</Label>
+				<Label id="account_amount_steem" class="fontRegular fontSize25 textAlignLeft width_UIFILL">0.000 HIVE</Label>
 				<Label id="account_amount_steem_fiat" class="fontRegular fontSize15 textAlignLeft width_UIFILL">$ 0.00</Label>
 				<View class="height15"/>
-				<Label id="account_amount_sbd" class="fontRegular fontSize25 textAlignLeft width_UIFILL">0.000 SBD</Label>
+				<Label id="account_amount_sbd" class="fontRegular fontSize25 textAlignLeft width_UIFILL">0.000 HBD</Label>
 				<Label id="account_amount_sbd_fiat" class="fontRegular fontSize15 textAlignLeft width_UIFILL">$ 0.00</Label>
 
 			</View>
@@ -99,7 +99,7 @@
 		<View id="container_top_brand" class="layout_vertical height_UISIZE">
 			<View id="container_branding" class="layout_horizontal height_UISIZE container_pad">
 				<Label id="branding_icon" onClick="closeWin">←</Label>
-				<Label id="branding_title">steemwallet</Label>
+				<Label id="branding_title">hivewallet</Label>
 			</View>
 		</View>
 
@@ -198,7 +198,7 @@
 		<View id="overlay_send" class="overlay_container">
 			<View class="overlay_header">
 				<View class="divider top0"></View>
-				<Label textid="overlay_title_send_steem" class="overlay_header_title" id="overlay_send_header_title"></Label>
+				<Label textid="overlay_title_send_hive" class="overlay_header_title" id="overlay_send_header_title"></Label>
 				<View class="closeBut">
 					<Button class="button closeBut_text" onClick="hideOverlaySend">✕</Button>
 				</View>
@@ -209,7 +209,7 @@
 					<Label class="inputholder_label" textid="overlay_body_send_to"></Label>
 					<TextField
 						class="inputholder_textfield inputholder_textfield_send"
-						hinttextid="steem_username"
+						hinttextid="hive_username"
 						autocapitalization="false"
 						autocorrect="false"
 						enableReturnKey="true"
@@ -236,7 +236,7 @@
 						passwordMask="false"
 						id="textfield_send_amount"
 						keyboardType="Titanium.UI.KEYBOARD_TYPE_DECIMAL_PAD"></TextField>
-					<Label class="button fontSize15" id="token_steem_or_sbd" onClick="toggleSteemSBD">steem</Label>
+					<Label class="button fontSize15" id="token_steem_or_sbd" onClick="toggleSteemHBD">hive</Label>
 				</View>
 				<View class="divider inputholder_divider"/>
 				<View height="70">

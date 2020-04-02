@@ -74,7 +74,7 @@ function functions() {
       var url = XCallbackURL.parse(steemUrl)['parsedURI'];
       //console.log(url);
 
-      if (url.protocol !== 'steem') {
+      if (url.protocol !== 'hive') {
           throw new Error("Invalid protocol, expected 'steem:' got '" + url.protocol + "'");
       }
       if (url.host !== 'sign') {

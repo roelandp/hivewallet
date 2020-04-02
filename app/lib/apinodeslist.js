@@ -1,30 +1,22 @@
 module.exports = exports = [
   {
-    maintainer: '@steemit',
-    url: 'https://api.steemit.com'
-  },
-  {
-    maintainer: '@minnowsupport',
-    url: 'https://steemd.minnowsupportproject.org'
+    maintainer: '@blocktrades',
+    url: 'https://api.hive.blog'
   },
   {
     maintainer: '@gtg',
-    url: 'https://api.steem.house'
-  },
-  {
-    maintainer: '@ausbitbank',
-    url: 'https://rpc.steemviz.com'
-  },
-  {
-    maintainer: '@privex',
-    url: 'https://steemd.privex.io'
-  },
-  {
-    maintainer: '@themarkymark',
-    url: 'https://rpc.usesteem.com'
+    url: 'https://api.openhive.network'
   },
   {
     maintainer: '@anyx',
-    url: 'https://hive.anyx.io'
+    url: 'https://anyx.io'
+  },
+  {
+    maintainer: '@drakos',
+    url: 'https://api.hivekings.com'
+  },
+  {
+    maintainer: '@privex',
+    url: 'https://hived.privex.io'
   }
 ];

@@ -1,5 +1,5 @@
 <resources>
-    <string name="intro_text">steemwallet este un portofel sigur pentru mobil care permite trimiterea și primirea de STEEM și SBD</string>
+    <string name="intro_text">hivewallet este un portofel sigur pentru mobil care permite trimiterea și primirea de HIVE și HBD</string>
     <string name="add_account">adaugă cont</string>
     <string name="hi_there">salut!</string>
     <string name="overlay_title_addaccount">adaugă cont</string>
@@ -9,9 +9,9 @@
 
     <string name="overlay_title_pickaccounts">selectează contul</string>
 
-    <string name="overlay_title_receive">primește steem/sbd</string>
+    <string name="overlay_title_receive">primește hive/hbd</string>
 
-    <string name="overlay_title_send">trimite steem/sbd</string>
+    <string name="overlay_title_send">trimite hive/hbd</string>
     <string name="send">trimite</string>
     <string name="receive">primește</string>
 
@@ -35,7 +35,7 @@
 
     <string name="explain_no_tx_in_listview">API-ul account_history este un obiectiv final agregat, returnând toate acțiunile pentru contul dat. Din păcate nu s-au înregistrat tranzacții recente. Asta înseamnă că acest cont este foarte activ cu o altă activitate pe platformă</string>
     <string name="loading_s">Se încarcă tranzacțiile recente ale %1$s</string>
-    <string name="qrexplain">scanează acest cod QR sau cere transferul de steem/sbd la: </string>
+    <string name="qrexplain">scanează acest cod QR sau cere transferul de hive/hbd la: </string>
 
     <string name="create_wallet_explain">Cheile tale sunt stocate într-un portofel criptat. Folosește o parolă unică și puternică pentru criptare!</string>
 	<string name="optionally_store_in_device_keychain">Opțional, poți stoca parola în sistemul de stocare criptată al dispozitivului tău ca să-ți poți debloca portofelul și răspândi/semna folosind %1$s.</string>
@@ -54,15 +54,15 @@
     <string name="unlock">deblochează</string>
     <string name="wallet_file_not_exist">Portofelul nu există. Creează unul.</string>
 
-    <string name="overlay_body_importprivatekey_description">Adaugă orice cheie activă (!) în portofelul tău criptat, pentru a putea trimite steem/sbd.\n\nNu ai o cheie activă? Învață despre ele! Încearcă să introduci parola contului %1$s în schimb.</string>
+    <string name="overlay_body_importprivatekey_description">Adaugă orice cheie activă (!) în portofelul tău criptat, pentru a putea trimite hive/hbd.\n\nNu ai o cheie activă? Învață despre ele! Încearcă să introduci parola contului %1$s în schimb.</string>
     <string name="insert_private_key_or_password">introdu cheia aici</string>
 
     <string name="please_type_paste_or_scan_a_privkey">cheie privată</string>
     <string name="no_account_found_for_given_key">Nu s-a găsit niciun cont aferent acestei chei</string>
     <string name="send_s">trimite %1$s</string>
-    <string name="overlay_title_send_steem">trimite steem</string>
+    <string name="overlay_title_send_hive">trimite hive</string>
     <string name="overlay_body_send_to">către</string>
-    <string name="steem_username">utilizator steem</string>
+    <string name="hive_username">utilizator hive</string>
     <string name="overlay_body_send_amount">sumă</string>
     <string name="overlay_body_send_memo">memo</string>
     <string name="optionally_type_a_memo">lasă o notă (opțional)</string>
@@ -105,6 +105,7 @@
     <string name="error_node_url_already_added">Nodul se află deja pe listă</string>
     <string name="node_unexpected_response_cant_add">Răspuns neașteptat de la nod.</string>
     <string name="removed_node_with_url_s">Nodul %1$s a fost înlăturat</string>
+    <string name="node_added_not_yet_active">Node added to list. Not yet active.\n\nClick it to make it the active node.</string>
     <string name="restart_app_for_theme_changes">Repornește aplicația pentru a aplica tema.</string>
     <string name="change_theme">Schimbă tema?</string>
     <string name="overlay_title_settings">setări</string>
@@ -145,10 +146,10 @@
     <string name="ERROR_each_account_segment_should_end_with_a_letter_or_digit">each account segment should end with a letter or digit</string>
     <string name="ERROR_each_account_segment_should_be_longer">each account segment should be longer</string>
     <string name="overlay_title_create_account">create account</string>
-    <string name="createview_accountname">Use an in-app payment to instantly register a new account on the Steem chain.\n\nWhich username would you like to register?</string>
+    <string name="createview_accountname">Use an in-app payment to instantly register a new account on the Hive chain.\n\nWhich username would you like to register?</string>
     <string name="desired_username">desired username</string>
     <string name="next">next</string>
-    <string name="createview_password">Steem is a blockchain. A blockchain has no "password forgot" option. You are responsible for securely storing your master password.\n\nWe have generated a strong master password for you, but feel free to generate another one!</string>
+    <string name="createview_password">Hive is a blockchain. A blockchain has no "password forgot" option. You are responsible for securely storing your master password.\n\nWe have generated a strong master password for you, but feel free to generate another one!</string>
     <string name="createview_confirmpassword">Confirm your master password to continue:</string>
     <string name="confirm_passphrase">confirm master password</string>
     <string name="complete_order">purchase</string>
@@ -188,5 +189,11 @@
     <string name="dnpl_no_content_explainer">If you authorize any operations in the Dapp Browser to "Do not prompt again" they will be listed here, so you can review them and, if necessary, revoke them.</string>
     <string name="browser_do_not_prompt_list">browser settings</string>
     <string name="overlay_title_settings_do_not_prompt">do not prompt</string>
+
+    <string name="overlay_title_send_steem">send hive</string>
+    <string name="keep_unlocked">session unlock</string>
+    <string name="overlay_title_settings_keep_unlocked">session unlock</string>
+    <string name="overlay_body_settings_keep_unlocked">If you find it annoying to unlock your wallet for every broadcast, you can switch on "20 minute unlock". This way you only have to unlock your wallet once every 20 minutes and for the rest of your transactions it will use the in-memory stored wallet passphrase.</string>
+    <string name="keep_unlocked_label">20 minute unlock</string>
 
     </resources>

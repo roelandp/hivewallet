@@ -163,10 +163,8 @@ Alloy.Globals.themes = {
       transaction_red: "#f75535",
       transaction_green: "#00a45b",
     }
-
-
-
 }
+
 
 // getter/setter helper methods
 Alloy.Globals.getTheme = function() {
@@ -200,8 +198,9 @@ Alloy.Globals.config = {
   walletfilename: "wallet.json",
   defaultcurrency: "usd",
   iapaccountcreationcredit: "app.steemwallet.acc",
-  registeraccounturl: "https://iap.steemwallet.app",
-  userAgent: "SteemWallet.app "+Titanium.App.version+" ("+Titanium.Platform.osname+")"
+  registeraccounturl: "https://iap.hivewallet.app",
+  userAgent: "HiveWallet.app "+Titanium.App.version+" ("+Titanium.Platform.osname+")",
+  maxunlocktime: 20 * 60 * 1000, // maximum time allowed being unlocked without re-authenticating (if user opts for "enable unlock session")
 }
 
 var helpers = require('/functions');
@@ -227,6 +226,17 @@ if (!Titanium.App.Properties.hasProperty('apiurl')) {
 } else {
 	Alloy.Globals.config.apiurl = Titanium.App.Properties.getString('apiurl');
 }
+
+// setting some session based unlock holders.
+// see settngs_keep_unlocked for explainer / implementation
+if (!Titanium.App.Properties.hasProperty('keepunlocked')) {
+	Titanium.App.Properties.setBool('keepunlocked',false);
+  Alloy.Globals.coaster = {keepunlocked: false, key:'', lastunlock: 0};
+} else {
+  Alloy.Globals.coaster = {keepunlocked: Titanium.App.Properties.getBool('keepunlocked'), key:'', lastunlock: 0};
+}
+
+
 
 if (!Titanium.App.Properties.hasProperty('donotpromptlist')) {
   Titanium.App.Properties.setObject('donotpromptlist', {});
@@ -255,4 +265,36 @@ Alloy.Globals.tidentity_initialized = false;
 
 if(OS_ANDROID) {
   Alloy.Globals.topspacer = 0; // initially 0
+}
+
+
+// detect updates / upgrades...
+
+var needsupgrading = false;
+
+if(!Ti.App.Properties.hasProperty('lastinstall')) {
+  needsupgrading = true;
+} else {
+  if(Ti.App.Properties.getString('lastinstall') != Titanium.App.version) {
+    needsupgrading = true;
+  }
+}
+
+// app specific upgrades vs. previous versions...
+if(needsupgrading) {
+  console.log("app needs upgrading");
+  console.log(Titanium.App.version);
+  var appversion = Titanium.App.version;
+  var substr_appversion = appversion.substring(0,appversion.lastIndexOf("."));
+  switch(substr_appversion) {
+    case "2.2.2":
+        // update nodelist.
+        var apinodes = require('/apinodeslist');
+        Titanium.App.Properties.setObject('apinodes', apinodes);
+        Alloy.Globals.config.apiurl = "https://api.hive.blog";
+        Titanium.App.Properties.setString('apiurl',Alloy.Globals.config.apiurl);
+    break;
+  }
+
+  Ti.App.Properties.setString('lastinstall',  Titanium.App.version);
 }
