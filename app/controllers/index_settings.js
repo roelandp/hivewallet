@@ -48,8 +48,13 @@ function doSetting(e){
       Alloy.Globals.tabGroup.activeTab.open(win);
     break;
 
+    case "keepunlocked":
+      var win = Alloy.createController('/settings_keep_unlocked').getView();
+      Alloy.Globals.tabGroup.activeTab.open(win);
+    break;
+
     case "buysteem":
-      Ti.Platform.openURL("https://blocktrades.us/?output_coin_type=steem&receive_address="+Ti.App.Properties.getString('currentaccount')+"&memo=&affiliate_id=81ddfd62-03df-4efa-b6a7-65f84802248e");
+      Ti.Platform.openURL("https://blocktrades.us/?output_coin_type=hive&receive_address="+Ti.App.Properties.getString('currentaccount')+"&memo=&affiliate_id=81ddfd62-03df-4efa-b6a7-65f84802248e");
     break;
 
     case "reset":
@@ -79,7 +84,7 @@ function doSetting(e){
             f = null;
           }
 
-          alert('App resetted, please restart SteemWallet!');
+          alert('App resetted, please restart HiveWallet!');
           closeWin();
         }
 

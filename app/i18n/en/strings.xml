@@ -1,5 +1,5 @@
 <resources>
-    <string name="intro_text">steemwallet is a secure mobile wallet for sending and receiving Steem and SBD</string>
+    <string name="intro_text">hivewallet is a secure mobile wallet for sending and receiving Hive and HBD</string>
     <string name="add_account">add account</string>
     <string name="hi_there">hi there!</string>
     <string name="overlay_title_addaccount">add account</string>
@@ -9,9 +9,9 @@
 
     <string name="overlay_title_pickaccounts">select account</string>
 
-    <string name="overlay_title_receive">receive steem/sbd</string>
+    <string name="overlay_title_receive">receive hive/hbd</string>
 
-    <string name="overlay_title_send">send steem/sbd</string>
+    <string name="overlay_title_send">send hive/hbd</string>
     <string name="send">send</string>
     <string name="receive">receive</string>
 
@@ -35,7 +35,7 @@
 
     <string name="explain_no_tx_in_listview">The account_history api is an aggregate endpoint, returning all actions for the given account. Unfortunately no transactions have been recently recorded. This means the account is very active with other activity on the platform.</string>
     <string name="loading_s">Loading %1$s's recent transactions</string>
-    <string name="qrexplain">scan this qr code or ask to transfer steem or sbd to:</string>
+    <string name="qrexplain">scan this qr code or ask to transfer hive or hbd to:</string>
 
     <string name="create_wallet_explain">Your key(s) are stored in an encrypted wallet. Use a unique strong passphrase for encryption!</string>
     <string name="optionally_store_in_device_keychain">Optionally you can store the passphrase in your device's encrypted keychain so you can unlock your wallet and broadcast/sign by using %1$s.</string>
@@ -54,15 +54,15 @@
     <string name="unlock">unlock</string>
     <string name="wallet_file_not_exist">wallet file doesn't exist. Let's create one.</string>
 
-    <string name="overlay_body_importprivatekey_description">Add your active (!) private key into your encrypted wallet, so you can use it to send steem/sbd.\n\nDon't have an active private key? Educate yourself about keys! Try inserting %1$s's password instead.</string>
+    <string name="overlay_body_importprivatekey_description">Add your active (!) private key into your encrypted wallet, so you can use it to send hive/hbd.\n\nDon't have an active private key? Educate yourself about keys! Try inserting %1$s's password instead.</string>
     <string name="insert_private_key_or_password">insert key here</string>
 
     <string name="please_type_paste_or_scan_a_privkey">private key</string>
     <string name="no_account_found_for_given_key">No matching account found</string>
     <string name="send_s">send %1$s</string>
-    <string name="overlay_title_send_steem">send steem</string>
+    <string name="overlay_title_send_hive">send hive</string>
     <string name="overlay_body_send_to">to</string>
-    <string name="steem_username">steem user</string>
+    <string name="hive_username">hive user</string>
     <string name="overlay_body_send_amount">amount</string>
     <string name="overlay_body_send_memo">memo</string>
     <string name="optionally_type_a_memo">leave a note (optional)</string>
@@ -103,6 +103,8 @@
     <string name="error_node_url_should_start_https">Node url should start with https:// unless localhost or 127.0.0.1</string>
     <string name="error_node_url_already_added">Node is already in the list</string>
     <string name="node_unexpected_response_cant_add">Unexpected response from node.</string>
+    <string name="node_added_not_yet_active">Node added to list. Not yet active.\n\nClick it to make it the active node.</string>
+
     <string name="removed_node_with_url_s">Removed node %1$s</string>
     <string name="restart_app_for_theme_changes">Restart the app to apply theme changes.</string>
 
@@ -144,10 +146,10 @@
     <string name="ERROR_each_account_segment_should_end_with_a_letter_or_digit">each account segment should end with a letter or digit</string>
     <string name="ERROR_each_account_segment_should_be_longer">each account segment should be longer</string>
     <string name="overlay_title_create_account">create account</string>
-    <string name="createview_accountname">Use an in-app payment to instantly register a new account on the Steem chain.\n\nWhich username would you like to register?</string>
+    <string name="createview_accountname">Use an in-app payment to instantly register a new account on the Hive chain.\n\nWhich username would you like to register?</string>
     <string name="desired_username">desired username</string>
     <string name="next">next</string>
-    <string name="createview_password">Steem is a blockchain. A blockchain has no "password forgot" option. You are responsible for securely storing your master password.\n\nWe have generated a strong master password for you, but feel free to generate another one!</string>
+    <string name="createview_password">Hive is a blockchain. A blockchain has no "password forgot" option. You are responsible for securely storing your master password.\n\nWe have generated a strong master password for you, but feel free to generate another one!</string>
     <string name="createview_confirmpassword">Confirm your master password to continue:</string>
     <string name="confirm_passphrase">confirm master password</string>
     <string name="complete_order">purchase</string>
@@ -189,4 +191,9 @@
   <string name="browser_do_not_prompt_list">browser settings</string>
   <string name="overlay_title_settings_do_not_prompt">do not prompt</string>
 
+  <string name="overlay_title_send_steem">send hive</string>
+  <string name="keep_unlocked">session unlock</string>
+  <string name="overlay_title_settings_keep_unlocked">session unlock</string>
+  <string name="overlay_body_settings_keep_unlocked">If you find it annoying to unlock your wallet for every broadcast, you can switch on "20 minute unlock". This way you only have to unlock your wallet once every 20 minutes and for the rest of your transactions it will use the in-memory stored wallet passphrase.</string>
+  <string name="keep_unlocked_label">20 minute unlock</string>
 </resources>

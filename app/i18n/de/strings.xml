@@ -1,5 +1,5 @@
 <resources>
-    <string name="intro_text">steemwallet ist ein sicheres mobiles wallet, um Steem und SBD zu senden und zu empfangen</string>
+    <string name="intro_text">hivewallet ist ein sicheres mobiles wallet, um Hive und HBD zu senden und zu empfangen</string>
     <string name="add_account">Benutzerkonto hinzufügen</string>
     <string name="hi_there">hallo!</string>
     <string name="overlay_title_addaccount">Benutzerkonto hinzufügen</string>
@@ -7,8 +7,8 @@
     <string name="overlay_body_input_account">Benutzerkonto</string>
     <string name="overlay_body_input_placeholder_addhere">hier tippen</string>
     <string name="overlay_title_pickaccounts">Benutzerkonto auswählen</string>
-    <string name="overlay_title_receive">steem/sbd empfangen</string>
-    <string name="overlay_title_send">steem/sbd versenden</string>
+    <string name="overlay_title_receive">hive/hbd empfangen</string>
+    <string name="overlay_title_send">hive/hbd versenden</string>
     <string name="send">versenden</string>
     <string name="receive">empfangen</string>
     <string name="overlay_title_importprivatekey">Privaten Key importieren</string>
@@ -27,7 +27,7 @@
     <string name="no_recent_transactions_found">In der Accounthistorie von @%1$s konnten keine Transaktionen gefunden werden </string>
     <string name="explain_no_tx_in_listview">Die account_history API ist eine aggregierte Schnittstelle, welche sämtliche Aktivitäten des gegebenen Accounts zurückgibt. Leider wurden in der letzten Zeit keine Transaktionen aufgenommen. Das bedeutet, dass der Account auf andere Arten sehr aktiv auf der Plattform ist.</string>
     <string name="loading_s">Lade %1$s\'s letzte Transaktionen</string>
-    <string name="qrexplain">scanne diesen QR Code or bitte darum die steem or sbd an diesen Account zu schicken:</string>
+    <string name="qrexplain">scanne diesen QR Code or bitte darum die hive or hbd an diesen Account zu schicken:</string>
     <string name="create_wallet_explain">Dein(e) Key(s) sind in einem verschlüsselten Wallet gespeichert. Verwende ein einzigartiges starkes Passwort zur Verschlüsselung!</string>
     <string name="optionally_store_in_device_keychain">Optional kannst du dein Passwort in der verschlüsselten Keychain deines Gerätes speichern, so dass du mit %1$s dein Wallet entsperren und versenden/signieren kannst</string>
     <string name="label_addwalletpassword">Passwort</string>
@@ -43,14 +43,14 @@
     <string name="insert_your_passphrase">gib dein Passwort ein</string>
     <string name="unlock">entsperren</string>
     <string name="wallet_file_not_exist">Wallet Datei existiert nicht. Lass uns eine erstellen.</string>
-    <string name="overlay_body_importprivatekey_description">Füge einen active (!) Key zu deinem verschlüsselten Wallet hinzu, damit du ihn zum steem/sbd versenden benutzen kannst.\n\nHast du keinen active Key? Informiere dich über Keys und Sicherheit! Versuche das Passwort von %1$s.</string>
+    <string name="overlay_body_importprivatekey_description">Füge einen active (!) Key zu deinem verschlüsselten Wallet hinzu, damit du ihn zum hive/hbd versenden benutzen kannst.\n\nHast du keinen active Key? Informiere dich über Keys und Sicherheit! Versuche das Passwort von %1$s.</string>
     <string name="insert_private_key_or_password">Key hier einfügen</string>
     <string name="please_type_paste_or_scan_a_privkey">Privater Key</string>
     <string name="no_account_found_for_given_key">Kein passender account gefunden</string>
     <string name="send_s">versende %1$s</string>
-    <string name="overlay_title_send_steem">versende steem</string>
+    <string name="overlay_title_send_hive">versende hive</string>
     <string name="overlay_body_send_to">an</string>
-    <string name="steem_username">steem Benutzer</string>
+    <string name="hive_username">hive Benutzer</string>
     <string name="overlay_body_send_amount">Betrag</string>
     <string name="overlay_body_send_memo">Memo</string>
     <string name="optionally_type_a_memo">hinterlasse eine Nachricht (optional)</string>
@@ -87,6 +87,7 @@
     <string name="error_node_url_should_start_https">Node url sollte mit https:// beginnen, ausser localhost oder 127.0.0.1</string>
     <string name="error_node_url_already_added">Node ist bereits in der Liste</string>
     <string name="node_unexpected_response_cant_add">Unerwartete Antwort von der Node.</string>
+    <string name="node_added_not_yet_active">Node added to list. Not yet active.\n\nClick it to make it the active node.</string>
     <string name="removed_node_with_url_s">Node %1$s entfernt</string>
     <string name="restart_app_for_theme_changes">App neu starten um Änderungen am Thema anzuwenden</string>
     <string name="change_theme">Thema ändern?</string>
@@ -126,10 +127,10 @@
     <string name="ERROR_each_account_segment_should_end_with_a_letter_or_digit">Jeder Account-Bestandteil sollte mit einem Buchstaben oder einer Zahl enden</string>
     <string name="ERROR_each_account_segment_should_be_longer">Alle Account-Bestandteile sollten länger sein</string>
     <string name="overlay_title_create_account">Account erstellen</string>
-    <string name="createview_accountname">Verwende In-app-Bezahlung um sofort einen neuen Account auf der Steem-Blockchain anzulegen.\n\n Welchen Benutzernamen möchtest Du anlegen?</string>
+    <string name="createview_accountname">Verwende In-app-Bezahlung um sofort einen neuen Account auf der Hive-Blockchain anzulegen.\n\n Welchen Benutzernamen möchtest Du anlegen?</string>
     <string name="desired_username">Gewünschter Benutzername</string>
     <string name="next">Weiter</string>
-    <string name="createview_password">Steem ist eine Blockchain. Eine Blockchain hat keine \"Passwort vergessen\"-Option. Du bist für die sichere Speicherung Deines Master Passwortes verantwortlich.\n\n Erstelle ein starkes Master Passwort und bewahre es sicher auf!</string>
+    <string name="createview_password">Hive ist eine Blockchain. Eine Blockchain hat keine \"Passwort vergessen\"-Option. Du bist für die sichere Speicherung Deines Master Passwortes verantwortlich.\n\n Erstelle ein starkes Master Passwort und bewahre es sicher auf!</string>
     <string name="createview_confirmpassword">Bestätige Dein Master Passwort um fortzufahren</string>
     <string name="confirm_passphrase">Bestätige Dein Master Passwort</string>
     <string name="complete_order">Kaufe</string>
@@ -169,4 +170,10 @@
   <string name="dnpl_no_content_explainer">If you authorize any operations in the Dapp Browser to "Do not prompt again" they will be listed here, so you can review them and, if necessary, revoke them.</string>
   <string name="browser_do_not_prompt_list">browser settings</string>
   <string name="overlay_title_settings_do_not_prompt">do not prompt</string>
+
+  <string name="overlay_title_send_steem">send hive</string>
+  <string name="keep_unlocked">session unlock</string>
+  <string name="overlay_title_settings_keep_unlocked">session unlock</string>
+  <string name="overlay_body_settings_keep_unlocked">If you find it annoying to unlock your wallet for every broadcast, you can switch on "20 minute unlock". This way you only have to unlock your wallet once every 20 minutes and for the rest of your transactions it will use the in-memory stored wallet passphrase.</string>
+  <string name="keep_unlocked_label">20 minute unlock</string>
   </resources>

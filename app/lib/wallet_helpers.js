@@ -58,179 +58,190 @@ var wallet_helpers = {
   unlockWallet: function(cb, skipidentity, cberr) {
   	// this function just manages the unlock procedure. The actually unencryption takes place in decryptWallet
 
-  	var passphrase;
+		if(Alloy.Globals.coaster.keepunlocked && Alloy.Globals.coaster.key !== "" && (((Math.round(new Date().getTime())) - Alloy.Globals.coaster.lastunlock) < Alloy.Globals.config.maxunlocktime) ) {
+			// if we have an Alloy.Globals.coaster.keepunlocked to true and key is not empty, we return that key. This is for session based unlock.
+			console.log("trying to use global unlock!");
+			if (cb) {
+				cb(Alloy.Globals.coaster.key);
+			}
 
-  	var skipidentitylogin = false;
+		} else {
 
-  	skipidentitylogin = skipidentity;
+	  	var passphrase;
 
-  	if (TiIdentity.isSupported() && TiIdentity.deviceCanAuthenticate() && Ti.App.Properties.getBool('usesIdentity') && !skipidentitylogin) {
-  		// get item from keychain.
+	  	var skipidentitylogin = false;
 
-  		Alloy.Globals.keychainItem.addEventListener('read', function _ukw(e) {
-  			Alloy.Globals.keychainItem.removeEventListener('read', _ukw);
+	  	skipidentitylogin = skipidentity;
 
-  			if (!e.success) {
-  				console.log(e);
-  				//Ti.API.error('Error reading from the keychain: ' + e.error);
-  				//alert(e.error);
-  				//Ti.App.Properties.setBool('usesIdentity',false);
-  				// force to unlock without identity.
-  				return unlockWallet(cb, true, cberr);
-  			}
+	  	if (TiIdentity.isSupported() && TiIdentity.deviceCanAuthenticate() && Ti.App.Properties.getBool('usesIdentity') && !skipidentitylogin) {
+	  		// get item from keychain.
 
-  			passphrase = e.value;
+	  		Alloy.Globals.keychainItem.addEventListener('read', function _ukw(e) {
+	  			Alloy.Globals.keychainItem.removeEventListener('read', _ukw);
 
-  			//console.log('reading keychain', passphrase);
+	  			if (!e.success) {
+	  				console.log(e);
+	  				//Ti.API.error('Error reading from the keychain: ' + e.error);
+	  				//alert(e.error);
+	  				//Ti.App.Properties.setBool('usesIdentity',false);
+	  				// force to unlock without identity.
+	  				return unlockWallet(cb, true, cberr);
+	  			}
 
-  			if (cb) {
-  				cb(passphrase);
-  			}
+	  			passphrase = e.value;
 
-  		});
+	  			//console.log('reading keychain', passphrase);
 
+	  			if (cb) {
+	  				cb(passphrase);
+	  			}
 
-  		if (OS_IOS) {
-  			// IOS reauths automatically whenever you want to read keychain items, due to the TiIdentity initialisation settings.
-  			Alloy.Globals.keychainItem.read();
-  		} else if (OS_ANDROID) {
-  			//console.log('Should authenticate here for ANDROID');
-
-				var alertDialog;
-
-  			TiIdentity.authenticate({
-  				reason: L('authenticate_to_retrieve_passphrase_from_keychain'),
-  				callback: function(e) {
-  					try {
-  						alertDialog.hide();
-  					} catch (err) {
-
-  					}
-
-  					if (!e.success) {
-
-  						console.log('Message: ' + e.error);
-  						return module.exports.unlockWallet(cb, true, cberr);
-
-  					} else {
-  						// succesfull unlock, now we can read the keychainiTem for android
-  						Alloy.Globals.keychainItem.read();
-  					}
-  				}
-  			});
+	  		});
 
 
-				alertDialog = Ti.UI.createAlertDialog({
-					title: L('authenticate_with_fingerprint'),
-  				message: L('authenticate_to_retrieve_passphrase_from_keychain'),
-  				destructive: 0,
-  				cancel: 1,
-  				buttonNames: [L('OK'), L('cancel')]
-				});
+	  		if (OS_IOS) {
+	  			// IOS reauths automatically whenever you want to read keychain items, due to the TiIdentity initialisation settings.
+	  			Alloy.Globals.keychainItem.read();
+	  		} else if (OS_ANDROID) {
+	  			//console.log('Should authenticate here for ANDROID');
 
-  			alertDialog.addEventListener('click', function _adcb(e){
+					var alertDialog;
 
-					alertDialog.removeEventListener('click',_adcb);
+	  			TiIdentity.authenticate({
+	  				reason: L('authenticate_to_retrieve_passphrase_from_keychain'),
+	  				callback: function(e) {
+	  					try {
+	  						alertDialog.hide();
+	  					} catch (err) {
 
-					console.log("alertdialog index ===> was clicked"+e.index);
-					console.log(e);
+	  					}
 
-					if(e.index ==0) {
-						// OK was hit.
-						return true;
-					} else {
-						// cancel was hit
-						return module.exports.unlockWallet(cb, true, cberr);
-					}
-				})
+	  					if (!e.success) {
 
-  			alertDialog.show();
+	  						console.log('Message: ' + e.error);
+	  						return module.exports.unlockWallet(cb, true, cberr);
 
-  		}
-
-  	} else {
-
-  		// ask for passphrase from user .
-  		if (OS_IOS) {
-  			var dialog = Ti.UI.createAlertDialog({
-  				titleid: 'unlock_wallet',
-  				messageid: 'insert_your_passphrase',
-  				style: Ti.UI.iOS.AlertDialogStyle.SECURE_TEXT_INPUT,
-  				buttonNames: [L('unlock'), L('cancel')],
-  				cancel: 1,
-  			});
-  			dialog.addEventListener('click', function _lis(e) {
-  				dialog.removeEventListener('click', _lis);
-
-  				if (e.index == 0) {
-  					cb(e.text);
-  				} else {
-  					//$.button_send.enabled = (true);
-						cberr(L('cancel'));
-  				}
-  				e = null;
-
-  			});
-  			dialog.show();
-  		} else if (OS_ANDROID) {
-
-  			var dialoginputContainer = Titanium.UI.createView({
-  				top: 0,
-  				left: 0,
-  				right: 0,
-  				height: Ti.UI.SIZE,
-  			});
+	  					} else {
+	  						// succesfull unlock, now we can read the keychainiTem for android
+	  						Alloy.Globals.keychainItem.read();
+	  					}
+	  				}
+	  			});
 
 
-  			var dialoginputandroid = Titanium.UI.createTextField({
-  				id: 'inputfielddialog',
-  				height: 50,
-  				font: {
-  					fontSize: 20,
-  					fontWeight: "normal"
-  				},
-  				color: Alloy.Globals.theme.steemdarkblue,
-  				backgroundColor: 'transparent',
-  				passwordMask: true,
-  				padding: {
-  					left: 0,
-  					right: 0,
-  					top: 0,
-  					bottom: 0,
-  				},
-  				hinttextid: 'insert_your_passphrase',
-  				left: 20,
-  				right: 20,
-  			});
+					alertDialog = Ti.UI.createAlertDialog({
+						title: L('authenticate_with_fingerprint'),
+	  				message: L('authenticate_to_retrieve_passphrase_from_keychain'),
+	  				destructive: 0,
+	  				cancel: 1,
+	  				buttonNames: [L('OK'), L('cancel')]
+					});
 
-  			dialoginputContainer.add(dialoginputandroid);
+	  			alertDialog.addEventListener('click', function _adcb(e){
 
-  			var dialog = Ti.UI.createAlertDialog({
-  				//messageid: 'insert_your_passphrase',
-  				buttonNames: [L('unlock'), L('cancel')],
-  				titleid: 'unlock_wallet',
-  				androidView: dialoginputContainer
-  			});
+						alertDialog.removeEventListener('click',_adcb);
 
-  			dialog.addEventListener('click', function _lis(e) {
-  				dialog.removeEventListener('click', _lis);
+						console.log("alertdialog index ===> was clicked"+e.index);
+						console.log(e);
 
-  				if (e.index == 0) {
-  					cb(dialoginputandroid.value);
-  				} else {
-  					//$.button_send.enabled = (true);
-						cberr(L('cancel'));
-  				}
-  				dialoginputandroid.value = ('');
-  				dialoginputandroid = null;
-  				e = null;
+						if(e.index ==0) {
+							// OK was hit.
+							return true;
+						} else {
+							// cancel was hit
+							return module.exports.unlockWallet(cb, true, cberr);
+						}
+					})
 
-  			});
-  			dialog.show();
-  			//alert('should still make this custom textfield input alert dialog for android');
-  		}
+	  			alertDialog.show();
 
-  	}
+	  		}
+
+	  	} else {
+
+	  		// ask for passphrase from user .
+	  		if (OS_IOS) {
+	  			var dialog = Ti.UI.createAlertDialog({
+	  				titleid: 'unlock_wallet',
+	  				messageid: 'insert_your_passphrase',
+	  				style: Ti.UI.iOS.AlertDialogStyle.SECURE_TEXT_INPUT,
+	  				buttonNames: [L('unlock'), L('cancel')],
+	  				cancel: 1,
+	  			});
+	  			dialog.addEventListener('click', function _lis(e) {
+	  				dialog.removeEventListener('click', _lis);
+
+	  				if (e.index == 0) {
+	  					cb(e.text);
+	  				} else {
+	  					//$.button_send.enabled = (true);
+							cberr(L('cancel'));
+	  				}
+	  				e = null;
+
+	  			});
+	  			dialog.show();
+	  		} else if (OS_ANDROID) {
+
+	  			var dialoginputContainer = Titanium.UI.createView({
+	  				top: 0,
+	  				left: 0,
+	  				right: 0,
+	  				height: Ti.UI.SIZE,
+	  			});
+
+
+	  			var dialoginputandroid = Titanium.UI.createTextField({
+	  				id: 'inputfielddialog',
+	  				height: 50,
+	  				font: {
+	  					fontSize: 20,
+	  					fontWeight: "normal"
+	  				},
+	  				color: Alloy.Globals.theme.steemdarkblue,
+	  				backgroundColor: 'transparent',
+	  				passwordMask: true,
+	  				padding: {
+	  					left: 0,
+	  					right: 0,
+	  					top: 0,
+	  					bottom: 0,
+	  				},
+	  				hinttextid: 'insert_your_passphrase',
+	  				left: 20,
+	  				right: 20,
+	  			});
+
+	  			dialoginputContainer.add(dialoginputandroid);
+
+	  			var dialog = Ti.UI.createAlertDialog({
+	  				//messageid: 'insert_your_passphrase',
+	  				buttonNames: [L('unlock'), L('cancel')],
+	  				titleid: 'unlock_wallet',
+	  				androidView: dialoginputContainer
+	  			});
+
+	  			dialog.addEventListener('click', function _lis(e) {
+	  				dialog.removeEventListener('click', _lis);
+
+	  				if (e.index == 0) {
+	  					cb(dialoginputandroid.value);
+	  				} else {
+	  					//$.button_send.enabled = (true);
+							cberr(L('cancel'));
+	  				}
+	  				dialoginputandroid.value = ('');
+	  				dialoginputandroid = null;
+	  				e = null;
+
+	  			});
+	  			dialog.show();
+	  			//alert('should still make this custom textfield input alert dialog for android');
+	  		}
+
+	  	}
+
+		} // end of if/else user has Global unlock running.
 
   },
    scanUserObjectForKey: function(accounttofind, role, cbok, cberr) {
@@ -284,6 +295,12 @@ var wallet_helpers = {
   					//console.log(parsedkeys);
   					if ('keys' in parsedkeys) {
 
+							// this indicates a succesfull unlock
+							// if global unlocked is activated and lastunlock is longer than maxunlocktime ... add new lastunlock
+							if(Alloy.Globals.coaster.keepunlocked && (((Math.round(new Date().getTime())) - Alloy.Globals.coaster.lastunlock) > Alloy.Globals.config.maxunlocktime)) {
+								Alloy.Globals.coaster = {keepunlocked: true, key:e, lastunlock: (Math.round(new Date().getTime()))};
+							}
+
 							if(!Titanium.App.Properties.hasProperty('walletversion')) {
 								// wallet exists but is not yet converted to v2.
 								// let's do that right away... v1 consisted of only "active_keys", so we will loop through accounts and convert those to new data format.
@@ -334,6 +351,11 @@ var wallet_helpers = {
   					keys = null;
   					//alert(e.message);
   					return cberr(String.format(L('wrong_passphrase'), e.message));
+
+						// unsetting global unlock variables.
+						Alloy.Globals.coaster['key'] = '';
+						Alloy.Globals.coaster['lastunlock'] = 0;
+
   				}
   				keys = null;
   			}

@@ -16,7 +16,10 @@ module.exports = {
       "sendToken":"Send Tokens",
       "powerUp":"Power Up",
       "powerDown":"Power Down",
-      "createClaimedAccount":"Create Claimed Account"
+      "createClaimedAccount":"Create Claimed Account",
+      'createProposal': 'Create Worker Proposal',
+      'removeProposal': 'Remove Worker Proposal',
+      'updateProposalVote': 'Vote for Proposal',
     };
 
     if(titles.hasOwnProperty(requesttype)) {
@@ -80,6 +83,15 @@ module.exports = {
         case "createClaimedAccount":
             return "active";
             break;
+        case "createProposal":
+          return "active";
+          break;
+        case "removeProposal":
+          return "active";
+          break;
+        case "updateProposalVote":
+          return "active";
+          break;
     }
   }
 };

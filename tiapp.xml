@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ti:app 
+<ti:app
   xmlns:ti="http://ti.appcelerator.org">
   <id>app.steemwallet.roelandp</id>
   <name>HiveWallet</name>
-  <version>2.2.2.2</version>
+  <version>2.2.2.4</version>
   <publisher>roelandp</publisher>
   <url>https://hivewallet.app</url>
   <description>fast, secure and open source wallet for the Hive blockchain</description>
@@ -51,6 +51,8 @@
             <string>app.steemwallet.roelandp</string>
             <key>CFBundleURLSchemes</key>
             <array>
+              <string>hivewallet</string>
+              <string>hive</string>
               <string>steemwallet</string>
               <string>steem</string>
             </array>
@@ -59,13 +61,13 @@
       </dict>
     </plist>
   </ios>
-  <android 
+  <android
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <manifest 
-      xmlns:android="http://schemas.android.com/apk/res/android" package="app.steemwallet.roelandp" android:versionCode="2101" android:versionName="2.1.0.1">
-      <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="26"/>
-      <application android:icon="@drawable/appicon" android:label="SteemWallet" android:name="SteemwalletApplication" android:debuggable="false" android:theme="@style/Theme.MyTheme" android:resizeableActivity="true" android:allowBackup="false">
-        <activity android:name=".SteemwalletActivity" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:screenOrientation="portrait">
+    <manifest
+      xmlns:android="http://schemas.android.com/apk/res/android" package="app.steemwallet.roelandp" android:versionCode="2225" android:versionName="2.2.2.5">
+      <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="29"/>
+      <application android:icon="@drawable/appicon" android:label="HiveWallet" android:name="HivewalletApplication" android:debuggable="false" android:theme="@style/Theme.MyTheme" android:resizeableActivity="true" android:allowBackup="false">
+        <activity android:name=".HivewalletActivity" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:screenOrientation="portrait">
           <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
             <category android:name="android.intent.category.LAUNCHER"/>
@@ -81,15 +83,18 @@
             <category android:name="android.intent.category.BROWSABLE"/>
             <data android:scheme="steem"/>
             <data android:scheme="steemwallet"/>
+            <data android:scheme="hive"/>
+            <data android:scheme="hivewallet"/>
           </intent-filter>
           <intent-filter android:autoVerify="true">
             <action android:name="android.intent.action.VIEW"/>
             <category android:name="android.intent.category.DEFAULT"/>
             <category android:name="android.intent.category.BROWSABLE"/>
-            <data android:scheme="https" android:host="steemwallet.app" android:pathPrefix="/sign"/>
+            <data android:scheme="https" android:host="hivewallet.app" android:pathPrefix="/sign"/>
           </intent-filter>
         </activity>
         <provider android:name="org.appcelerator.titanium.io.TiFileProvider" android:authorities="app.steemwallet.roelandp.tifileprovider" android:exported="false" android:grantUriPermissions="true"/>
+        <uses-library android:name="org.apache.http.legacy" android:required="false" /> <!-- https://developers.google.com/maps/documentation/android-sdk/config#specify_requirement_for_apache_http_legacy_library --> 
       </application>
     </manifest>
   </android>
@@ -112,9 +117,10 @@
     <target device="iphone">true</target>
   </deployment-targets>
   <!-- ios for now -->
-  <sdk-version>8.1.0.v20190605095601</sdk-version>
+  <!-- <sdk-version>8.1.0.v20190605095601</sdk-version> -->
   <!-- android for now -->
-  <!-- <sdk-version>7.4.1.GA</sdk-version> -->
+  <sdk-version>7.4.1.GA</sdk-version>
+  <!-- <sdk-version>8.3.1.GA</sdk-version> -->
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>

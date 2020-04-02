@@ -20036,7 +20036,7 @@ Types.asset = {
         var b_copy = b.copy(b.offset, b.offset + 7);
         var symbol = new Buffer(b_copy.toBinary(), "binary").toString().replace(/\x00/g, "");
         b.skip(7);
-        // "1.000 STEEM" always written with full precision
+        // "1.000 HIVE" always written with full precision
         var amount_string = (0, _number_utils.fromImpliedDecimal)(amount, precision);
         return amount_string + " " + symbol;
     },
@@ -20067,7 +20067,7 @@ Types.asset = {
         var debug = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
 
         if (debug.use_default && object === undefined) {
-            return "0.000 STEEM";
+            return "0.000 HIVE";
         }
         return object;
     }

@@ -128,6 +128,7 @@ function updateAccount(e) {
 			}
 
 			setCurrentAccount();
+			fillAccountsList();
 
 		},
 		function(error) {
@@ -219,6 +220,11 @@ helpers_eventdispatcher.on('addaccount',function(e){
 	//'account': $.textfield_which_account.value.trim()
 	handleAddAccount(e.account);
 });
+
+helpers_eventdispatcher.on('refreshaccountlist',function(e){
+	fillAccountsList();
+});
+
 
 function handleAddAccount(acct) {
 
@@ -343,7 +349,7 @@ function fillAccountsList() {
 		listdata.push({
 			template: 'welcome',
 			but_create_account: {
-				title: L('create_account') 
+				title: L('create_account')
 			},
 			but_add_account: {
 				title: L('add_account')
@@ -367,7 +373,7 @@ function fillAccountsList() {
 					accountname: currentaccounts[i].name,
 				},
 				labelbalance: {
-					text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' STEEM | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' SBD'
+					text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' HBD'
 					//text: currentaccounts[i].steem + ' | ' + currentaccounts[i].sbd
 				},
 				accountdata: currentaccounts[i],

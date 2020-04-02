@@ -1,0 +1,23 @@
+<Alloy>
+    <Window onPostlayout="animateOpen">
+      <View class="layout_vertical">
+        <View id="topspacer"/>
+        <View class="overlay_header">
+					<View class="leftBut">
+            <Button class="button closeBut_text" onClick="closeWin">←</Button>
+          </View>
+  				<Label textid="overlay_title_settings_keep_unlocked" class="overlay_header_title"></Label>
+  				<View class="divider bottom0"></View>
+  			</View>
+				<View class="height_UISIZE layout_vertical">
+          <View class="height_UISIZE padhorizontal_20 padvertical_20 layout_vertical">
+            <Label textid="overlay_body_settings_keep_unlocked" class="fontSize15 textAlignCenter"></Label>
+            <View id="keep_unlocked_holder" class="padvertical_20" height="40">
+  						<Label class="inputholder_label" id="keep_unlocked_label" textid="keep_unlocked_label"></Label>
+  						<Switch id="keep_unlocked_switch" value="false" onChange="changeLock"/>
+  					</View>
+          </View>
+        </View>
+      </View>
+    </Window>
+</Alloy>

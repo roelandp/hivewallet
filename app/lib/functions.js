@@ -226,7 +226,8 @@ var functions = {
 
 	steemAPIcall : function(method,params,cbres,cberr, node) {
 		var apiurl = Alloy.Globals.config.apiurl;
-
+		console.log("api call function called");
+		console.log(apiurl);
 		if(node){
 			apiurl = node;
 		}
@@ -239,7 +240,7 @@ var functions = {
 
 				try {
 					// try parse the response...
-					//console.log(e);
+					console.log(e);
 					var result = JSON.parse(e);
 					if("error" in result) {
 						cberr(result.error);
@@ -326,14 +327,14 @@ var functions = {
 			//console.log('now checking prices');
 			var currency = Ti.App.Properties.getString('currency').toLowerCase();
 			module.exports.xhrcall(
-				"https://api.coingecko.com/api/v3/simple/price?ids=steem,steem-dollars&vs_currencies="+currency,
+				"https://api.coingecko.com/api/v3/simple/price?ids=hive,hive_dollar&vs_currencies="+currency,
 				"GET",
 				false,
 				function(resje) {
 					var res = JSON.parse(resje.toLowerCase());
 					//console.log(res);
-					Ti.App.Properties.setString('price_steem_usd', res['steem'][currency.toLowerCase()]);
-					Ti.App.Properties.setString('price_sbd_usd', res['steem-dollars'][currency.toLowerCase()]);
+					Ti.App.Properties.setString('price_steem_usd', res['hive'][currency.toLowerCase()]);
+					Ti.App.Properties.setString('price_sbd_usd', res['hive_dollar'][currency.toLowerCase()]);
 
 
 

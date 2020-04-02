@@ -11,16 +11,16 @@ function handleURL(url) {
 			//console.log('HandleURL called', url);
 
 			// app also accepts steemwallet:// so needs to modify to steem:// here.
-			if(url.startsWith('steemwallet://')) {
-				url = url.replace('steemwallet://','steem://');
+			if(url.startsWith('hivewallet://')) {
+				url = url.replace('hivewallet://','hive://');
 			}
 
-			if(url.startsWith('https://steemwallet.app')) {
-				url = url.replace('https://steemwallet.app','steem://');
+			if(url.startsWith('https://hivewallet.app')) {
+				url = url.replace('https://hivewallet.app','hive://');
 			}
 
-			if(url.startsWith('steem:///')) {
-				url = url.replace('steem:///','steem://');
+			if(url.startsWith('hive:///')) {
+				url = url.replace('hive:///','hive://');
 			}
 
 			// check if app starts with transfer alias. Then we can prepopulate with transferwindow.
@@ -28,11 +28,11 @@ function handleURL(url) {
 			var urlx = XCallbackURL.parse(url)['parsedURI'];
 			//console.log(urlx);
 
-      if (urlx.protocol !== 'steem') {
-          throw new Error("Invalid protocol, expected 'steem:' got '" + url.protocol + "'");
+      if (urlx.protocol !== 'hive') {
+          throw new Error("Invalid protocol, expected 'hive:' got '" + url.protocol + "'");
       }
 
-			if(url.length > ('steem://').length) {
+			if(url.length > ('hive://').length) {
 
 				if ((urlx.host == 'sign' && urlx.path.split('/').slice(1)[0] == 'transfer') || urlx.host == 'transfer') {
 

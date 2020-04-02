@@ -1,7 +1,7 @@
 /*
 
-This is a rewritten file originating from Steem Keychain. Please see it's license below:
-Note: this file is not directly used in the SteemWallet app, but a minified 1-liner version derrived from this file is, this is just here so we can quickly edit/change/add stuff and then minify. As humans can only read prettified code afaik :)
+This is a rewritten file originating from Keychain for Hive. Please see it's license below:
+Note: this file is not directly used in the HiveWallet app, but a minified 1-liner version derrived from this file is, this is just here so we can quickly edit/change/add stuff and then minify. As humans can only read prettified code afaik :)
 
 MIT License
 
@@ -28,14 +28,14 @@ SOFTWARE.
 
 // Content script interfacing the website and the extension
 
-var steem_keychain = {
+var hive_keychain = {
     current_id: 1,
     requests: {},
     handshake_callback: null,
 
     requestHandshake: function(callback) {
-        steem_keychain.handshake_callback = callback;
-        steem_keychain.dispatchCustomEvent("swHandshake", "");
+        hive_keychain.handshake_callback = callback;
+        hive_keychain.dispatchCustomEvent("swHandshake", "");
     },
 
     requestVerifyKey: function(account, message, key, callback) {
@@ -46,7 +46,7 @@ var steem_keychain = {
             method: key
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     requestSignBuffer: function(account, message, key, callback) {
@@ -57,7 +57,7 @@ var steem_keychain = {
             method: key
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     requestAddAccountAuthority: function(account, authorizedUsername, role, weight, callback) {
@@ -70,7 +70,7 @@ var steem_keychain = {
             method: "Active"
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     requestRemoveAccountAuthority: function(account, authorizedUsername, role, callback) {
@@ -82,7 +82,7 @@ var steem_keychain = {
             method: "Active"
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     requestBroadcast: function(account, operations, key, callback) {
@@ -93,7 +93,7 @@ var steem_keychain = {
             method: key
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     requestSignedCall: function(account, method, params, key, callback) {
@@ -105,10 +105,10 @@ var steem_keychain = {
             typeWif: key,
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
-    // Example comment_options: {"author":"stoodkev","permlink":"hi","max_accepted_payout":"100000.000 SBD","percent_steem_dollars":10000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[{"account":"yabapmatt","weight":1000},{"account":"steemplus-pay","weight":500}]}]]}
+    // Example comment_options: {"author":"stoodkev","permlink":"hi","max_accepted_payout":"100000.000 HBD","percent_steem_dollars":10000,"allow_votes":true,"allow_curation_rewards":true,"extensions":[[0,{"beneficiaries":[{"account":"yabapmatt","weight":1000},{"account":"steemplus-pay","weight":500}]}]]}
     requestPost: function(account, title, body, parent_perm, parent_account, json_metadata, permlink, comment_options, callback) {
         var request = {
             type: "post",
@@ -121,7 +121,7 @@ var steem_keychain = {
             permlink: permlink,
             comment_options: comment_options
         };
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     requestVote: function(account, permlink, author, weight, callback) {
@@ -133,7 +133,7 @@ var steem_keychain = {
             weight: weight
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     requestCustomJson: function(account, id, key, json, display_msg, callback) {
@@ -146,7 +146,7 @@ var steem_keychain = {
             display_msg: display_msg
         };
 
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
     requestTransfer: function(account, to, amount, memo, currency, callback, enforce) {
         var request = {
@@ -158,7 +158,7 @@ var steem_keychain = {
             enforce: (enforce || false),
             currency: currency
         };
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
     requestSendToken: function(account, to, amount, memo, currency, callback) {
         var request = {
@@ -169,7 +169,7 @@ var steem_keychain = {
             memo: memo,
             currency: currency
         };
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
     requestDelegation: function(username, delegatee, amount, unit, callback) {
         var request = {
@@ -179,7 +179,7 @@ var steem_keychain = {
             amount: amount,
             unit: unit
         };
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
     requestWitnessVote: function(username, witness, vote, callback) {
         var request = {
@@ -188,16 +188,16 @@ var steem_keychain = {
             witness: witness,
             vote: vote
         };
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
     requestPowerUp: function(username, recipient, steem, callback) {
         var request = {
             type: "powerUp",
             username: username,
             recipient: recipient,
-            steem: steem
+            hive: steem
         };
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
     requestPowerDown: function(username, steem_power, callback) {
         var request = {
@@ -205,37 +205,75 @@ var steem_keychain = {
             username: username,
             steem_power: steem_power,
         };
-        steem_keychain.dispatchCustomEvent("swRequest", request, callback);
+        hive_keychain.dispatchCustomEvent("swRequest", request, callback);
+    },
+
+    //HF21
+    requestCreateProposal: function(username, receiver, subject, permlink, daily_pay, start, end, extensions, callback) {
+      var request = {
+        type: "createProposal",
+        username: username,
+        receiver: receiver,
+        subject: subject,
+        permlink: permlink,
+        start: start,
+        end: end,
+        daily_pay: daily_pay,
+        extensions: extensions
+      };
+
+      hive_keychain.dispatchCustomEvent("swRequest", request, callback);
+    },
+
+    requestRemoveProposal: function(username, proposal_ids, extensions, callback) {
+      var request = {
+        type: "removeProposal",
+        username: username,
+        proposal_ids: proposal_ids,
+        extensions: extensions,
+      };
+      hive_keychain.dispatchCustomEvent("swRequest", request, callback);
+    },
+
+    requestUpdateProposalVote: function(username, proposal_ids, approve, extensions, callback) {
+      var request = {
+        type: "updateProposalVote",
+        username: username,
+        proposal_ids: proposal_ids,
+        approve: approve,
+        extensions: extensions
+      };
+      hive_keychain.dispatchCustomEvent("swRequest", request, callback);
     },
 
     // Send the customEvent
     dispatchCustomEvent: function(name, data, callback) {
-        steem_keychain.requests[steem_keychain.current_id] = callback;
+        hive_keychain.requests[hive_keychain.current_id] = callback;
         //
         var sendobject = {
           name: name,
           data: data,
-          detail: { request_id: steem_keychain.current_id }
+          detail: { request_id: hive_keychain.current_id }
         };
 
-        steem_keychain.current_id++;
+        hive_keychain.current_id++;
 
-        // //on android: xmlhttprequest which we can monitor in "onloadresource"-event
-        // // 1. Create a new XMLHttpRequest object
-        // var xhr = new XMLHttpRequest();
-        //
-        // // 2. Configure it: GET-request for the URL
-        // var currenthost = window.location.origin;
-        // if(!(currenthost.slice(-1) == "/")) { currenthost = currenthost + "/"; }
-        // var swsk_url = currenthost+ "?xrf=XXXRF&params="+encodeURIComponent(JSON.stringify(sendobject));
-        // //xhr.open('HEAD', 'https://steemkeychain.steemwallet.app/android/parameterforwarder.html?xrf=XXXRF&params='+encodeURIComponent(JSON.stringify(sendobject)));
-        // xhr.open('HEAD', swsk_url);
-        //
-        // // 3. Send the request over the network
-        // xhr.send();
+        //on android: xmlhttprequest which we can monitor in "onloadresource"-event
+        // 1. Create a new XMLHttpRequest object
+        var xhr = new XMLHttpRequest();
+
+        // 2. Configure it: GET-request for the URL
+        var currenthost = window.location.origin;
+        if(!(currenthost.slice(-1) == "/")) { currenthost = currenthost + "/"; }
+        var swsk_url = currenthost+ "?xrf=XXXRF&params="+encodeURIComponent(JSON.stringify(sendobject));
+        //xhr.open('HEAD', 'https://keychain.hivewallet.app/android/parameterforwarder.html?xrf=XXXRF&params='+encodeURIComponent(JSON.stringify(sendobject)));
+        xhr.open('HEAD', swsk_url);
+
+        // 3. Send the request over the network
+        xhr.send();
 
         // on ios a simple document.location forwarder which gets cancelled because it does not exist yet it still triggers an "onbeforeload"-event:
-        document.location = 'XXXRF://?params=' + encodeURIComponent(JSON.stringify(sendobject));
+        //document.location = 'XXXRF://?params=' + encodeURIComponent(JSON.stringify(sendobject));
 
     },
     // receiver for getting messages back from the app environment into the browser window.
@@ -244,28 +282,28 @@ var steem_keychain = {
     console.log('received PostMessage');
     console.log(jsonnedeventi);
     var eventi = JSON.parse(decodeURIComponent(jsonnedeventi));
-    console.log(eventi);
-    if(eventi.data.type && (eventi.data.type == "steem_keychain_response")) {
-      console.log("ok this is a steem_key_chain_response");
+    //console.log(eventi);
+    if(eventi.data.type && (eventi.data.type == "hive_keychain_response")) {
+      //console.log("ok this is a steem_key_chain_response");
         var response = eventi.data.response;
         console.log("response object = ");
         console.log(response);
         if (response && response.request_id) {
-          console.log("ok inside if (response && response.request_id) { ");
-          console.log("now logging steem_keychain requests");
-          console.log(steem_keychain.requests);
-          console.log(steem_keychain);
-          console.log("will now try to execute steem_keychain.requests["+response.request_id+"]");
-            if (steem_keychain.requests[response.request_id]) {
-                steem_keychain.requests[response.request_id](response);
-                delete steem_keychain.requests[response.request_id];
+          // console.log("ok inside if (response && response.request_id) { ");
+          // console.log("now logging hive_keychain requests");
+          //console.log(hive_keychain.requests);
+        //  console.log(hive_keychain);
+          console.log("will now try to execute hive_keychain.requests["+response.request_id+"]");
+            if (hive_keychain.requests[response.request_id]) {
+                hive_keychain.requests[response.request_id](response);
+                delete hive_keychain.requests[response.request_id];
             } else {
               console.log("no such request");
             }
         }
-    } else if (eventi.data.type && (eventi.data.type == "steem_keychain_handshake")) {
-        if (steem_keychain.handshake_callback) {
-            steem_keychain.handshake_callback();
+    } else if (eventi.data.type && (eventi.data.type == "hive_keychain_handshake")) {
+        if (hive_keychain.handshake_callback) {
+            hive_keychain.handshake_callback();
         }
     }
   }
