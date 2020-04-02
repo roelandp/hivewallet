@@ -1,9 +1,9 @@
-# [steemwallet.app](https://steemwallet.app)
+# [hivewallet.app](https://hivewallet.app)
 ##### [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-[![steemwallet.app](https://steemwallet.app/images/social_fb.jpg)](https://steemwallet.app)
+[![hivewallet.app](https://hivewallet.app/images/social_fb.jpg)](https://hivewallet.app)
 
-##### steemwallet is a fast, secure and open source wallet for the Steem blockchain, available for iOS and Android.
+##### hivewallet is a fast, secure and open source wallet for the Steem blockchain, available for iOS and Android.
 
 # Key features
   - Monitor any / multiple account's balances from the Steem blockchain
@@ -37,21 +37,21 @@
 
 ### Feature requests, pull-requests
 
-I specifically envision keeping the app lightweight. I certainly don't intend to compete with other great apps out there such as the eSteem app, Partiko App or for example Steepshot.
+I specifically envision keeping the app lightweight. I certainly don't intend to compete with other great apps out there such as the eSteem app..
 
 If you want to help, and want the app in your native language, feel free to help translate!
-Translations are a community effort and thanks to opensource support from [Crowdin](https://crowdin.com/project/steemwallet) you can now help add your translation via https://crowdin.com/project/steemwallet - please explore the app thoroughly when adding translations!
+Translations are a community effort and thanks to opensource support from [Crowdin](https://crowdin.com/project/hivewallet) you can now help add your translation via https://crowdin.com/project/steemwallet - please explore the app thoroughly when adding translations!
 
 #### Translations already done
 
 | language 	| steem user                                    	|
 |----------	|-----------------------------------------------	|
-| DE       	| [pharesim](https://steemit.com/@pharesim)     	|
-| ES       	| [tashidelek](https://steemit.com/@tashidelek),[hedac](https://steemit.com/@hedac) 	|
-| FR       	| [helo](https://steemit.com/@helo)             	|
+| DE       	| [pharesim](https://hive.blog/@pharesim)     	|
+| ES       	| [tashidelek](https://hive.blog/@tashidelek),[hedac](https://hive.blog/@hedac) 	|
+| FR       	| [helo](https://hive.blog/@helo)             	|
 | IT       	| Tiwi90             	                            |
-| NL       	| [guchte](https://steemit.com/@guchte)		        |
-| RO       	| [rasozauru](https://steemit.com/@rasozauru)		  |
-| RU       	| [dunsky](https://steemit.com/@dunsky)		        |
+| NL       	| [guchte](https://hive.blog/@guchte)		        |
+| RO       	| [rasozauru](https://hive.blog/@rasozauru)		  |
+| RU       	| [dunsky](https://hive.blog/@dunsky)		        |
 
-Cheers, [@roelandp](https://steemit.com/@roelandp)
+Cheers, [@roelandp](https://hive.blog/@roelandp)
