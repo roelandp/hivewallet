@@ -3,11 +3,11 @@
 
 [![hivewallet.app](https://hivewallet.app/images/social_fb.jpg)](https://hivewallet.app)
 
-##### hivewallet is a fast, secure and open source wallet for the Steem blockchain, available for iOS and Android.
+##### hivewallet is a fast, secure and open source wallet for the Hive blockchain, available for iOS and Android.
 
 # Key features
-  - Monitor any / multiple account's balances from the Steem blockchain
-  - Create, sign and broadcast transfer transactions (send steem & sbd) (optional)
+  - Monitor any / multiple account's balances from the Hive blockchain
+  - Create, sign and broadcast transfer transactions (send hive & hbd) (optional)
   - AES 256 encrypted storage for keys should you want to sign transfer operations (send steem & sbd)
   - QR code reader for easy importing of keys and sending to others
   - QR code generator for easy proposing your wallet address for others to send to
@@ -30,7 +30,7 @@
   - AES encryption for wallet encryption: https://github.com/benbahrenburg/Ti.SlowAES
   - ZXCVBN password strength checker library: https://github.com/dropbox/zxcvbn
   - Identity module for integration with biometry: https://github.com/appcelerator-modules/titanium-identity/
-  - Steem's Bad Actors List from: https://github.com/steemit/condenser/blob/master/src/app/utils/BadActorList.js
+  - Hive's Bad Actors List from: https://gitlab.syncad.com/hive/condenser/blob/master/src/app/utils/BadActorList.js
   - Detecting crossplatform resume / pause of app: https://github.com/dieskim/Appcelerator.Hyperloop.appPauseResume
   - QR code scanner from: https://github.com/appcelerator-modules/ti.barcode
   - Ti.Deeply URI-scheme support for android from: https://github.com/caffeinalab/ti.deeply
