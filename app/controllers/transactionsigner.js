@@ -1,7 +1,7 @@
 var steemurifns = require('/steem-uri-spec');
 var steemurihelpers = new steemurifns();
 var buffer = require('/buffer');
-var dsteem = require('/dsteem');
+var dsteem = require('/hive-tx-min');
 
 var has_nobroadcast = false;
 var has_signer = false;

@@ -5,10 +5,16 @@ var wallet_helpers = require('/wallet_helpers');
 
 // dsteem - https://github.com/steemit/dsteem
 
-var dsteem = require('/dsteem');
+var dsteem = require('/hive-tx-min');
+dsteem.config.node = Alloy.Globals.config.apiurl;
+dsteem.config.chain_id = "0000000000000000000000000000000000000000000000000000000000000000";
+dsteem.config.address_prefix = "STM";
 
 // AES encryption for wallet encryption. https://github.com/benbahrenburg/Ti.SlowAES
 var SlowAES = require('/SlowAES/Ti.SlowAES');
+
+//
+var steemecc = require('/steemecc');
 
 // zxcvbn password strength library https://github.com/dropbox/zxcvbn
 var zxcvbn = require('/zxcvbn');
@@ -284,8 +290,11 @@ function selectAccount(){
         $.scrollview.currentPage = 1;
         $.scrollviewcontainer.scrollTo(0,0);
 
+
+
         helpers_eventdispatcher.trigger('addaccount',{'account': $.textfield_which_account.value.trim().toLowerCase()});
 
+				console.log(blockchainaccountdata);
       } else {
         $.textfield_which_account.focus();
         alert(String.format(L('alert_account_not_found'), $.textfield_which_account.value));
@@ -338,6 +347,11 @@ function makeAccountKeyObjectFromLogin(account,password) {
   var keypairs = {};
   for(var i = 0; i < roles.length; i++) {
     var pkey = dsteem.PrivateKey.fromLogin(account, password, roles[i]);
+
+		// var seed = account + roles[i] + password;
+		//
+		// var pkey = new dsteem.PrivateKey(steemecc.hash.sha256(seed));
+
     keypairs[roles[i]] = {
       'public': pkey.createPublic().toString(),
       'private': pkey.toString()
@@ -390,6 +404,13 @@ function returnMP() {
   $.textfield_masterpassword.blur();
   // should nullify immediately after storing in walletfile!
   keystostore = makeAccountKeyObjectFromLogin($.textfield_which_account.value.trim().toLowerCase(),$.textfield_masterpassword.value.trim());
+
+	console.log("\n\nkeys to store:\n");
+	console.log(keystostore);
+	console.log("\n\n");
+	console.log("blockchainaccountdata:\n");
+	console.log(blockchainaccountdata);
+
 
   if(!validateKeyForAccount(keystostore['keys']['active']['public'], 'active')) {
     alert(String.format(L("s_key_mismatch"),"Active"));

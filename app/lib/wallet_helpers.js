@@ -7,7 +7,10 @@ var slowaesopts = {
 };
 
 var slowaes = new SlowAES(slowaesopts);
-var dsteem = require('/dsteem');
+var dsteem = require('/hive-tx-min');
+dsteem.config.node = Alloy.Globals.config.apiurl;
+dsteem.config.chain_id = "0000000000000000000000000000000000000000000000000000000000000000";
+dsteem.config.address_prefix = "STM";
 
 var buffer = require('/buffer');
 
@@ -402,14 +405,18 @@ var wallet_helpers = {
 
 						var dsteemkey = dsteem.PrivateKey.fromString(keypair['private']);
 						//console.log(key);
-						console.log("Does dsteemclient exist yet?");
+						// console.log("Does dsteemclient exist yet?");
+						//
+						// if(!Alloy.Globals.dsteemclient) {
+						// 	var dsteemclient = new dsteem.Client(Alloy.Globals.config.apiurl);
+						// 	Alloy.Globals.dsteemclient = dsteemclient;
+						// }
 
-						if(!Alloy.Globals.dsteemclient) {
-							var dsteemclient = new dsteem.Client(Alloy.Globals.config.apiurl);
-							Alloy.Globals.dsteemclient = dsteemclient;
-						}
+						//var stx = Alloy.Globals.dsteemclient.broadcast.sign(op, dsteemkey);
 
-						var stx = Alloy.Globals.dsteemclient.broadcast.sign(op, dsteemkey);
+						var tx = new dsteem.Transaction(op);
+
+						var stx = tx.sign(dsteemkey);
 
 						console.log("STX result?");
 						console.log(stx);

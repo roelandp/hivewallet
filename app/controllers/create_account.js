@@ -6,7 +6,7 @@ var helpers = require('/functions');
 // zxcvbn password strength library https://github.com/dropbox/zxcvbn
 var zxcvbn = require('/zxcvbn');
 
-var dsteem = require('/dsteem');
+var dsteem = require('/hive-tx-min');
 
 var storekit;
 var inappbilling;
