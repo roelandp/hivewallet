@@ -79,7 +79,6 @@
 
 "#dappview[platform=android]": {
   enableZoomControls: false,
-  blacklistedURLs: ["https://steemkeychain.steemwallet.app"], // we blacklist our "fake"-url here so the webview triggers "blacklisturl"-hit event, containing our steemkeychain request parameters.
   borderRadius: 1,
 }
 

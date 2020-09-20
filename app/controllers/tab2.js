@@ -1083,17 +1083,6 @@ if(OS_ANDROID) {
 
 	});
 
-	$.dappview.addEventListener('blacklisturl', function(e) {
-		console.log("BLACKLISTURL triggered");
-		console.log(e.url);
-
-		if(e.url.startsWith("https://steemkeychain.steemwallet.app/android/parameterforwarder.html?xrf="+remotecallbackuri)) {
-			console.log("yes BLACKLISTURL got a hit!");
-			$.dappview.stopLoading();
-			handleSteemKeyCommand(e.url);
-		}
-
-	});
 }
 
 $.dappview.addEventListener('error', function(e) {
