@@ -405,11 +405,11 @@ function returnMP() {
   // should nullify immediately after storing in walletfile!
   keystostore = makeAccountKeyObjectFromLogin($.textfield_which_account.value.trim().toLowerCase(),$.textfield_masterpassword.value.trim());
 
-	console.log("\n\nkeys to store:\n");
-	console.log(keystostore);
-	console.log("\n\n");
-	console.log("blockchainaccountdata:\n");
-	console.log(blockchainaccountdata);
+	// console.log("\n\nkeys to store:\n");
+	// console.log(keystostore);
+	// console.log("\n\n");
+	// console.log("blockchainaccountdata:\n");
+	// console.log(blockchainaccountdata);
 
 
   if(!validateKeyForAccount(keystostore['keys']['active']['public'], 'active')) {
