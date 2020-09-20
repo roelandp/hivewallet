@@ -8,7 +8,7 @@ if (!Titanium.App.Properties.hasProperty('apiurl')) {
 	Alloy.Globals.config.apiurl = Titanium.App.Properties.getString('apiurl');
 }
 
-var dsteem = require('/dsteem');
+var dsteem = require('/hive-tx-min');
 var dsteemclient = new dsteem.Client(Alloy.Globals.config.apiurl);
 
 // making the dsteemclient global.
@@ -1249,13 +1249,13 @@ function updateFiat() {
 		if(currentaccountdata) {
 			if(currentaccountdata.hasOwnProperty('balance')) {
 				//console.log(currentaccountdata);
-				$.account_amount_sbd_fiat.text = (currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2));
+				$.account_amount_sbd_fiat.text = (currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.hbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2));
 				$.account_amount_steem_fiat.text = (currency_symbol + ' ' + helpers.formatToLocale((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2));
 
 				$.account_amount_sbd_fiat.width = ( Ti.UI.FILL);
 				$.account_amount_steem_fiat.width = ( Ti.UI.FILL);
 
-				//console.log((parseFloat(currentaccountdata.sbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))));
+				//console.log((parseFloat(currentaccountdata.hbd_balance) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))));
 				//console.log((parseFloat(currentaccountdata.balance) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))));
 			}
 		}
@@ -1642,7 +1642,7 @@ function fillAccountsList() {
 				accountname: currentaccounts[i].name,
 			},
 			labelbalance: {
-				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' HBD'
+				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].hbd_balance), 3) + ' HBD'
 				//text: currentaccounts[i].steem + ' | ' + currentaccounts[i].sbd
 			},
 			accountdata: currentaccounts[i],
@@ -2108,10 +2108,10 @@ function setCurrentAccount() {
 		$.avatar.show();
 
 		$.account_amount_steem.text = (helpers.formatToLocale(parseFloat(currentaccountdata['balance']), 3) + ' HIVE');
-		$.account_amount_sbd.text = (helpers.formatToLocale(parseFloat(currentaccountdata['sbd_balance']), 3) + ' HBD');
+		$.account_amount_sbd.text = (helpers.formatToLocale(parseFloat(currentaccountdata['hbd_balance']), 3) + ' HBD');
 		updateFiat();
 
-		// $.account_amount_sbd_fiat.text = ('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['sbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
+		// $.account_amount_sbd_fiat.text = ('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['hbd_balance']) * parseFloat(Ti.App.Properties.getString('price_sbd_usd'))), 2)));
 		//
 		// $.account_amount_steem_fiat.text = ('$ ' + (helpers.formatToLocale((parseFloat(currentaccountdata['balance']) * parseFloat(Ti.App.Properties.getString('price_steem_usd'))), 2)));
 

@@ -5,7 +5,7 @@ var helpers = require('/functions');
 
 var wallet_helpers = require('/wallet_helpers');
 
-var dsteem = require('/dsteem');
+var dsteem = require('/hive-tx-min');
 var buffer = require('/buffer');
 var jsHash = require('/SlowAES/jsHash');
 
@@ -172,7 +172,7 @@ function fillAccountsList() {
 			// 	accountname: currentaccounts[i].name,
 			// },
 			labelbalance: {
-				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' HBD'
+				text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].hbd_balance), 3) + ' HBD'
 				//text: currentaccounts[i].steem + ' | ' + currentaccounts[i].sbd
 			},
 			accountdata: currentaccounts[i],
@@ -918,7 +918,11 @@ function unlockAndSign(){
 				console.log("somehow error with sign & broadcast operation call... meh... ");
 				console.log(err);
 				$.sign_broadcast.disabled = false;
-				populateErrorResponse({message: "Error", details: err});
+				var errorobject = {message: "Error"};
+				if(err.hasOwnProperty('message')) {
+					errorobject['details'] = err.message;
+				}
+				populateErrorResponse(errorobject);
 			}
 		);
 	}

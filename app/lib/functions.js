@@ -152,9 +152,9 @@ var functions = {
 	formatUserBalanceObject : function(uo) {
 		return {
 			'balance': uo.balance,
-			'sbd_balance': uo.sbd_balance,
+			'hbd_balance': uo.hbd_balance,
 			'savings_balance': uo.savings_balance,
-			'savings_sbd_balance': uo.savings_sbd_balance,
+			'savings_hbd_balance': uo.savings_hbd_balance,
 			'name': uo.name,
 			'last_updated': Date.now(),
 			'privatekey': uo.privatekey,

@@ -373,7 +373,7 @@ function fillAccountsList() {
 					accountname: currentaccounts[i].name,
 				},
 				labelbalance: {
-					text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].sbd_balance), 3) + ' HBD'
+					text: helpers.formatToLocale(parseFloat(currentaccounts[i].balance), 3) + ' HIVE | ' + helpers.formatToLocale(parseFloat(currentaccounts[i].hbd_balance), 3) + ' HBD'
 					//text: currentaccounts[i].steem + ' | ' + currentaccounts[i].sbd
 				},
 				accountdata: currentaccounts[i],
