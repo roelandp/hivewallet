@@ -7113,7 +7113,7 @@ module.exports={
   "dev_uri": "https://api.steemitdev.com",
   "stage_uri": "https://api.steemitstage.com",
   "address_prefix": "STM",
-  "chain_id": "0000000000000000000000000000000000000000000000000000000000000000"
+  "chain_id": "beeab0de00000000000000000000000000000000000000000000000000000000"
 }
 
 },{}],38:[function(require,module,exports){
@@ -17888,12 +17888,12 @@ function ripemd160(data) {
 // function hash160(buffer) {
 //   return ripemd160(sha256(buffer))
 // }
-// 
+//
 // function hash256(buffer) {
 //   return sha256(sha256(buffer))
 // }
 
-// 
+//
 // function HmacSHA512(buffer, secret) {
 //   return crypto.createHmac('sha512', secret).update(buffer).digest()
 // }
