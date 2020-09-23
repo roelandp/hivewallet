@@ -14,3 +14,7 @@ tmp
 Thumbs.db
 plugins/ti.alloy
 /testfiles
+.gradle
+.tags
+.tags1
+.travis.yml
