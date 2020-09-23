@@ -201,6 +201,11 @@ Alloy.Globals.config = {
   registeraccounturl: "https://iap.hivewallet.app",
   userAgent: "HiveWallet.app "+Titanium.App.version+" ("+Titanium.Platform.osname+")",
   maxunlocktime: 20 * 60 * 1000, // maximum time allowed being unlocked without re-authenticating (if user opts for "enable unlock session")
+  hivetx: {
+    chain_id: "0000000000000000000000000000000000000000000000000000000000000000",  // change to beeab0de00000000000000000000000000000000000000000000000000000000
+    address_prefix: "STM",
+    rebranded_api: true
+  }
 }
 
 var helpers = require('/functions');

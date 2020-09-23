@@ -9,8 +9,10 @@ var slowaesopts = {
 var slowaes = new SlowAES(slowaesopts);
 var dsteem = require('/hive-tx-min');
 dsteem.config.node = Alloy.Globals.config.apiurl;
-dsteem.config.chain_id = "0000000000000000000000000000000000000000000000000000000000000000";
-dsteem.config.address_prefix = "STM";
+dsteem.config.chain_id = Alloy.Globals.config.hivetx.chain_id;
+dsteem.config.address_prefix = Alloy.Globals.config.hivetx.address_prefix;
+dsteem.config.rebranded_api = Alloy.Globals.config.hivetx.rebranded_api;
+dsteem.updateOperations();
 
 var buffer = require('/buffer');
 
@@ -383,8 +385,8 @@ var wallet_helpers = {
 				helpers.steemAPIcall(
 					"get_dynamic_global_properties", [],
 					function(response) {
-						console.log('get_dynamic_global_properties');
-						console.log(response);
+						// console.log('get_dynamic_global_properties');
+						// console.log(response);
 
 						var head_block_number = response.result.head_block_number;
 						var head_block_id = response.result.head_block_id;
@@ -401,6 +403,7 @@ var wallet_helpers = {
 
 						console.log("op is now below:");
 						console.log(op);
+						console.log(JSON.stringify(op));
 
 
 						var dsteemkey = dsteem.PrivateKey.fromString(keypair['private']);
@@ -415,7 +418,7 @@ var wallet_helpers = {
 						//var stx = Alloy.Globals.dsteemclient.broadcast.sign(op, dsteemkey);
 
 						var tx = new dsteem.Transaction(op);
-
+						console.log(tx);
 						var stx = tx.sign(dsteemkey);
 
 						console.log("STX result?");

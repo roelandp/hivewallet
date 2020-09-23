@@ -12,8 +12,10 @@ var openerurl = ($.args.launcherurl || false);
 
 var dsteem = require('/hive-tx-min');
 dsteem.config.node = Alloy.Globals.config.apiurl;
-dsteem.config.chain_id = "0000000000000000000000000000000000000000000000000000000000000000";
-dsteem.config.address_prefix = "STM";
+dsteem.config.chain_id = Alloy.Globals.config.hivetx.chain_id;
+dsteem.config.address_prefix = Alloy.Globals.config.hivetx.address_prefix;
+dsteem.config.rebranded_api = Alloy.Globals.config.hivetx.rebranded_api;
+dsteem.updateOperations();
 
 var dsteemclient = new dsteem.Transaction(); //new dsteem.Client(Alloy.Globals.config.apiurl);
 
