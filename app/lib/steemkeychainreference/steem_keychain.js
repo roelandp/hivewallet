@@ -258,22 +258,22 @@ var hive_keychain = {
 
         hive_keychain.current_id++;
 
-        //on android: xmlhttprequest which we can monitor in "onloadresource"-event
-        // 1. Create a new XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
-
-        // 2. Configure it: GET-request for the URL
-        var currenthost = window.location.origin;
-        if(!(currenthost.slice(-1) == "/")) { currenthost = currenthost + "/"; }
-        var swsk_url = currenthost+ "?xrf=XXXRF&params="+encodeURIComponent(JSON.stringify(sendobject));
-        //xhr.open('HEAD', 'https://keychain.hivewallet.app/android/parameterforwarder.html?xrf=XXXRF&params='+encodeURIComponent(JSON.stringify(sendobject)));
-        xhr.open('HEAD', swsk_url);
-
-        // 3. Send the request over the network
-        xhr.send();
+        // //on android: xmlhttprequest which we can monitor in "onloadresource"-event
+        // // 1. Create a new XMLHttpRequest object
+        // var xhr = new XMLHttpRequest();
+        //
+        // // 2. Configure it: GET-request for the URL
+        // var currenthost = window.location.origin;
+        // if(!(currenthost.slice(-1) == "/")) { currenthost = currenthost + "/"; }
+        // var swsk_url = currenthost+ "?xrf=hivewallethivekeychain&params="+encodeURIComponent(JSON.stringify(sendobject));
+        // //xhr.open('HEAD', 'https://keychain.hivewallet.app/android/parameterforwarder.html?xrf=XXXRF&params='+encodeURIComponent(JSON.stringify(sendobject)));
+        // xhr.open('HEAD', swsk_url);
+        //
+        // // 3. Send the request over the network
+        // xhr.send();
 
         // on ios a simple document.location forwarder which gets cancelled because it does not exist yet it still triggers an "onbeforeload"-event:
-        //document.location = 'XXXRF://?params=' + encodeURIComponent(JSON.stringify(sendobject));
+        document.location = 'hivewallethivekeychain://?params=' + encodeURIComponent(JSON.stringify(sendobject));
 
     },
     // receiver for getting messages back from the app environment into the browser window.
@@ -307,4 +307,27 @@ var hive_keychain = {
         }
     }
   }
+};
+
+(function(history) {
+    var pushState = history.pushState;
+    history.pushState = function(state) {
+        if (typeof history.onpushstate == "function")
+        {
+            history.onpushstate({
+                state: state
+            });
+        }
+        return pushState.apply(history, arguments);
+    }
+})(window.history);
+window.onpopstate = history.onpushstate = function(e)
+{
+  setTimeout(function(){
+
+    e['windowlocation'] = window.location.href;
+    hive_keychain.dispatchCustomEvent("swPopstate", e);
+
+   }, 500);
+
 };
