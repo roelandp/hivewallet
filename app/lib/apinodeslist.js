@@ -12,11 +12,20 @@ module.exports = exports = [
     url: 'https://anyx.io'
   },
   {
+    maintainer: '@roelandp',
+    url: 'https://hive.roelandp.nl'
+  },
+  {
+    maintainer: '@pharesim',
+    url: 'https://api.pharesim.me'
+  },
+  {
     maintainer: '@drakos',
     url: 'https://api.hivekings.com'
   },
   {
     maintainer: '@privex',
     url: 'https://hived.privex.io'
-  }
+  },
+
 ];
