@@ -1,0 +1,39 @@
+<h1>Ti.InAppBilling.Inventory</h1>
+
+<h2>Description</h2>
+
+<p>Represents an in-app billing inventory. An Inventory Object can be obtained by running a <code>queryInventory</code> and listening for a <code>queryinventorycomplete</code> event, the inventory will be a property of the event object for a successful query.</p>
+
+<h2>Methods</h2>
+
+<h3>boolean hasDetails(productId)</h3>
+
+<p>Returns true if the inventory has details for the <em>productId</em> passed in.</p>
+
+<ul><li><strong>productId</strong>[string]: The product&#39;s id</li></ul>
+
+<h3>object getDetails(productId)</h3>
+
+<p>Returns an object with details for the <em>productId</em> passed in.</p>
+
+<p>The object returned will have the following properties:</p>
+
+<ul><li><strong>productId</strong>[string]: The product&#39;s id.</li><li><strong>type</strong>[string]: The product&#39;s type (ITEM<em>TYPE</em>INAPP or ITEM<em>TYPE</em>SUBSCRIPTION).</li><li><strong>price</strong>[string]: The product&#39;s price.</li><li><strong>price<em>amount</em>micros</strong>[string]: The product&#39;s price amount micros.</li><li><strong>price<em>currency</em>code</strong>[string]: The product&#39;s price currency code.</li><li><strong>title</strong>[string]: The product&#39;s title.</li><li><strong>description</strong>[string]: The product&#39;s description.</li></ul>
+
+<h3>boolean hasPurchase(productId)</h3>
+
+<p>Returns true if the inventory has a <a href="purchase.html">Ti.InAppBilling.Purchase</a> for the <em>productId</em> passed in.</p>
+
+<ul><li><strong>productId</strong>[string]: The product&#39;s id</li></ul>
+
+<h3><a href="purchase.html">Ti.InAppBilling.Purchase</a> getPurchase(productId)</h3>
+
+<p>Returns the <a href="purchase.html">Ti.InAppBilling.Purchase</a> for the <em>productId</em> passed in or null if none exist for that <em>productId</em>.</p>
+
+<ul><li><strong>productId</strong>[string]: The product&#39;s id</li></ul>
+
+<h3>void erasePurchase(productId)</h3>
+
+<p>Erase a purchase (locally) from the inventory, given its <em>productId</em>. This just modifies the Inventory locally and has no effect on the server. This is useful when you have an existing Inventory object which you know to be up to date, and you have just consumed an item successfully, which means that erasing its purchase data from the Inventory you already have is quicker than querying for a new Inventory.</p>
+
+<ul><li><strong>productId</strong>[string]: The product&#39;s id</li></ul>

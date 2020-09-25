@@ -1,0 +1,283 @@
+<h1>Ti.InAppBilling Module</h1>
+
+<h2>Description</h2>
+
+<p>The InAppBilling module allows you to access the Android In-App Billing mechanism. </p>
+
+<h2>Dependencies</h2>
+
+<ul><li>This module requires Titanium SDK 3.2.2.GA or later.</li><li>This module must be tested on a device, testing on an emulator will not work.</li><li>Your test device should be running on Android SDK Version 2.2 (API level 8) or higher, and have Google Play client Version 3.9.16 or higher installed.</li></ul>
+
+<h2>In-app Billing Resources</h2>
+
+<ul><li><a href="http://developer.android.com/google/play/billing/api.html">In-app Billing Version 3 documentation</a></li><li><a href="http://developer.android.com/training/in-app-billing/preparing-iab-app.html#AddToDevConsole">Add Your Application to the Developer Console</a></li><li><a href="http://developer.android.com/training/in-app-billing/list-iab-products.html">Specify In-app Products in Google Play</a></li><li><a href="http://developer.android.com/training/in-app-billing/test-iab-app.html">Testing Your In-app Billing Application</a></li></ul>
+
+<h2>Getting Started</h2>
+
+<p>View the <a href="http://docs.appcelerator.com/titanium/latest/#!/guide/Using_Titanium_Modules">Using Titanium Modules</a> document for instructions on getting
+started with using this module in your application.</p>
+
+<h2>Important Notes</h2>
+
+<h3>Initializing the module</h3>
+
+<p>The <code>startSetup</code> method must be called and the <code>setupcomplete</code> event must have a RESULT<em>OK <code>responseCode</code> before calling any other module methods. If a RESULT</em>OK <code>responseCode</code> is returned then in-app billing v3 is supported. To check if subscription are supported use the <code>subscriptionsSupported</code> method.</p>
+
+<h3>Unmanaged Products</h3>
+
+<p>Unmanaged products behave differently if you are using in-app billing v3 rather than in-app billing v2. In in-app billing v3, Unmanaged products are treated as Managed products and will need to be explicitly consumed.</p>
+
+<h3>Testing</h3>
+
+<p>The app must be signed to make a purchase, either test or real. Only static responses do not require your app to be signed. The easiest way to do this is to package the app for production using Titanium/Appcelerator Studio and installing that app on your test device. Note that the apk uploaded to the developer console must be signed as well.</p>
+
+<h3>Testing with static responses</h3>
+
+<p>It is possible to test using <a href="http://developer.android.com/google/play/billing/billing_testing.html#billing-testing-static">static responses from Google Play</a>. Testing static responses for product ids &quot;android.test.canceled&quot; and &quot;android.test.refunded&quot; will produce a IAB<em>RESULT</em>UNKNOWN<em>ERROR <code>responseCode</code>, this is expected behavior. Using &quot;android.test.purchased&quot; and &quot;android.test.item</em>unavailable&quot; will produce expected results.</p>
+
+<h3>Verify the Signature</h3>
+
+<p>The signature of received purchases will be verified automatically. If there is a signature verification failure, the <code>responseCode</code> of the associated event will be IAB<em>RESULT</em>VERIFICATION_FAILED.</p>
+
+<h3>Verify the Developer Payload</h3>
+
+<p>It is important to verify that the developer payload of the purchase is correct. It will be
+the same one that you sent when initiating the purchase.</p>
+
+<p><strong>WARNING:</strong> Locally generating a random string when starting a purchase and
+verifying it here might seem like a good approach, but this will fail in the
+case where the user purchases an item on one device and then uses your app on
+a different device, because on the other device you will not have access to the
+random string you originally generated.</p>
+
+<p>So a good developer payload has these characteristics:</p>
+
+<ol><li><p>If two different users purchase an item, the payload is different between them,
+so that one user&#39;s purchase can&#39;t be replayed to another user.</p></li><li><p>The payload must be such that you can verify it even when the app wasn&#39;t the
+one who initiated the purchase flow (so that items purchased by the user on
+one device work on other devices owned by the user).</p></li></ol>
+
+<p>Using your own server to store and verify developer payloads across app
+installations is recommended.</p>
+
+<h2>Accessing the Module</h2>
+
+<p>Use <code>require</code> to access this module from JavaScript:</p>
+
+<pre><code>var InAppBilling = require(&quot;ti.inappbilling&quot;);</code></pre>
+
+<p>The InAppBilling variable is a reference to the Module object.</p>
+
+<h2>Breaking Changes</h2>
+
+<p>As of version 3.0.0 of this module, in-app billing v3 is supported. This upgrade caused a number of breaking changes. Do not use this module with older versions of the example application(s) as it will not work. Refer to the documentation and example application(s) for the current way to use the module.</p>
+
+<h2>Methods</h2>
+
+<h3>void startSetup(args)</h3>
+
+<p>Starts the setup process for the module, the setup is complete when the <code>setupcomplete</code> event is fired. This method should be called before calling any other method and should only be called once. Calling this method results in a <code>setupcomplete</code> event.</p>
+
+<ul><li><strong>args</strong>[object]<ul><li><strong>publicKey</strong>[string]: Base64-encoded RSA public key, get this from the <a href="https://play.google.com/apps/publish/">Google Developer Console</a></li><li><strong>debug</strong>[boolean]: Used to print module debug logs in the console (options)(default: false).</li></ul></li></ul>
+
+<h4>Example</h4>
+
+<pre><code>InAppBilling.startSetup({
+    publicKey: &quot;&lt;&lt; Public Key &gt;&gt;&quot;
+});</code></pre>
+
+<h3>boolean subscriptionsSupported()</h3>
+
+<p>Check if subscriptions are supported on the current device.</p>
+
+<h4>Example</h4>
+
+<pre><code>InAppBilling.subscriptionsSupported();</code></pre>
+
+<h3>void queryInventory(args)</h3>
+
+<p>Queries the inventory. This will query all owned items from the server, as well as information on additional productIds. Calling this method results in a <code>queryinventorycomplete</code> event.</p>
+
+<p>Calling this method with no arguments will retrieve all owned purchases. More items details can be retrieved by passing their productId even if they are not owned.</p>
+
+<ul><li><strong>args</strong><a href="optional">object</a><ul><li><strong>queryDetails</strong>[boolean]: Controls if details will be retrieved or not (optional)(default: true).</li><li><strong>moreItems</strong>[string[]]: An array of productIds to be retrieved, will be ignored if queryDetails is false (optional).</li><li><strong>moreSubs</strong>[string[]]: An array of subscription productIds to be retrieved, will be ignored if queryDetails is false (optional).</li></ul></li></ul>
+
+<h4>Example</h4>
+
+<pre><code>InAppBilling.queryInventory({
+    moreItems: [&#39;gas&#39;],
+    moreSubs: [&#39;infinite_gas&#39;]
+});</code></pre>
+
+<h3>void purchase(args)</h3>
+
+<p>Initiate the UI flow for an in-app purchase. Call this method to initiate an in-app purchase, which will involve bringing up the Google Play screen. Calling this method results in a <code>purchasecomplete</code> event.</p>
+
+<ul><li><strong>args</strong>[object]<ul><li><strong>productId</strong>[string]: The productId of the product to be purchased.</li><li><strong>type</strong>[string]: The type of product to be purchased (ITEM<em>TYPE</em>INAPP or ITEM<em>TYPE</em>SUBSCRIPTION).</li><li><strong>developerPayload</strong>[string]: The payload that will be returned with the completed purchase (optional).</li></ul></li></ul>
+
+<p><strong>Note:</strong> It is important to verify the developer payload when it is returned in a <a href="purchase.html">Ti.InAppBilling.Purchase</a>.</p>
+
+<h4>Example</h4>
+
+<pre><code>InAppBilling.purchase({
+	productId: &#39;gas&#39;,
+	type: InAppBilling.ITEM_TYPE_INAPP,
+    developerPayload: &#39;&lt;&lt; Developer Payload &gt;&gt;&#39;
+});</code></pre>
+
+<h3>void consume(args)</h3>
+
+<p>Consumes a given in-app product. Consuming can only be done on an item that&#39;s owned, and as a result of consumption, the user will no longer own it. Calling this method results in a <code>consumecomplete</code> event.</p>
+
+<ul><li><strong>args</strong>[object]<ul><li><strong>purchases</strong>[<a href="purchase.html">Ti.InAppBilling.Purchase</a>[]]: An Array of <a href="purchase.html">Ti.InAppBilling.Purchase</a>s</li></ul></li></ul>
+
+<h4>Example</h4>
+
+<pre><code>InAppBilling.consume({
+    purchases: [purchaseToConsume]
+});</code></pre>
+
+<h2>Properties</h2>
+
+<h3>ITEM<em>TYPE</em>INAPP <a href="read-only">string</a></h3>
+
+<p>Used to define the product type as a managed in-app product when purchasing a product.</p>
+
+<h3>ITEM<em>TYPE</em>SUBSCRIPTION <a href="read-only">string</a></h3>
+
+<p>Used to define the product type as a subscription when purchasing a product. Recurring monthly or annual billing product.</p>
+
+<h3>PURCHASE<em>STATE</em>PURCHASED <a href="read-only">int</a></h3>
+
+<p>Used to determine the state of a <a href="purchase.html">Ti.InAppBilling.Purchase</a>.</p>
+
+<h3>PURCHASE<em>STATE</em>CANCELED <a href="read-only">int</a></h3>
+
+<p>Used to determine the state of a <a href="purchase.html">Ti.InAppBilling.Purchase</a>.</p>
+
+<h3>PURCHASE<em>STATE</em>REFUNDED <a href="read-only">int</a></h3>
+
+<p>Used to determine the state of a <a href="purchase.html">Ti.InAppBilling.Purchase</a>.</p>
+
+<h3>RESULT_OK <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation was successful.</p>
+
+<h3>RESULT<em>USER</em>CANCELED <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation was canceled by the user.</p>
+
+<h3>RESULT<em>BILLING</em>UNAVAILABLE <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation fails due to billing being unavailable.</p>
+
+<h3>RESULT<em>ITEM</em>UNAVAILABLE <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation fails due to the item being unavailable.</p>
+
+<h3>RESULT<em>DEVELOPER</em>ERROR <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation fails due to a developer error.</p>
+
+<h3>RESULT_ERROR <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation fails due to an unknown error.</p>
+
+<h3>RESULT<em>ITEM</em>ALREADY_OWNED <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation fails due to the item already being owned.</p>
+
+<h3>RESULT<em>ITEM</em>NOT_OWNED <a href="read-only">int</a></h3>
+
+<p>Result code returned by Google Play when an operation fails due to the item not being owned.</p>
+
+<h3>IAB<em>RESULT</em>REMOTE_EXCEPTION <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an operation fails due to a remote exception.</p>
+
+<h3>IAB<em>RESULT</em>BAD_RESPONSE <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an operation fails due to a bad response.</p>
+
+<h3>IAB<em>RESULT</em>VERIFICATION_FAILED <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an operation fails due to a verification error. This is related to verifying the signature of a purchase.</p>
+
+<h3>IAB<em>RESULT</em>SEND<em>INTENT</em>FAILED <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an purchase fails due to a failure sending the intent.</p>
+
+<h3>IAB<em>RESULT</em>UNKNOWN<em>PURCHASE</em>RESPONSE <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an purchase fails due to an unknown purchase response.</p>
+
+<h3>IAB<em>RESULT</em>MISSING_TOKEN <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an consume fails due to a missing token.</p>
+
+<h3>IAB<em>RESULT</em>UNKNOWN_ERROR <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an consume fails due to a missing token.</p>
+
+<h3>IAB<em>RESULT</em>SUBSCRIPTIONS<em>NOT</em>AVAILABLE <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an operation fails due subscriptions not being available.</p>
+
+<h3>IAB<em>RESULT</em>INVALID_CONSUMPTION <a href="read-only">int</a></h3>
+
+<p>Result code returned by the module when an consume fails due to the consumption being invalid.</p>
+
+<h2>Events</h2>
+
+<h3>setupcomplete</h3>
+
+<p>Occurs as a result of calling the <code>startSetup</code> method. Do not call any other module methods before this event comes back successful. </p>
+
+<p>The event object will have the following properties:</p>
+
+<ul><li><strong>success</strong>[boolean]: Convenience property will be true if the operation was successful.</li><li><strong>responseCode</strong>[int]: A result code indicating the result of the operation. For possible value, see constants starting with RESULT and IAB_RESULT.</li></ul>
+
+<h3>queryinventorycomplete</h3>
+
+<p>Occurs as a result of calling the <code>queryInventory</code> method.</p>
+
+<p>The event object will have the following properties:</p>
+
+<ul><li><strong>success</strong>[boolean]: A convenience property that will be true if the operation was successful.</li><li><strong>responseCode</strong>[int]: A result code indicating the result of the operation. For possible value, see constants starting with RESULT and IAB_RESULT.</li><li><strong>inventory</strong>[<a href="inventory.html">Ti.InAppBilling.Inventory</a>]: The inventory of products returned by a successful inventory query.</li></ul>
+
+<h3>purchasecomplete</h3>
+
+<p>Occurs as a result of calling the <code>purchase</code> method.</p>
+
+<p>The event object will have the following properties:</p>
+
+<ul><li><strong>success</strong>[boolean]: A convenience property that will be true if the operation was successful.</li><li><strong>responseCode</strong>[int]: A result code indicating the result of the operation. For possible value, see constants starting with RESULT and IAB_RESULT.</li><li><strong>purchase</strong>[<a href="purchase.html">Ti.InAppBilling.Purchase</a>]: The result of a successful purchase.</li></ul>
+
+<h3>consumecomplete</h3>
+
+<p>Occurs as a result of calling the <code>consume</code> method.</p>
+
+<p>The event object will have the following properties:</p>
+
+<ul><li><strong>success</strong>[boolean]: A convenience property that will be true if the operation was successful.</li><li><strong>responseCode</strong>[int]: A result code indicating the result of the operation. For possible value, see constants starting with RESULT and IAB_RESULT.</li><li><strong>purchase</strong>[<a href="purchase.html">Ti.InAppBilling.Purchase</a>]: The <a href="purchase.html">Ti.InAppBilling.Purchase</a> associated with the event.	</li></ul>
+
+<h1>Usage</h1>
+
+<p>See the <code>example</code> application and Android documentation. </p>
+
+<h2>Author</h2>
+
+<p>Developed for Appcelerator by Logical Labs
+Alexander Conway (Logical Labs) and Jon Alter</p>
+
+<h2>Module History</h2>
+
+<p>View the <a href="changelog.html">change log</a> for this module.</p>
+
+<h2>Feedback and Support</h2>
+
+<p>Please direct all questions, feedback, and concerns to <a href="mailto:info@appcelerator.com?subject=Android%20InAppBilling%20Module">info@appcelerator.com</a>.</p>
+
+<h2>License</h2>
+
+<p>Copyright(c) 2010-2014 by Appcelerator, Inc. All Rights Reserved. Please see the LICENSE file included in the distribution for further details.</p>
