@@ -452,6 +452,9 @@ function validateUsername(e) {
 //
 function returnUsername(e) {
   $.textfield_createaccount_username.blur();
+  if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
   validateUsername(e);
 }
 
@@ -581,6 +584,10 @@ function formatPurchaseKeyField(account, password){
 function returnPassword(e) {
 
   $.textfield_createaccount_password.blur();
+  if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
   calcPassphraseStrength(e);
 
   var pwdstrength = zxcvbn(e.value);
@@ -610,6 +617,9 @@ function confirmPassphrase() {
 
 function returnPasswordConfirm() {
   $.textfield_createaccount_password2.blur();
+  if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
   confirmPassphrase();
 }
 
@@ -638,17 +648,26 @@ function makePwd(){
 
 function step2() {
   $.textfield_createaccount_username.blur();
+  if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
   slideToView(1);
   setTimeout(function() {makePwd($.textfield_createaccount_password);},1000);
 }
 
 function step3() {
   $.textfield_createaccount_password.blur();
+  if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
   slideToView(2);
 }
 
 function step4() {
   $.textfield_createaccount_password2.blur();
+  if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
 
   // execute order here.
   if(Titanium.Network.online) {
@@ -747,6 +766,9 @@ function finalisePurchaseView() {
   $.purchasekeysarea.value = formatPurchaseKeyField($.textfield_createaccount_username.value.trim(), $.textfield_createaccount_password.value);
   $.purchasekeysarea.setSelection(0,0);
   $.purchasekeysarea.blur();
+  if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
 
   setTimeout(function(){
     $.purchasekeysarea.addEventListener('focus', focusTextArea);

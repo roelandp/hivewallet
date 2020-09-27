@@ -1059,7 +1059,7 @@ function handleSteemKeyCommand(_url) {
 			console.log(JSON.stringify(queryobject));
 
 			$.browser_url.value = queryobject['data']['windowlocation'];
-			
+
 		} else {
 			alert("Unknown command "+queryobject['name']);
 		}
@@ -1206,10 +1206,25 @@ function goNext() {
 	}
 }
 function goPage(){
+	// stop previous loading pages.
+	if(OS_ANDROID) {
+		Ti.UI.Android.hideSoftKeyboard();
+	} else {
+		$.browser_url.blur();
+	}
 	$.progressbar.width = 0;
 	$.progressbar.opacity = 1;
 	var pagetogo = $.browser_url.value.toLowerCase();
 
+	try {
+		console.log("trying stop loading");
+		//$.dappview.stopLoading();
+		console.log("done trying stop loading");
+	} catch(e) {
+		console.log(e);
+	}
+
+	console.log("Will now navigate to - "+pagetogo);
 	if(pagetogo.startsWith('https://')) {
 		$.dappview.url = pagetogo;
 	} else {
@@ -1220,4 +1235,4 @@ function goPage(){
 		}
 	}
 }
-$.browser_url.addEventListener('return', goPage);
+$.browser_url.addEventListener('return', function() { console.log("addressbar return detected"); goPage(); });

@@ -274,6 +274,10 @@ var rolesadded = [];
 function selectAccount(){
   // should lookup account if exists.
   $.textfield_which_account.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 
   if($.textfield_which_account.value.length == 0) {
     alert(String.format(L('s_field_cant_be_empty'), L('overlay_body_input_account')));
@@ -323,6 +327,10 @@ function step_previous() {
   $.textfield_key_posting.blur();
   $.textfield_key_active.blur();
   $.textfield_key_memo.blur();
+
+	if(OS_ANDROID){
+		Ti.UI.Android.hideSoftKeyboard();
+	}
 
   $.scrollview.currentPage = 1;
   $.scrollviewcontainer.scrollTo(0,0);
@@ -404,6 +412,10 @@ function returnMP() {
   // added masterpassword ---
   // check if not empty.
   $.textfield_masterpassword.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
   // should nullify immediately after storing in walletfile!
   keystostore = makeAccountKeyObjectFromLogin($.textfield_which_account.value.trim().toLowerCase(),$.textfield_masterpassword.value.trim());
 
@@ -498,6 +510,9 @@ function returnMAN() {
   $.textfield_key_posting.blur();
   $.textfield_key_active.blur();
   $.textfield_key_memo.blur();
+	if(OS_ANDROID){
+		Ti.UI.Android.hideSoftKeyboard();
+	}
 
   // try to store in wallet
   storeInWallet();
@@ -530,16 +545,28 @@ function togglePasswordMask2() {
 function returnKey1(){
   // onreturn key1 (posting)
   $.textfield_key_posting.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 }
 
 function returnKey2(){
   // onreturn key2 (active)
   $.textfield_key_active.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 }
 
 function returnKey3(){
   // onreturn key3 (memo)
   $.textfield_key_memo.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 }
 
 function scanKey1() {
@@ -548,6 +575,10 @@ function scanKey1() {
 		Barcode.removeEventListener('success', _sucfunc);
 		$.textfield_key_posting.value = (e.result);
 		$.textfield_key_posting.blur();
+		if(OS_ANDROID){
+	    Ti.UI.Android.hideSoftKeyboard();
+	  }
+
 	});
 
 	cameraPermission(function(re) {
@@ -567,6 +598,10 @@ function scanKey2() {
 		Barcode.removeEventListener('success', _sucfunc);
 		$.textfield_key_active.value = (e.result);
 		$.textfield_key_active.blur();
+		if(OS_ANDROID){
+	    Ti.UI.Android.hideSoftKeyboard();
+	  }
+
 	});
 
 	cameraPermission(function(re) {
@@ -586,6 +621,10 @@ function scanKey3() {
 		Barcode.removeEventListener('success', _sucfunc);
 		$.textfield_key_memo.value = (e.result);
 		$.textfield_key_memo.blur();
+		if(OS_ANDROID){
+	    Ti.UI.Android.hideSoftKeyboard();
+	  }
+
 	});
 
 	cameraPermission(function(re) {
@@ -742,6 +781,10 @@ function returnWalletPassword(e) {
 
 	var pwdstrength = zxcvbn(e.value);
 	$.textfield_addwalletpassword.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	if (pwdstrength['score'] >= 3) {
 		$.create_wallet_button.enabled = (true);
 		createWallet();

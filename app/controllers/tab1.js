@@ -212,6 +212,11 @@ function removeAccount(e) {
 
 function handleAddAccountTF(e){
 	$.textfield_addaccount.blur();
+
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	handleAddAccount($.textfield_addaccount.value.trim().toLowerCase());
 }
 
@@ -289,6 +294,10 @@ function handleAddAccount(acct) {
 					updateAccount(foundname);
 
 					$.textfield_addaccount.blur();
+					if(OS_ANDROID){
+				    Ti.UI.Android.hideSoftKeyboard();
+				  }
+
 					hideOverlayAddAccount();
 
 					helpers_eventdispatcher.trigger('refreshaccountlist');
@@ -314,6 +323,10 @@ function handleAddAccount(acct) {
 // all overlay functions had to be named as the index.xml view doesnt accept parameters in the function calls.
 function hideOverlayAddAccount() {
 	$.textfield_addaccount.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	hideOverlay($.overlay_addaccount);
 }
 

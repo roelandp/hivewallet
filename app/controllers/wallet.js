@@ -390,6 +390,10 @@ function hideOverlay(overlay) {
 // all overlay functions had to be named as the index.xml view doesnt accept parameters in the function calls.
 function hideOverlayAddAccount() {
 	$.textfield_addaccount.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	hideOverlay($.overlay_addaccount);
 }
 
@@ -549,6 +553,10 @@ function showOverlayImportPrivatekey() {
 
 function hideOverlayImportPrivatekey() {
 	$.textfield_importprivatekey.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	hideOverlay($.overlay_importkey);
 }
 
@@ -572,6 +580,10 @@ function returnPrivatekey() {
 	//
 
 	$.textfield_importprivatekey.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	if ($.textfield_importprivatekey.value.length == 0) {
 		alert(L('please_type_paste_or_scan_a_privkey'));
 		return false;
@@ -728,6 +740,10 @@ function scanPrivateKey() {
 		//Ti.API.info('Success called with barcode: ' + e.result);
 		$.textfield_importprivatekey.value = (e.result);
 		$.textfield_importprivatekey.blur();
+		if(OS_ANDROID){
+	    Ti.UI.Android.hideSoftKeyboard();
+	  }
+
 	});
 
 	cameraPermission(function(re) {
@@ -780,6 +796,10 @@ function calcPassphraseStrength(e) {
 function returnPassword(e) {
 	var pwdstrength = zxcvbn(e.value);
 	$.textfield_addwalletpassword.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	if (pwdstrength['score'] >= 3) {
 		$.create_wallet_button.enabled = (true);
 	} else {
@@ -898,6 +918,10 @@ function showOverlayCreateWallet() {
 
 function hideOverlayCreateWallet() {
 	$.textfield_addwalletpassword.blur();
+	if(OS_ANDROID){
+    Ti.UI.Android.hideSoftKeyboard();
+  }
+
 	hideOverlay($.overlay_createwallet);
 }
 
@@ -906,6 +930,9 @@ function hideOverlaySend() {
 	$.textfield_send_to.blur();
 	$.textfield_send_amount.blur();
 	$.textfield_send_memo.blur();
+	if(OS_ANDROID){
+		Ti.UI.Android.hideSoftKeyboard();
+	}
 
 	hideOverlay($.overlay_send);
 }
@@ -1046,6 +1073,10 @@ function returnSendInputfield(e) {
 
 
 			$.textfield_send_memo.blur();
+			if(OS_ANDROID){
+		    Ti.UI.Android.hideSoftKeyboard();
+		  }
+
 			break;
 			//onBlurSendInputField(e);
 	}
@@ -1279,6 +1310,10 @@ function scanAccountQR(e) {
 		} else {
 			$.textfield_send_to.value = (e.result);
 			$.textfield_send_to.blur();
+			if(OS_ANDROID){
+		    Ti.UI.Android.hideSoftKeyboard();
+		  }
+
 		}
 	});
 
@@ -1313,6 +1348,10 @@ function scanMemoQR(e) {
 		} else {
 			$.textfield_send_memo.value = (e.result);
 			$.textfield_send_memo.blur();
+			if(OS_ANDROID){
+		    Ti.UI.Android.hideSoftKeyboard();
+		  }
+
 		}
 	});
 
@@ -1701,6 +1740,10 @@ function handleAddAccount(e) {
 
 	try {
 		$.textfield_addaccount.blur();
+		if(OS_ANDROID){
+	    Ti.UI.Android.hideSoftKeyboard();
+	  }
+
 	} catch(err){
 		console.log(err);
 	}
@@ -1771,6 +1814,10 @@ function handleAddAccount(e) {
 					updateAccount(foundname);
 
 					$.textfield_addaccount.blur();
+					if(OS_ANDROID){
+				    Ti.UI.Android.hideSoftKeyboard();
+				  }
+
 					hideOverlayAddAccount();
 
 					if (alreadyhadaccount) {
