@@ -46,6 +46,9 @@
 }
 
 "TabGroup": {
+	navBarHidden: true,
+  /* extendSafeArea: true, */
+	fullscreen: true,
   orientationModes: [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT],
 	tabsTintColor: Alloy.Globals.theme.steemlightblue,
 	activeTabIconTint: Alloy.Globals.theme.steemdarkblue,
@@ -56,6 +59,8 @@
 
 "TabGroup[platform=android]": {
 	swipeable: false,
+	theme: "Theme.MyNoActionBar",
+	title: ""
 }
 
 "Tab" : {
