@@ -2,9 +2,11 @@
 <!--
       ANDROID has issue with Ti.Inappbilling module.
       Hence we export a version for Android support up
-      to ANDROID-7 (API-24) using 5.0.0 version of inappbilling
+      to API-7 using 5.0.0 version of inappbilling
 
-      Android version code is prefixed with 070 in this case.
+      This config file is for ANDROID-8 (API-26) and higher (minSdkVersion) - using 5.0.1 for inappbilling with a fix.
+
+      Android version code is prefixed with 080 in this case.
  -->
 <ti:app
   xmlns:ti="http://ti.appcelerator.org">
@@ -71,8 +73,8 @@
   <android
     xmlns:android="http://schemas.android.com/apk/res/android">
     <manifest
-      xmlns:android="http://schemas.android.com/apk/res/android" package="app.steemwallet.roelandp" android:versionCode="0702300" android:versionName="2.3.0.0">
-      <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="29"/>
+      xmlns:android="http://schemas.android.com/apk/res/android" package="app.steemwallet.roelandp" android:versionCode="0802300" android:versionName="2.3.0.0">
+      <uses-sdk android:minSdkVersion="26" android:targetSdkVersion="29"/>
       <application android:icon="@drawable/appicon" android:label="HiveWallet" android:name="HivewalletApplication" android:debuggable="false" android:theme="@style/Theme.MyTheme" android:resizeableActivity="true" android:allowBackup="false">
         <activity android:name=".HivewalletActivity" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:screenOrientation="portrait">
           <intent-filter>
@@ -114,7 +116,7 @@
     <module platform="iphone">ti.barcode</module>
     <module platform="android">ti.barcode</module>
     <module platform="iphone">ti.storekit</module>
-    <module platform="android" version="5.0.0">ti.inappbilling</module>
+    <module platform="android" version="5.0.1">ti.inappbilling</module>
     <module platform="android">ti.deeply</module>
     <!-- hyperloop only needed for android resume/pause function -->
     <module platform="android">hyperloop</module>
