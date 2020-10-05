@@ -1,5 +1,14 @@
+v 2.3.0
+- Upgrading for HF24
+
+v 2.2.2
+- Merging from steem to Hive
+
+v 2.0.0
+- Introducing dapp browser
+
 v 1.1.3
-- (android) adding support for App-Links for deeplinking via https://steemwallet.app/sign urls 
+- (android) adding support for App-Links for deeplinking via https://steemwallet.app/sign urls
 
 v 1.1.2
 - added steem-uri spec! Now you can open this app with steem:// urls following the steem-uri spec: https://github.com/steemit/steem-uri-spec
