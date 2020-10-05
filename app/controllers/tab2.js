@@ -29,6 +29,16 @@ var android_current_origin;
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function getHostName(url) {
+    var match = url.match(/:\/\/(www[0-9]?\.)?(.[^/:]+)/i);
+    if (match != null && match.length > 2 && typeof match[2] === 'string' && match[2].length > 0) {
+    return match[2];
+    }
+    else {
+        return null;
+    }
+}
+
 //var steemjs = require('/steemjs');
 
 //var helpers = new fns();
@@ -297,7 +307,7 @@ function populateOperations() {
 
 
 	// also filling hostname here -
-	current_query_object['hostname'] = $.dappview.evalJS('window.location.hostname');
+	current_query_object['hostname'] = getHostName($.browser_url.value); //$.dappview.evalJS('window.location.hostname');
 
 	//
 	current_query_object['data']['method'] = steemkeychain_helpers.getRequiredWifType(current_query_object['data']);
@@ -1127,16 +1137,17 @@ $.dappview.addEventListener('load', function(e){
 
 	$.browser_url.value = e.url;
 
-
-
-	if(OS_IOS) {
-		$.browser_url.value = $.dappview.evalJS('window.location.href');
-	}
-
-	if(OS_ANDROID) {
-		// android_current_origin = $.dappview.evalJS('window.location.origin');
-		// console.log('android current origin ====> '+android_current_origin);
-	}
+	console.log("dappview onload e.url --> "+e.url);
+	console.log("dappview onload dappview.url --> "+ $.dappview.url);
+	//
+	// if(OS_IOS) {
+	// 	$.browser_url.value = $.dappview.evalJS('window.location.href');
+	// }
+	//
+	// if(OS_ANDROID) {
+	// 	// android_current_origin = $.dappview.evalJS('window.location.origin');
+	// 	// console.log('android current origin ====> '+android_current_origin);
+	// }
 
 	$.progressbar.width = Alloy.Globals.dimensions.DP_platformWidth;
 	$.progressbar.opacity = 0;
@@ -1144,35 +1155,34 @@ $.dappview.addEventListener('load', function(e){
 	setTimeout(function() {
 		console.log("\n\n******* injecting Keychain for Hive ******** \n\n");
 		console.log("e.url  ===> "+ e.url);
-		console.log("window.location.origin  ===> "+ $.dappview.evalJS('window.location.origin'));
-		console.log("window.location.href  ===> "+ $.dappview.evalJS('window.location.href'));
+		//console.log("window.location.origin  ===> "+ $.dappview.evalJS('window.location.origin'));
+		//console.log("window.location.href  ===> "+ $.dappview.evalJS('window.location.href'));
 
 		if(OS_ANDROID) {
-			$.dappview.url = 'javascript:var scriptTag = document.createElement("script"); scriptTag.type = \'text/javascript\'; var inlineScript = document.createTextNode(\''+inlinecode_android+'\'); scriptTag.appendChild(inlineScript); var swcontainer =  document.getElementsByTagName(\'script\')[0]; swcontainer.parentNode.insertBefore(scriptTag, swcontainer);';
 
-			android_current_origin = $.dappview.evalJS('window.location.origin');
-			var locationhref = $.dappview.evalJS('window.location.href');
-
-			if(locationhref) {
-				$.browser_url.value = locationhref;
-			}
+			var location = $.dappview.url;
 
 
-			if(!android_current_origin) {
-				var location = $.browser_url.value;
-				var matches = location.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
-				var domain = matches && matches[1];
-				android_current_origin = "https://"+domain;
-			} else {
-				android_current_origin = android_current_origin;
-			}
+			var matches = location.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i);
+			var domain = matches && matches[1];
+			android_current_origin = "https://"+domain;
+
+			console.log("location ---> "+ location);
+			console.log("android_current_origin ---> "+ android_current_origin);
+
+			$.browser_url.value = location;
 
 			// android_current_origin should end with /
 			if(!(android_current_origin.slice(-1) == "/")) {
 				android_current_origin = android_current_origin + "/";
 			}
 
-		console.log("set android_current_origin to ---> "+android_current_origin);
+			console.log("set android_current_origin to ---> "+android_current_origin);
+
+
+
+			$.dappview.url = 'javascript:var scriptTag = document.createElement("script"); scriptTag.type = \'text/javascript\'; var inlineScript = document.createTextNode(\''+inlinecode_android+'\'); scriptTag.appendChild(inlineScript); var swcontainer =  document.getElementsByTagName(\'script\')[0]; swcontainer.parentNode.insertBefore(scriptTag, swcontainer);';
+
 		} else {
 			$.dappview.evalJS('var scriptTag = document.createElement("script"); scriptTag.type = \'text/javascript\'; var inlineScript = document.createTextNode(\''+inlinecode_ios+'\'); scriptTag.appendChild(inlineScript); var swcontainer =  document.getElementsByTagName(\'script\')[0]; swcontainer.parentNode.insertBefore(scriptTag, swcontainer);');
 		}
