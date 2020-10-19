@@ -190,7 +190,7 @@ if(!Titanium.App.Properties.hasProperty('app:theme')) {
 }
 
 Alloy.Globals.config = {
-  apiurl : 'https://api.steemit.com',
+  apiurl : 'https://api.hive.blog',
 	expiretime: 30 * 1000, // default transaction expiretime
   cmc_steem: "https://api.coinmarketcap.com/v2/ticker/1230/?convert=BTC",
   cmc_sbd: "https://api.coinmarketcap.com/v2/ticker/1312/?convert=BTC",

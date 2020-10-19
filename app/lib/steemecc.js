@@ -7108,10 +7108,10 @@ function config (name) {
 module.exports={
   "transport": "http",
   "websocket": "wss://gtg.steem.house:8090",
-  "uri": "https://api.steemit.com",
+  "uri": "https://api.hive.blog",
   "url": "",
-  "dev_uri": "https://api.steemitdev.com",
-  "stage_uri": "https://api.steemitstage.com",
+  "dev_uri": "https://api.hive.blog",
+  "stage_uri": "https://api.hive.blog",
   "address_prefix": "STM",
   "chain_id": "beeab0de00000000000000000000000000000000000000000000000000000000"
 }
