@@ -37,7 +37,7 @@
 
 ### Feature requests, pull-requests
 
-I specifically envision keeping the app lightweight. I certainly don't intend to compete with other great apps out there such as the eSteem app..
+I specifically envision keeping the app lightweight. I certainly don't intend to compete with other great apps out there such as the Ecency app..
 
 If you want to help, and want the app in your native language, feel free to help translate!
 Translations are a community effort and thanks to opensource support from [Crowdin](https://crowdin.com/project/hivewallet) you can now help add your translation via https://crowdin.com/project/steemwallet - please explore the app thoroughly when adding translations!
