@@ -4,6 +4,7 @@
 /i18n
 /dist
 /tests
+/node_modules
 build.log
 build
 npm-debug.log

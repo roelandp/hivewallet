@@ -401,8 +401,12 @@ function fillAccountsList() {
 }
 
 function createAccount() {
-	var win_createaccount = Alloy.createController('/create_account').getView();
-	Alloy.Globals.tabGroup.activeTab.open(win_createaccount);
+	if(OS_IOS) {
+		var win_createaccount = Alloy.createController('/create_account').getView();
+		Alloy.Globals.tabGroup.activeTab.open(win_createaccount);
+	} else {
+			Ti.Platform.openURL("https://signup.hive.io/");
+	}
 }
 
 var overlayAnimation = Titanium.UI.createAnimation();
@@ -411,7 +415,7 @@ function showOverlay(overlay) {
 
 	console.log('called show overlay');
   console.log(overlay);
-	console.log('getTop '+ overlay.getTop());
+	// console.log('getTop '+ overlay.getTop());
 	console.log('alloy globals getheight '+ Alloy.Globals.dimensions.DP_platformHeight);
 
 	if (overlay.top == Alloy.Globals.dimensions.DP_platformHeight) {

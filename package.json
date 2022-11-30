@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "appcelerator": "^5.0.0",
     "cloudinary": "^1.2.1",
     "gulp": "^3.8.11",
     "gulp-additional-utils": "git://github.com/thesmiths/gulp-additional-utils.git",

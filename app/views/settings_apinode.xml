@@ -12,7 +12,7 @@
   				</View>
   				<View class="divider bottom0"></View>
   			</View>
-        <View class="add_new_node" height="162" class="layout_vertical" id="addnodecontainer">
+        <View height="162" class="layout_vertical" id="addnodecontainer">
           <View height="50">
   					<Label class="inputholder_label" textid="addnewnode_name"></Label>
   					<TextField

@@ -7,6 +7,12 @@
   				<View class="divider bottom0"></View>
   			</View>
         <TableView class="listview" onClick="doSetting">
+          <TableViewRow item="salvage">
+            <View class="layout_horizontal height_UISIZE">
+              <Label class="menuicon fontSize20">🆘</Label>
+              <Label class="fontSize20 padhorizontal_20" textid="export_keys"></Label>
+            </View>
+          </TableViewRow>
           <TableViewRow item="createaccount">
             <View class="layout_horizontal height_UISIZE">
               <Label class="menuicon fontSize20">👤</Label>

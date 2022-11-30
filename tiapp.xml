@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-      ANDROID has issue with Ti.Inappbilling module.
-      Hence we export a version for Android support up
-      to ANDROID-7 (API-24) using 5.0.0 version of inappbilling
-
-      Android version code is prefixed with 070 in this case.
- -->
 <ti:app
   xmlns:ti="http://ti.appcelerator.org">
   <id>app.steemwallet.roelandp</id>
   <name>HiveWallet</name>
-  <version>2.3.0.0</version>
+  <version>2.4.1.1</version>
   <publisher>roelandp</publisher>
   <url>https://hivewallet.app</url>
   <description>fast, secure and open source wallet for the Hive blockchain</description>
@@ -19,7 +12,8 @@
   <fullscreen>true</fullscreen>
   <navbar-hidden>false</navbar-hidden>
   <analytics>false</analytics>
-  <guid>da494d9d-d2a8-4f59-9aaa-f32b6372553f</guid>
+  <guid>9a40121b-827b-4f96-b54b-0e7e1c235ad0</guid>
+  <!-- OLD GUID from appc <guid>da494d9d-d2a8-4f59-9aaa-f32b6372553f</guid> -->
   <property name="ti.ui.defaultunit" type="string">dp</property>
   <property name="run-on-main-thread" type="bool">true</property>
   <ios>
@@ -27,6 +21,11 @@
     <use-app-thinning>true</use-app-thinning>
     <plist>
       <dict>
+        <key>UIBackgroundModes</key>
+        <array>
+            <string>fetch</string>
+            <string>remote-notification</string>
+        </array>
         <key>UISupportedInterfaceOrientations~iphone</key>
         <array>
           <string>UIInterfaceOrientationPortrait</string>
@@ -67,11 +66,23 @@
         </array>
       </dict>
     </plist>
+    <!-- <entitlements>
+  <dict>
+    <key>com.apple.security.application-groups</key>
+    <array>
+      <string>M2FNGBQ5GU.app.steemwallet.roelandp</string>
+    </array>
+    <key>keychain-access-groups</key>
+    <array>
+      <string>$(AppIdentifierPrefix)app.steemwallet.roelandp</string>
+    </array>
+  </dict>
+</entitlements> -->
   </ios>
   <android
     xmlns:android="http://schemas.android.com/apk/res/android">
     <manifest
-      xmlns:android="http://schemas.android.com/apk/res/android" package="app.steemwallet.roelandp" android:versionCode="0702300" android:versionName="2.3.0.0">
+      xmlns:android="http://schemas.android.com/apk/res/android" package="app.steemwallet.roelandp" android:versionCode="2225" android:versionName="2.2.2.5">
       <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="29"/>
       <application android:icon="@drawable/appicon" android:label="HiveWallet" android:name="HivewalletApplication" android:debuggable="false" android:theme="@style/Theme.MyTheme" android:resizeableActivity="true" android:allowBackup="false">
         <activity android:name=".HivewalletActivity" android:label="@string/app_name" android:theme="@style/Theme.Titanium" android:configChanges="keyboardHidden|orientation|fontScale|screenSize|smallestScreenSize|screenLayout|density" android:screenOrientation="portrait">
@@ -101,8 +112,7 @@
           </intent-filter>
         </activity>
         <provider android:name="org.appcelerator.titanium.io.TiFileProvider" android:authorities="app.steemwallet.roelandp.tifileprovider" android:exported="false" android:grantUriPermissions="true"/>
-        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
-        <!-- https://developers.google.com/maps/documentation/android-sdk/config#specify_requirement_for_apache_http_legacy_library -->
+        <uses-library android:name="org.apache.http.legacy" android:required="false" /> <!-- https://developers.google.com/maps/documentation/android-sdk/config#specify_requirement_for_apache_http_legacy_library --> 
       </application>
     </manifest>
   </android>
@@ -114,7 +124,7 @@
     <module platform="iphone">ti.barcode</module>
     <module platform="android">ti.barcode</module>
     <module platform="iphone">ti.storekit</module>
-    <module platform="android" version="5.0.0">ti.inappbilling</module>
+    <module platform="android">ti.inappbilling</module>
     <module platform="android">ti.deeply</module>
     <!-- hyperloop only needed for android resume/pause function -->
     <module platform="android">hyperloop</module>
@@ -126,10 +136,9 @@
   </deployment-targets>
   <!-- ios for now -->
   <!-- <sdk-version>8.1.0.v20190605095601</sdk-version> -->
-  <sdk-version>8.3.1.GA</sdk-version>
   <!-- android for now -->
-  <!-- <sdk-version>7.4.1.GA</sdk-version> -->
-  <!-- <sdk-version>8.3.1.GA</sdk-version> -->
+  <!-- <sdk-version>11.0.0.GA</sdk-version> -->
+  <sdk-version>11.0.0.GA</sdk-version>
   <plugins>
     <plugin version="1.0">ti.alloy</plugin>
   </plugins>

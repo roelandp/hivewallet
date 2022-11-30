@@ -211,7 +211,7 @@ var keychainItem;
 
 var newuser = false;
 
-var platformGUID = Ti.Platform.getId();
+var platformGUID = Ti.Platform.id;
 //console.log('getId()', platformGUID);
 
 if (!platformGUID) {
@@ -287,7 +287,7 @@ function initTiIdentity(cb) {
 		if (OS_IOS) {
 			keychainItem = TiIdentity.createKeychainItem({
 				identifier: 'walletpassphrase',
-				accessGroup: Alloy.Globals.config.teamid + '.' + Ti.App.getId(),
+				accessGroup: Alloy.Globals.config.teamid + '.' + Ti.App.id,
 				accessibilityMode: TiIdentity.ACCESSIBLE_WHEN_PASSCODE_SET_THIS_DEVICE_ONLY,
 				//Item data can only be accessed while the device is unlocked. This class is only available if a passcode is set on the device.
 				//This is recommended for items that only need to be accessible while the application is in the foreground.
@@ -1094,7 +1094,7 @@ function encryptWallet(keys, passphrase) {
 function createWallet() {
 
 	$.create_wallet_button.enabled = (false);
-	var passphrase = $.textfield_addwalletpassword.getValue();
+	var passphrase = $.textfield_addwalletpassword.value;
 
 	var pwdstrength = zxcvbn(passphrase);
 
@@ -1106,7 +1106,7 @@ function createWallet() {
 		// initiate wallet with empty key array.
 		encryptWallet([], passphrase);
 
-		if ($.enable_identity_switch.getValue()) {
+		if ($.enable_identity_switch.value) {
 			initTiIdentity(function() {
 
 				keychainItem.fetchExistence(function(e) {
@@ -2173,7 +2173,11 @@ appPauseResume({
 });
 
 function createAccount(){
-	Alloy.createController('create_account').getView().open();
+	if(OS_IOS) {
+		Alloy.createController('create_account').getView().open();
+	} else {
+		Ti.Platform.openURL("https://signup.hive.io/");
+	}
 }
 
 $.author_description.addEventListener('link', function(e){

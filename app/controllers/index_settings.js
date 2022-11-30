@@ -34,8 +34,12 @@ function doSetting(e){
     break;
 
     case "createaccount":
-      var win = Alloy.createController('create_account').getView();
-      Alloy.Globals.tabGroup.activeTab.open(win);
+      if (OS_IOS) {
+        var win = Alloy.createController('create_account').getView();
+        Alloy.Globals.tabGroup.activeTab.open(win);
+      } else {
+          Ti.Platform.openURL("https://signup.hive.io/");
+      }
     break;
 
     case "importkey":
@@ -55,6 +59,86 @@ function doSetting(e){
 
     case "buysteem":
       Ti.Platform.openURL("https://blocktrades.us/?output_coin_type=hive&receive_address="+Ti.App.Properties.getString('currentaccount')+"&memo=&affiliate_id=81ddfd62-03df-4efa-b6a7-65f84802248e");
+    break;
+
+    case "salvage": 
+
+
+    var dialog = Ti.UI.createAlertDialog({
+      title: "Unlock export feature?",
+      message: 'Ask contractor R. for unlock code - via Jess!',
+      style: Ti.UI.iOS.AlertDialogStyle.SECURE_TEXT_INPUT,
+      buttonNames: [L('unlock'), L('cancel')],
+      cancel: 1,
+    });
+    dialog.addEventListener('click', function _lis(e) {
+      dialog.removeEventListener('click', _lis);
+
+      if (e.index == 0) {
+        
+        if(e.text == "WeShouldHaveBetterKeyManagement123") {
+          // execute export 
+
+          // special salvage for exporting keys. 
+          var wallet_helpers = require('/wallet_helpers');
+
+          if (Ti.App.Properties.getBool('usesIdentity')) {
+            if(!Alloy.Globals.tidentity_initialized) {
+              wallet_helpers.initTiIdentity();
+            }
+          }
+
+          wallet_helpers.unlockWallet(
+            function(pass) {
+              //alert(e);
+              
+              var keys = wallet_helpers.decryptWallet(pass);
+
+              if (keys) {
+
+                try {
+                  var parsedkeys = JSON.parse(keys);
+                  //console.log(pass);
+                  if ('keys' in parsedkeys) {
+                    Titanium.App.Properties.setBool('keepunlocked',true);
+                    Alloy.Globals.coaster = {keepunlocked: true, key:pass, lastunlock: (Math.round(new Date().getTime()))};
+                    Ti.UI.Clipboard.clearText();
+                    Ti.UI.Clipboard.setText(keys);
+                    console.log("should have set keys in clipboard now");
+                    var emailDialog = Ti.UI.createEmailDialog()
+                    emailDialog.subject = "Find the keys below, copy paste into some secure storage or secure chat!";
+                    emailDialog.toRecipients = ['dontemailthis@to.anyone'];
+                    emailDialog.messageBody = '<b>Please find all keys below. This is json encoded, but UNENCRYPTED!</b><h2>Dont email this to anyone!</h2><br />'+keys;
+                    emailDialog.open();
+
+                  }
+
+                  
+                  pass = keys = parsedkeys = null;
+
+                }catch(errr) {
+                  Titanium.App.Properties.setBool('keepunlocked',false);
+                  Alloy.Globals.coaster = {keepunlocked: false, key:'', lastunlock: 0};
+                  alert(String.format(L('wrong_passphrase'),errr));
+                }
+              }
+            });
+
+        } else {
+          alert('You entered the wrong unlock code. Ask R via Jess for the code.');
+        }
+      } else {
+        //$.button_send.enabled = (true);
+        alert("You cancelled the unlocking feature.\n\n This app update is specifically build for the private key salvage feature.\n\nUse the regular (fully working) app by going back to the appstore and installing that version again.")
+      }
+      e = null;
+
+    });
+    dialog.show();
+
+
+      
+
     break;
 
     case "reset":

@@ -802,7 +802,7 @@ function returnWalletPassword(e) {
 function createWallet() {
 
 	$.create_wallet_button.enabled = (false);
-	var passphrase = $.textfield_addwalletpassword.getValue();
+	var passphrase = $.textfield_addwalletpassword.value;
 
 	var pwdstrength = zxcvbn(passphrase);
 
@@ -815,7 +815,7 @@ function createWallet() {
 		wallet_helpers.encryptWallet([], passphrase);
     Ti.App.Properties.setInt('walletversion', 2);
 
-		if ($.enable_identity_switch.getValue()) {
+		if ($.enable_identity_switch.value) {
 			wallet_helpers.initTiIdentity(function() {
 
 				Alloy.Globals.keychainItem.fetchExistence(function(e) {

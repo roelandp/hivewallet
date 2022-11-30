@@ -12,10 +12,6 @@ module.exports = exports = [
     url: 'https://anyx.io'
   },
   {
-    maintainer: '@roelandp',
-    url: 'https://hive.roelandp.nl'
-  },
-  {
     maintainer: '@pharesim',
     url: 'https://api.pharesim.me'
   },

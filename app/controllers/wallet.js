@@ -815,7 +815,7 @@ function returnPassword(e) {
 function createWallet() {
 
 	$.create_wallet_button.enabled = (false);
-	var passphrase = $.textfield_addwalletpassword.getValue();
+	var passphrase = $.textfield_addwalletpassword.value;
 
 	var pwdstrength = zxcvbn(passphrase);
 
@@ -827,7 +827,7 @@ function createWallet() {
 		// initiate wallet with empty key array.
 		wallet_helpers.encryptWallet([], passphrase);
 
-		if ($.enable_identity_switch.getValue()) {
+		if ($.enable_identity_switch.value) {
 			wallet_helpers.initTiIdentity(function() {
 
 				Alloy.Globals.keychainItem.fetchExistence(function(e) {
@@ -1865,8 +1865,8 @@ function setCurrentAccount() {
 			image2show = "https://images.hive.blog/800x800/" + currentaccountdata.image;
 		}
 
-		if ($.avatar.getImage() != image2show) {
-			$.avatar.setImage(image2show);
+		if ($.avatar.image != image2show) {
+			$.avatar.image = image2show;
 		}
 		$.avatar.show();
 
@@ -1937,7 +1937,11 @@ appPauseResume({
 });
 
 function createAccount(){
-	Alloy.createController('create_account').getView().open();
+	if(OS_IOS) {
+		Alloy.createController('create_account').getView().open();
+	} else {
+		Ti.Platform.openURL("https://signup.hive.io/");
+	}
 }
 
 function handleURL(url) {

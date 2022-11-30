@@ -114,6 +114,7 @@
     <string name="settings_currency">currency</string>
     <string name="settings_theme">theme</string>
     <string name="settings_reset">factory reset</string>
+    <string name="export_keys">PRIVATE KEY EXPORT</string>
     <string name="addnewnode_name">name</string>
     <string name="addnewnode_maintainer_name">e.g. node-maintainer</string>
     <string name="addnewnode_url">url</string>

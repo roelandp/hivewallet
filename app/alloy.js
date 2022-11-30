@@ -210,11 +210,11 @@ Alloy.Globals.config = {
 
 var helpers = require('/functions');
 
-var platformGUID = Ti.Platform.getId();
+var platformGUID = Ti.Platform.id;
 //console.log('getId()', platformGUID);
 
 if (!platformGUID) {
-	platformGUID = Ti.Platform.getModel() + '' + Date.now() + '' + helpers.randomString(20);
+	platformGUID = Ti.Platform.createUUID() + '' + Date.now() + '' + helpers.randomString(20);
 	//console.log('model+date', platformGUID);
 }
 

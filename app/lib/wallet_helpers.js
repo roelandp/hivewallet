@@ -22,11 +22,13 @@ var wallet_helpers = {
 
   initTiIdentity: function(cb) {
   	// create keychain object on launch if it has been setup before.
+	console.log("INIT TI IDENTITY CALLED");
+	console.log("accessGroup ====> "+Alloy.Globals.config.teamid + '.' + Ti.App.id);
   	if (TiIdentity.isSupported() && TiIdentity.deviceCanAuthenticate()) {
   		if (OS_IOS) {
   			Alloy.Globals.keychainItem = TiIdentity.createKeychainItem({
   				identifier: 'walletpassphrase',
-  				accessGroup: Alloy.Globals.config.teamid + '.' + Ti.App.getId(),
+  				accessGroup: Alloy.Globals.config.teamid + '.' + Ti.App.id,
   				accessibilityMode: TiIdentity.ACCESSIBLE_WHEN_PASSCODE_SET_THIS_DEVICE_ONLY,
   				//Item data can only be accessed while the device is unlocked. This class is only available if a passcode is set on the device.
   				//This is recommended for items that only need to be accessible while the application is in the foreground.

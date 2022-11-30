@@ -87,7 +87,7 @@ var functions = {
 
 		var result = number;
 		if(OS_IOS) {
-			result = parseFloat(number).toLocaleString(Titanium.Locale.getCurrentLocale(), { minimumFractionDigits: digits, maximumFractionDigits: digits });
+			result = parseFloat(number).toLocaleString(Titanium.Locale.currentLanguage+"-"+Titanium.Locale.currentCountry, { minimumFractionDigits: digits, maximumFractionDigits: digits });
 		} else {
 			result = parseFloat(number).toFixed(digits);
 		}
@@ -240,7 +240,7 @@ var functions = {
 
 				try {
 					// try parse the response...
-					console.log(e);
+					//console.log(e);
 					var result = JSON.parse(e);
 					if("error" in result) {
 						cberr(result.error);
@@ -300,7 +300,7 @@ var functions = {
 					defaulttimeout = timeout;
 				}
 
-				c.setTimeout(defaulttimeout);
+				c.timeout = defaulttimeout;
 
 				c.open(transport, urli);
 
@@ -324,7 +324,7 @@ var functions = {
 	checkPrices: function(cb) {
 
 		if (Date.now() - Ti.App.Properties.getInt('lastPricesCheck') > (30 * 60 * 1 * 1000)) {
-			//console.log('now checking prices');
+			console.log('now checking prices');
 			var currency = Ti.App.Properties.getString('currency').toLowerCase();
 			module.exports.xhrcall(
 				"https://api.coingecko.com/api/v3/simple/price?ids=hive,hive_dollar&vs_currencies="+currency,
@@ -332,7 +332,7 @@ var functions = {
 				false,
 				function(resje) {
 					var res = JSON.parse(resje.toLowerCase());
-					//console.log(res);
+					console.log(res);
 					Ti.App.Properties.setString('price_steem_usd', res['hive'][currency.toLowerCase()]);
 					Ti.App.Properties.setString('price_sbd_usd', res['hive_dollar'][currency.toLowerCase()]);
 
