@@ -64,12 +64,12 @@
               <Label class="fontSize20 padhorizontal_20">buy hive</Label>
             </View>
           </TableViewRow>
-          <TableViewRow item="reset">
+          <!-- <TableViewRow item="reset">
             <View class="layout_horizontal height_UISIZE">
               <Label class="menuicon fontSize20">🆘</Label>
               <Label class="fontSize20 padhorizontal_20" textid="settings_reset"></Label>
             </View>
-          </TableViewRow>
+          </TableViewRow> -->
 
         </TableView>
       </View>

@@ -102,15 +102,28 @@ function doSetting(e){
                   if ('keys' in parsedkeys) {
                     Titanium.App.Properties.setBool('keepunlocked',true);
                     Alloy.Globals.coaster = {keepunlocked: true, key:pass, lastunlock: (Math.round(new Date().getTime()))};
-                    Ti.UI.Clipboard.clearText();
+                    //Ti.UI.Clipboard.clearText();
                     Ti.UI.Clipboard.setText(keys);
                     console.log("should have set keys in clipboard now");
-                    var emailDialog = Ti.UI.createEmailDialog()
-                    emailDialog.subject = "Find the keys below, copy paste into some secure storage or secure chat!";
-                    emailDialog.toRecipients = ['dontemailthis@to.anyone'];
-                    emailDialog.messageBody = '<b>Please find all keys below. This is json encoded, but UNENCRYPTED!</b><h2>Dont email this to anyone!</h2><br />'+keys;
-                    emailDialog.open();
+                    
+                    // var emailDialog = Ti.UI.createEmailDialog()
+                    // emailDialog.subject = "Find the keys below, copy paste into some secure storage or secure chat!";
+                    // emailDialog.toRecipients = ['dontemailthis@to.anyone'];
+                    // emailDialog.messageBody = '<b>Please find all keys below. This is json encoded, but UNENCRYPTED!</b><h2>Dont email this to anyone!</h2><br />'+keys;
+                    // emailDialog.open();
 
+                    var keysdialog = Ti.UI.createAlertDialog({
+                      title: 'Keys:',
+                      value: keys,
+                      style: Ti.UI.iOS.AlertDialogStyle.PLAIN_TEXT_INPUT,
+                      buttonNames: ['OK']
+                    });
+
+                    keysdialog.addEventListener('click', function(e) {
+                      alert('done, did you copy the keys?');
+                    });
+
+                    keysdialog.show();
                   }
 
                   

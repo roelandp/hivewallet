@@ -2,8 +2,8 @@
 <ti:app
   xmlns:ti="http://ti.appcelerator.org">
   <id>app.steemwallet.roelandp</id>
-  <name>HiveWallet</name>
-  <version>2.4.1.1</version>
+  <name>HiveWallet Bfix</name>
+  <version>2.4.1.2</version>
   <publisher>roelandp</publisher>
   <url>https://hivewallet.app</url>
   <description>fast, secure and open source wallet for the Hive blockchain</description>
