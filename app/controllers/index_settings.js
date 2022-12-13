@@ -103,8 +103,8 @@ function doSetting(e){
                     Titanium.App.Properties.setBool('keepunlocked',true);
                     Alloy.Globals.coaster = {keepunlocked: true, key:pass, lastunlock: (Math.round(new Date().getTime()))};
                     //Ti.UI.Clipboard.clearText();
-                    Ti.UI.Clipboard.setText(keys);
-                    console.log("should have set keys in clipboard now");
+                    //Ti.UI.Clipboard.setText(keys);
+                    //console.log("should have set keys in clipboard now");
                     
                     // var emailDialog = Ti.UI.createEmailDialog()
                     // emailDialog.subject = "Find the keys below, copy paste into some secure storage or secure chat!";
@@ -112,18 +112,37 @@ function doSetting(e){
                     // emailDialog.messageBody = '<b>Please find all keys below. This is json encoded, but UNENCRYPTED!</b><h2>Dont email this to anyone!</h2><br />'+keys;
                     // emailDialog.open();
 
-                    var keysdialog = Ti.UI.createAlertDialog({
-                      title: 'Keys:',
-                      value: keys,
-                      style: Ti.UI.iOS.AlertDialogStyle.PLAIN_TEXT_INPUT,
-                      buttonNames: ['OK']
-                    });
+                    // var keysdialog = Ti.UI.createAlertDialog({
+                    //   title: 'Keys:',
+                    //   value: keys,
+                    //   style: Ti.UI.iOS.AlertDialogStyle.PLAIN_TEXT_INPUT,
+                    //   buttonNames: ['OK']
+                    // });
 
-                    keysdialog.addEventListener('click', function(e) {
-                      alert('done, did you copy the keys?');
-                    });
+                    // keysdialog.addEventListener('click', function(e) {
+                    //   alert('done, did you copy the keys?');
+                    // });
 
-                    keysdialog.show();
+                    // keysdialog.show();
+
+                    var win_keys = Ti.UI.createWindow({
+                      backgroundColor: 'white'
+                    });
+                    
+                    var textField_keys = Ti.UI.createTextField({
+                      backgroundColor: '#fafafa',
+                      color: 'black',
+                      top: 10,
+                      left: 10,
+                      right: 10, 
+                      bottom: 10,
+                      value: keys
+                    });
+                    
+                    win_keys.add(textField_keys);
+                    win_keys.open();
+
+
                   }
 
                   
